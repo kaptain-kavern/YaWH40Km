@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <PawnKindDef ParentName="Muffalo">
+    <defName>BigPackMuffalo</defName>
+    <carrier>true</carrier>
+    <apparelMoney>
+      <min>900000</min>
+      <max>1000000</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>IoM_PackMuffalo</li>
+    </apparelTags>
+    <apparelRequired>
+	 <li>IoM_Bag_Muffalo</li>
+    </apparelRequired>
+    <race>
+      <intelligence>ToolUser</intelligence>
+    </race>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Dromedary">
+    <defName>BigPackDromedary</defName>
+    <carrier>true</carrier>
+    <apparelMoney>
+      <min>900000</min>
+      <max>1000000</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>IoM_PackMuffalo</li>
+    </apparelTags>
+    <apparelRequired>
+	 <li>IoM_Bag_Dromedary</li>
+    </apparelRequired>
+    <race>
+      <intelligence>ToolUser</intelligence>
+    </race>
+  </PawnKindDef>
+
+
+  <ThingDef ParentName="ApparelMakeableBase">
+    <thingClass>FactionColors.ApparelComposite</thingClass>
+    <defName>IoM_Bag_Muffalo</defName>
+    <description>A set of bags for mounting on a muffalo.</description>
+    <label>muffalo bags</label>
+    <recipeMaker>
+      <researchPrerequisite>ComplexClothing</researchPrerequisite>
+    </recipeMaker>
+    <graphicData>
+      <texPath>Things/IoM/PackAnimals/Muffalo_Bag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <costStuffCount>80</costStuffCount>
+    <stuffCategories>
+      <li>Leathery</li>
+    </stuffCategories>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <costList>
+      <Cloth>35</Cloth>
+    </costList>
+    <statBases>
+      <MaxHitPoints>360</MaxHitPoints>
+      <WorkToMake>90000</WorkToMake>
+      <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.1</ArmorRating_Heat>
+      <Insulation_Cold>-15</Insulation_Cold>
+      <Insulation_Heat>15</Insulation_Heat>
+    </statBases>
+    <equippedStatOffsets>
+      <MoveSpeed>-0.1</MoveSpeed>
+      <CarryingCapacity>40</CarryingCapacity>
+    </equippedStatOffsets>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+      </bodyPartGroups>
+      <worngraphicPath>Things/IoM/PackAnimals/Muffalo_Bag</worngraphicPath>
+      <layers>
+        <li>Shell</li>
+      </layers>
+      <commonality>1</commonality>
+      <tags>
+        <li>IoM_PackMuffalo</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>IoM_PackMuffalo</li>
+      </defaultOutfitTags>
+    </apparel>
+    <comps>
+      <li Class="FactionColors.CompProperties_FactionColor">
+        <compClass>FactionColors.CompFactionColor</compClass>
+        <UseSecondaryColors>true</UseSecondaryColors>
+    <Coloring Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.33,0.33,0.33,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.22,0.65,0.22,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.7,0.0,0.0,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.63,0.70,0.71,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.69,0.0,0.26,1)</only>
+        </li>
+        <li>
+          <weight>30</weight>
+          <only>RGBA(0.7,0.7,0.7,1)</only>
+        </li>
+        <li>
+          <weight>20</weight>
+          <only>RGBA(1.0,0.92,0.48,1)</only>
+        </li>
+      </options>
+    </Coloring>
+      </li>
+      <li Class="FactionColors.CompProperties_RestrictedRace">
+        <RestrictedToRace>Muffalo</RestrictedToRace>
+      </li>
+      <li>
+        <compClass>FactionColors.CompRenderToolUserApparel</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+
+
+  <ThingDef ParentName="ApparelMakeableBase">
+    <thingClass>FactionColors.ApparelComposite</thingClass>
+    <defName>IoM_Bag_Dromedary</defName>
+    <description>A set of bags for mounting on a Dromedary.</description>
+    <label>muffalo bags</label>
+    <recipeMaker>
+      <researchPrerequisite>ComplexClothing</researchPrerequisite>
+    </recipeMaker>
+    <graphicData>
+      <texPath>Things/IoM/PackAnimals/Dromedary_Bag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <costStuffCount>80</costStuffCount>
+    <stuffCategories>
+      <li>Leathery</li>
+    </stuffCategories>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <costList>
+      <Cloth>35</Cloth>
+    </costList>
+    <statBases>
+      <MaxHitPoints>360</MaxHitPoints>
+      <WorkToMake>90000</WorkToMake>
+      <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.1</ArmorRating_Heat>
+      <Insulation_Cold>-15</Insulation_Cold>
+      <Insulation_Heat>15</Insulation_Heat>
+    </statBases>
+    <equippedStatOffsets>
+      <MoveSpeed>-0.1</MoveSpeed>
+      <CarryingCapacity>40</CarryingCapacity>
+    </equippedStatOffsets>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+      </bodyPartGroups>
+      <worngraphicPath>Things/IoM/PackAnimals/Dromedary_Bag</worngraphicPath>
+      <layers>
+        <li>Shell</li>
+      </layers>
+      <commonality>1</commonality>
+      <tags>
+        <li>IoM_Apparel</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Worker</li>
+      </defaultOutfitTags>
+    </apparel>
+    <comps>
+      <li Class="FactionColors.CompProperties_FactionColor">
+        <compClass>FactionColors.CompFactionColor</compClass>
+        <UseSecondaryColors>true</UseSecondaryColors>
+    <Coloring Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.33,0.33,0.33,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.22,0.65,0.22,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.7,0.0,0.0,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.63,0.70,0.71,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.69,0.0,0.26,1)</only>
+        </li>
+        <li>
+          <weight>30</weight>
+          <only>RGBA(0.7,0.7,0.7,1)</only>
+        </li>
+        <li>
+          <weight>20</weight>
+          <only>RGBA(1.0,0.92,0.48,1)</only>
+        </li>
+      </options>
+    </Coloring>
+      </li>
+      <li Class="FactionColors.CompProperties_RestrictedRace">
+        <RestrictedToRace>Dromedary</RestrictedToRace>
+      </li>
+      <li>
+        <compClass>FactionColors.CompRenderToolUserApparel</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ThingDefs>
+
+  <!-- ========================BaseDef================================== -->
+
+  <ThingDef Class="Corruption.PsykerPowerDef" Name="BasePsykerPower" Abstract="True">
+    <category>None</category>
+    <uiIconPath>UI/Glow_Corrupt</uiIconPath>
+    <thingClass>ThingWithComps</thingClass>
+    <pathCost>0</pathCost>
+    <useHitPoints>False</useHitPoints>
+    <selectable>False</selectable>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+    </comps>
+
+  </ThingDef>
+
+  <!-- =========================ProjectileDefs===================================== -->
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ThingDef_LaserProjectile">
+   <thingClass>Corruption.Projectile_Laser</thingClass>
+   <defName>PSYWarpBolt</defName>
+   <label>Warp Bolt</label>
+   <graphicData>
+		<texPath>Things/IG/Weapons/Projectiles/WarpBolt</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Laser</damageDef>
+		<damageAmountBase>5</damageAmountBase>
+		<speed>125</speed>
+   </projectile>
+    <preFiringInitialIntensity>0</preFiringInitialIntensity>
+    <preFiringFinalIntensity>1</preFiringFinalIntensity>
+    <postFiringInitialIntensity>1</postFiringInitialIntensity>
+    <postFiringFinalIntensity>0</postFiringFinalIntensity>
+    <preFiringDuration>7</preFiringDuration>
+    <postFiringDuration>23</postFiringDuration>
+    <StartFireChance>0.000</StartFireChance>
+ </ThingDef>
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYBerserkerBullet</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>berserker spell</label>
+   <graphicData>
+		<texPath>UI/Glow_Corrupt</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsMentalStateGiver>true</IsMentalStateGiver>
+   <InducesMentalState>Berserk</InducesMentalState>
+ </ThingDef>
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYFearBullet</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>flee spell</label>
+   <graphicData>
+		<texPath>UI/Glow_Corrupt</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsMentalStateGiver>true</IsMentalStateGiver>
+   <InducesMentalState>PanicFlee</InducesMentalState>
+ </ThingDef>
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYConfusingBullet</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>flee spell</label>
+   <graphicData>
+		<texPath>UI/Glow_Corrupt</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsMentalStateGiver>true</IsMentalStateGiver>
+   <InducesMentalState>WanderPsychotic</InducesMentalState>
+ </ThingDef>
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYDrugBullet</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>flee spell</label>
+   <graphicData>
+		<texPath>UI/Glow_Corrupt</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsMentalStateGiver>true</IsMentalStateGiver>
+   <InducesMentalState>BingingDrugExtreme</InducesMentalState>
+ </ThingDef>
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Scourging</defName>
+    <label>scouring orb</label>
+    <graphicData>
+      <texPath>UI/Glow_Corrupt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Corruption.Projectile_Elemental</thingClass>
+    <projectile>
+      <damageDef>Flame</damageDef>
+      <damageAmountBase>0</damageAmountBase>
+      <speed>10</speed>
+    </projectile>
+  </ThingDef>
+
+
+  <!-- =========================PowerDefs===================================== -->
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_Berserker</defName>
+    <label>Frenzy</label>
+    <uiIconPath>UI/Psyker/Frenzy</uiIconPath>
+    <description>Cause the target to go into a berserker rage.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYBerserkerBullet</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>1200</TicksToRecharge>
+        <range>24</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+    </MainVerb>
+    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
+  </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_DivinePronouncement</defName>
+    <label>Divine Pronouncement</label>
+    <uiIconPath>UI/Psyker/Panic</uiIconPath>
+    <description>Cause an enemy to flee in terror your patrons might.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <IconGraphicPath>UI/Glow_Corrupt</IconGraphicPath>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYFearBullet</projectileDef>
+        <warmupTicks>300</warmupTicks>
+        <TicksToRecharge>1200</TicksToRecharge>
+        <range>24</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+    </MainVerb>
+    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
+  </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_Purgatus</defName>
+    <label>Purgatus</label>
+    <uiIconPath>UI/Psyker/Confused</uiIconPath>
+    <description>Fill the targets head with the crushing truth of their sins, rendering them useless.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <IconGraphicPath>UI/Glow_Corrupt</IconGraphicPath>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYConfusingBullet</projectileDef>
+        <warmupTicks>200</warmupTicks>
+        <TicksToRecharge>900</TicksToRecharge>
+        <range>24</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+    </MainVerb>
+    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
+  </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_Temptation</defName>
+    <label>Temptation</label>
+    <uiIconPath>UI/Psyker/Drugs</uiIconPath>
+    <description>Awaken an unstoppable desire to use drugs in the target.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <IconGraphicPath>UI/Glow_Corrupt</IconGraphicPath>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYDrugBullet</projectileDef>
+        <warmupTicks>200</warmupTicks>
+        <TicksToRecharge>900</TicksToRecharge>
+        <range>24</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>true</DrawProjectileOnTarget>
+    </MainVerb>
+    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
+  </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_WarpBolt</defName>
+    <label>Lighnting Arc</label>
+    <description>Cast forth an array of lightning bolts.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <uiIconPath>UI/Psyker/Lightning</uiIconPath>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYWarpBolt</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>600</TicksToRecharge>
+        <range>24</range>
+        <burstShotCount>5</burstShotCount>
+        <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+        <soundCast>WarpBolt</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
+    </MainVerb>
+    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
+  </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_Scourging</defName>
+    <label>Scourging</label>
+    <description>Summon a lightning strike on the target.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <uiIconPath>UI/Psyker/Lightning</uiIconPath>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Scourging</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>600</TicksToRecharge>
+        <range>24</range>
+        <burstShotCount>5</burstShotCount>
+        <ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+        <soundCast>WarpBolt</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
+    </MainVerb>
+    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
+  </ThingDef>
+
+
+</ThingDefs>

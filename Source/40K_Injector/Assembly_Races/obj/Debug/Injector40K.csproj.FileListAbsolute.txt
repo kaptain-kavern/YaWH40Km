@@ -1,0 +1,3 @@
+D:\Spiele\RimWorld1249Win\Mods\WH40k_Eigenproduktion\Assemblies\Injector40K.dll
+D:\Spiele\RimWorld1249Win\Mods\WH40k_Eigenproduktion\Source\40K_Injector\Assembly_Races\obj\Debug\Injector40K.csprojResolveAssemblyReference.cache
+D:\Spiele\RimWorld1249Win\Mods\WH40k_Eigenproduktion\Source\40K_Injector\Assembly_Races\obj\Debug\Injector40K.dll

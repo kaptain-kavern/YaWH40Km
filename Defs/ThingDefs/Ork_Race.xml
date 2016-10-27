@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+
+
+  <!-- ============================ Human ========================== -->
+  <ThingDef ParentName="BasePawn" Class="AlienRace.ThingDef_AlienRace" Name="Ork">
+<thingClass>AlienRace.AlienPawn</thingClass>
+    <defName>Alien_Ork</defName>
+    <label>Ork</label>
+    <description>The pinnacle of the orkoid species: A fully grown Ork.</description>
+    <uiIconPath>Things/Pawn/Humanlike/UI/IconHuman</uiIconPath>
+    <statBases>
+      <MarketValue>950</MarketValue>
+      <MoveSpeed>3.41</MoveSpeed>
+      <Flammability>1.0</Flammability>
+      <ComfyTemperatureMin>12</ComfyTemperatureMin>
+      <ComfyTemperatureMax>32</ComfyTemperatureMax>
+      <LeatherAmount>40</LeatherAmount>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+        <meleeDamageDef>Blunt</meleeDamageDef>
+        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+      </li>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+        <meleeDamageDef>Blunt</meleeDamageDef>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+      </li>    
+  <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+        <meleeDamageDef>Cut</meleeDamageDef>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+      </li>
+    </verbs>
+    <race>
+      <thinkTreeMain>Humanlike</thinkTreeMain>
+      <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
+      <intelligence>Humanlike</intelligence>
+      <makesFootprints>true</makesFootprints>
+      <lifeExpectancy>10000</lifeExpectancy>
+      <leatherColor>(57,166,57)</leatherColor>
+      <leatherCommonalityFactor>0.01</leatherCommonalityFactor>
+      <leatherInsulation>0.70</leatherInsulation>
+      <nameCategory>HumanStandard</nameCategory>
+      <body>Human</body>
+      <baseBodySize>1.5</baseBodySize>
+      <baseHealthScale>1.8</baseHealthScale>
+      <foodType>OmnivoreHuman</foodType>
+      <gestationPeriodDays>25</gestationPeriodDays>
+      <litterSizeCurve>
+        <points>
+          <li>(0.5, 0)</li>
+          <li>(1, 1)</li>
+          <li>(1.01, 0.02)</li>
+          <li>(3.5, 0)</li>
+        </points>
+      </litterSizeCurve>
+      <lifeStageAges>
+        <li>
+          <def>HumanlikeBaby</def>
+          <minAge>0</minAge>
+        </li>
+        <li>
+          <def>HumanlikeToddler</def>
+          <minAge>1.2</minAge>
+        </li>
+        <li>
+          <def>HumanlikeChild</def>
+          <minAge>4</minAge>
+        </li>
+        <li>
+          <def>HumanlikeTeenager</def>
+          <minAge>13</minAge>
+        </li>
+        <li>
+          <def>HumanlikeAdult</def>
+          <minAge>18</minAge>
+        </li>
+      </lifeStageAges>
+      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+      <specialshadowData>
+        <volume>(0.3, 0.8, 0.4)</volume>
+        <offset>(0,0,-0.3)</offset>
+      </specialshadowData>
+      <ageGenerationCurve>
+        <points>
+          <li>(14,0)</li>
+          <li>(10,100)</li>
+          <li>(20,100)</li>
+          <li>(30,30)</li>
+          <li>(40,18)</li>
+          <li>(50,10)</li>
+          <li>(60,3)</li>
+          <li>(70,0)</li>
+        </points>
+      </ageGenerationCurve>
+      <hediffGiverSets>
+        <li>OrganicStandard</li>
+      </hediffGiverSets>
+    </race>
+    <recipes>
+      <li>InstallPowerClaw</li>
+      <li>InstallScytherBlade</li>
+      <li>InstallBionicEye</li>
+      <li>InstallBionicArm</li>
+      <li>InstallBionicLeg</li>
+      <li>InstallSimpleProstheticArm</li>
+      <li>InstallSimpleProstheticLeg</li>
+      <li>InstallPegLeg</li>
+      <li>InstallDenture</li>
+      <li>InstallJoywire</li>
+      <li>InstallPainstopper</li>
+      <li>InstallNaturalHeart</li>
+      <li>InstallNaturalLung</li>
+      <li>InstallNaturalKidney</li>
+      <li>InstallNaturalLiver</li>
+      <li>ExciseCarcinoma</li>
+      <li>RemoveBodyPart</li>
+      <li>Euthanize</li>
+    </recipes>
+
+	<HasHair>None</HasHair>
+	<CustomSkinColors>true</CustomSkinColors>
+	<alienskincolorgen Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.0,0.6,0.33,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.22,0.65,0.22,1)</only>
+        </li>
+      </options>
+    </alienskincolorgen>
+	<CustomGenderDistribution>true</CustomGenderDistribution>
+	<MaleGenderProbability>1.0</MaleGenderProbability>
+	<PawnsSpecificBackstories>true</PawnsSpecificBackstories>	<ForcedRaceTraitEntries>
+		<li>
+		 <defname>Bloodlust</defname>
+		 <degree>0</degree>
+		</li>
+	</ForcedRaceTraitEntries>
+	<NakedHeadGraphicLocation>Things/Orks/HeadsBase/</NakedHeadGraphicLocation>
+	<alienpartgenerator>
+	<aliencrowntypes>
+	  <li>Average_Normal</li>
+	</aliencrowntypes>
+	</alienpartgenerator>
+  </ThingDef>
+
+  <ThingDef ParentName="BasePawn" Class="AlienRace.ThingDef_AlienRace" Name="Gretchin">
+<thingClass>AlienRace.AlienPawn</thingClass>
+    <defName>Alien_Gretchin</defName>
+    <label>gretchin</label>
+    <description>The lesser specimen of the orkoid species.</description>
+    <uiIconPath>Things/Pawn/Humanlike/UI/IconHuman</uiIconPath>
+    <statBases>
+      <MarketValue>950</MarketValue>
+      <MoveSpeed>3.41</MoveSpeed>
+      <Flammability>1.0</Flammability>
+      <ComfyTemperatureMin>12</ComfyTemperatureMin>
+      <ComfyTemperatureMax>32</ComfyTemperatureMax>
+      <LeatherAmount>40</LeatherAmount>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+        <meleeDamageDef>Blunt</meleeDamageDef>
+        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+      </li>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+        <meleeDamageDef>Blunt</meleeDamageDef>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+      </li>    
+  <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+        <meleeDamageDef>Cut</meleeDamageDef>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+      </li>
+    </verbs>
+    <race>
+      <thinkTreeMain>Humanlike</thinkTreeMain>
+      <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
+      <intelligence>Humanlike</intelligence>
+      <makesFootprints>true</makesFootprints>
+      <lifeExpectancy>10000</lifeExpectancy>
+      <leatherColor>(57,166,57)</leatherColor>
+      <leatherCommonalityFactor>0.01</leatherCommonalityFactor>
+      <leatherInsulation>0.70</leatherInsulation>
+      <nameCategory>HumanStandard</nameCategory>
+      <body>Human</body>
+      <baseBodySize>1.5</baseBodySize>
+      <baseHealthScale>1.8</baseHealthScale>
+      <foodType>OmnivoreHuman</foodType>
+      <gestationPeriodDays>25</gestationPeriodDays>
+      <litterSizeCurve>
+        <points>
+          <li>(0.5, 0)</li>
+          <li>(1, 1)</li>
+          <li>(1.01, 0.02)</li>
+          <li>(3.5, 0)</li>
+        </points>
+      </litterSizeCurve>
+      <lifeStageAges>
+        <li>
+          <def>HumanlikeBaby</def>
+          <minAge>0</minAge>
+        </li>
+        <li>
+          <def>HumanlikeToddler</def>
+          <minAge>1.2</minAge>
+        </li>
+        <li>
+          <def>HumanlikeChild</def>
+          <minAge>4</minAge>
+        </li>
+        <li>
+          <def>HumanlikeTeenager</def>
+          <minAge>13</minAge>
+        </li>
+        <li>
+          <def>HumanlikeAdult</def>
+          <minAge>18</minAge>
+        </li>
+      </lifeStageAges>
+      <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
+      <specialshadowData>
+        <volume>(0.3, 0.8, 0.4)</volume>
+        <offset>(0,0,-0.3)</offset>
+      </specialshadowData>
+      <ageGenerationCurve>
+        <points>
+          <li>(14,0)</li>
+          <li>(10,100)</li>
+          <li>(20,100)</li>
+          <li>(30,30)</li>
+          <li>(40,18)</li>
+          <li>(50,10)</li>
+          <li>(60,3)</li>
+          <li>(70,0)</li>
+        </points>
+      </ageGenerationCurve>
+      <hediffGiverSets>
+        <li>OrganicStandard</li>
+      </hediffGiverSets>
+    </race>
+    <recipes>
+      <li>InstallPowerClaw</li>
+      <li>InstallScytherBlade</li>
+      <li>InstallBionicEye</li>
+      <li>InstallBionicArm</li>
+      <li>InstallBionicLeg</li>
+      <li>InstallSimpleProstheticArm</li>
+      <li>InstallSimpleProstheticLeg</li>
+      <li>InstallPegLeg</li>
+      <li>InstallDenture</li>
+      <li>InstallJoywire</li>
+      <li>InstallPainstopper</li>
+      <li>InstallNaturalHeart</li>
+      <li>InstallNaturalLung</li>
+      <li>InstallNaturalKidney</li>
+      <li>InstallNaturalLiver</li>
+      <li>ExciseCarcinoma</li>
+      <li>RemoveBodyPart</li>
+      <li>Euthanize</li>
+    </recipes>
+
+	<HasHair>None</HasHair>
+	<CustomSkinColors>true</CustomSkinColors>
+	<alienskincolorgen Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.0,0.6,0.33,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.22,0.65,0.22,1)</only>
+        </li>
+      </options>
+    </alienskincolorgen>
+	<CustomGenderDistribution>true</CustomGenderDistribution>
+	<MaleGenderProbability>1.0</MaleGenderProbability>
+	<PawnsSpecificBackstories>true</PawnsSpecificBackstories>	<ForcedRaceTraitEntries>
+		<li>
+		 <defname>Bloodlust</defname>
+		 <degree>0</degree>
+		</li>
+	</ForcedRaceTraitEntries>
+
+	<NakedHeadGraphicLocation>Things/Orks/GretchinBase/</NakedHeadGraphicLocation>
+	<alienpartgenerator>
+	<aliencrowntypes>
+	  <li>Gretchin</li>
+	</aliencrowntypes>
+	</alienpartgenerator>
+  </ThingDef>
+
+  <ThingDef ParentName="AnimalThingBase">
+    <defName>Squig</defName>
+    <label>squig</label>
+    <description>The simplest orkoid lifeform. Basically a ball of meat with teeth and stumpy legs. They are usually bred as lifestock.</description>
+    <statBases>
+      <MoveSpeed>3.00</MoveSpeed>
+      <ComfyTemperatureMin>-20</ComfyTemperatureMin>
+      <MarketValue>100</MarketValue>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <defaultCooldownTicks>150</defaultCooldownTicks>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+        <meleeDamageDef>Bite</meleeDamageDef>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+      </li>
+    </verbs>
+    <race>
+      <body>SquigBody</body>
+      <baseBodySize>0.7</baseBodySize>
+      <baseHungerRate>0.45</baseHungerRate>
+      <baseHealthScale>0.7</baseHealthScale>
+      <foodType>OmnivoreRoughAnimal</foodType>
+      <wildness>0.50</wildness>
+      <trainableIntelligence>Advanced</trainableIntelligence>
+      <manhunterOnTameFailChance>0.1</manhunterOnTameFailChance>
+      <useMeatFrom>Pig</useMeatFrom>
+      <useLeatherFrom>Pig</useLeatherFrom>
+      <gestationPeriodDays>6</gestationPeriodDays>
+      <litterSizeCurve>
+        <points>
+          <li>(0.5, 0)</li>
+          <li>(1, 1)</li>
+          <li>(3, 1)</li>
+          <li>(3.5, 0)</li>
+        </points>
+      </litterSizeCurve>
+      <lifeExpectancy>12</lifeExpectancy>
+      <lifeStageAges>
+        <li>
+          <def>AnimalBaby</def>
+          <minAge>0</minAge>
+        </li>
+        <li>
+          <def>AnimalJuvenile</def>
+          <minAge>0.1</minAge>
+        </li>
+        <li>
+          <def>AnimalAdult</def>
+          <minAge>0.5</minAge>
+          <soundWounded>Pawn_Wildboar_Wounded</soundWounded>
+          <soundDeath>Pawn_Wildboar_Death</soundDeath>
+          <soundCall>Pawn_Wildboar_Call</soundCall>
+          <soundAngry>Pawn_Wildboar_Angry</soundAngry>
+        </li>
+      </lifeStageAges>
+      <soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_SmallScratch_Miss</soundMeleeMiss>
+    </race>
+    <tradeTags>
+      <li>StandardAnimal</li>
+    </tradeTags>
+  </ThingDef>
+  
+  <PawnKindDef ParentName="AnimalKindBase">
+    <defName>Ork_Squig</defName>
+    <label>sqig</label>
+    <race>WildBoar</race>
+    <combatPower>55</combatPower>
+    <wildSpawn_EcoSystemWeight>0.0</wildSpawn_EcoSystemWeight>
+    <wildSpawn_spawnWild>false</wildSpawn_spawnWild>
+    <wildSpawn_GroupSizeRange>
+      <min>5</min>
+      <max>10</max>
+    </wildSpawn_GroupSizeRange>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Orks/Squig/Squig</texPath>
+          <color>(234,131,112)</color>
+          <shaderType>CutoutComplex</shaderType>
+          <drawSize>0.3</drawSize>
+          <shadowData>
+            <volume>(0.30, 0.25, 0.20)</volume>
+          </shadowData>
+        </bodyGraphicData>
+        <dessicatedBodyGraphicData>
+          <texPath>Things/Pawn/Animal/Dessicated/CritterDessicatedMedium</texPath>
+          <drawSize>0.7</drawSize>
+        </dessicatedBodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Orks/Squig/Squig</texPath>
+          <color>(234,131,112)</color>
+          <shaderType>CutoutComplex</shaderType>
+          <drawSize>1.0</drawSize>
+          <shadowData>
+            <volume>(0.375, 0.375, 0.375)</volume>
+          </shadowData>
+        </bodyGraphicData>
+        <dessicatedBodyGraphicData>
+          <texPath>Things/Pawn/Animal/Dessicated/CritterDessicatedMedium</texPath>
+          <drawSize>1.0</drawSize>
+        </dessicatedBodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Orks/Squig/Squig</texPath>
+          <color>(234,131,112)</color>
+          <shaderType>CutoutComplex</shaderType>
+          <drawSize>1.0</drawSize>
+          <shadowData>
+            <volume>(0.5, 0.5, 0.4)</volume>
+            <offset>(0,0,-0.05)</offset>
+          </shadowData>
+        </bodyGraphicData>
+        <dessicatedBodyGraphicData>
+          <texPath>Things/Pawn/Animal/Dessicated/CritterDessicatedMedium</texPath>
+          <drawSize>1</drawSize>
+        </dessicatedBodyGraphicData>
+      </li>
+    </lifeStages>
+  </PawnKindDef>
+
+
+
+</ThingDefs>

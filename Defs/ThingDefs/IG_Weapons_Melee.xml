@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ThingDefs>
+
+  <ThingDef Name="BaseMeleeWeapon_IG_Sharp" ParentName="BaseMeleeWeaponNoTag" Abstract="True">
+    <recipeMaker>
+    <defaultIngredientFilter>
+      <categories>
+        <li>Root</li>
+      </categories>
+      <exceptedThingDefs>
+        <li>Silver</li>
+        <li>Gold</li>
+        <li>WoodLog</li>
+      </exceptedThingDefs>
+    </defaultIngredientFilter>
+    </recipeMaker>
+    <weaponTags>
+      <li>IG_Melee</li>
+    </weaponTags>
+  </ThingDef>
+
+  <ThingDef Name="BaseMeleeWeapon_IG_Blunt" ParentName="BaseMeleeWeaponNoTag" Abstract="True">
+    <recipeMaker>
+      <defaultIngredientFilter>
+        <categories>
+          <li>Root</li>
+        </categories>
+        <exceptedThingDefs>
+          <li>Silver</li>
+          <li>Gold</li>
+        </exceptedThingDefs>
+      </defaultIngredientFilter>
+    </recipeMaker>
+    <weaponTags>
+      <li>IG_Melee</li>
+    </weaponTags>
+  </ThingDef>
+  
+  
+  
+  
+  <!-- ============================================================== -->
+  
+  <ThingDef ParentName="BaseMeleeWeapon_IG_Sharp">
+    <defName>MeleeWeapon_Chainsword</defName>
+    <label>Chainsword</label>
+    <description>The Chainsword is the preferred close combat melee weapon of many of the military forces of the Imperium of Man. The Chainsword is essentially a sword with powered teeth that run along a single-edged blade like that of a chainsaw.</description>
+	<graphicData>
+		<texPath>Things/IG/Weapons/Chainsword</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractPistol</soundInteract>
+    <costStuffCount>150</costStuffCount>
+    <statBases>
+      <WorkToMake>20000</WorkToMake>
+      <MeleeWeapon_DamageAmount>26</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>1.95</MeleeWeapon_Cooldown>
+    </statBases>
+    <equippedAngleOffset>-15</equippedAngleOffset>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <meleeDamageDef>Cut</meleeDamageDef>
+      </li>
+    </verbs>
+  </ThingDef>
+  
+  <!-- ============================================================== -->
+  
+  <ThingDef ParentName="BaseMeleeWeapon_IG_Sharp">
+    <defName>MeleeWeapon_ImpPowerSword</defName>
+    <label>Imperial Guard Power Sword</label>
+    <description>A Power Sword is a Power Weapon that has been shaped into a sword of varying lengths and designs crafted from one of any number of different materials, though usually Adamantium. When its power cell is activated, often by touching a control located on the hilt, the blade is sheathed in a lethal corona of disruptive energy. This energy field allows the blade to carve through flesh, bone and most forms of armour plate alike, making a Power Sword a highly effective Imperial close combat weapon. Power Swords are used by all members of the Imperial armed forces, including the troops of the Imperial Guard and the Space Marines of the Adeptus Astartes. Xenos races such as the Eldar, their evil kin, the Dark Eldar and the Necrons are also known to make use of such weapons.</description>
+	<graphicData>
+		<texPath>Things/IG/Weapons/ImperialGuardPowerSword</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractPistol</soundInteract>
+    <costStuffCount>150</costStuffCount>
+    <statBases>
+      <WorkToMake>18000</WorkToMake>
+      <MeleeWeapon_DamageAmount>26</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>1.95</MeleeWeapon_Cooldown>
+    </statBases>
+    <equippedAngleOffset>-15</equippedAngleOffset>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <meleeDamageDef>Cut</meleeDamageDef>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!-- ============================================================== -->
+  
+  <ThingDef ParentName="BaseMeleeWeapon_IG_Blunt">
+    <defName>MeleeWeapon_ImpPowerSword</defName>
+    <label>Imperial Force Staff</label>
+    <description>A Force Weapon shaped into a staff. In the hands of a mere mortal, this is a simple blunt weapon, however a competent psyker may turn this into a weapon of terrifying strength.</description>
+	<graphicData>
+		<texPath>Things/IG/Weapons/ForceStaff</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractPistol</soundInteract>
+    <statBases>
+      <WorkToMake>18000</WorkToMake>
+      <MeleeWeapon_DamageAmount>15</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>1.95</MeleeWeapon_Cooldown>
+    </statBases>
+    <TickerType>Rare</TickerType>
+    <equippedAngleOffset>-85</equippedAngleOffset>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <meleeDamageDef>Blunt</meleeDamageDef>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="Corruption.CompProperties_SoulItem">
+        <compClass>Corruption.CompSoulItem</compClass>
+        <Category>Corruption</Category>
+        <GainRate>0.1</GainRate>
+	    <UnlockedPsykerPowers>
+	      <li>PsykerPower_WarpBolt</li>
+	    </UnlockedPsykerPowers>
+      </li>
+    </comps>
+  </ThingDef>
+
+    
+ </ThingDefs>

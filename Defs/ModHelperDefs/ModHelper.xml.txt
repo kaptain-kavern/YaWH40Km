@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <CommunityCoreLibrary.ModHelperDef>
+    <defName>WH40k_Eigenproduktion</defName>
+    <ModName>WH40k_Eigenproduktion</ModName>
+    <minCCLversion>0.14.1</minCCLversion>
+<ThingComps>
+            <li>
+                <compProps Class="Corruption.CompPropertiesAfflictionDrawer">
+                    <compClass>Corruption.CompAfflictionDrawer</compClass>
+                </compProps>
+                <qualifier>Corruption.CompAfflictionDrawerInjector</qualifier>
+            </li>
+        </ThingComps>
+  </CommunityCoreLibrary.ModHelperDef>
+</Defs>

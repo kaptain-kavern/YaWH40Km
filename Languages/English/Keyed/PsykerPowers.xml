@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <MentalStateByPsyker>{0}'s mind was affected by a psyker, causing a mental breakdown.</MentalStateByPsyker>
+
+  <PsykerPowerRecharging>{0} is still recovering from the last use of a power.</PsykerPowerRecharging>
+
+</LanguageData>

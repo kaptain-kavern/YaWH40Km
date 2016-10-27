@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{74DCE0E4-19F5-415B-AF5E-BA651ECF87B1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Corruption</RootNamespace>
+    <AssemblyName>Corruption</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AlienRaces_0.8\Assemblies\AlienRace.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp, Version=0.13.5940.24501, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\RimWorld1284Win_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FactionColors, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\FactionColors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Injector40K, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\Injector40K.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\RimWorld1284Win_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Affliction.cs" />
+    <Compile Include="AfflictionDrawerUtility.cs" />
+    <Compile Include="AfflictionHeadDrawer.cs" />
+    <Compile Include="BuildingAltar.cs" />
+    <Compile Include="BuildingAltarDef.cs" />
+    <Compile Include="BuildingWorshipDef.cs" />
+    <Compile Include="ChaosGodsUtilities.cs" />
+    <Compile Include="Command_CastPower.cs" />
+    <Compile Include="CompAfflictionDrawer.cs" />
+    <Compile Include="CompCorruptionTickManager.cs" />
+    <Compile Include="CompPropertiesAfflictionDrawer.cs" />
+    <Compile Include="CompProperties_LaunchProjectile.cs" />
+    <Compile Include="CompProperties_MentalStateGiver.cs" />
+    <Compile Include="CompProperties_PsykerVerb.cs" />
+    <Compile Include="CompProperties_StartWithHediff.cs" />
+    <Compile Include="CompProperties_UseEffectPsykerPower.cs" />
+    <Compile Include="CompPsyker.cs" />
+    <Compile Include="CompPsykerVerb.cs" />
+    <Compile Include="CompSoulItem.cs" />
+    <Compile Include="CompStartWithHediff.cs" />
+    <Compile Include="CompThoughtlessAutomaton.cs" />
+    <Compile Include="CompUseEffect_PsychicPower.cs" />
+    <Compile Include="CorruptionGiver.cs" />
+    <Compile Include="CorruptionGiverDef.cs" />
+    <Compile Include="CorruptionGiver_Altar.cs" />
+    <Compile Include="CorruptionGiver_HoldSermon.cs" />
+    <Compile Include="CulturalToleranceCategory.cs" />
+    <Compile Include="Dialog_RenameTemple.cs" />
+    <Compile Include="AfflictionGiver.cs" />
+    <Compile Include="ChaosFollowerPawnKindDef.cs" />
+    <Compile Include="ChaosGods.cs" />
+    <Compile Include="AfflictionProperty.cs" />
+    <Compile Include="CompProperties_SoulItem.cs" />
+    <Compile Include="GodThoughtDefOf.cs" />
+    <Compile Include="HediffComp_NurglesMark.cs" />
+    <Compile Include="HediffComp_NurglesRot.cs" />
+    <Compile Include="ITab_Altar.cs" />
+    <Compile Include="ITab_Pawn_Alignment.cs" />
+    <Compile Include="ItemEffigy.cs" />
+    <Compile Include="JobDriver_AttendSermon.cs" />
+    <Compile Include="JobDriver_CastPower.cs" />
+    <Compile Include="JobDriver_HoldSermon.cs" />
+    <Compile Include="JoyGiver_HoldSermon.cs" />
+    <Compile Include="MainTabWindow_Alignment.cs" />
+    <Compile Include="MentalState_KhorneKillWeak.cs" />
+    <Compile Include="ModInitializer.cs" />
+    <Compile Include="Need_Soul.cs" />
+    <Compile Include="CorruptionThoughtUtility.cs" />
+    <Compile Include="OtherGods.cs" />
+    <Compile Include="PatronInfo.cs" />
+    <Compile Include="ProjectileDef_WarpPower.cs" />
+    <Compile Include="Projectile_AoE.cs" />
+    <Compile Include="Projectile_Elemental.cs" />
+    <Compile Include="Projectile_Incendiary.cs" />
+    <Compile Include="Projectile_Laser.cs" />
+    <Compile Include="Projectile_WarpPower.cs" />
+    <Compile Include="Projectile_Splinter.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PsykerPower.cs" />
+    <Compile Include="PsykerPowerCategory.cs" />
+    <Compile Include="PsykerPowerDef.cs" />
+    <Compile Include="PsykerPowerDefOf.cs" />
+    <Compile Include="PsykerPowerLevel.cs" />
+    <Compile Include="PsykerPowerManager.cs" />
+    <Compile Include="RoomRoleWorker_Church.cs" />
+    <Compile Include="SermonSpot.cs" />
+    <Compile Include="SermonThoughtDefOf.cs" />
+    <Compile Include="SermonUtility.cs" />
+    <Compile Include="SoulItemCategories.cs" />
+    <Compile Include="SoulTrait.cs" />
+    <Compile Include="SoulTraitDef.cs" />
+    <Compile Include="CorruptionDefOfs.cs" />
+    <Compile Include="SoulTraitDegreeData.cs" />
+    <Compile Include="TempleCardUtility.cs" />
+    <Compile Include="ThingComp_CorruptedItem.cs" />
+    <Compile Include="SituationalThoughtHandlerModded.cs" />
+    <Compile Include="ThingDef_BuildingTwoColored.cs" />
+    <Compile Include="ThingDef_LaserProjectile.cs" />
+    <Compile Include="ThingRequestGroup_Corruption.cs" />
+    <Compile Include="ThoughtDefAutomaton.cs" />
+    <Compile Include="ThoughtWorker_AttendedSermonDark.cs" />
+    <Compile Include="ThoughtWorker_AttendedSermonPure.cs" />
+    <Compile Include="ThoughtWorker_AutomatonThoughts.cs" />
+    <Compile Include="ThoughtWorker_CorruptionStatus.cs" />
+    <Compile Include="ThoughtWorker_CulturalTolerance.cs" />
+    <Compile Include="ThoughtWorker_KhornateNoKill.cs" />
+    <Compile Include="ThoughtWorker_KhornateKill.cs" />
+    <Compile Include="ThoughtWorker_NurgleGifts.cs" />
+    <Compile Include="ThoughtWorker_Tzeentchian.cs" />
+    <Compile Include="ThoughtWorker_Undivided.cs" />
+    <Compile Include="ThoughtWorker_Xenos.cs" />
+    <Compile Include="VerbProperties_WarpPower.cs" />
+    <Compile Include="Verb_CastWarpPower.cs" />
+    <Compile Include="WarpPowerUtilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="xml\Initializer.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="xml\TestPawn.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

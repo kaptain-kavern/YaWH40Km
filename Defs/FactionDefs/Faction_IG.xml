@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <FactionDef Class="FactionColors.FactionDefUniform">
+    <defName>ImperialGuard</defName>
+    <label>Imperial Guard</label>
+    <description>Men and women from the Emperor's Hammer. They are the first, last and often only line of defence the Imperium has against what is out there</description>
+    <pawnsPlural>guardsmen</pawnsPlural>
+    <requiredCountAtGameStart>1</requiredCountAtGameStart>
+    <fixedName>Imperial Guard</fixedName>
+    <canSiege>true</canSiege>
+    <canStageAttacks>true</canStageAttacks>
+    <raidCommonality>37</raidCommonality>
+    <techLevel>Spacer</techLevel>
+    <backstoryCategory>Civil</backstoryCategory>
+    <leaderTitle>Commander</leaderTitle>
+    <hidden>true</hidden>
+    <hairTags>
+      <li>Urban</li>
+      <li>Tribal</li>
+      <li>Rural</li>
+    </hairTags>
+    <apparelStuffFilter>
+      <thingDefs>
+        <li>Synthread</li>
+        <li>Hyperweave</li>
+      </thingDefs>
+    </apparelStuffFilter>
+    <startingGoodwill>
+      <min>50</min>
+      <max>100</max>
+    </startingGoodwill>
+    <naturalColonyGoodwill>
+      <min>50</min>
+      <max>100</max>
+    </naturalColonyGoodwill>
+    <pawnGroupMakers>
+      <li Class="PawnGroupMaker_Normal">
+        <options>
+            <IG_Trooper>100</IG_Trooper>
+            <IG_Sergeant>20</IG_Sergeant>
+        </options>
+      </li>
+      <li Class="PawnGroupMaker_Trader">
+        <traders>
+          <IG_Ordinate>1</IG_Ordinate>
+        </traders>
+        <carriers>
+          <PackMuffalo>1</PackMuffalo>
+          <PackDromedary>1</PackDromedary>
+        </carriers>
+        <guards>
+          <IG_Trooper>250</IG_Trooper>
+          <IG_AssaultTrooper>100</IG_AssaultTrooper>
+        </guards>
+      </li>
+    </pawnGroupMakers>
+    <FactionColor1>RGBA(0.19,0.28,0.13,1)</FactionColor1>
+    <FactionColor2>RGBA(0.61,0.57,0.36,1)</FactionColor2>
+    <Subfactions>
+	<li>
+		<SubfactionName>Cadian 349th</SubfactionName>
+		<SubfactionLabel>Cadian 349th</SubfactionLabel>
+		<SubfactionDescription>A passing regiment of Cadian troopers.</SubfactionDescription>
+		<SubfactionColor1>(0.19,0.28,0.13,1)</SubfactionColor1>
+		<SubfactionColor2>RGBA(0.61,0.57,0.36,1)</SubfactionColor2>
+		<weight>10</weight>
+	</li>
+	<li>
+		<SubfactionName>Valhallan 14th</SubfactionName>
+		<SubfactionLabel>Valhallan 14th</SubfactionLabel>
+		<SubfactionDescription>A passing regiment of Valhallan troopers.</SubfactionDescription>
+		<SubfactionColor1>(0.50,0.54,0.62,1)</SubfactionColor1>
+		<SubfactionColor2>RGBA(0.61,0.57,0.36,1)</SubfactionColor2>
+		<weight>10</weight>
+	</li>
+	<li>
+		<SubfactionName>Konig 33rd</SubfactionName>
+		<SubfactionLabel>Konig 33rd</SubfactionLabel>
+		<SubfactionDescription>A passing regiment of Konig troopers.</SubfactionDescription>
+		<SubfactionColor1>(0.61,0.57,0.36,1)</SubfactionColor1>
+		<SubfactionColor2>RGBA(0.61,0.57,0.36,1)</SubfactionColor2>
+		<weight>10</weight>
+	</li>
+
+	<li>
+		<SubfactionName>Kraggan 21st</SubfactionName>
+		<SubfactionLabel>Kraggan 21st</SubfactionLabel>
+		<SubfactionDescription>A passing regiment of Kraggan troopers.</SubfactionDescription>
+		<SubfactionColor1>(0.7,0.00,0.00)</SubfactionColor1>
+		<SubfactionColor2>RGBA(0.61,0.57,0.36,1)</SubfactionColor2>
+		<weight>10</weight>
+	</li>
+    </Subfactions>
+  </FactionDef>  
+</Defs>

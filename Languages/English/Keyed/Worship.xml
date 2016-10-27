@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+
+  <Temple>Temple</Temple>
+
+  <Church>Church</Church>
+
+  <Shrine>Shrine</Shrine>
+
+  <Chapel>Chapel</Chapel>
+
+  <TabAltar>Altar</TabAltar>
+
+  <Preacher>Preacher</Preacher>
+
+  <RenameTemple>Rename</RenameTemple>
+
+  <NameTempleMessage>Name this place of worship.</NameTempleMessage>
+
+  <MorningSermons>Perform Morning Sermons</MorningSermons>
+
+  <EveningSermons>Perform Evening Sermons</EveningSermons>
+
+  <ForceSermonDebug>Debug: Force Sermon</ForceSermonDebug>
+
+  <ForceListenersDebug>Debug: Force Listeners</ForceListenersDebug>
+
+
+
+</LanguageData>

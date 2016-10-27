@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+     <JobDef>
+        <defName>HoldSermon</defName>
+        <driverClass>Corruption.JobDriver_HoldSermon</driverClass>
+        <reportString>holding a sermon.</reportString>
+        <joyDuration>600</joyDuration>
+        <joyGainRate>2</joyGainRate>
+        <joyMaxParticipants>20</joyMaxParticipants>
+        <joyKind>Worship</joyKind>
+    </JobDef>
+
+    <JobDef>
+        <defName>AttendSermon</defName>
+        <driverClass>Corruption.JobDriver_AttendSermon</driverClass>
+        <reportString>attending a sermon.</reportString>
+        <joyDuration>400</joyDuration>
+        <joyGainRate>1</joyGainRate>
+        <joyMaxParticipants>20</joyMaxParticipants>
+        <joyKind>Worship</joyKind>
+    </JobDef>
+
+    <JobDef>
+	<defName>Khorne_KillWeakling</defName>
+	 <driverClass>JobDriver_AttackStatic</driverClass>
+	 <reportString>attacking TargetA.</reportString>
+      <alwaysShowWeapon>true</alwaysShowWeapon>
+      <casualInterruptible>false</casualInterruptible>
+    </JobDef>
+
+	<JobDef>
+		<defName>CastPsykerPower</defName>
+		<driverClass>Corruption.JobDriver_CastPsykerPower</driverClass>
+		<reportString>Casting a Psychic Power</reportString>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+
+</Defs>
