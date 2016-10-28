@@ -136,7 +136,7 @@
   <ThingDef ParentName="BaseDemon">
     <defName>Demon_Daemonette</defName>
     <label>Daemonette</label>
-    <description>Hermaphroditic lesser daemon that serves Slaneesh, the Prince of Pleasure. They are dextrous and graceful fighters, armed with powerful claws.</description>
+    <description>Hermaphroditic lesser daemons that serve Slaneesh, the Prince of Pleasure. They are dextrous and graceful fighters, armed with powerful claws.</description>
     <statBases>
       <MoveSpeed>4.5</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
