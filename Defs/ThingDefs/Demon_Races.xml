@@ -20,8 +20,8 @@
   <!-- Blodletter -->
   <ThingDef ParentName="BaseDemon">
     <defName>Demon_Bloodletter</defName>
-    <label>skitarius</label>
-    <description>The backbone of the mechanicus fighting forces.</description>
+    <label>Bloodletter</label>
+    <description>Lesser daemons that serve as foot soldiers for the Blood God Khorne. With an insatiable blood thirst, they are regarded among the best warriors in the galaxy.</description>
     <statBases>
       <MoveSpeed>5.5</MoveSpeed>
       <ArmorRating_Blunt>0.30</ArmorRating_Blunt>
@@ -75,7 +75,7 @@
   <ThingDef ParentName="BaseDemon">
     <defName>Demon_Plaguebearer</defName>
     <label>Plaguebearer</label>
-    <description>The backbone of the mechanicus fighting forces.</description>
+    <description>Lesser Daemons that serve the Plague Lord, Nurgle. They are made from the souls of mortals who have been slain by the virulent plague known as Nurgle's Rot.</description>
     <statBases>
       <MoveSpeed>3.5</MoveSpeed>
       <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
@@ -136,7 +136,7 @@
   <ThingDef ParentName="BaseDemon">
     <defName>Demon_Daemonette</defName>
     <label>Daemonette</label>
-    <description>The backbone of the mechanicus fighting forces.</description>
+    <description>Hermaphroditic lesser daemons that serve Slaneesh, the Prince of Pleasure. They are dextrous and graceful fighters, armed with powerful claws.</description>
     <statBases>
       <MoveSpeed>4.5</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
@@ -198,7 +198,7 @@
   <ThingDef ParentName="BaseDemon">
     <defName>Demon_Horror</defName>
     <label>Horror</label>
-    <description>The backbone of the mechanicus fighting forces.</description>
+    <description>Lesser Daemons of Tzeentch, the Changer of Ways. They are crazed manifestations of Chaos, with no consistent form, only identifiable by a pink color.</description>
     <statBases>
       <MoveSpeed>4.0</MoveSpeed>
       <ArmorRating_Blunt>0.10</ArmorRating_Blunt>
