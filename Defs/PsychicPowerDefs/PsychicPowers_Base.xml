@@ -37,20 +37,56 @@
 		<speed>125</speed>
    </projectile>
     <preFiringInitialIntensity>0</preFiringInitialIntensity>
-    <preFiringFinalIntensity>1</preFiringFinalIntensity>
-    <postFiringInitialIntensity>1</postFiringInitialIntensity>
+    <preFiringFinalIntensity>2</preFiringFinalIntensity>
+    <postFiringInitialIntensity>2</postFiringInitialIntensity>
     <postFiringFinalIntensity>0</postFiringFinalIntensity>
-    <preFiringDuration>7</preFiringDuration>
-    <postFiringDuration>23</postFiringDuration>
+    <preFiringDuration>2</preFiringDuration>
+    <postFiringDuration>63</postFiringDuration>
     <StartFireChance>0.000</StartFireChance>
  </ThingDef>
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>PSYWarpFire</defName>
+    <label>warpfire orb</label>
+    <graphicData>
+      <texPath>Things/Chaos/Warpstaff/Bullet_Warpfire</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <damageDef>Burn</damageDef>
+      <damageAmountBase>15</damageAmountBase>
+      <speed>45</speed>
+      <explosionRadius>0.2</explosionRadius >
+      <explosionSpawnChance>0.0</explosionSpawnChance>
+    </projectile>
+  </ThingDef>
+
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYWarpGrowBolt</defName>
+   <thingClass>Corruption.Projectile_WarpGrower</thingClass>
+   <label>berserker spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Growth</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+ </ThingDef>
+
 
   <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
    <defName>PSYBerserkerBullet</defName>
    <thingClass>Corruption.Projectile_WarpPower</thingClass>
    <label>berserker spell</label>
    <graphicData>
-		<texPath>UI/Glow_Corrupt</texPath>
+		<texPath>UI/Psyker/Frenzy</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
    <projectile>
@@ -68,7 +104,7 @@
    <thingClass>Corruption.Projectile_WarpPower</thingClass>
    <label>flee spell</label>
    <graphicData>
-		<texPath>UI/Glow_Corrupt</texPath>
+		<texPath>UI/Psyker/Panic</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
    <projectile>
@@ -86,7 +122,7 @@
    <thingClass>Corruption.Projectile_WarpPower</thingClass>
    <label>flee spell</label>
    <graphicData>
-		<texPath>UI/Glow_Corrupt</texPath>
+		<texPath>UI/Psyker/Confused</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
    <projectile>
@@ -104,7 +140,7 @@
    <thingClass>Corruption.Projectile_WarpPower</thingClass>
    <label>flee spell</label>
    <graphicData>
-		<texPath>UI/Glow_Corrupt</texPath>
+		<texPath>UI/Psyker/Drugs</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
    <projectile>
@@ -115,6 +151,24 @@
    </projectile>
    <IsMentalStateGiver>true</IsMentalStateGiver>
    <InducesMentalState>BingingDrugExtreme</InducesMentalState>
+ </ThingDef>
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower" Name="PsyHealSimple">
+   <defName>PSYHealSimple</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>heal spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/HealMinor</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>HealGlobal</damageDef>
+		<damageAmountBase>100</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsHealer>true</IsHealer>
+   <HealFailChance>0.1</HealFailChance>
  </ThingDef>
 
   <ThingDef ParentName="BaseBullet">
@@ -134,7 +188,8 @@
   </ThingDef>
 
 
-  <!-- =========================PowerDefs===================================== -->
+  <!-- =========================GeneralPowerDefs===================================== -->
+
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_Berserker</defName>
@@ -146,15 +201,14 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYBerserkerBullet</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTicks>300</warmupTicks>
         <TicksToRecharge>1200</TicksToRecharge>
-        <range>24</range>
+        <range>15</range>
         <soundCast>FlameThrower</soundCast>
         <muzzleFlashScale>20</muzzleFlashScale>
         <CorruptionFactor>1</CorruptionFactor>
         <isPrimary>false</isPrimary>
     </MainVerb>
-    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
   </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
@@ -169,14 +223,13 @@
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYFearBullet</projectileDef>
         <warmupTicks>300</warmupTicks>
-        <TicksToRecharge>1200</TicksToRecharge>
+        <TicksToRecharge>3000</TicksToRecharge>
         <range>24</range>
         <soundCast>FlameThrower</soundCast>
         <muzzleFlashScale>20</muzzleFlashScale>
         <CorruptionFactor>1</CorruptionFactor>
         <isPrimary>false</isPrimary>
     </MainVerb>
-    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
   </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
@@ -191,14 +244,13 @@
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYConfusingBullet</projectileDef>
         <warmupTicks>200</warmupTicks>
-        <TicksToRecharge>900</TicksToRecharge>
+        <TicksToRecharge>2000</TicksToRecharge>
         <range>24</range>
         <soundCast>FlameThrower</soundCast>
         <muzzleFlashScale>20</muzzleFlashScale>
         <CorruptionFactor>1</CorruptionFactor>
         <isPrimary>false</isPrimary>
     </MainVerb>
-    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
   </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
@@ -213,7 +265,7 @@
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYDrugBullet</projectileDef>
         <warmupTicks>200</warmupTicks>
-        <TicksToRecharge>900</TicksToRecharge>
+        <TicksToRecharge>2000</TicksToRecharge>
         <range>24</range>
         <soundCast>FlameThrower</soundCast>
         <muzzleFlashScale>20</muzzleFlashScale>
@@ -221,31 +273,30 @@
         <isPrimary>false</isPrimary>
         <DrawProjectileOnTarget>true</DrawProjectileOnTarget>
     </MainVerb>
-    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
   </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_WarpBolt</defName>
     <label>Lighnting Arc</label>
+    <uiIconPath>UI/Psyker/Lightning</uiIconPath>
     <description>Cast forth an array of lightning bolts.</description>
     <thingClass>ThingWithComps</thingClass>
-    <uiIconPath>UI/Psyker/Lightning</uiIconPath>
+    <IconGraphicPath>UI/Glow_Corrupt</IconGraphicPath>
     <MainVerb Class="Corruption.VerbProperties_WarpPower">
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpBolt</projectileDef>
         <warmupTicks>60</warmupTicks>
-        <TicksToRecharge>600</TicksToRecharge>
+        <TicksToRecharge>30</TicksToRecharge>
         <range>24</range>
         <burstShotCount>5</burstShotCount>
-        <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
         <soundCast>WarpBolt</soundCast>
         <muzzleFlashScale>20</muzzleFlashScale>
         <CorruptionFactor>1</CorruptionFactor>
         <isPrimary>false</isPrimary>
         <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
     </MainVerb>
-    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
   </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
@@ -258,8 +309,8 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Scourging</projectileDef>
-        <warmupTicks>60</warmupTicks>
-        <TicksToRecharge>600</TicksToRecharge>
+        <warmupTicks>150</warmupTicks>
+        <TicksToRecharge>900</TicksToRecharge>
         <range>24</range>
         <burstShotCount>5</burstShotCount>
         <ticksBetweenBurstShots>30</ticksBetweenBurstShots>
@@ -268,9 +319,225 @@
         <CorruptionFactor>1</CorruptionFactor>
         <isPrimary>false</isPrimary>
         <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
+   	   <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
     </MainVerb>
-    <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
+    <PowerLevel>Omicron</PowerLevel>
   </ThingDef>
+
+  <!-- =========================HealPowerDefs===================================== -->
+
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_HealSimple</defName>
+    <label>Minor Heal</label>
+    <uiIconPath>UI/Psyker/HealMinor</uiIconPath>
+    <description>Miraculously heal a pawn.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYHealSimple</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>120</TicksToRecharge>
+        <range>10</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+   	   <PsykerPowerCategory>TargetThing</PsykerPowerCategory>
+    </MainVerb>
+    <PowerLevel>Omicron</PowerLevel>
+    <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
+    <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
+  </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_HealSelf</defName>
+    <label>Minor Selfheal</label>
+    <uiIconPath>UI/Psyker/HealMinor</uiIconPath>
+    <description>Miraculously heal the caster.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYHealSimple</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>120</TicksToRecharge>
+        <range>2</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+   	   <PsykerPowerCategory>TargetSelf</PsykerPowerCategory>
+    <targetParams>
+      <canTargetPawns>false</canTargetPawns>
+      <canTargetBuildings>false</canTargetBuildings>
+      <canTargetSelf>true</canTargetSelf>
+    </targetParams>
+
+    </MainVerb>
+    <PowerLevel>Omicron</PowerLevel>
+    <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
+    <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
+
+  </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_HealNearby</defName>
+    <label>Minor GroupHeal</label>
+    <uiIconPath>UI/Psyker/HealMinor</uiIconPath>
+    <description>Miraculously heal nearby pawns.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYHealSimple</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>120</TicksToRecharge>
+        <range>15</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+   	   <PsykerPowerCategory>TargetAoE</PsykerPowerCategory>
+        <AoETargetClass>Pawn</AoETargetClass>
+    		<targetParams>
+      	 <canTargetPawns>true</canTargetPawns>
+      	 <canTargetBuildings>false</canTargetBuildings>
+      	 <canTargetSelf>true</canTargetSelf>
+    		</targetParams>
+    </MainVerb>
+    <PowerLevel>Omicron</PowerLevel>
+    <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
+    <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
+  </ThingDef>
+
+
+  <!-- =========================EldarPowerDefs===================================== -->
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_EldritchBolt</defName>
+    <label>Eldritch bolt</label>
+    <description>Cast forth an array of lightning bolts.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <uiIconPath>UI/Psyker/Lightning</uiIconPath>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYWarpBolt</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>300</TicksToRecharge>
+        <range>35</range>
+        <burstShotCount>7</burstShotCount>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+        <soundCast>WarpBolt</soundCast>
+        <muzzleFlashScale>40</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>true</isPrimary>
+        <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
+    		<targetParams>
+      	 <canTargetPawns>true</canTargetPawns>
+      	 <canTargetBuildings>false</canTargetBuildings>
+    		</targetParams>
+    </MainVerb>
+    <PowerLevel>Zeta</PowerLevel>
+  </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_EldritchThunderstorm</defName>
+    <label>Eldritch storm</label>
+    <uiIconPath>UI/Psyker/Lightning</uiIconPath>
+    <description>Cast forth an array of lightning bolts.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYWarpBolt</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>120</TicksToRecharge>
+        <burstShotCount>5</burstShotCount>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+        <range>8</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
+   	   <PsykerPowerCategory>TargetAoE</PsykerPowerCategory>
+        <AoETargetClass>Pawn</AoETargetClass>
+    		<targetParams>
+      	 <canTargetPawns>true</canTargetPawns>
+      	 <canTargetBuildings>false</canTargetBuildings>
+      	 <canTargetSelf>true</canTargetSelf>
+    		</targetParams>
+    </MainVerb>
+    <PowerLevel>Omicron</PowerLevel>
+    <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
+    <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
+  </ThingDef>
+
+  <!-- =========================OffensivePowerDefs===================================== -->
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_EmpyrealInferno</defName>
+    <label>Empyreal Inferno</label>
+    <description>Cast a torrent of warpfire that targets nearby enemies.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <uiIconPath>UI/Psyker/Fire</uiIconPath>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYWarpFire</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>60</TicksToRecharge>
+        <range>15</range>
+        <soundCast>WarpBolt</soundCast>
+        <muzzleFlashScale>40</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
+   	   <PsykerPowerCategory>TargetAoE</PsykerPowerCategory>
+        <AoETargetClass>Pawn</AoETargetClass>
+    		<targetParams>
+      	 <canTargetPawns>true</canTargetPawns>
+      	 <canTargetBuildings>false</canTargetBuildings>
+      	 <canTargetSelf>true</canTargetSelf>
+    		</targetParams>
+    </MainVerb>
+    <PowerLevel>Zeta</PowerLevel>
+  </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_UnnaturalGrowth</defName>
+    <label>Unnatural Growth</label>
+    <uiIconPath>UI/Psyker/Growth</uiIconPath>
+    <description>Grow nearby plants to maturity.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYWarpGrowBolt</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <TicksToRecharge>120</TicksToRecharge>
+        <range>5</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>true</DrawProjectileOnTarget>
+   	   <PsykerPowerCategory>TargetAoE</PsykerPowerCategory>
+        <AoETargetClass>Plant</AoETargetClass>
+    		<targetParams>
+      	 <canTargetPawns>true</canTargetPawns>
+      	 <canTargetBuildings>true</canTargetBuildings>
+      	 <canTargetSelf>true</canTargetSelf>
+    		</targetParams>
+    </MainVerb>
+    <PowerLevel>Omicron</PowerLevel>
+    <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
+    <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
+  </ThingDef>
+
 
 
 </ThingDefs>
