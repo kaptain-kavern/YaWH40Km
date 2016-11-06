@@ -5,4 +5,8 @@
 
   <PsykerPowerRecharging>{0} is still recovering from the last use of a power.</PsykerPowerRecharging>
 
+  <LetterDemonicPossessionResolve>Demonic Incursion</LetterDemonicPossessionResolve>
+  <LetterDemonicPossessionResolve_Content>{0}'s body has succumbed to the demon that was possessing it, unleashing the entity.</LetterDemonicPossessionResolve_Content>
+
+
 </LanguageData>
