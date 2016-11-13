@@ -62,9 +62,9 @@ namespace Corruption
             {
                 if (list[i].PowerLevel <= soul.PsykerPowerLevel)
                 {
-                    soul.AddPsykerPower(list[i]);
+                    this.parent.TryGetComp<CompPsyker>().PowerManager.AddPsykerPower(list[i]);
                 }
-            }
+            }            
         }
 
         public void UpdatePsykerVerbs()
@@ -126,38 +126,33 @@ namespace Corruption
                 {
                     if ((soul = this.Owner.needs.TryGetNeed<Need_Soul>()) != null)
                     {
-                        Log.Message("Changing Soul for:" + Owner.ToString());
                         this.CalculateSoulChanges(soul);
                     }
                     if (!PsykerPowerAdded)
                     {
-                        Log.Message("Adding Item Powers");
                         CompPsyker compPsyker;
                         if ((compPsyker = Owner.TryGetComp<CompPsyker>()) != null)
                         {
                             for (int i = 0; i < SProps.UnlockedPsykerPowers.Count; i++)
                             {
-                                this.psykerItemPowers.Add(new PsykerPower(Owner, SProps.UnlockedPsykerPowers[i]));
+                                if (soul.PsykerPowerLevel <= SProps.UnlockedPsykerPowers[i].PowerLevel)
+                                {
+                                    compPsyker.temporaryWeaponPowers.Add(new PsykerPower(Owner, SProps.UnlockedPsykerPowers[i]));
+                                }
                             }
+                            compPsyker.UpdatePowers();
+                            this.LastOwner = compPsyker;
                         }
-           //             Log.Message(this.psykerItemPowers.Count.ToString() + " powers added");
-           //             compPsyker.temporaryPowers.AddRange(this.psykerItemPowers);
-                        this.LastOwner = compPsyker;
                         PsykerPowerAdded = true;
                     }
+
                 }
-                else
-                {
-                    if (PsykerPowerAdded)
-                    {
-                        Log.Message("RemoveStuff");
-                        for (int j = 0; j < this.psykerItemPowers.Count; j++)
-                        {
-                            this.LastOwner.temporaryPowers.RemoveAll(x => x.powerdef == psykerItemPowers[j].powerdef);
-                        }
-                    }
-                    PsykerPowerAdded = false;
-                }
+            }
+            if (this.parent.Spawned && this.LastOwner != null)
+            {
+                LastOwner.temporaryWeaponPowers.Clear();
+                LastOwner.UpdatePowers();
+                PsykerPowerAdded = false;
             }
         }
 

@@ -45,7 +45,6 @@ namespace Corruption
         
         public void Start()
         {
-            
             Log.Message("Initiated Corruption Detours.");
             MethodInfo method3 = typeof(RimWorld.ThoughtHandler).GetMethod("CanGetThought", new Type[] { typeof(ThoughtDef) });
             MethodInfo method4 = typeof(Corruption.SituationalThoughtHandlerModded).GetMethod("CanGetThought", new Type[] { typeof(ThoughtDef) });

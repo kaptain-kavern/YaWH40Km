@@ -30,12 +30,18 @@
     </JobDef>
 
 	<JobDef>
-		<defName>CastPsykerPower</defName>
-		<driverClass>Corruption.JobDriver_CastPsykerPower</driverClass>
+		<defName>CastPsykerPowerVerb</defName>
+		<driverClass>Corruption.JobDriver_CastPsykerPowerVerb</driverClass>
 		<reportString>Casting a Psychic Power</reportString>
     <alwaysShowWeapon>true</alwaysShowWeapon>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
-
+	<JobDef>
+		<defName>CastPsykerPowerSelf</defName>
+		<driverClass>Corruption.JobDriver_CastPsykerPowerSelf</driverClass>
+		<reportString>Casting a Psychic Power</reportString>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
 </Defs>

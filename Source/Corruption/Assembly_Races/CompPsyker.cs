@@ -12,6 +12,8 @@ namespace Corruption
 {
     public class CompPsyker : CompUseEffect
     {
+        public PsykerPowerManager PowerManager;
+
         public bool ShotFired = true;
 
         public int ticksToImpact = 500;
@@ -37,6 +39,22 @@ namespace Corruption
             }
         }
 
+        public Material CastingDrawMat
+        {
+            get
+            {                
+               return GraphicDatabase.Get<Graphic_Single>(curPower.uiIconPath, ShaderDatabase.MoteGlow, Vector2.one, Color.white).MatSingle;
+            }
+        }
+
+        public TargetInfo CurTarget;
+
+        public PsykerPowerDef curPower;
+
+        public Verb_CastWarpPower curVerb;
+
+        public Rot4 curRotation;
+
         public float TicksToCastPercentage = 1;
 
         public int TicksToCastMax = 100;
@@ -44,68 +62,52 @@ namespace Corruption
         public int TicksToCast = 0;
 
         public bool IsActive;
-        
-        public Verb_CastWarpPower selectedVerb;
 
-        public List<CompSoulItem> EquippedSoulItems
+        public override void PostSpawnSetup()
         {
-            get
-            {
- //               Log.Message("Getting EQ");
-                List<CompSoulItem> templist = new List<CompSoulItem>();
-                CompSoulItem tcomp;
-
-                List<Apparel> applist = psyker.apparel.WornApparel;
-                for (int i = 0; i < applist.Count; i++)
-                {
-                    if ((tcomp = applist[i].GetComp<CompSoulItem>())!= null)
-                    {
-                        templist.Add(tcomp);
-                    }
-                }
-                List<ThingWithComps> eq = psyker.equipment.AllEquipment.ToList();
-                for (int j = 0; j < eq.Count; j++)
-                {
-   //                 Log.Message("Found Weapon :" + eq[j].ToString());
-                    if ((tcomp = eq[j].GetComp<CompSoulItem>()) != null)
-                    {
- //                       Log.Message("AddingComp");
-                        templist.Add(tcomp);
-                    }
-                }
-                return templist;
-            }
+            base.PostSpawnSetup();
+            this.PowerManager = new PsykerPowerManager(this);
         }
+
+        public Dictionary<ThingDef, float> ReadableEntry = new Dictionary<ThingDef, float>();
 
         public List<PsykerPower> Powers = new List<PsykerPower>();
 
-        public List<PsykerPower> temporaryPowers;
+        public List<PsykerPower> temporaryWeaponPowers = new List<PsykerPower>();
 
-        public List<Verb_CastWarpPower> PowerVerbs
+        public List<PsykerPower> temporaryApparelPowers = new List<PsykerPower>();
+
+        public List<PsykerPower> allPowers = new List<PsykerPower>();
+
+        public List<Verb_CastWarpPower> PowerVerbs = new List<Verb_CastWarpPower>();
+
+        public void UpdatePowers()
         {
-            get
+
+            PowerVerbs.Clear();
+            List<PsykerPower> psylist = new List<PsykerPower>();
+
+            psylist.AddRange(this.Powers);
+
+            psylist.AddRange(this.temporaryWeaponPowers);
+
+            this.allPowers = psylist;
+
+            for (int i = 0; i < allPowers.Count; i++)
             {
-                List<Verb_CastWarpPower> list = new List<Verb_CastWarpPower>();
-                List<PsykerPower> allPowers = Powers;
-                //     allPowers.AddRange(temporaryPowers);
-      //          Log.Message(temporaryPowers.Count.ToString() + " TempPowers found");
-                foreach(PsykerPower pow in allPowers)
+                Verb_CastWarpPower newverb = (Verb_CastWarpPower)Activator.CreateInstance(psylist[i].powerdef.MainVerb.verbClass);
+                if (!PowerVerbs.Any(item => item.verbProps == newverb.verbProps))
                 {
-                    Verb_CastWarpPower newverb = (Verb_CastWarpPower)Activator.CreateInstance(pow.powerdef.MainVerb.verbClass);
-                    if (!list.Any(item => item.verbProps == newverb.verbProps))
-                    {
-                        newverb.caster = this.psyker;
-                        newverb.verbProps = pow.powerdef.MainVerb;
-                        list.Add(newverb);
-                    }
+                    newverb.caster = this.psyker;
+                    newverb.verbProps = psylist[i].powerdef.MainVerb;
+                    PowerVerbs.Add(newverb);
                 }
-                return list;
             }
         }
 
         public override void CompTick()
         {
-            base.CompTick();
+            base.CompTick();            
             this.TicksToCast--;
             if (this.TicksToCast <0)
             {
@@ -116,13 +118,17 @@ namespace Corruption
             this.TicksToCastPercentage = (1 - (this.TicksToCast / this.TicksToCastMax));
         }
 
-        public static Action TryCastPowerAction(Pawn pawn, TargetInfo target, CompPsyker compPsyker, Verb_CastWarpPower verb)
+        public static Action TryCastPowerAction(Pawn pawn, TargetInfo target, CompPsyker compPsyker, Verb_CastWarpPower verb, PsykerPowerDef psydef)
         {
             Action act = new Action(delegate
             {
-                compPsyker.TicksToCast = verb.warpverbprops.TicksToRecharge;
-                compPsyker.TicksToCastMax = verb.warpverbprops.TicksToRecharge;
-                Job job = new Job(CorruptionDefOfs.CastPsykerPower, target);
+                //            compPsyker.TicksToCast = verb.warpverbprops.TicksToRecharge;
+                //            compPsyker.TicksToCastMax = verb.warpverbprops.TicksToRecharge;
+                compPsyker.CurTarget = target;
+                compPsyker.curVerb = verb;
+                compPsyker.curPower = psydef; 
+                compPsyker.curRotation = target.Thing.Rotation;
+                Job job = CompPsyker.PsykerJob(verb.warpverbprops.PsykerPowerCategory, target);             
                 job.playerForced = true;
                 job.verbToUse = verb;
                 Pawn pawn2 = target.Thing as Pawn;
@@ -135,20 +141,52 @@ namespace Corruption
             return act;
         }
 
-        public IEnumerable<Command_CastPower> GetPsykerVerbsNew(List<PsykerPower> list)
+        public static Job PsykerJob(PsykerPowerTargetCategory cat, TargetInfo target)
         {
-            for (int i = 0; i < PowerVerbs.Count; i++)
+            switch(cat)
             {
-                Verb_CastWarpPower newverb = PowerVerbs[i];
+                case PsykerPowerTargetCategory.TargetSelf:
+                    {
+                        return new Job(CorruptionDefOfs.CastPsykerPowerSelf, target);
+                    }
+                case PsykerPowerTargetCategory.TargetAoE:
+                    {
+                        return new Job(CorruptionDefOfs.CastPsykerPowerSelf, target);
+                    }
+                case PsykerPowerTargetCategory.TargetThing:
+                    {
+                        return new Job(CorruptionDefOfs.CastPsykerPowerVerb, target);
+                    }
+                default:
+                    {
+                        return new Job(CorruptionDefOfs.CastPsykerPowerVerb, target);
+                    }
+            }            
+        }
+
+        public IEnumerable<Command_CastPower> GetPsykerVerbsNew()
+        {
+            //     Log.Message("Found temp powers: " + this.temporaryPowers.Count.ToString() + " while finding Verbs: " + temporaryPowers.Count.ToString());
+            //     Log.Message(this.PowerVerbs.Count.ToString());
+            List<Verb_CastWarpPower> temp = new List<Verb_CastWarpPower>();
+            temp.AddRange(this.PowerVerbs);
+            for (int i = 0; i < temp.Count; i++)
+            {
+                int j = i;
+                Verb_CastWarpPower newverb = temp[j];
                 newverb.caster = this.psyker;
-                newverb.verbProps = PowerVerbs[i].verbProps;
+                newverb.verbProps = temp[j].verbProps;
 
                 Command_CastPower command_CastPower = new Command_CastPower(this);
-                command_CastPower.defaultLabel = Powers[i].def.label;
-                command_CastPower.defaultDesc = Powers[i].def.description;
+                command_CastPower.verb = newverb;
+                command_CastPower.defaultLabel = allPowers[j].def.LabelCap;
+                command_CastPower.defaultDesc = allPowers[j].def.description;
                 command_CastPower.targetingParams = TargetingParameters.ForAttackAny();
-                command_CastPower.hotKey = KeyBindingDefOf.Misc1;
-                command_CastPower.icon = Powers[i].def.uiIcon;
+                if (newverb.warpverbprops.PsykerPowerCategory == PsykerPowerTargetCategory.TargetSelf || newverb.warpverbprops.PsykerPowerCategory == PsykerPowerTargetCategory.TargetAoE)
+                {
+                    command_CastPower.targetingParams = TargetingParameters.ForSelf(this.psyker);
+                }
+                command_CastPower.icon = allPowers[j].def.uiIcon;
                 string str;
                 if (FloatMenuUtility.GetAttackAction(this.psyker, TargetInfo.Invalid, out str) == null)
                 {
@@ -156,12 +194,10 @@ namespace Corruption
                 }
                 command_CastPower.action = delegate (Thing target)
                 {
-                        Action attackAction = CompPsyker.TryCastPowerAction(psyker, target, this, newverb);
+                        Action attackAction = CompPsyker.TryCastPowerAction(psyker, target, this, newverb, allPowers[j].def as PsykerPowerDef);
                         if (attackAction != null)
-                        {
-                        this.selectedVerb = newverb;
-                            this.IsActive = true;
-                            attackAction();
+                    {
+                        attackAction();
                         }                    
                 };
                 if (newverb.caster.Faction != Faction.OfPlayer)
@@ -194,34 +230,45 @@ namespace Corruption
                 }
                 yield return command_CastPower;
             }
+            yield break;
         }   
-    
-        public bool TryStartCasting(TargetInfo targ)
-        {
-            if (this.psyker.stances.FullBodyBusy)
-            {
-                return false;
-            }
-            if (this.psyker.story != null && this.psyker.story.DisabledWorkTags.Contains(WorkTags.Violent))
-            {
-                return false;
-            }
-      //      bool allowManualCastWeapons = !this.psyker.IsColonist;
-            Verb_CastWarpPower verbPower = this.selectedVerb;
-            return verbPower != null && verbPower.TryStartCastOn(targ, false, true);
-        }
 
         public override IEnumerable<Command> CompGetGizmosExtra()
         {
-            List<PsykerPower> verblist = this.Powers.FindAll(x => x.powerdef.MainVerb != null);
             if (psyker.Drafted)
             {
-                foreach (Command_Target comm in this.GetPsykerVerbsNew(verblist))
+                foreach (Command_Target comm in GetPsykerVerbsNew().ToList())
                 {
                     yield return comm;
                 }
+            }                            
+        }
+
+        public void DrawPsykerTargetReticule()
+        {
+            if (psyker.stances.curStance.GetType() == typeof(Stance_Warmup) && (this.CurTarget != null && this.curVerb != null))
+            {
+                //    curRotation.Rotate(RotationDirection.Clockwise);  
+                float scale = 2f;
+                if (this.curVerb.warpverbprops.PsykerPowerCategory == PsykerPowerTargetCategory.TargetAoE)
+                {
+                    scale = this.curVerb.verbProps.range * 2;
+                }
+                Vector3 s = new Vector3(scale, 1f, scale);
+                Matrix4x4 matrix = default(Matrix4x4);
+                Vector3 drawPos = this.CurTarget.Thing.DrawPos;
+                drawPos.y -= 1f;
+                matrix.SetTRS(drawPos, Quaternion.AngleAxis(curRotation.AsInt, Vector3.up), s);
+                Graphics.DrawMesh(MeshPool.plane10, matrix, this.CastingDrawMat, 0);
             }
-                            
+        }
+
+        public override void PostDraw()
+        {
+            if (psyker.stances != null)
+            {
+                DrawPsykerTargetReticule();
+            }
         }
     }
 }

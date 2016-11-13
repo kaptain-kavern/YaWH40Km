@@ -7,6 +7,21 @@ namespace Corruption
 {
    public class PsykerPowerManager
     {
+        public void AddPsykerPower(PsykerPowerDef psydef)
+        {
+            if (!this.compPsyker.Powers.Any(x => x.def.defName == psydef.defName))
+            {
+                this.compPsyker.Powers.Add(new PsykerPower(this.compPsyker.psyker, psydef));
+            }
+
+            this.compPsyker.UpdatePowers();
+        }
+
+        public int PowerSlotsIota = 4;
+        public int PowerSlotsZeta = 3;
+        public int PowerSlotsEpsilon = 2;
+        public int PowerSlotsDelta = 1;
+
         public PsykerPowerManager(CompPsyker compPsyker)
         {
             this.compPsyker = compPsyker;
@@ -15,48 +30,34 @@ namespace Corruption
         public void Initialize()
         {
             this.PowerLevelSlots = new Dictionary<PsykerPowerLevel, int>();
-            
+            this.PowerLevelSlots.Add(PsykerPowerLevel.Iota, PowerSlotsIota);
+            this.PowerLevelSlots.Add(PsykerPowerLevel.Zeta, PowerSlotsZeta);
+            this.PowerLevelSlots.Add(PsykerPowerLevel.Epsilon, PowerSlotsEpsilon);
+            this.PowerLevelSlots.Add(PsykerPowerLevel.Delta, PowerSlotsDelta);
         }
 
         private CompPsyker compPsyker;
 
         public Dictionary<PsykerPowerLevel, int> PowerLevelSlots;
-
-        public Verb_CastWarpPower selectedVerb;
-
+        
         public void PsykerPowerManagerTick()
         {
-
         }
 
-        public void UpdatePowers(PsykerPower newPower)
+        public bool CheckAvailablePowerSlots(PsykerPowerLevel leveltocheck)
         {
-
-        }
-
-        public void CheckPowerSlots()
-        {
-
+            int powers = compPsyker.Powers.FindAll(x => x.powerdef.PowerLevel == leveltocheck).Count;
+            int availableslots = (from entry in PowerLevelSlots where entry.Key == leveltocheck select entry.Value).FirstOrDefault();
+            if (powers <= availableslots)
+            {
+                return true;
+            }
+            return false;
         }
 
         public List<PsykerPower> powersint = new List<PsykerPower>();
 
         public List<PsykerPower> Powers = new List<PsykerPower>();
 
-        public List<Verb_CastWarpPower> PowerVerbs
-        {
-            get
-            {
-                List<Verb_CastWarpPower> list = new List<Verb_CastWarpPower>();
-                foreach (PsykerPower pow in Powers)
-                {
-                    Verb_CastWarpPower newverb = (Verb_CastWarpPower)Activator.CreateInstance(pow.powerdef.MainVerb.verbClass);
-                    newverb.caster = this.compPsyker.psyker;
-                    newverb.verbProps = pow.powerdef.MainVerb;
-                    list.Add(newverb);
-                }
-                return list;
-            }
-        }
     }
 }

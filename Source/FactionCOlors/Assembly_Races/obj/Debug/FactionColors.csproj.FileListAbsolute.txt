@@ -25,3 +25,7 @@ D:\Spiele\RimWorld1284Win\Mods\WH40k_Eigenproduktion\Assemblies\FactionColors.dl
 D:\Spiele\RimWorld1284Win\Mods\WH40k_Eigenproduktion\Assemblies\FactionColors.dll
 D:\Spiele\RimWorld1284Win\Mods\WH40k_Eigenproduktion\Source\FactionCOlors\Assembly_Races\obj\Debug\FactionColors.dll
 D:\Spiele\RimWorld1284Win\Mods\WH40k_Eigenproduktion\Source\FactionCOlors\Assembly_Races\obj\Debug\FactionColors.csprojResolveAssemblyReference.cache
+D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Source\FactionCOlors\Assembly_Races\obj\Debug\FactionColors.dll
+D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Source\FactionCOlors\Assembly_Races\obj\Debug\FactionColors.csprojResolveAssemblyReference.cache
+D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Assemblies\FactionColors.dll.config
+D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Assemblies\FactionColors.dll

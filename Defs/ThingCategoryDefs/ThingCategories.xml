@@ -2,6 +2,31 @@
 <ThingCategoryDefs>
   
 <ThingCategoryDef>
+ <defName>Books</defName>
+ <label>Books</label>
+ <parent>Root</parent>
+</ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>StandardLiterature</defName>
+	    <label>Standard Literature</label>
+	    <parent>Books</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>ProfessionalLiterature</defName>
+	    <label>Professional Literature</label>
+	    <parent>Books</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>WeirdLiterature</defName>
+	    <label>Weird Literature</label>
+	    <parent>Books</parent>
+	  </ThingCategoryDef>
+
+
+<ThingCategoryDef>
  <defName>IoMGear</defName>
  <label>Imperium of Man</label>
  <parent>Root</parent>
@@ -195,6 +220,12 @@
  <label>Eldar gear</label>
  <parent>Root</parent>
 </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>E_Artifacts</defName>
+	    <label>Eldar Artifacts</label>
+	    <parent>EldarGear</parent>
+	  </ThingCategoryDef>
 
 	  <ThingCategoryDef>
 	    <defName>E_Melee</defName>

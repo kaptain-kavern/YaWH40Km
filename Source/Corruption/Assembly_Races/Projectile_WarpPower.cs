@@ -11,6 +11,8 @@ namespace Corruption
 {
     public class Projectile_WarpPower : Projectile
     {
+        public Pawn Caster;
+
         public Thing selectedTarget;
 
         public int TicksToImpact
@@ -54,10 +56,10 @@ namespace Corruption
                 Vector3 vector = this.ProjectileDrawPos;
                 Vector3 distance = this.destination - this.origin;
                 Vector3 curpos = this.destination - this.Position.ToVector3();
-                var num = 1 - (Mathf.Sqrt(Mathf.Pow(curpos.x, 2) + Mathf.Pow(curpos.z, 2)) / (Mathf.Sqrt(Mathf.Pow(distance.x, 2) + Mathf.Pow(distance.z, 2))));
+   //             var num = 1 - (Mathf.Sqrt(Mathf.Pow(curpos.x, 2) + Mathf.Pow(curpos.z, 2)) / (Mathf.Sqrt(Mathf.Pow(distance.x, 2) + Mathf.Pow(distance.z, 2))));
                 float angle = 0f;
                 Material mat = this.Graphic.MatSingle;
-                Vector3 s = new Vector3(num*2, 1f, num*2);
+                Vector3 s = new Vector3(2.5f, 1f, 2.5f);
                 Matrix4x4 matrix = default(Matrix4x4);
                 vector.y = 3;
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
@@ -87,39 +89,41 @@ namespace Corruption
                         });
                         if (mpdef.InducesMentalState == MentalStateDefOf.Berserk && victim.RaceProps.intelligence < Intelligence.Humanlike)
                         {
-                            victim.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Manhunter, str, true);
+                            if (CanOverpowerMind(this.Caster, victim))
+                            {
+                                victim.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Manhunter, str, true);
+                            }
                         }
                         else
                         {
-                            victim.mindState.mentalStateHandler.TryStartMentalState(mpdef.InducesMentalState, str, true);
+                            if (CanOverpowerMind(this.Caster, victim))
+                            {
+                                victim.mindState.mentalStateHandler.TryStartMentalState(mpdef.InducesMentalState, str, true);
+                            }
                         }
                     }
-                    else if (mpdef.IsBuffGiver)
+                    else if (mpdef.IsBuffGiver && victim.needs.TryGetNeed<Need_Soul>().PsykerPowerLevel != PsykerPowerLevel.Omega)
                     {
-                        victim.health.AddHediff(mpdef.BuffDef);
+                        if (mpdef.BuffDef.isBad)
+                        {
+                            if (CanOverpowerMind(this.Caster, victim))
+                            {
+                                victim.health.AddHediff(mpdef.BuffDef);
+                            }
+                        }
+                        else
+                        {
+                            victim.health.AddHediff(mpdef.BuffDef);
+                        }
                     }
                     else if (mpdef.IsHealer)
                     {
-                        BodyPartRecord part = victim.health.hediffSet.GetInjuredParts().RandomElement();
-                        if (part != null)
+                        List<Hediff> list = victim.health.hediffSet.hediffs.Where(x => x.def != HediffDefOf.PsychicShock && x.def != CorruptionDefOfs.DemonicPossession).ToList<Hediff>();
+                        if (Rand.Range(0f, 1f) > this.mpdef.HealFailChance && victim.health.hediffSet.hediffs.Count > 0)
+                        for (int i=0; i < mpdef.HealCapacity+1; i++)
                         {
-                            DamageDef damdef;
-                            if (mpdef.HealFailChance < Rand.Range(0f, 1f))
-                            {
-                                damdef = this.def.projectile.damageDef;
-                            }
-                            else
-                            {
-                                damdef = DefDatabase<DamageDef>.AllDefsListForReading.RandomElement();
-                            }
-                            List<HediffDef> healHediff = DefDatabase<HediffDef>.AllDefsListForReading;
-                            BodyPartDamageInfo value = new BodyPartDamageInfo(part, false, healHediff);
-                            victim.TakeDamage(new DamageInfo(damdef, this.def.projectile.damageAmountBase, null, new BodyPartDamageInfo?(value), null));
-                        }
-                        else
-                        {
-                            SoundDefOf.Pawn_Melee_Punch_Miss.PlayOneShot(base.Position);
-                            MoteMaker.MakeStaticMote(this.ExactPosition, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                            Hediff hediff = list.RandomElement();
+                            hediff.DirectHeal(this.def.projectile.damageAmountBase);
                         }
                     }
                     else
@@ -135,8 +139,35 @@ namespace Corruption
             {
                 SoundDefOf.PowerOffSmall.PlayOneShot(base.Position);
                 MoteMaker.MakeStaticMote(this.ExactPosition, ThingDefOf.Mote_ShotHit_Spark, 1f);
+            }            
+        }
+
+        public bool CanOverpowerMind(Pawn caster, Thing hitThing)
+        {
+            if (hitThing is Pawn)
+            {
+                Pawn target = hitThing as Pawn;
+                PsykerPowerLevel casterPower = caster.needs.TryGetNeed<Need_Soul>().PsykerPowerLevel;
+                PsykerPowerLevel targetPower = target.needs.TryGetNeed<Need_Soul>().PsykerPowerLevel;
+                if (casterPower >= targetPower && targetPower != PsykerPowerLevel.Omega || target.Faction == Faction.OfPlayer)
+                {
+                    if (!target.Faction.HostileTo(Faction.OfPlayer) && target.Faction != Faction.OfPlayer)
+                    {
+                        target.Faction.AffectGoodwillWith(Faction.OfPlayer, -10);
+                    }
+                    return true;
+                }
+                else
+                {
+                    if (!target.Faction.HostileTo(Faction.OfPlayer))
+                    {
+                        target.Faction.AffectGoodwillWith(Faction.OfPlayer, -30);
+                    }
+                    Caster.health.AddHediff(HediffDefOf.PsychicShock);
+                    return false;
+                }
             }
-            
+            return false;
         }
     }
 }

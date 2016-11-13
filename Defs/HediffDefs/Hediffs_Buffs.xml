@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HediffDef Name="HediffPsykerBuff" Abstract="True">
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+  </HediffDef>
+
+  <HediffDef ParentName="HediffPsykerBuff">
+    <defName>Mindcontrol</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.73, 0.08, 0.03)</defaultLabelColor>
+    <label>mindcontrol</label>
+    <comps>
+      <li>
+        <compClass>Corruption.HediffComp_TemporaryRecruit</compClass>
+        <disappearsAfterTicks>
+          <min>600</min>
+          <max>600</max>
+        </disappearsAfterTicks>
+      </li>
+    </comps>
+  </HediffDef>
+
+</Defs>

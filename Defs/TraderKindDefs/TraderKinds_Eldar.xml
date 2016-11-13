@@ -48,19 +48,19 @@
           <max>500</max>
         </totalPriceRange>
       </li>
-      <li Class="StockGenerator_Clothes">
-        <countRange>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Xeno_Eldar</tradeTag>
+        <thingDefCountRange>
           <min>0</min>
           <max>2</max>
+        </thingDefCountRange>
+        <countRange>
+          <min>-1</min>
+          <max>0</max>
         </countRange>
       </li>
+
       <li Class="StockGenerator_BuyWeirdOrganic" />
-      <li Class="StockGenerator_MultiDef">
-        <thingDefs>
-          <li>Cloth</li>
-          <li>Chocolate</li>
-        </thingDefs>
-      </li>
     </stockGenerators>
   </TraderKindDef>
 

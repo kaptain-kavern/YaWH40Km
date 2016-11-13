@@ -18,10 +18,16 @@ namespace Corruption
             this.compPsyker = compPsyker;
         }
 
+        public Verb verb;
 
         private Texture2D EmptyTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
 
         private Texture2D FullTex = SolidColorMaterials.NewSolidColorTexture(0.5f, 0.5f, 0.5f, 0.6f);
+
+        public override void ProcessInput(Event ev)
+        {
+            base.ProcessInput(ev);
+        }
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft)
         {

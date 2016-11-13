@@ -131,8 +131,7 @@
         <label>placeholder_tzeentch</label>
       </li>
     </degreeDatas>
-  </Corruption.SoulTraitDef>
-    
+  </Corruption.SoulTraitDef>    
 
   <Corruption.SoulTraitDef>
     <defName>Undivided_Fervor</defName>
@@ -163,5 +162,36 @@
       </li>
     </degreeDatas>
   </Corruption.SoulTraitDef>
+
+  <Corruption.SoulTraitDef>
+    <defName>DE_Depravity</defName>
+    <commonality>0.001</commonality>
+    <SDegreeDatas>
+      <li>
+        <label>Dark Eldar Depravity</label>
+        <description>NAME feeds on the pain on sentient beings. HE will go through unspeakable acts of depravity to still this hunger.</description>
+      </li>
+    </SDegreeDatas>
+    <NullifiesThoughts>
+      <li>KnowPrisonerSold</li>
+      <li>KnowGuestOrganHarvested</li>
+      <li>KnowBuriedInSarcophagus</li>
+      <li>ButcheredHumanlikeCorpse</li>
+      <li>KnowButcheredHumanlikeCorpse</li>
+      <li>ObservedLayingCorpse</li>
+      <li>ObservedLayingRottingCorpse</li>
+      <li>WitnessedDeathNonAlly</li>
+      <li>KnowGuestExecuted</li>
+      <li>KnowColonistExecuted</li>
+      <li>KnowPrisonerDiedInnocent</li>
+    </NullifiesThoughts>
+
+    <degreeDatas>
+      <li>
+        <label>placeholder_DarkEldar</label>
+      </li>
+    </degreeDatas>
+  </Corruption.SoulTraitDef>
+
 
 </Corruption.SoulTraitDefs>

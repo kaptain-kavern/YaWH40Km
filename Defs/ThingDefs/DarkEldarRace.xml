@@ -151,10 +151,6 @@
 	</alienpartgenerator>
 	<ForcedRaceTraitEntries>
 		<li>
-		 <defname>Psychopath</defname>
-		 <degree>0</degree>
-		</li>
-		<li>
 		 <defname>Masochist</defname>
 		 <degree>0</degree>
 		</li>

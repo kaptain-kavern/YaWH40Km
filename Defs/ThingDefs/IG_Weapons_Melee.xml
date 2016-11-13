@@ -103,7 +103,7 @@
   <!-- ============================================================== -->
   
   <ThingDef ParentName="BaseMeleeWeapon_IG_Blunt">
-    <defName>MeleeWeapon_ImpForceStaff</defName>
+    <defName>MeleeWeapon_ImpPowerStaff</defName>
     <label>Imperial Force Staff</label>
     <description>A Force Weapon shaped into a staff. In the hands of a mere mortal, this is a simple blunt weapon, however a competent psyker may turn this into a weapon of terrifying strength.</description>
 	<graphicData>
@@ -111,7 +111,10 @@
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <soundInteract>InteractPistol</soundInteract>
-    <costStuffCount>180</costStuffCount>
+    <costList>
+      <Steel>100</Steel>
+      <Component>6</Component>
+    </costList>
     <statBases>
       <WorkToMake>18000</WorkToMake>
       <MeleeWeapon_DamageAmount>15</MeleeWeapon_DamageAmount>

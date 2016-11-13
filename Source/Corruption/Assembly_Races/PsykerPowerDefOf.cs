@@ -21,7 +21,7 @@ namespace Corruption
 
         public static PsykerPowerDef PsykerPower_Temptation;
 
-        
+        public static PsykerPowerDef PsykerPower_HealSimple;    
 
     }
 }

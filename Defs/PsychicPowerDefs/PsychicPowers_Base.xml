@@ -22,48 +22,6 @@
 
   <!-- =========================ProjectileDefs===================================== -->
 
-  <ThingDef ParentName="BaseBullet" Class="Corruption.ThingDef_LaserProjectile">
-   <thingClass>Corruption.Projectile_Laser</thingClass>
-   <defName>PSYWarpBolt</defName>
-   <label>Warp Bolt</label>
-   <graphicData>
-		<texPath>Things/IG/Weapons/Projectiles/WarpBolt</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-   <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>Laser</damageDef>
-		<damageAmountBase>5</damageAmountBase>
-		<speed>125</speed>
-   </projectile>
-    <preFiringInitialIntensity>0</preFiringInitialIntensity>
-    <preFiringFinalIntensity>2</preFiringFinalIntensity>
-    <postFiringInitialIntensity>2</postFiringInitialIntensity>
-    <postFiringFinalIntensity>0</postFiringFinalIntensity>
-    <preFiringDuration>2</preFiringDuration>
-    <postFiringDuration>63</postFiringDuration>
-    <StartFireChance>0.000</StartFireChance>
- </ThingDef>
-
-  <ThingDef ParentName="BaseBullet">
-    <defName>PSYWarpFire</defName>
-    <label>warpfire orb</label>
-    <graphicData>
-      <texPath>Things/Chaos/Warpstaff/Bullet_Warpfire</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>TransparentPostLight</shaderType>
-    </graphicData>
-    <thingClass>Projectile_Explosive</thingClass>
-    <projectile>
-      <damageDef>Burn</damageDef>
-      <damageAmountBase>15</damageAmountBase>
-      <speed>45</speed>
-      <explosionRadius>0.2</explosionRadius >
-      <explosionSpawnChance>0.0</explosionSpawnChance>
-    </projectile>
-  </ThingDef>
-
-
   <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
    <defName>PSYWarpGrowBolt</defName>
    <thingClass>Corruption.Projectile_WarpGrower</thingClass>
@@ -78,97 +36,6 @@
 		<damageAmountBase>1</damageAmountBase>
 		<speed>10</speed>
    </projectile>
- </ThingDef>
-
-
-  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
-   <defName>PSYBerserkerBullet</defName>
-   <thingClass>Corruption.Projectile_WarpPower</thingClass>
-   <label>berserker spell</label>
-   <graphicData>
-		<texPath>UI/Psyker/Frenzy</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-   <projectile>
-		<flyOverhead>true</flyOverhead>
-		<damageDef>Cut</damageDef>
-		<damageAmountBase>1</damageAmountBase>
-		<speed>10</speed>
-   </projectile>
-   <IsMentalStateGiver>true</IsMentalStateGiver>
-   <InducesMentalState>Berserk</InducesMentalState>
- </ThingDef>
-
-  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
-   <defName>PSYFearBullet</defName>
-   <thingClass>Corruption.Projectile_WarpPower</thingClass>
-   <label>flee spell</label>
-   <graphicData>
-		<texPath>UI/Psyker/Panic</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-   <projectile>
-		<flyOverhead>true</flyOverhead>
-		<damageDef>Cut</damageDef>
-		<damageAmountBase>1</damageAmountBase>
-		<speed>10</speed>
-   </projectile>
-   <IsMentalStateGiver>true</IsMentalStateGiver>
-   <InducesMentalState>PanicFlee</InducesMentalState>
- </ThingDef>
-
-  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
-   <defName>PSYConfusingBullet</defName>
-   <thingClass>Corruption.Projectile_WarpPower</thingClass>
-   <label>flee spell</label>
-   <graphicData>
-		<texPath>UI/Psyker/Confused</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-   <projectile>
-		<flyOverhead>true</flyOverhead>
-		<damageDef>Cut</damageDef>
-		<damageAmountBase>1</damageAmountBase>
-		<speed>10</speed>
-   </projectile>
-   <IsMentalStateGiver>true</IsMentalStateGiver>
-   <InducesMentalState>WanderPsychotic</InducesMentalState>
- </ThingDef>
-
-  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
-   <defName>PSYDrugBullet</defName>
-   <thingClass>Corruption.Projectile_WarpPower</thingClass>
-   <label>flee spell</label>
-   <graphicData>
-		<texPath>UI/Psyker/Drugs</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-   <projectile>
-		<flyOverhead>true</flyOverhead>
-		<damageDef>Cut</damageDef>
-		<damageAmountBase>1</damageAmountBase>
-		<speed>10</speed>
-   </projectile>
-   <IsMentalStateGiver>true</IsMentalStateGiver>
-   <InducesMentalState>BingingDrugExtreme</InducesMentalState>
- </ThingDef>
-
-  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower" Name="PsyHealSimple">
-   <defName>PSYHealSimple</defName>
-   <thingClass>Corruption.Projectile_WarpPower</thingClass>
-   <label>heal spell</label>
-   <graphicData>
-		<texPath>UI/Psyker/HealMinor</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-   <projectile>
-		<flyOverhead>true</flyOverhead>
-		<damageDef>HealGlobal</damageDef>
-		<damageAmountBase>100</damageAmountBase>
-		<speed>10</speed>
-   </projectile>
-   <IsHealer>true</IsHealer>
-   <HealFailChance>0.1</HealFailChance>
  </ThingDef>
 
   <ThingDef ParentName="BaseBullet">
@@ -188,8 +55,25 @@
   </ThingDef>
 
 
-  <!-- =========================GeneralPowerDefs===================================== -->
+  <!-- =========================Frenzy===================================== -->
 
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYBerserkerBullet</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>berserker spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Frenzy</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsMentalStateGiver>true</IsMentalStateGiver>
+   <InducesMentalState>Berserk</InducesMentalState>
+ </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_Berserker</defName>
@@ -210,6 +94,26 @@
         <isPrimary>false</isPrimary>
     </MainVerb>
   </ThingDef>
+
+  <!-- =========================DivinePronouncement===================================== -->
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYFearBullet</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>flee spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Panic</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsMentalStateGiver>true</IsMentalStateGiver>
+   <InducesMentalState>PanicFlee</InducesMentalState>
+ </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_DivinePronouncement</defName>
@@ -232,6 +136,27 @@
     </MainVerb>
   </ThingDef>
 
+  <!-- =========================Purgatus===================================== -->
+
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYConfusingBullet</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>flee spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Confused</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsMentalStateGiver>true</IsMentalStateGiver>
+   <InducesMentalState>WanderPsychotic</InducesMentalState>
+ </ThingDef>
+
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_Purgatus</defName>
     <label>Purgatus</label>
@@ -252,6 +177,27 @@
         <isPrimary>false</isPrimary>
     </MainVerb>
   </ThingDef>
+
+
+  <!-- =========================DrugDesire===================================== -->
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYDrugBullet</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>flee spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Drugs</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsMentalStateGiver>true</IsMentalStateGiver>
+   <InducesMentalState>BingingDrugExtreme</InducesMentalState>
+ </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_Temptation</defName>
@@ -274,6 +220,31 @@
         <DrawProjectileOnTarget>true</DrawProjectileOnTarget>
     </MainVerb>
   </ThingDef>
+
+  <!-- =========================Warpbolt===================================== -->
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ThingDef_LaserProjectile">
+   <thingClass>Corruption.Projectile_Laser</thingClass>
+   <defName>PSYWarpBolt</defName>
+   <label>Warp Bolt</label>
+   <graphicData>
+		<texPath>Things/IG/Weapons/Projectiles/WarpBolt</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Laser</damageDef>
+		<damageAmountBase>5</damageAmountBase>
+		<speed>125</speed>
+   </projectile>
+    <preFiringInitialIntensity>0</preFiringInitialIntensity>
+    <preFiringFinalIntensity>2</preFiringFinalIntensity>
+    <postFiringInitialIntensity>2</postFiringInitialIntensity>
+    <postFiringFinalIntensity>0</postFiringFinalIntensity>
+    <preFiringDuration>2</preFiringDuration>
+    <postFiringDuration>63</postFiringDuration>
+    <StartFireChance>0.000</StartFireChance>
+ </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_WarpBolt</defName>
@@ -298,6 +269,10 @@
         <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
     </MainVerb>
   </ThingDef>
+
+
+  <!-- =========================Scourging===================================== -->
+
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_Scourging</defName>
@@ -324,8 +299,66 @@
     <PowerLevel>Omicron</PowerLevel>
   </ThingDef>
 
+  <!-- =========================MindControl===================================== -->
+
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYMindcontrol</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>mindcontrol spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Mindcontrol</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsBuffGiver>true</IsBuffGiver>
+   <BuffDef>Mindcontrol</BuffDef>
+ </ThingDef>
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_Mindcontrol</defName>
+    <label>Mindcontrol</label>
+    <uiIconPath>UI/Psyker/Mindcontrol</uiIconPath>
+    <description>Temporarily control the selected target.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYMindcontrol</projectileDef>
+        <warmupTicks>300</warmupTicks>
+        <TicksToRecharge>1200</TicksToRecharge>
+        <range>15</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+    </MainVerb>
+  </ThingDef>
+
+
   <!-- =========================HealPowerDefs===================================== -->
 
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower" Name="PsyHealSimple">
+   <defName>PSYHealSimple</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>heal spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/HealMinor</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>HealGlobal</damageDef>
+		<damageAmountBase>100</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsHealer>true</IsHealer>
+   <HealFailChance>0.1</HealFailChance>
+ </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_HealSimple</defName>
@@ -351,6 +384,7 @@
     <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
   </ThingDef>
 
+
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_HealSelf</defName>
     <label>Minor Selfheal</label>
@@ -374,12 +408,10 @@
       <canTargetBuildings>false</canTargetBuildings>
       <canTargetSelf>true</canTargetSelf>
     </targetParams>
-
     </MainVerb>
     <PowerLevel>Omicron</PowerLevel>
     <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
     <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
-
   </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
@@ -407,13 +439,13 @@
       	 <canTargetSelf>true</canTargetSelf>
     		</targetParams>
     </MainVerb>
-    <PowerLevel>Omicron</PowerLevel>
+    <PowerLevel>Zeta</PowerLevel>
     <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
     <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
   </ThingDef>
 
 
-  <!-- =========================EldarPowerDefs===================================== -->
+  <!-- =========================EldritchLightning===================================== -->
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_EldritchBolt</defName>
@@ -440,7 +472,7 @@
       	 <canTargetBuildings>false</canTargetBuildings>
     		</targetParams>
     </MainVerb>
-    <PowerLevel>Zeta</PowerLevel>
+    <PowerLevel>Iota</PowerLevel>
   </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
@@ -471,28 +503,49 @@
       	 <canTargetSelf>true</canTargetSelf>
     		</targetParams>
     </MainVerb>
-    <PowerLevel>Omicron</PowerLevel>
+    <PowerLevel>Epsilon</PowerLevel>
     <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
     <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
   </ThingDef>
 
-  <!-- =========================OffensivePowerDefs===================================== -->
+  <!-- =========================EmpyrealInferno===================================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>PSYWarpFire</defName>
+    <label>warpfire orb</label>
+    <graphicData>
+      <texPath>Things/Chaos/Warpstaff/Bullet_WarpfireBig</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <damageDef>Burn</damageDef>
+      <damageAmountBase>15</damageAmountBase>
+      <speed>45</speed>
+      <explosionRadius>0.2</explosionRadius >
+      <explosionSpawnChance>0.0</explosionSpawnChance>
+    </projectile>
+  </ThingDef>
+
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_EmpyrealInferno</defName>
     <label>Empyreal Inferno</label>
+    <uiIconPath>UI/Psyker/Fire</uiIconPath>
     <description>Cast a torrent of warpfire that targets nearby enemies.</description>
     <thingClass>ThingWithComps</thingClass>
-    <uiIconPath>UI/Psyker/Fire</uiIconPath>
     <MainVerb Class="Corruption.VerbProperties_WarpPower">
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpFire</projectileDef>
         <warmupTicks>60</warmupTicks>
-        <TicksToRecharge>60</TicksToRecharge>
-        <range>15</range>
-        <soundCast>WarpBolt</soundCast>
-        <muzzleFlashScale>40</muzzleFlashScale>
+        <TicksToRecharge>120</TicksToRecharge>
+        <burstShotCount>1</burstShotCount>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+        <range>8</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
         <CorruptionFactor>1</CorruptionFactor>
         <isPrimary>false</isPrimary>
         <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
@@ -505,7 +558,29 @@
     		</targetParams>
     </MainVerb>
     <PowerLevel>Zeta</PowerLevel>
+    <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
+    <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
   </ThingDef>
+
+
+  <!-- =========================UnnaturalGrowth===================================== -->
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYWarpGrowBolt</defName>
+   <thingClass>Corruption.Projectile_WarpGrower</thingClass>
+   <label>berserker spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Growth</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+ </ThingDef>
+
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_UnnaturalGrowth</defName>
@@ -533,7 +608,7 @@
       	 <canTargetSelf>true</canTargetSelf>
     		</targetParams>
     </MainVerb>
-    <PowerLevel>Omicron</PowerLevel>
+    <PowerLevel>Epsilon</PowerLevel>
     <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
     <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
   </ThingDef>

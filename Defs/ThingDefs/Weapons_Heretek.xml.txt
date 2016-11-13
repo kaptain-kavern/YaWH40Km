@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+  <ThingDef Name="BaseGun" Abstract="True">
+    <category>Item</category>
+    <thingClass>ThingWithComps</thingClass>
+    <equipmentType>Primary</equipmentType>
+    <pathCost>10</pathCost>
+    <useHitPoints>True</useHitPoints>
+    <selectable>True</selectable>
+    <graphicData>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>1</DeteriorationRate>
+      <SellPriceFactor>0.5</SellPriceFactor>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>True</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <techLevel>Spacer</techLevel>
+    <thingCategories>
+      <li>WeaponsRanged</li>
+    </thingCategories>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li>
+        <compClass>CompArt</compClass>
+        <nameMaker>NamerGun</nameMaker>
+        <descriptionMaker>ArtWeaponGun</descriptionMaker>
+        <minQualityForArtistic>Excellent</minQualityForArtistic>
+      </li>
+    </comps>
+    <recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+    </recipeMaker>
+    <smeltProducts>
+      <Steel>20</Steel>
+    </smeltProducts>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseHumanGun" ParentName="BaseGun" Abstract="True">
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseBullet" Abstract="True">
+    <category>Projectile</category>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <thingClass>Bullet</thingClass>
+    <label>bullet</label>
+    <useHitPoints>False</useHitPoints>
+    <neverMultiSelect>True</neverMultiSelect>
+    <graphicData>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+  </ThingDef>
+
+	<ThingDef Class="Projectile_Laser.ThingDef_LaserProjectile" ParentName="BaseBullet">
+	<defName>Bullet_Laser</defName>
+	<label>turret laser</label>
+    <thingClass>Projectile_Laser.Projectile_LaserRifle</thingClass>
+	<graphicData>
+    <texPath>Things/IG/Weapons/LasShot</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	<shaderType>TransparentPostLight</shaderType>
+	</graphicData>
+		<projectile>
+            <damageDef>Plasma</damageDef>
+			<DamageAmountBase>10</DamageAmountBase>
+		</projectile>
+<!-- Projectile_Laser.ThingDef_LaserProjectile parameters -->
+    <preFiringInitialIntensity>0</preFiringInitialIntensity>
+    <preFiringFinalIntensity>1</preFiringFinalIntensity>
+    <postFiringInitialIntensity>1</postFiringInitialIntensity>
+    <postFiringFinalIntensity>0</postFiringFinalIntensity>
+    <preFiringDuration>5</preFiringDuration>
+    <postFiringDuration>18</postFiringDuration>
+  </ThingDef>
+
+
+	<ThingDef Class="Projectile_Laser.ThingDef_LaserProjectile" ParentName="BaseBullet">
+	<defName>Bullet_Lightning</defName>
+	<label>turret lightning</label>
+    <thingClass>Projectile_Laser.Projectile_LaserRifle</thingClass>
+	<graphicData>
+    <texPath>Things/Chaos/HereTek/LightningBoltred</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	<shaderType>TransparentPostLight</shaderType>
+	</graphicData>
+		<projectile>
+            <damageDef>Plasma</damageDef>
+			<DamageAmountBase>15</DamageAmountBase>
+		</projectile>
+<!-- Projectile_Laser.ThingDef_LaserProjectile parameters -->
+    <preFiringInitialIntensity>0</preFiringInitialIntensity>
+    <preFiringFinalIntensity>1</preFiringFinalIntensity>
+    <postFiringInitialIntensity>1</postFiringInitialIntensity>
+    <postFiringFinalIntensity>0</postFiringFinalIntensity>
+    <preFiringDuration>7</preFiringDuration>
+    <postFiringDuration>18</postFiringDuration>
+  </ThingDef>
+
+
+
+	<ThingDef ParentName="BaseHumanMakeableGun">
+		<defName>HERETEK_Warpfire</defName>
+		<label>Warpfire</label>
+		<description>Experimental weapon developed by a madman...</description>
+		<graphicData> <texPath>Things/Chaos/HereTek/Warpfirer</texPath>
+		<graphicClass>Graphic_Single</graphicClass> </graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+	<equippedStatOffsets>
+			 <MoveSpeed>0.02</MoveSpeed>
+	</equippedStatOffsets>
+		<statBases>
+			<MarketValue>1700</MarketValue>
+			<MaxHitPoints>300</MaxHitPoints>
+				<AccuracyTouch>0.95</AccuracyTouch>
+				<AccuracyShort>0.90</AccuracyShort>
+				<AccuracyMedium>0.86</AccuracyMedium>
+				<AccuracyLong>0.80</AccuracyLong>
+				<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>Bullet_Lightning</projectileDef>
+				<burstShotCount>1</burstShotCount>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<warmupTicks>1</warmupTicks>
+				<range>45</range>
+				<soundCast>LaserBeam</soundCast>
+  				<muzzleFlashScale>12</muzzleFlashScale>
+			</li>
+		</verbs>
+    <costList>
+      <Steel>120</Steel>
+      <Plasteel>30</Plasteel>
+      <Components>6</Components>
+    </costList>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanMakeableGun">
+		<defName>Warpstaff</defName>
+		<label>warpstaff</label>
+		<description>Imbued with the powers of the warp. Do not touch!</description>
+		<graphicData> <texPath>Things/Chaos/Warpstaff/Warpstaff</texPath>
+		<graphicClass>Graphic_Single</graphicClass> </graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+	<equippedStatOffsets>
+			 <MoveSpeed>-0.1</MoveSpeed>
+	</equippedStatOffsets>
+		<statBases>
+			<MarketValue>2700</MarketValue>
+			<MaxHitPoints>300</MaxHitPoints>
+				<AccuracyTouch>0.95</AccuracyTouch>
+				<AccuracyShort>0.75</AccuracyShort>
+				<AccuracyMedium>0.70</AccuracyMedium>
+				<AccuracyLong>0.55</AccuracyLong>
+				<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>Bullet_Lightning</projectileDef>
+				<burstShotCount>1</burstShotCount>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<warmupTicks>1</warmupTicks>
+				<range>45</range>
+				<soundCast>LaserBeam</soundCast>
+  				<muzzleFlashScale>12</muzzleFlashScale>
+			</li>
+		</verbs>
+    <costList>
+      <Steel>120</Steel>
+      <Plasteel>30</Plasteel>
+      <Components>6</Components>
+    </costList>
+	</ThingDef>
+
+
+
+	<ThingDef ParentName="BaseHumanMakeableGun">
+		<defName>IG_Lasrifle</defName>
+		<label>IG Standard Issue Lasrifle</label>
+		<description>Standard Issue Weapon for the Emperor's Hammer. Cheap and packs a punch..</description>
+		<graphicData> <texPath>Things/IG/Weapons/StandardLasgun</texPath>
+		<graphicClass>Graphic_Single</graphicClass> </graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+	<equippedStatOffsets>
+			 <MoveSpeed>-0.1</MoveSpeed>
+	</equippedStatOffsets>
+		<statBases>
+			<MarketValue>500</MarketValue>
+			<MaxHitPoints>300</MaxHitPoints>
+				<AccuracyTouch>0.75</AccuracyTouch>
+				<AccuracyShort>0.80</AccuracyShort>
+				<AccuracyMedium>0.75</AccuracyMedium>
+				<AccuracyLong>0.50</AccuracyLong>
+				<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>Bullet_Laser</projectileDef>
+				<burstShotCount>1</burstShotCount>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<warmupTicks>1</warmupTicks>
+				<range>38</range>
+				<soundCast>LaserBeam</soundCast>
+  				<muzzleFlashScale>12</muzzleFlashScale>
+			</li>
+		</verbs>
+    <costList>
+      <Steel>120</Steel>
+      <Plasteel>30</Plasteel>
+      <Components>6</Components>
+    </costList>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>IG_Laspistol</defName>
+		<label>IG standard issue laspistol</label>
+		<description>Standard Issue Weapon for the Emperor's Hammer. Cheap and packs a punch.</description>
+		<graphicData> <texPath>Things/IG/Weapons/StandardLaspistol</texPath>
+		<graphicClass>Graphic_Single</graphicClass> </graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+	<equippedStatOffsets>
+			 <MoveSpeed>-0.05</MoveSpeed>
+	</equippedStatOffsets>
+		<statBases>
+			<MarketValue>500</MarketValue>
+			<MaxHitPoints>300</MaxHitPoints>
+				<AccuracyTouch>0.75</AccuracyTouch>
+				<AccuracyShort>0.80</AccuracyShort>
+				<AccuracyMedium>0.75</AccuracyMedium>
+				<AccuracyLong>0.50</AccuracyLong>
+				<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>Bullet_Laser</projectileDef>
+				<burstShotCount>1</burstShotCount>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<warmupTicks>1</warmupTicks>
+				<range>38</range>
+				<soundCast>LaserBeam</soundCast>
+  				<muzzleFlashScale>12</muzzleFlashScale>
+			</li>
+		</verbs>
+    <costList>
+      <Steel>120</Steel>
+      <Plasteel>30</Plasteel>
+      <Components>6</Components>
+    </costList>
+	</ThingDef>
+
+</ThingDefs>

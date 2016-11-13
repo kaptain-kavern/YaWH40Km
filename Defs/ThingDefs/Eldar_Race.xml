@@ -155,10 +155,12 @@
 		 <degree>2</degree>
 		</li>
 	</ForcedRaceTraitEntries>
-
     <comps>
       <li>
         <compClass>AlienRace.CompImmuneToAge</compClass>
+      </li>
+      <li>
+        <compClass>Corruption.CompEldarSpiritStone</compClass>
       </li>
     </comps>
   </ThingDef>

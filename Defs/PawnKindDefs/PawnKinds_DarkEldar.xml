@@ -43,6 +43,7 @@
       <IsofFaith>Eldar</IsofFaith>
       <LowerAfflictionLimit>0.5</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.8</UpperAfflictionLimit>
+      <CommonSoulTrait>DE_Depravity</CommonSoulTrait>
     </AfflictionProperty>
   </PawnKindDef>
 
@@ -88,6 +89,7 @@
       <IsofFaith>Eldar</IsofFaith>
       <LowerAfflictionLimit>0.5</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.8</UpperAfflictionLimit>
+      <CommonSoulTrait>DE_Depravity</CommonSoulTrait>
     </AfflictionProperty>
   </PawnKindDef>
 

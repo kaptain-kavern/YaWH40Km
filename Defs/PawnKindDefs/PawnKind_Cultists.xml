@@ -133,6 +133,8 @@
     <AfflictionProperty>
       <LowerAfflictionLimit>0</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.25</UpperAfflictionLimit>
+      <LowerPsykerPowerLimit>Iota</LowerPsykerPowerLimit>
+      <UpperPsykerPowerLimit>Delta</UpperPsykerPowerLimit>
     </AfflictionProperty>
   </PawnKindDef>
 

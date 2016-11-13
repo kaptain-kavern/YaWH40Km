@@ -43,6 +43,8 @@
       <IsofFaith>Eldar</IsofFaith>
       <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
+      <LowerPsykerPowerLimit>Iota</LowerPsykerPowerLimit>
+      <UpperPsykerPowerLimit>Epsilon</UpperPsykerPowerLimit>
     </AfflictionProperty>
   </PawnKindDef>
 
@@ -90,6 +92,8 @@
       <IsofFaith>Eldar</IsofFaith>
       <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
+      <LowerPsykerPowerLimit>Iota</LowerPsykerPowerLimit>
+      <UpperPsykerPowerLimit>Delta</UpperPsykerPowerLimit>
     </AfflictionProperty>
   </PawnKindDef>
 
@@ -135,6 +139,16 @@
       <IsofFaith>Eldar</IsofFaith>
       <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
+      <LowerPsykerPowerLimit>Epsilon</LowerPsykerPowerLimit>
+      <UpperPsykerPowerLimit>Delta</UpperPsykerPowerLimit>
+       <CommmonPsykerPowers>
+        <li>PsykerPower_EldritchBolt</li>
+        <li>PsykerPower_EldritchThunderstorm</li>
+        <li>PsykerPower_UnnaturalGrowth</li>
+        <li>PsykerPower_EmpyrealInferno</li>
+        <li>PsykerPower_Mindcontrol</li>
+
+       </CommmonPsykerPowers>
     </AfflictionProperty>
   </PawnKindDef>
 
@@ -184,6 +198,8 @@
       <IsofFaith>Eldar</IsofFaith>
       <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
+      <LowerPsykerPowerLimit>Iota</LowerPsykerPowerLimit>
+      <UpperPsykerPowerLimit>Epsilon</UpperPsykerPowerLimit>
     </AfflictionProperty>
   </PawnKindDef>
 

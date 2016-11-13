@@ -89,6 +89,23 @@ namespace Corruption
 
         // PsykerDefs
 
-        public static JobDef CastPsykerPower;
+        public static JobDef CastPsykerPowerVerb;
+
+        public static JobDef CastPsykerPowerSelf;
+
+        public static HediffDef DemonicPossession;
+
+        public static ThingDef SpiritStone;
+
+        // FactionDefs
+
+        public static FactionDef ChaosCult;
+        public static FactionDef DarkEldarKabal;
+        public static FactionDef EldarWarhost;
+        public static FactionDef ImperialGuard;
+        public static FactionDef Orks;
+        public static FactionDef AdeptusSororitas;
+
+
     }
 }

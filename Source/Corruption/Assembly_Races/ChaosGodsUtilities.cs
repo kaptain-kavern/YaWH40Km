@@ -48,7 +48,5 @@ namespace Corruption
             }
             return CorruptionDefOfs.KhorneKillWeak;
         }
-
-
     }
 }

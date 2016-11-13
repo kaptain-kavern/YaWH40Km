@@ -10,7 +10,7 @@ namespace Corruption
     {
         public string DivineOrigin;
 
-        public PsykerPowerLevel PowerLevel;
+        public PsykerPowerLevel PowerLevel = PsykerPowerLevel.Iota;
 
         public SoulAffliction MinAfflictionToGet = SoulAffliction.Warptouched;
 
@@ -25,8 +25,6 @@ namespace Corruption
         public float CorruptionFactor;
 
         public string IconGraphicPath;
-
-        public PsykerPowerTargetCategory PsykerPowerCategory = PsykerPowerTargetCategory.TargetSelf;
 
         public VerbProperties_WarpPower MainVerb;
     }

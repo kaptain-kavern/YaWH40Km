@@ -146,9 +146,9 @@
   </ThingDef>
 
 
-  <ThingDef ParentName="BaseBullet">
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ThingDef_LaserProjectile">
+   <thingClass>Corruption.Projectile_Laser</thingClass>
     <defName>Bullet_FlameThrower</defName>
-    <thingClass>Corruption.Projectile_Incendiary</thingClass>
     <label>FlameThrower Jet</label>
     <graphicData>
       <texPath>Things/IG/Weapons/Projectiles/FlamerProjectile</texPath>
@@ -162,6 +162,14 @@
       <postExplosionSpawnThingDef>FilthFuel</postExplosionSpawnThingDef>
       <explosionSpawnChance>0.7</explosionSpawnChance>
     </projectile>
+    <preFiringInitialIntensity>0</preFiringInitialIntensity>
+    <preFiringFinalIntensity>2</preFiringFinalIntensity>
+    <postFiringInitialIntensity>2</postFiringInitialIntensity>
+    <postFiringFinalIntensity>0.5</postFiringFinalIntensity>
+    <preFiringDuration>30</preFiringDuration>
+    <postFiringDuration>40</postFiringDuration>
+    <CanStartFire>true</CanStartFire>
+    <StartFireChance>1</StartFireChance>
   </ThingDef>
 
 

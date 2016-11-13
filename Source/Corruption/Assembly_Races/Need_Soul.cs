@@ -22,6 +22,8 @@ namespace Corruption
 
         private const float ThreshPure = 0.9f;
 
+        public CompPsyker compPsyker = new CompPsyker();
+
         public PsykerPowerLevel PsykerPowerLevel;
 
         public List<SoulTrait> SoulTraits = new List<SoulTrait>();
@@ -99,10 +101,10 @@ namespace Corruption
             InitiatePsykerComp();
  //           try
  //           {
-                AddPsykerPower(PsykerPowerDefOf.PsykerPower_Berserker);
-          //      AddPsykerPower(PsykerPowerDefOf.PsykerPower_WarpBolt);
-                AddPsykerPower(PsykerPowerDefOf.PsykerPower_Temptation);
-                AddPsykerPower(PsykerPowerDefOf.PsykerPower_Purgatus);
+ //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Berserker);
+ //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_WarpBolt);
+ //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Temptation);
+ //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Purgatus);
  //           }
  //           catch
  //           { }
@@ -122,6 +124,12 @@ namespace Corruption
                     this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
                     this.IsImmune = true;
                 }
+                else if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
+                {
+                    this.IsImmune = true;
+                    this.curLevelInt = Rand.Range(0.86f, 0.99f);
+                    this.NoPatron = true;
+                }
                 else
                 {
                     float afup = pdef.AfflictionProperty.UpperAfflictionLimit;
@@ -139,14 +147,37 @@ namespace Corruption
                 PawnAfflictionProps = new AfflictionProperty();
                 this.PsykerPowerLevel = (PsykerPowerLevel)Rand.RangeInclusive(0, Enum.GetValues(typeof(PsykerPowerLevel)).Length - 1);
                 this.CulturalTolerance = (CulturalToleranceCategory)Rand.RangeInclusive(0, 2);
-                this.curLevelInt = Rand.Range(0.01f, 0.99f);
+                if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
+                {
+                    this.IsImmune = true;
+                    this.curLevelInt = Rand.Range(0.86f, 0.99f);
+                    this.NoPatron = true;
+                }
+                else
+                {
+                    this.curLevelInt = Rand.Range(0.01f, 0.99f);
+                }
+            }
+
+            if (this.PawnAfflictionProps.CommmonPsykerPowers != null)
+            {
+                for (int i=0; i < this.PawnAfflictionProps.CommmonPsykerPowers.Count; i++)
+                {
+                    
+                    try
+                    {
+                        this.compPsyker.PowerManager.AddPsykerPower(this.PawnAfflictionProps.CommmonPsykerPowers[i]);
+                    }
+                    catch
+                    { }
+                }
             }
 
             if (CorruptionDefOfs.Devotion.SDegreeDatas == null) Log.Message("No stdata");
 
             if (this.SoulTraits.NullOrEmpty())
             {
-                if (PawnAfflictionProps != null && PawnAfflictionProps.IsImmune)
+                if ((PawnAfflictionProps != null && PawnAfflictionProps.IsImmune))
                 {
                     this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
                     this.IsImmune = true;
@@ -156,6 +187,10 @@ namespace Corruption
                     this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, Rand.RangeInclusive(-2, 2));
                 }
                 this.SoulTraits.Insert(0, DevotionTrait);
+            }
+            if (PawnAfflictionProps.CommonSoulTrait != null && !this.SoulTraits.Any(x => x.SDef == PawnAfflictionProps.CommonSoulTrait))
+            {
+                this.SoulTraits.Add(new SoulTrait(PawnAfflictionProps.CommonSoulTrait, 0));
             }
 
             if (this.curLevelInt < 0.3f && NoPatron == true)
@@ -262,19 +297,11 @@ namespace Corruption
                 list.Add(compPsyker);
                 typeof(ThingWithComps).GetField("comps", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(this.pawn, list);
             }
+            compPsyker.PostSpawnSetup();
+            this.compPsyker = compPsyker;
         }
 
-        public void AddPsykerPower(PsykerPowerDef psydef)
-        {
-            CompPsyker temp = this.pawn.TryGetComp<CompPsyker>();
-            if (temp != null)
-            {
-                if (!temp.Powers.Any(x => x.def.defName == psydef.defName))
-                {
-                    temp.Powers.Add(new PsykerPower(this.pawn, psydef));
-                }                
-            }
-        }
+
 
         public void GeneratePatronTraits(Pawn tpawn)
         {

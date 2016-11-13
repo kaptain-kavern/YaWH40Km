@@ -9,7 +9,6 @@ namespace Corruption
     {
         TargetSelf,
         TargetThing,
-        TargetNear,
-        TargetAll
+        TargetAoE
     }
 }

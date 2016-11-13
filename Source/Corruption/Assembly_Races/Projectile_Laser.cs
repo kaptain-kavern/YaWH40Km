@@ -32,6 +32,7 @@ namespace Corruption
         public int preFiringDuration = 0;
         public int postFiringDuration = 0;
         public float startFireChance = 0;
+        public bool canStartFire = false;
 
         public override void SpawnSetup()
 		{
@@ -55,6 +56,7 @@ namespace Corruption
             postFiringInitialIntensity = additionalParameters.postFiringInitialIntensity;
             postFiringFinalIntensity = additionalParameters.postFiringFinalIntensity;
             startFireChance = additionalParameters.StartFireChance;
+            this.canStartFire = additionalParameters.CanStartFire;
         }
 
         /// <summary>
@@ -103,7 +105,6 @@ namespace Corruption
                 {
                     GetPostFiringDrawingParameters();
                 }
-
                 if (tickCounter == (this.preFiringDuration + this.postFiringDuration) && !this.Destroyed)
                 {
                     this.Destroy(DestroyMode.Vanish);
@@ -113,7 +114,7 @@ namespace Corruption
                     if (this.launcher is Pawn)
                     {
                         Pawn launcherPawn = this.launcher as Pawn;
-                        if (((launcherPawn.stances.curStance is Stance_Warmup) == false)
+                        if ((launcherPawn.TryGetComp<CompPsyker>().IsActive) && ((launcherPawn.stances.curStance is Stance_Warmup) == false)
                             && ((launcherPawn.stances.curStance is Stance_Cooldown) == false)
                             || ((launcherPawn.Dead) == true) && !this.Destroyed)
                         {
@@ -121,12 +122,11 @@ namespace Corruption
                         }
                     }
                 }
-
                 tickCounter++;
             }
             catch
             {
-                Log.Message("NoLaserTick");
+                this.Destroy(DestroyMode.Vanish);
             }
 
         }
@@ -336,7 +336,7 @@ namespace Corruption
                 DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, damageAmountBase, this.launcher, this.ExactRotation.eulerAngles.y, new BodyPartDamageInfo?(value), this.equipmentDef);
                 hitThing.TakeDamage(dinfo);
                 hitThing.def.soundImpactDefault.PlayOneShot(this.DestinationCell);
-                if (Rand.Range(0f, 1f) > startFireChance)
+                if (this.canStartFire && Rand.Range(0f, 1f) > startFireChance)
                 {
                     hitThing.TryAttachFire(0.05f);
                 }

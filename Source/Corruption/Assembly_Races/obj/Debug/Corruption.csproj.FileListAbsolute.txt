@@ -7,4 +7,6 @@ D:\Spiele\RimWorld1279Win\Mods\WH40k_Eigenproduktion\Assemblies\Corruption.dll
 D:\Spiele\RimWorld1279Win\Mods\WH40k_Eigenproduktion\Source\Corruption\Assembly_Races\obj\Debug\Corruption.dll
 D:\Spiele\RimWorld1284Win\Mods\WH40k_Eigenproduktion\Assemblies\Corruption.dll
 D:\Spiele\RimWorld1284Win\Mods\WH40k_Eigenproduktion\Source\Corruption\Assembly_Races\obj\Debug\Corruption.dll
-D:\Spiele\RimWorld1284Win\Mods\WH40k_Eigenproduktion\Source\Corruption\Assembly_Races\obj\Debug\Corruption.csprojResolveAssemblyReference.cache
+D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Source\Corruption\Assembly_Races\obj\Debug\Corruption.csprojResolveAssemblyReference.cache
+D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Assemblies\Corruption.dll
+D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Source\Corruption\Assembly_Races\obj\Debug\Corruption.dll

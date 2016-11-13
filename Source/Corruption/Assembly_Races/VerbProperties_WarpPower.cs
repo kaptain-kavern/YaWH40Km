@@ -22,6 +22,9 @@ namespace Corruption
 
         public PsykerPowerLevel PowerLevelToUnlock;
 
+        public PsykerPowerTargetCategory PsykerPowerCategory = PsykerPowerTargetCategory.TargetThing;
+        public Type AoETargetClass;
+
         public bool ReplacesStandardAttack;
 
         public List<StatModifier> statModifiers;

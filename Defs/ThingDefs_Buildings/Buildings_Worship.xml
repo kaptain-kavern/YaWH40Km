@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ThingDefs>
 
+  <ThingDef ParentName="SculptureBase">
+    <defName>IdolEmperor</defName>
+    <label>idol of the Emperor</label>
+    <description>A torso-sized piece of material sculpted into the shape of the Emperor of Mankind.</description>
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>
+      <texPath>Things/Building/Art/SculptureSmall</texPath>
+    </graphicData>
+    <minifiedDef>MinifiedSculpture</minifiedDef>
+    <fillPercent>0.55</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>90</MaxHitPoints>
+      <Beauty>30</Beauty>
+      <WorkToMake>24000</WorkToMake>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>70</costStuffCount>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
+  </ThingDef>
+
+  <ThingDef ParentName="SculptureBase">
+    <defName>IdolEmperor</defName>
+    <label>idol of the Emperor</label>
+    <description>A torso-sized piece of material sculpted into the shape of the Emperor of Mankind.</description>
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>
+      <texPath>Things/Building/Art/SculptureSmall</texPath>
+    </graphicData>
+    <minifiedDef>MinifiedSculpture</minifiedDef>
+    <fillPercent>0.55</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>90</MaxHitPoints>
+      <Beauty>30</Beauty>
+      <WorkToMake>24000</WorkToMake>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>70</costStuffCount>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
+  </ThingDef>
+
+
   <ThingDef ParentName="BuildingBase">
     <thingClass>Corruption.BuildingAltar</thingClass>
     <tickerType>Normal</tickerType>

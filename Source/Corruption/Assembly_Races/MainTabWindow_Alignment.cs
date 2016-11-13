@@ -267,14 +267,15 @@ namespace Corruption
                 TipSignal tip2 = new TipSignal(() => trLocal.STipString(SelPawn), (int)num * 37);
                 TooltipHandler.TipRegion(rect12, tip2);
                 rect13 = rect12;
-            }
-            
+            }            
+
+            rect13.y += 53;
             if (Mouse.IsOver(rect13))
             {
                 Widgets.DrawHighlight(rect13);
             }
             Widgets.Label(rect13, this.culturalTolerance.ToString());
-            num += rect13.height + 15f;
+            num += rect13.height + 15;
             TipSignal tip = new TipSignal(() => culturalToleranceToolTip(this.culturalTolerance), (int)num * 37);
             TooltipHandler.TipRegion(rect13, tip);
 

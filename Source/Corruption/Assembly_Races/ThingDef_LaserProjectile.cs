@@ -19,5 +19,6 @@ namespace Corruption
         public int preFiringDuration = 0;
         public int postFiringDuration = 0;
         public float StartFireChance;
+        public bool CanStartFire = false;
     }
 }

@@ -267,7 +267,7 @@
     <statBases>
       <WorkToMake>50000</WorkToMake>
       <MarketValue>400</MarketValue>
-      <AccuracyTouch>0.55</AccuracyTouch>
+      <AccuracyTouch>0.75</AccuracyTouch>
       <AccuracyShort>0.76</AccuracyShort>
       <AccuracyMedium>0.76</AccuracyMedium>
       <AccuracyLong>0.70</AccuracyLong>

@@ -18,8 +18,10 @@ namespace Corruption
         public ChaosGods Patron = ChaosGods.Undivided;
         public bool UseOtherFaith = false;
         public OtherFaiths IsofFaith = OtherFaiths.Emperor;
+        public SoulTraitDef CommonSoulTrait;
         public CulturalToleranceCategory PrimaryToleranceCategory = CulturalToleranceCategory.Neutral;
         public PsykerPowerLevel UpperPsykerPowerLimit = PsykerPowerLevel.Epsilon;
         public PsykerPowerLevel LowerPsykerPowerLimit = PsykerPowerLevel.Omicron;
+        public List<PsykerPowerDef> CommmonPsykerPowers = new List<PsykerPowerDef>();
     }
 }
