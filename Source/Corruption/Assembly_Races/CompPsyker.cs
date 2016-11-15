@@ -69,8 +69,6 @@ namespace Corruption
             this.PowerManager = new PsykerPowerManager(this);
         }
 
-        public Dictionary<ThingDef, float> ReadableEntry = new Dictionary<ThingDef, float>();
-
         public List<PsykerPower> Powers = new List<PsykerPower>();
 
         public List<PsykerPower> temporaryWeaponPowers = new List<PsykerPower>();
@@ -269,6 +267,33 @@ namespace Corruption
             {
                 DrawPsykerTargetReticule();
             }
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Collections.LookList<PsykerPower>(ref this.allPowers, "allPowers", LookMode.Deep, new object[0]);
+            Scribe_Collections.LookList<PsykerPower>(ref this.temporaryApparelPowers, "temporaryApparelPowers", LookMode.Deep, new object[0]);
+            Scribe_Collections.LookList<PsykerPower>(ref this.temporaryWeaponPowers, "temporaryWeaponPowers", LookMode.Deep, new object[0]);
+            Scribe_Collections.LookList<PsykerPower>(ref this.Powers, "Powers", LookMode.Deep, new object[0]);
+            Scribe_Collections.LookList<PsykerPower>(ref this.allPowers, "allPowers", LookMode.Deep, new object[0]);
+
+            Scribe_Values.LookValue<int>(ref this.TicksToCast, "TicksToCast", 0, false);
+            Scribe_Values.LookValue<int>(ref this.TicksToCastMax, "TicksToCastMax", 1, false);
+            Scribe_Values.LookValue<float>(ref this.TicksToCastPercentage, "TicksToCastPercentage", 1, false);
+            Scribe_Values.LookValue<bool>(ref this.IsActive, "IsActive", false, false);
+            Scribe_Values.LookValue<bool>(ref this.ShotFired, "ShotFired", true, false);
+  //          Scribe_Deep.LookDeep<Verb_CastWarpPower>(ref this.curVerb, "curVerb", null);
+  //          Scribe_TargetInfo.LookTargetInfo(ref this.CurTarget, "CurTarget", null);
+
+   //         Scribe_Deep.LookDeep<PsykerPowerManager>(ref this.PowerManager, "PowerManager", new object[]
+   //             {
+   //               this
+   //             });
+            
+
+
+
         }
     }
 }

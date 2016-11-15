@@ -476,13 +476,19 @@ namespace Corruption
             base.ExposeData();
     //        Scribe_Deep.LookDeep<PatronInfo>(ref this.patronInfo, "patronInfo", new object());
             Scribe_Values.LookValue<bool>(ref this.NoPatron, "NoPatron", true, false);
+            Scribe_Values.LookValue<bool>(ref this.IsImmune, "IsImmune", false, false);
             Scribe_Values.LookValue<string>(ref this.patronInfo.PatronName, "PatronName", "Emperor", false);
 
 
-    //        Scribe_Collections.LookList<SoulTrait>(ref this.SoulTraits, "SoulTraits", LookMode.Deep, new object[0]);
+            //        Scribe_Collections.LookList<SoulTrait>(ref this.SoulTraits, "SoulTraits", LookMode.Deep, new object[0]);
             Scribe_Collections.LookList<Pawn>(ref this.OpposingDevotees, "OpposingDevotees", LookMode.Deep, new object[0]);
 
             Scribe_Values.LookValue<ChaosGods>(ref this.Patron, "Patron", ChaosGods.Undivided, false);
+
+   //         Scribe_Values.LookValue<PsykerPowerLevel>(ref this.PsykerPowerLevel, "PsykerPowerLevel", PsykerPowerLevel.Rho, false);
+            Scribe_Values.LookValue<CulturalToleranceCategory>(ref this.CulturalTolerance, "CulturalTolerance", CulturalToleranceCategory.Neutral, false);
+
+    //        Scribe_Deep.LookDeep<AfflictionProperty>(ref this.PawnAfflictionProps, "PawnAfflictionProps", null);
             Scribe_Deep.LookDeep<SoulTrait>(ref this.DevotionTrait, "DevotionTrait", new object[]
             {
                 CorruptionDefOfs.Devotion,

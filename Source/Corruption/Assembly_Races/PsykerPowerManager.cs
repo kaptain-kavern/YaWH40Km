@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Verse;
 
 namespace Corruption
 {
-   public class PsykerPowerManager
+   public class PsykerPowerManager : IExposable
     {
         public void AddPsykerPower(PsykerPowerDef psydef)
         {
@@ -38,7 +39,7 @@ namespace Corruption
 
         private CompPsyker compPsyker;
 
-        public Dictionary<PsykerPowerLevel, int> PowerLevelSlots;
+        public Dictionary<PsykerPowerLevel, int> PowerLevelSlots = new Dictionary<PsykerPowerLevel, int>();
         
         public void PsykerPowerManagerTick()
         {
@@ -53,6 +54,12 @@ namespace Corruption
                 return true;
             }
             return false;
+        }
+
+        public void ExposeData()
+        {
+            Scribe_Collections.LookDictionary<PsykerPowerLevel, int>(ref this.PowerLevelSlots, "PowerLevelSlots", LookMode.Value, LookMode.Value);
+            Scribe_Values.LookValue<CompPsyker>(ref this.compPsyker, "compPsyker", null);
         }
 
         public List<PsykerPower> powersint = new List<PsykerPower>();
