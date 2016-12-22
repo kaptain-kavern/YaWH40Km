@@ -13,7 +13,7 @@ namespace Corruption
         {
             foreigners = 0;
             peeps = 0;
-            List<Pawn> templist = Find.MapPawns.AllPawnsSpawned.Where(x => x.def.race.Humanlike).ToList<Pawn>();
+            List<Pawn> templist = p.Map.mapPawns.AllPawnsSpawned.Where(x => x.def.race.Humanlike).ToList<Pawn>();
             foreach (Pawn m in templist)
             {
                 if (m.kindDef.race != p.kindDef.race && p.Faction == m.Faction)

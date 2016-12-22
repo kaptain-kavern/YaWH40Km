@@ -79,7 +79,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Shuriken</projectileDef>
-        <warmupTicks>64</warmupTicks>
+        <warmupTime>1</warmupTime>
         <burstShotCount>3</burstShotCount>
         <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
         <range>24</range>
@@ -122,7 +122,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Shuriken</projectileDef>
-        <warmupTicks>90</warmupTicks>
+        <warmupTime>1.5</warmupTime>
         <range>35</range>
         <burstShotCount>8</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
@@ -165,7 +165,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_SniperRifle</projectileDef>
-        <warmupTicks>240</warmupTicks>
+        <warmupTime>6</warmupTime>
         <range>45</range>
         <soundCast>Shuriken_Longrifle</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -207,7 +207,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Spinner</projectileDef>
-        <warmupTicks>120</warmupTicks>
+        <warmupTime>3</warmupTime>
         <range>10</range>
         <burstShotCount>2</burstShotCount>
         <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
@@ -250,7 +250,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_FlameThrower</projectileDef>
-        <warmupTicks>90</warmupTicks>
+        <warmupTime>1.5</warmupTime>
         <range>8</range>
         <burstShotCount>20</burstShotCount>
         <ticksBetweenBurstShots>1</ticksBetweenBurstShots>

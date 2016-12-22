@@ -3,50 +3,53 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using Verse;
 using Verse.AI;
-namespace Corruption
+namespace Corruption.BookStuff
 {
-    internal class Bookshelf : Building_Storage
+    public class Bookshelf : Building
     {
         public Pawn pawn;
+        public List<String> BookCategories;
         public List<ThingDef> StoredBooks = new List<ThingDef>();
-        public int StoriesCount = 3;
         public Thing ChoosenBook = null;
         public List<ThingDef> MissingBooksList = new List<ThingDef>();
-        private Graphic MiniGraphic;
-        public override Graphic Graphic
+        public ThingDef_Readables Tdef
         {
             get
             {
-                Graphic result;
-                if (MiniGraphic != null && !Spawned)
-                {
-                    result = MiniGraphic;
-                }
-                else
-                {
-                    result = base.Graphic;
-                }
-                return result;
+                return (ThingDef_Readables)this.def;
             }
         }
+
+        public Graphic BooksGraphic
+        {
+            get
+            {
+                if (this.Tdef != null && Tdef.StoredBookGraphicPath != null)
+                {
+                    return GraphicDatabase.Get<Graphic_Multi>(Tdef.StoredBookGraphicPath, ShaderDatabase.Cutout, Vector2.one, Color.white);
+                }
+                return null;
+
+            }
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Collections.LookList<ThingDef>(ref StoredBooks, "StoredBooks", LookMode.DefReference, null);
-            Scribe_Collections.LookList<ThingDef>(ref MissingBooksList, "MissingBooksList", LookMode.DefReference, null);
+            Scribe_Collections.LookList<ThingDef>(ref StoredBooks, "StoredBooks", LookMode.Def, null);
+            Scribe_Collections.LookList<ThingDef>(ref MissingBooksList, "MissingBooksList", LookMode.Def, null);
         }
-        public override void SpawnSetup()
+
+
+        public override void SpawnSetup(Map map)
         {
-            base.SpawnSetup();
-            if (StoredBooks.Count <= 0 && MissingBooksList.Count <= 0)
-            {
-                ReadXML();
-                MiniGraphic = GraphicDatabase.Get<Graphic_Multi>("Clutter/Furniture/BookShelf/MiniBookShelf");
-                MiniGraphic.drawSize = def.graphicData.drawSize;
-            }
+            base.SpawnSetup(map);
+            this.BookCategories = Tdef.BookCategories;
         }
+
         public Thing JobBook(Pawn reader)
         {
             if (StoredBooks.Count <= 0)
@@ -62,21 +65,7 @@ namespace Corruption
             }
             return ChoosenBook;
         }
-        private void ReadXML()
-        {
-            ThingDef_Readables clutterThingDefs = (ThingDef_Readables)def;
-            if (clutterThingDefs.BooksList.Count > 0 && StoredBooks.Count <= 0)
-            {
-                while (StoredBooks.Count < 3 && MissingBooksList.Count <= 0)
-                {
-                    Thing thing = ThingMaker.MakeThing(clutterThingDefs.BooksList.RandomElement<ThingDef>());
-                    if (!StoredBooks.Contains(thing.def))
-                    {
-                        StoredBooks.Add(thing.def);
-                    }
-                }
-            }
-        }
+
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
@@ -101,51 +90,45 @@ namespace Corruption
                 }
                 else
                 {
+                    List<Thing> allspawnedbooks = this.Map.listerThings.AllThings.FindAll(x => x.GetType() == typeof(ReadableBooks));
+                    for (int i = 0; i < allspawnedbooks.Count; i++)
+                    {
+                        Thing current = allspawnedbooks[i];
+
+                        Action storebook = delegate
+                        {
+                            Job newjob = new Job(DefDatabase<JobDef>.GetNamed("AddBookToLibrary"), current, this);
+                            myPawn.QueueJob(newjob);
+                            myPawn.jobs.StopAll();
+                            myPawn.Reserve(this);
+                        };
+                        list.Add(new FloatMenuOption("AddBookToLibrary".Translate(new object[] { current.LabelCap}), storebook));
+
+                    }
                     if (StoredBooks.Count <= 0)
                     {
-                        FloatMenuOption item3 = new FloatMenuOption("ClutterNoStoryBooks".Translate(), null);
-                        result = new List<FloatMenuOption>
-                        {
-                            item3
-                        };
+                        FloatMenuOption item3 = new FloatMenuOption("NoStoryBooks".Translate(), null);
+                        list.Add(item3);
                     }
                     else
                     {
                         Action action = delegate
                         {
-                            Job newJob = new Job(DefDatabase<JobDef>.GetNamed("ClutterSitAndRead"), this);
+                            Job newJob = new Job(DefDatabase<JobDef>.GetNamed("SitAndRead"), this);
                             myPawn.QueueJob(newJob);
                             myPawn.jobs.StopAll();
                             pawn = myPawn;
                             myPawn.Reserve(this);
                         };
-                        list.Add(new FloatMenuOption("ClutterReadABook".Translate(), action));
-                        result = list;
+                        list.Add(new FloatMenuOption("ReadABook".Translate(), action));        
                     }
                 }
             }
+
+            result = list;
             return result;
         }
-        public override string GetInspectString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(base.GetInspectString());
-            stringBuilder.Append("ClutterStringBookAmmount".Translate());
-            if (StoredBooks.Count > 0)
-            {
-                stringBuilder.Append(StoredBooks.Count);
-                for (int i = 0; i < StoredBooks.Count; i++)
-                {
-                    stringBuilder.AppendLine();
-                    stringBuilder.Append(i + 1 + ". " + StoredBooks.ElementAt(i).LabelCap);
-                }
-            }
-            else
-            {
-                stringBuilder.Append("ClutterStringNoStoryBooks".Translate());
-            }
-            return stringBuilder.ToString();
-        }
+        
         public override void DeSpawn()
         {
             if (MissingBooksList.Count > 0)
@@ -160,5 +143,42 @@ namespace Corruption
             }
             base.DeSpawn();
         }
+
+        public void AddBookToLibrary(ThingDef_Readables rdef)
+        {
+                this.StoredBooks.Add(rdef);
+        }
+
+        public static Toil PlaceBookInShelf(TargetIndex book, TargetIndex shelf, Pawn pawn)
+        {
+
+            ReadableBooks bookint = (ReadableBooks)pawn.jobs.curJob.GetTarget(book).Thing;
+            Bookshelf bookshelf = (Bookshelf)pawn.jobs.curJob.GetTarget(shelf).Thing;
+            Log.Message("Trying to place book");
+            Toil toil = new Toil();
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            toil.AddPreInitAction(delegate
+            {
+                bookint.Destroy(DestroyMode.Vanish);
+                bookshelf.AddBookToLibrary(bookint.Tdef);
+            });
+            return toil;
+
+        }
+
+        public override void Draw()
+        {
+            if (this.StoredBooks.Count>0 && this.BooksGraphic != null)
+            {
+                Vector3 drawvec = this.DrawPos;
+                drawvec.y += 0.01f;
+                Mesh mesh = this.Graphic.MeshAt(this.Rotation);
+                Quaternion rotation = this.Rotation.AsQuat;
+                Material material = BooksGraphic.MatAt(this.Rotation);
+                Graphics.DrawMesh(mesh, drawvec, rotation, material, 1);
+            }
+            base.Draw();
+        }
+        
     }
 }

@@ -16,7 +16,7 @@ namespace Corruption
 
             if (s1 != null && s2 != null)
             {
-                if (s1.Patron == s2.Patron && s1.CurLevel > 0.3f && s2.CurLevel > 0.3f)
+                if (s1.Patron == s2.Patron && s1.CurLevel > 0.3f && s2.CurLevel > 0.3f && s1.NoPatron && s2.NoPatron)
                 {
                     if ((s1.CurLevel - s2.CurLevel) > 0.3f)
                     {

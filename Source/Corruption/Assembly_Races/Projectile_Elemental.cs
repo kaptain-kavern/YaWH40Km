@@ -12,7 +12,7 @@ namespace Corruption
     {
         protected override void Impact(Thing hitThing)
         {
-            Find.WeatherManager.eventHandler.AddEvent(new WeatherEvent_LightningStrike(base.Position));
+            this.Map.weatherManager.eventHandler.AddEvent(new WeatherEvent_LightningStrike(this.Map, base.Position));
             base.Impact(hitThing);
         }
 

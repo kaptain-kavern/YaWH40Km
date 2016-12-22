@@ -13,7 +13,7 @@ namespace Corruption
         public float ColonyCorruptionAvg;
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            List<Pawn> ColonyPawns = Find.MapPawns.FreeColonistsAndPrisonersSpawned.ToList<Pawn>();
+            List<Pawn> ColonyPawns = p.Map.mapPawns.FreeColonistsAndPrisonersSpawned.ToList<Pawn>();
             float totalCorruption = 0f;
             foreach (Pawn cpawn in ColonyPawns )
             {

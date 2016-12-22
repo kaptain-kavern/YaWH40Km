@@ -11,7 +11,7 @@ namespace Corruption
     {
         private bool movingSermon(Pawn pr)
         {
-            var f = pr.skills.GetSkill(SkillDefOf.Social).level;
+            var f = pr.skills.GetSkill(SkillDefOf.Social).Level;
             int x = Rand.RangeInclusive(0, 35);
             if ((x + f * 2) > 40)
             {

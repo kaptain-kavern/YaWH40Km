@@ -52,11 +52,11 @@ namespace Corruption
                 SermonUtility.AttendSermonTickCheckEnd(this.pawn, this.TargetA.Thing as Pawn);
                 if (this.TargetC.HasThing)
                 {
-                    Find.Reservations.Release(this.CurJob.targetC.Thing, pawn);
+                    this.Map.reservationManager.Release(this.CurJob.targetC.Thing, pawn);
                 }
                 else
                 {                    
-                    Find.Reservations.Release(this.CurJob.targetC.Cell, this.pawn);
+                    this.Map.reservationManager.Release(this.CurJob.targetC.Cell, this.pawn);
                 }
                 
                 

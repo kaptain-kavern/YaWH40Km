@@ -254,7 +254,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_StandardBolt</projectileDef>
-        <warmupTicks>45</warmupTicks>
+        <warmupTime>0.7</warmupTime>
         <range>32</range>
         <burstShotCount>4</burstShotCount>
         <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
@@ -291,7 +291,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_StandardBolt</projectileDef>
-        <warmupTicks>44</warmupTicks>
+        <warmupTime>0.7</warmupTime>
         <range>18</range>
         <soundCast>ShotAssaultRifle</soundCast>
         <soundCastTail>GunTail_Medium</soundCastTail>
@@ -327,7 +327,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Lasround</projectileDef>
-        <warmupTicks>45</warmupTicks>
+        <warmupTime>0.7</warmupTime>
         <range>32</range>
         <soundCast>ShotChargeRifle</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>
@@ -362,7 +362,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Lasround</projectileDef>
-        <warmupTicks>44</warmupTicks>
+        <warmupTime>0.7</warmupTime>
         <range>18</range>
         <soundCast>ShotChargeRifle</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>
@@ -397,7 +397,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Plasma_Ball</projectileDef>
-        <warmupTicks>100</warmupTicks>
+        <warmupTime>1.4</warmupTime>
         <range>18</range>
 		<burstShotCount>3</burstShotCount>
         <ticksBetweenBurstShots>33</ticksBetweenBurstShots>
@@ -434,7 +434,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_StandardBolt</projectileDef>
-        <warmupTicks>22</warmupTicks>
+        <warmupTime>0.3</warmupTime>
         <range>20</range>
         <burstShotCount>8</burstShotCount>
         <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
@@ -471,7 +471,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_ExitusPistolRound</projectileDef>
-        <warmupTicks>44</warmupTicks>
+        <warmupTime>0.7</warmupTime>
         <range>24</range>
         <soundCast>ShotPistol</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>
@@ -506,7 +506,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_ExitusRifleRound</projectileDef>
-        <warmupTicks>300</warmupTicks>
+        <warmupTime>5</warmupTime>
         <range>50</range>
         <soundCast>ShotSniperRifle</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -541,7 +541,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Melta_Beam</projectileDef>
-        <warmupTicks>176</warmupTicks>
+        <warmupTime>3</warmupTime>
         <range>10</range>
         <soundCast>ShotChargeRifle</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -576,7 +576,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_LascannonRound</projectileDef>
-        <warmupTicks>300</warmupTicks>
+        <warmupTime>5</warmupTime>
         <range>32</range>
         <soundCast>ShotChargeBlaster</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -611,7 +611,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Autogun</projectileDef>
-        <warmupTicks>45</warmupTicks>
+        <warmupTime>0.7</warmupTime>
         <range>32</range>
         <soundCast>ShotHeavySMG</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -646,7 +646,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_PumpShotgun</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTime>1</warmupTime>
         <range>16</range>
         <soundCast>ShotShotgun</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>

@@ -19,7 +19,7 @@ namespace Corruption
             {
                 return null;
             }
-            if (Find.StoryWatcher.watcherDanger.DangerRating != StoryDanger.None)
+            if (assignedAltar.Map.dangerWatcher.DangerRating != StoryDanger.None)
             {
                 return null;
             }
@@ -31,7 +31,7 @@ namespace Corruption
 
         public override float GetChance(Pawn pawn)
         {
-            if (PawnIsPreacher(pawn, SermonUtility.allAltars, out assignedAltar))
+            if (PawnIsPreacher(pawn, SermonUtility.allAltars(pawn), out assignedAltar))
             {
                 int devotion = pawn.needs.TryGetNeed<Need_Soul>().DevotionTrait.SDegree;
                 if (devotion == -2)

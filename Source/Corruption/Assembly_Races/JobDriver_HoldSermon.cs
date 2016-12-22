@@ -29,7 +29,7 @@ namespace Corruption
 
             yield return gotoAltarToil;
 
-            List<Pawn> Listeners = Find.MapPawns.AllPawnsSpawned.FindAll(x => x.CurJob.def == CorruptionDefOfs.AttendSermon);
+            List<Pawn> Listeners = this.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.CurJob.def == CorruptionDefOfs.AttendSermon);
 
 
 
@@ -46,11 +46,11 @@ namespace Corruption
             {
                 if (this.TargetA.HasThing)
                 {
-                    Find.Reservations.Release(this.CurJob.targetA.Thing, pawn);
+                    this.Map.reservationManager.Release(this.CurJob.targetA.Thing, pawn);
                 }
                 else
                 {
-                    Find.Reservations.Release(this.CurJob.targetA.Cell, this.pawn);
+                    this.Map.reservationManager.Release(this.CurJob.targetA.Cell, this.pawn);
                 }
 
                 SermonUtility.HoldSermonTickCheckEnd(this.pawn, this.TargetA.Thing as BuildingAltar);

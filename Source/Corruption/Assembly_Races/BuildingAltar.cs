@@ -20,7 +20,7 @@ namespace Corruption
         {
             get
             {
-                return (OptionMorning && (GenDate.HourInt < 6 && GenDate.HourInt > 10));
+                return (OptionMorning && (GenLocalDate.HourInt(this.Map) < 6 && GenLocalDate.HourInt(this.Map) > 10));
             }
         }
 
@@ -28,7 +28,7 @@ namespace Corruption
         {
             get
             {
-                return (OptionEvening && (GenDate.HourInt < 18 && GenDate.HourInt > 22));
+                return (OptionEvening && (GenLocalDate.HourInt(this.Map) < 18 && GenLocalDate.HourInt(this.Map) > 22));
             }
         }
 
@@ -40,10 +40,10 @@ namespace Corruption
             }
         }
 
-        public override void SpawnSetup()
+        public override void SpawnSetup(Map map)
         {
-            base.SpawnSetup();
-            this.preacher = Find.MapPawns.FreeColonistsSpawned.RandomElement<Pawn>();
+            base.SpawnSetup(map);
+            this.preacher = Map.mapPawns.FreeColonistsSpawned.RandomElement<Pawn>();
             RoomName = "Temple";
             TickManager f = Find.TickManager;
 
@@ -56,7 +56,7 @@ namespace Corruption
             base.Tick();
             if (this.OptionMorning)
             {
-                if (Rand.RangeInclusive(6, 10) == GenDate.HourInt)
+                if (Rand.RangeInclusive(6, 10) == GenLocalDate.HourInt(this.Map))
                 {
                     if (!HeldSermon)
                     {
@@ -68,7 +68,7 @@ namespace Corruption
 
             if (this.OptionMorning)
             {
-                if (Rand.RangeInclusive(18, 22) == GenDate.HourInt)
+                if (Rand.RangeInclusive(18, 22) == GenLocalDate.HourInt(this.Map))
                 {
                     if (!HeldSermon)
                     {
@@ -83,7 +83,7 @@ namespace Corruption
                 GetSermonFlock(this);
             }
 
-            if (GenDate.HourInt == 1 || GenDate.HourInt == 12)
+            if (GenLocalDate.HourInt(this.Map) == 1 || GenLocalDate.HourInt(this.Map) == 12)
             {
                 this.HeldSermon = false;
             }
@@ -95,7 +95,7 @@ namespace Corruption
 
             if (room.Role != RoomRoleDefOf.PrisonBarracks && room.Role != RoomRoleDefOf.PrisonCell)
             {
-                List<Pawn> listeners = Find.MapPawns.AllPawnsSpawned.FindAll(x => x.RaceProps.intelligence == Intelligence.Humanlike);
+                List<Pawn> listeners = altar.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.RaceProps.intelligence == Intelligence.Humanlike);
                 bool[] flag = new bool[listeners.Count];
                 for (int i = 0; i < listeners.Count; i++)
                 {
@@ -108,7 +108,7 @@ namespace Corruption
             }
             else
             {
-                List<Pawn> prisoners = Find.MapPawns.PrisonersOfColonySpawned.FindAll(x => x.RaceProps.intelligence == Intelligence.Humanlike);
+                List<Pawn> prisoners = altar.Map.mapPawns.PrisonersOfColonySpawned.FindAll(x => x.RaceProps.intelligence == Intelligence.Humanlike);
                 bool[] flag2 = new bool[prisoners.Count];
                 for (int i = 0; i < prisoners.Count; i++)
                 {

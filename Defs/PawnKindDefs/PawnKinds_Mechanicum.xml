@@ -168,7 +168,7 @@
   </PawnKindDef>
 
 
-  <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
+  <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef" Name="MEC_Techpriest">
     <defName>MEC_Techpriest</defName>
     <label>Techpriest</label>
     <race>Alien_Mechanicus_Member</race>
@@ -177,6 +177,7 @@
     <backstoryCategory>Techpriest</backstoryCategory>
     <defaultFactionType>ImperialGuard</defaultFactionType>
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+    <trader>true</trader>
     <maxGenerationAge>58</maxGenerationAge>
     <itemQuality>Excellent</itemQuality>
     <apparelMoney>
@@ -215,6 +216,5 @@
       <ResolveFactor>1.5</ResolveFactor>
     </AfflictionProperty>
   </PawnKindDef>
-
 
 </PawnKindDefs>

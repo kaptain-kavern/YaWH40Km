@@ -123,22 +123,21 @@ namespace Corruption
                         for (int i=0; i < mpdef.HealCapacity+1; i++)
                         {
                             Hediff hediff = list.RandomElement();
-                            hediff.DirectHeal(this.def.projectile.damageAmountBase);
+                            hediff.Heal(this.def.projectile.damageAmountBase);
                         }
                     }
                     else
                     {
                         int damageAmountBase = this.def.projectile.damageAmountBase;
-                        BodyPartDamageInfo value = new BodyPartDamageInfo(null, null);
-                        DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, damageAmountBase, this.launcher, this.ExactRotation.eulerAngles.y, new BodyPartDamageInfo?(value), this.equipmentDef);
+                        ThingDef equipmentDef = this.equipmentDef;
+                        DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, damageAmountBase, this.ExactRotation.eulerAngles.y, this.launcher, null, equipmentDef);
                         hitThing.TakeDamage(dinfo);
                     }
                 }
             }
             else
             {
-                SoundDefOf.PowerOffSmall.PlayOneShot(base.Position);
-                MoteMaker.MakeStaticMote(this.ExactPosition, ThingDefOf.Mote_ShotHit_Spark, 1f);
+                SoundDefOf.PowerOffSmall.PlayOneShotOnCamera();
             }            
         }
 

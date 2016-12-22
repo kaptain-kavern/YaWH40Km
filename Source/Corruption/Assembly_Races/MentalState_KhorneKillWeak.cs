@@ -14,7 +14,7 @@ namespace Corruption
 
         private Pawn Victim;
 
-        private List<Pawn> prisoners = Find.MapPawns.PrisonersOfColonySpawned;
+        private List<Pawn> prisoners = new List<Pawn>();
 
         public override void MentalStateTick()
         {
@@ -28,6 +28,7 @@ namespace Corruption
 
         public override void PostStart(string reason)
         {
+            prisoners = this.pawn.Map.mapPawns.PrisonersOfColonySpawned;
             if (!HasChosenVictim && prisoners != null)
             {
                 Log.Message("Getting Victim");

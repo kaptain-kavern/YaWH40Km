@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-
   <FactionDef Class="FactionColors.FactionDefUniform">
 		<defName>ChaosCult</defName>
 		<label>Chaos Cult</label>
     <description>A small community of survivors.\n\nThese people have lived here for decades or centuries, and have lost most of the technology that brought them to this world. They usually work with simple mechanical tools and defend themselves with advanced gunpowder weapons.\n\nThey are concerned with the practical matters of trade, trust, and survival.</description>
     <pawnsPlural>cultists</pawnsPlural>
+    <factionBaseSelectionWeight>0.1</factionBaseSelectionWeight>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <canMakeRandomly>true</canMakeRandomly>
     <raidCommonality>100</raidCommonality>
     <canSiege>true</canSiege>
     <canStageAttacks>true</canStageAttacks>
-    <leaderTitle>Mayor</leaderTitle>
+    <leaderTitle>Leader</leaderTitle>
+    <expandingIconTexture>World/WorldObjects/Expanding/Town</expandingIconTexture>
+    <colorSpectrum>
+      <li>(0.64, 0.42, 0.36)</li>
+      <li>(0.47, 0.5, 0.91)</li>
+    </colorSpectrum>
     <startingGoodwill>
       <min>-100</min>
-      <max>-100</max>
+      <max>10</max>
     </startingGoodwill>
 		<factionNameMaker>NamerFactionOutlander</factionNameMaker>
-    <PreferredChaosGod>Undivided</PreferredChaosGod>
+		<factionBaseNameMaker>NamerFactionBaseOutlander</factionBaseNameMaker>
 		<techLevel>Industrial</techLevel>
 		<backstoryCategory>Civil</backstoryCategory>
 		<hairTags>
@@ -37,33 +42,45 @@
     <visitorTraderKinds>
       <li>Visitor_Outlander_Standard</li>
     </visitorTraderKinds>
+    <factionBaseTraderKinds>
+      <li>FactionBase_Outlander_Standard</li>
+    </factionBaseTraderKinds>
     <allowedArrivalTemperatureRange>
       <min>-40</min>
       <max>45</max>
     </allowedArrivalTemperatureRange>
     <pawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
-            <CultistBasic>100</CultistBasic>
+            <CultistBasic>250</CultistBasic>
             <CultistGuard>50</CultistGuard>
             <CultistSorcerer>10</CultistSorcerer>
         </options>
       </li>
-      <li Class="PawnGroupMaker_Trader">
+      <li>
+        <kindDef>Trader</kindDef>
         <traders>
           <TownTrader>1</TownTrader>
         </traders>
         <carriers>
-          <PackMuffalo>1</PackMuffalo>
-          <PackDromedary>1</PackDromedary>
+          <Muffalo>1</Muffalo>
+          <Dromedary>1</Dromedary>
         </carriers>
         <guards>
             <CultistGuard>50</CultistGuard>
         </guards>
       </li>
+      <li>
+        <kindDef>FactionBase</kindDef>
+        <options>
+            <CultistBasic>250</CultistBasic>
+            <CultistGuard>40</CultistGuard>
+            <CultistSorcerer>5</CultistSorcerer>
+        </options>
+      </li>
     </pawnGroupMakers>
-    <homeIconPath>World/FactionHomes/DefaultHome</homeIconPath>
-    <homeIconColor>(150,150,255)</homeIconColor>
+    <homeIconPath>World/WorldObjects/DefaultFactionBase</homeIconPath>
 
     <FactionColor1>RGBA(0.50,0.50,0.50,1)</FactionColor1>
     <FactionColor2>RGBA(0.99,0.78,0.09,1)</FactionColor2>
@@ -77,7 +94,8 @@
 		<weight>20</weight>
     <SubfactionPreferredChaosGod>Undivided</SubfactionPreferredChaosGod>
     <SubfactionPawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
             <CultistBasic>100</CultistBasic>
             <CultistGuard>70</CultistGuard>
@@ -95,7 +113,8 @@
 		<weight>10</weight>
     <SubfactionPreferredChaosGod>Khorne</SubfactionPreferredChaosGod>
     <SubfactionPawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
             <CultistBasic>100</CultistBasic>
             <CultistGuard>5</CultistGuard>
@@ -113,7 +132,8 @@
 		<weight>10</weight>
     <SubfactionPreferredChaosGod>Nurgle</SubfactionPreferredChaosGod>
     <SubfactionPawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
             <CultistBasic>100</CultistBasic>
             <CultistGuard>5</CultistGuard>
@@ -131,7 +151,8 @@
 		<weight>5</weight>
     <SubfactionPreferredChaosGod>Tzeentch</SubfactionPreferredChaosGod>
     <SubfactionPawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
             <CultistBasic>100</CultistBasic>
             <CultistGuard>5</CultistGuard>
@@ -149,7 +170,8 @@
 		<weight>5</weight>
     <SubfactionPreferredChaosGod>Slaanesh </SubfactionPreferredChaosGod>
     <SubfactionPawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
             <CultistBasic>100</CultistBasic>
             <CultistGuard>5</CultistGuard>
@@ -160,5 +182,7 @@
 	</li>
     </Subfactions>
   </FactionDef>
+
+
 
 </Defs>

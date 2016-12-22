@@ -19,14 +19,14 @@ namespace Corruption
 
             if (this.Pawn.Faction != Faction.OfPlayer)
             {
-                InteractionWorker_RecruitAttempt.DoRecruit(Find.MapPawns.FreeColonists.RandomElement<Pawn>(), this.Pawn, 1f, false);
+                InteractionWorker_RecruitAttempt.DoRecruit(this.Pawn.Map.mapPawns.FreeColonists.RandomElement<Pawn>(), this.Pawn, 1f, false);
             }
         }
 
         public override void CompPostTick()
         {
             base.CompPostTick();
-            MoteMaker.MakeStaticMote(this.Pawn.Position, ThingDefOf.Mote_MicroSparks);
+            MoteMaker.MakeStaticMote(this.Pawn.Position, this.Pawn.Map, ThingDefOf.Mote_MicroSparks);
         }
 
         public override bool CompShouldRemove
@@ -38,7 +38,7 @@ namespace Corruption
                     if (this.PawnFactionOri != Faction.OfPlayer)
                     {
                         this.Pawn.SetFactionDirect(PawnFactionOri);
-                        Find.ColonistBar.MarkColonistsListDirty();
+                        Find.ColonistBar.MarkColonistsDirty();
                         this.Pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.PanicFlee);
                     }
                     return true;

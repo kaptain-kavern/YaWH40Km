@@ -62,7 +62,7 @@ namespace Corruption
             {
                 if (list[i].PowerLevel <= soul.PsykerPowerLevel)
                 {
-                    this.parent.TryGetComp<CompPsyker>().PowerManager.AddPsykerPower(list[i]);
+                    this.parent.TryGetComp<CompPsyker>().psykerPowerManager.AddPsykerPower(list[i]);
                 }
             }            
         }
@@ -126,7 +126,7 @@ namespace Corruption
                 {
                     if ((soul = this.Owner.needs.TryGetNeed<Need_Soul>()) != null)
                     {
-                        this.CalculateSoulChanges(soul);
+                        this.CalculateSoulChanges(soul, SProps);
                     }
                     if (!PsykerPowerAdded)
                     {
@@ -156,10 +156,10 @@ namespace Corruption
             }
         }
 
-        public  void CalculateSoulChanges(Need_Soul nsoul)
+        public void CalculateSoulChanges(Need_Soul nsoul, CompProperties_SoulItem cprops)
         {
             float num;
-            switch (SProps.Category)
+            switch (cprops.Category)
             {
                 case (SoulItemCategories.Neutral):
                     {
@@ -185,7 +185,7 @@ namespace Corruption
                         break;
                     }
             }
-            num = sign * this.SProps.GainRate * 0.2f / 14000;
+            num = sign * cprops.GainRate * 0.2f / 14000;
  //           Log.Message(num.ToString());
             nsoul.GainNeed(num);
         }       

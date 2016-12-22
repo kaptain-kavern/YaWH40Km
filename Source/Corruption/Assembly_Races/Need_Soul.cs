@@ -5,12 +5,15 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using Verse;
+using Corruption.BookStuff;
 
 namespace Corruption
 {
     public class Need_Soul : Need
     {
         private bool IsImmune;
+
+        public ReadablesManager readablesManager = new ReadablesManager();
 
         private const float ThreshCorrupted = 0.1f;
 
@@ -166,7 +169,7 @@ namespace Corruption
                     
                     try
                     {
-                        this.compPsyker.PowerManager.AddPsykerPower(this.PawnAfflictionProps.CommmonPsykerPowers[i]);
+                        this.compPsyker.psykerPowerManager.AddPsykerPower(this.PawnAfflictionProps.CommmonPsykerPowers[i]);
                     }
                     catch
                     { }
@@ -404,7 +407,7 @@ namespace Corruption
             }
         }
 
-        public override void DrawOnGUI(Rect rect)
+        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1F, bool drawArrows = true, bool doTooltip = true)            
         {
             if (rect.height > 70f)
             {
@@ -474,6 +477,7 @@ namespace Corruption
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Deep.LookDeep<ReadablesManager>(ref this.readablesManager, "readablesManager", new object[0]);
     //        Scribe_Deep.LookDeep<PatronInfo>(ref this.patronInfo, "patronInfo", new object());
             Scribe_Values.LookValue<bool>(ref this.NoPatron, "NoPatron", true, false);
             Scribe_Values.LookValue<bool>(ref this.IsImmune, "IsImmune", false, false);

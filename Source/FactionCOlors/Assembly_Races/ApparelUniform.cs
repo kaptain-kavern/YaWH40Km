@@ -108,9 +108,9 @@ namespace FactionColors
             base.PostMake();            
         }
 
-        public override void SpawnSetup()
+        public override void SpawnSetup(Map map)
         {
-            base.SpawnSetup();
+            base.SpawnSetup(map);
             if (this.wearer != null)
             {
             }

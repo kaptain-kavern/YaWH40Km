@@ -5,7 +5,7 @@
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
     <comps>
-      <li>
+      <li Class="HediffCompProperties_Discoverable">
         <compClass>HediffComp_Discoverable</compClass>
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
@@ -17,11 +17,13 @@
     <hediffClass>HediffWithComps</hediffClass>
     <label>Dark Eldar Toxins</label>
     <makesSickThought>true</makesSickThought>
+    <tendable>true</tendable>
     <comps>
-      <li>
-        <compClass>HediffComp_Tendable</compClass>
-        <tendDuration>12000</tendDuration>
-        <disappearsAtTendedCount>4</disappearsAtTendedCount>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+        <tendDuration>120000</tendDuration>
       </li>
     </comps>
     <stages>
@@ -54,11 +56,13 @@
     <defName>NurglesRot</defName>
     <label>nurgle's rot</label>
     <makesSickThought>true</makesSickThought>
+    <tendable>true</tendable>
     <comps>
-      <li>
-        <compClass>HediffComp_Tendable</compClass>
-        <tendDuration>30000</tendDuration>
-        <severityPerDayTendedOffset>-0.02</severityPerDayTendedOffset>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+        <tendDuration>120000</tendDuration>
       </li>
       <li>
         <compClass>Corruption.HediffComp_NurglesRot</compClass>

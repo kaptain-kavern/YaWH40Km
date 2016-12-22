@@ -23,13 +23,13 @@ namespace FactionColors
 
         public static void GetCamouflageColors(out Color col1, out Color col2)
         {
-            BiomeDef biomedef = Find.Map.Biome;
+            BiomeDef biomedef = Find.VisibleMap.Biome;
 
 
             col1 = new Color(0.30f, 0.46f, 0.30f);
             col2 = new Color(0.4f, 0.34f, 0.24f);
 
-            if (Find.Map.snowGrid.TotalDepth > 0 || biomedef == BiomeDefOf.IceSheet)
+            if (Find.VisibleMap.snowGrid.TotalDepth > 0 || biomedef == BiomeDefOf.IceSheet)
             {
                 col1 = Color.white;
                 col2 = Color.grey;

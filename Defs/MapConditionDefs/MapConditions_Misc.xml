@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<MapConditionDefs>
+
+
+  <MapConditionDef>
+    <defName>CorruptiveDrone</defName>
+    <conditionClass>Corruption.MapCondition_CorruptiveDrone</conditionClass>
+    <label>corruptive drone</label>
+    <description>There are strange voices in the air whispering of dark forces.</description>
+    <droneLevel>BadMedium</droneLevel>
+    <endMessage>The corruptive voices are fading.</endMessage>
+    <exclusiveConditions>
+      <li>PsychicSoothe</li>
+      <li>PsychicDrone</li>
+    </exclusiveConditions>
+    <canBePermanent>true</canBePermanent>
+  </MapConditionDef>
+
+  
+</MapConditionDefs>

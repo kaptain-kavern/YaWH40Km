@@ -92,7 +92,7 @@ namespace Corruption
             {
                 btype = BodyType.Undefined;
             }
-            else btype = corrpawn.story.BodyType;
+            else btype = corrpawn.story.bodyType;
 
             HeadGraphic = GetHeadGraphic(corrpawn, PatronName);
             BodyGraphic = GetBodyOverlay(btype, PatronName);
@@ -134,7 +134,7 @@ namespace Corruption
                 bodyMat = BodyGraphic.MatAt(LayingFacingDet(corrpawn));
                 if (corrpawn.Dead)
                 {
-                    num = corrpawn.corpse.innerPawn.Drawer.renderer.wiggler.downedAngle;
+                    num = corrpawn.Corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle;
                 }
                 else
                 {
@@ -149,15 +149,15 @@ namespace Corruption
                 bodydrawpos.y = Altitudes.AltitudeFor(AltitudeLayer.LayingPawn) + 0.001f;
                 if (corrpawn.Dead)
                 {
-                    if (corrpawn.Drawer != null && corrpawn.corpse != null)
+                    if (corrpawn.Drawer != null && corrpawn.Corpse != null)
                     {
-                         Vector3 headvecD = corrpawn.Drawer.renderer.BaseHeadOffsetAt(corrpawn.corpse.Rotation);
+                         Vector3 headvecD = corrpawn.Drawer.renderer.BaseHeadOffsetAt(corrpawn.Corpse.Rotation);
                          Vector3 newPosD = quat * headvecD;
-                         headdrawpos = corrpawn.corpse.DrawPos + newPosD;
+                         headdrawpos = corrpawn.Corpse.DrawPos + newPosD;
                     }
                     quat = Quaternion.AngleAxis(num, Vector3.up);
 
-                    bodydrawpos = corrpawn.corpse.DrawPos;
+                    bodydrawpos = corrpawn.Corpse.DrawPos;
 
                     bodydrawpos.y -= 0.05f;
 

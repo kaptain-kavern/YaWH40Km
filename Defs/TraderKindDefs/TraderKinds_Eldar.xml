@@ -56,7 +56,7 @@
         </thingDefCountRange>
         <countRange>
           <min>-1</min>
-          <max>0</max>
+          <max>2</max>
         </countRange>
       </li>
 

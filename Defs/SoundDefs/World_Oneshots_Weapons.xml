@@ -2,6 +2,7 @@
 
   <SoundDef>
     <defName>Arc_Fire</defName>  
+    <context>MapOnly</context> 
     <eventNames/>  
     <maxSimultaneous>1</maxSimultaneous>  
     <subSounds>
@@ -26,6 +27,7 @@
 
   <SoundDef>
     <defName>Shuriken_Small</defName>  
+    <context>MapOnly</context> 
     <eventNames/>  
     <maxSimultaneous>20</maxSimultaneous>  
     <subSounds>
@@ -46,6 +48,7 @@
 
   <SoundDef>
     <defName>Shuriken_Longrifle</defName>  
+    <context>MapOnly</context> 
     <eventNames/>  
     <maxSimultaneous>15</maxSimultaneous>  
     <subSounds>
@@ -66,6 +69,7 @@
 
   <SoundDef>
     <defName>WarpBolt</defName>  
+    <context>MapOnly</context> 
     <eventNames/>  
     <maxSimultaneous>8</maxSimultaneous>  
     <subSounds>
@@ -88,6 +92,7 @@
 
   <SoundDef>
     <defName>FlameThrower</defName>
+    <context>MapOnly</context> 
     <eventNames />
     <subSounds>
       <li>

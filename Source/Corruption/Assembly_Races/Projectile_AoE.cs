@@ -29,7 +29,7 @@ namespace Corruption
             base.PostMake();
             TargetingParameters parms = new TargetingParameters();
             parms.canTargetPawns = true;
-            target = Find.ThingGrid.ThingAt(destination.ToIntVec3(), ThingCategory.Pawn);
+            target = this.Map.thingGrid.ThingAt(destination.ToIntVec3(), ThingCategory.Pawn);
             if (target != null) Log.Message("FoundTarget");
             if (target == null) Log.Message("No Target??");
         }

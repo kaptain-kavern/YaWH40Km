@@ -109,4 +109,16 @@
     </additionalHediffs>
  </DamageDef>
 
+  <DamageDef>
+    <defName>HealMiracle</defName>
+    <label>miracle heal</label>
+    <workerClass>Corruption.DamageWorker_HealMiracle</workerClass>
+    <hasForcefulImpact>false</hasForcefulImpact>
+    <harmsHealth>false</harmsHealth>
+    <makesBlood>false</makesBlood>
+    <canInterruptJobs>false</canInterruptJobs>
+  </DamageDef>
+
+
+
 </Defs>

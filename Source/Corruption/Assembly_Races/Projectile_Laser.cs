@@ -34,9 +34,9 @@ namespace Corruption
         public float startFireChance = 0;
         public bool canStartFire = false;
 
-        public override void SpawnSetup()
+        public override void SpawnSetup(Map map)
 		{
-			base.SpawnSetup();
+			base.SpawnSetup(map);
             drawingTexture = this.def.DrawMatSingle;          
 		}
 
@@ -184,7 +184,7 @@ namespace Corruption
                 exactTestedPosition += trajectorySegment;
                 testedPosition = exactTestedPosition.ToIntVec3();
 
-                if (!exactTestedPosition.InBounds())
+                if (!exactTestedPosition.InBounds(this.Map))
                 {
                     this.destination = temporaryDestination;
                     break;
@@ -192,7 +192,7 @@ namespace Corruption
 
                 if (!this.def.projectile.flyOverhead && segmentIndex >= 5)
                 {
-                    List<Thing> list = Find.ThingGrid.ThingsListAt(base.Position);
+                    List<Thing> list = this.Map.thingGrid.ThingsListAt(base.Position);
                     for (int i = 0; i < list.Count; i++)
                     {
                         Thing current = list[i];
@@ -281,10 +281,11 @@ namespace Corruption
             // Check impact on a thick mountain.
             if (this.def.projectile.flyOverhead)
             {
-                RoofDef roofDef = Find.RoofGrid.RoofAt(this.DestinationCell);
+                RoofDef roofDef = this.Map.roofGrid.RoofAt(this.DestinationCell);
                 if (roofDef != null && roofDef.isThickRoof)
                 {
-                    this.def.projectile.soundHitThickRoof.PlayOneShot(this.DestinationCell);
+                    SoundInfo info = SoundInfo.InMap(new TargetInfo(this.DestinationCell, this.Map, false), MaintenanceType.None);
+                    this.def.projectile.soundHitThickRoof.PlayOneShot(info);
                     return;
                 }
             }
@@ -304,14 +305,14 @@ namespace Corruption
             else
             {
                 // Impact a pawn in the destination cell if present.
-                Thing thing = Find.ThingGrid.ThingAt(this.DestinationCell, ThingCategory.Pawn);
+                Thing thing = this.Map.thingGrid.ThingAt(this.DestinationCell, ThingCategory.Pawn);
                 if (thing != null)
                 {
                     this.Impact(thing);
                     return;
                 }
                 // Impact any cover object.
-                foreach (Thing current in Find.ThingGrid.ThingsAt(this.DestinationCell))
+                foreach (Thing current in this.Map.thingGrid.ThingsAt(this.DestinationCell))
                 {
                     if (current.def.fillPercent > 0f || current.def.passability != Traversability.Standable)
                     {
@@ -332,10 +333,9 @@ namespace Corruption
             if (hitThing != null)
             {
                 int damageAmountBase = this.def.projectile.damageAmountBase;
-                BodyPartDamageInfo value = new BodyPartDamageInfo(null, null);
-                DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, damageAmountBase, this.launcher, this.ExactRotation.eulerAngles.y, new BodyPartDamageInfo?(value), this.equipmentDef);
+                DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, damageAmountBase, this.ExactRotation.eulerAngles.y, this.launcher, null, equipmentDef);
                 hitThing.TakeDamage(dinfo);
-                hitThing.def.soundImpactDefault.PlayOneShot(this.DestinationCell);
+                hitThing.TakeDamage(dinfo);
                 if (this.canStartFire && Rand.Range(0f, 1f) > startFireChance)
                 {
                     hitThing.TryAttachFire(0.05f);
@@ -343,15 +343,16 @@ namespace Corruption
                 Pawn pawn = hitThing as Pawn;
                 if (pawn != null)
                 {
-                    MoteMaker.ThrowMicroSparks(this.destination);
-                    MoteMaker.MakeStaticMote(this.destination, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                    MoteMaker.ThrowMicroSparks(this.destination, this.Map);
+                    MoteMaker.MakeStaticMote(this.destination, this.Map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
                 }
             }
             else
             {
-                SoundDefOf.BulletImpactGround.PlayOneShot(base.Position);
-                MoteMaker.MakeStaticMote(this.ExactPosition, ThingDefOf.Mote_ShotHit_Dirt, 1f);
-                MoteMaker.ThrowMicroSparks(this.ExactPosition);
+                SoundInfo info = SoundInfo.InMap(new TargetInfo(base.Position, this.Map, false), MaintenanceType.None);
+                SoundDefOf.BulletImpactGround.PlayOneShot(info);
+                MoteMaker.MakeStaticMote(this.ExactPosition, this.Map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                MoteMaker.ThrowMicroSparks(this.ExactPosition, this.Map);
             }
         }
         

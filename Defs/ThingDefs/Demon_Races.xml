@@ -45,14 +45,14 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
@@ -128,14 +128,14 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
@@ -182,14 +182,14 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
@@ -243,14 +243,14 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
@@ -305,14 +305,14 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>24</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>

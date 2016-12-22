@@ -3,35 +3,37 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
-namespace Corruption
+using Verse.AI;
+
+namespace Corruption.BookStuff
 {
-    internal class ReadableBooks : ThingWithComps
+    public class ReadableBooks : ThingWithComps
     {
         public Pawn currentReader = null;
+        public ThingDef_Readables Tdef;
         private List<string> BookText = new List<string>();
-        private int LifeSpam = 1500;
         public bool TexChange = false;
         private Graphic OpenBook;
         private List<string> DefaultText = new List<string>
-		{
-			"It was a dark and stormy night.",
-			"Suddenly, a shot rang out!",
-			"A door slammed.",
-			"The maid screamed.",
-			"Suddenly, a pirate ship appeared on the horizon!",
-			"While millions of people were starving, the king lived in luxury.",
-			"Meanwhile, on a small farm in Kansas, a boy was growing up.",
-			"A light snow was falling....",
-			"and the little girl with the tattered shawl had not sold a violet all day.",
-			"At that very moment...",
-			"a young intern at City Hospital was making an important discovery.",
-			"The mysterious patient in Room 213 had finally awakened",
-			"She moaned softly",
-			"Could it be that she was the sister of the boy in Kansas...",
-			"who loved the girl with the tattered shawl",
-			"who was the daughter of the maid who had escaped from the pirates?",
-			"The intern frowned."
-		};
+        {
+            "It was a dark and stormy night.",
+            "Suddenly, a shot rang out!",
+            "A door slammed.",
+            "The maid screamed.",
+            "Suddenly, a pirate ship appeared on the horizon!",
+            "While millions of people were starving, the king lived in luxury.",
+            "Meanwhile, on a small farm in Kansas, a boy was growing up.",
+            "A light snow was falling....",
+            "and the little girl with the tattered shawl had not sold a violet all day.",
+            "At that very moment...",
+            "a young intern at City Hospital was making an important discovery.",
+            "The mysterious patient in Room 213 had finally awakened",
+            "She moaned softly",
+            "Could it be that she was the sister of the boy in Kansas...",
+            "who loved the girl with the tattered shawl",
+            "who was the daughter of the maid who had escaped from the pirates?",
+            "The intern frowned."
+        };
         public override Graphic Graphic
         {
             get
@@ -51,8 +53,8 @@ namespace Corruption
         }
         public List<string> PrepareText()
         {
-            ThingDef_Readables clutterThingDefs = (ThingDef_Readables)def;
-            BookText = clutterThingDefs.BookText;
+            ThingDef_Readables Readables_Def = (ThingDef_Readables)def;
+            BookText = Readables_Def.BookText;
             List<string> result;
             if (BookText.Count > 0)
             {
@@ -64,34 +66,13 @@ namespace Corruption
             }
             return result;
         }
-        public override void Tick()
-        {
-            base.Tick();
-            if (currentReader == null)
-            {
-                if (Find.Reservations.FirstReserverOf(this, factionInt) != null)
-                {
-                    currentReader = Find.Reservations.FirstReserverOf(this, factionInt);
-                }
-                if (LifeSpam <= 0)
-                {
-                    FeedBackPulse();
-                }
-                LifeSpam--;
-            }
-            else
-            {
-                if (currentReader.CurJob.def.defName != "ClutterSitAndRead")
-                {
-                    FeedBackPulse();
-                }
-            }
-        }
+
+
         public void FeedBackPulse()
         {
-            foreach (Thing current in Find.ListerThings.AllThings)
+            foreach (Thing current in this.Map.listerThings.AllThings)
             {
-                if (current.def.defName == "ClutterBookShelf")
+                if (current.GetType() == typeof(Bookshelf))
                 {
                     Bookshelf bookshelf = current as Bookshelf;
                     if (bookshelf.MissingBooksList.Contains(def))
@@ -114,13 +95,13 @@ namespace Corruption
                 Destroy();
             }
         }
-        public override void SpawnSetup()
+        public override void SpawnSetup(Map map)
         {
-            base.SpawnSetup();
+            base.SpawnSetup(map);
             ReadFormXML();
             if (OpenBook == null)
             {
-                OpenBook = GraphicDatabase.Get<Graphic_Single>("Clutter/Books/CBook_Blue");
+                OpenBook = GraphicDatabase.Get<Graphic_Single>("Items/Books/Cover_BookGeneric");
             }
         }
         public override void ExposeData()
@@ -148,67 +129,105 @@ namespace Corruption
         private void ReadFormXML()
         {
             List<string> list = new List<string>();
-            ThingDef_Readables clutterThingDefs = (ThingDef_Readables)def;
-            if (clutterThingDefs.BookText.Count > 0)
+            ThingDef_Readables Readables_Def = (ThingDef_Readables)def;
+            if (Readables_Def.BookText.Count > 0)
             {
-                list = clutterThingDefs.BookText;
+                list = Readables_Def.BookText;
             }
-            if (!clutterThingDefs.CloseTexture.NullOrEmpty())
+            if (!Readables_Def.CloseTexture.NullOrEmpty())
             {
-                OpenBook = GraphicDatabase.Get<Graphic_Single>(clutterThingDefs.CloseTexture);
+                OpenBook = GraphicDatabase.Get<Graphic_Single>(Readables_Def.CloseTexture, ShaderDatabase.CutoutComplex, Vector2.one, DrawColor, DrawColorTwo);
+            }
+            this.Tdef = (ThingDef_Readables)this.def;
+        }
+
+        public void PostReadEffectSelection(int prog, int oldprog)
+        {
+            if (this.Tdef.ReadableEffectEntries != null)
+            {
+
+                float progperc = (float)prog / Tdef.TicksToRead;
+                foreach (ReadableEffektEntry entry in this.Tdef.ReadableEffectEntries)
+                {
+                    float threshold = entry.ReadThreshold;
+                    float oldprogperc = (float)oldprog / Tdef.TicksToRead / threshold;
+                    bool readbefore = threshold <= oldprogperc && entry.AffectOnlyOnce;
+   //                 Log.Message("progess: " + prog.ToString() + "  /   " + Tdef.TicksToRead.ToString() + "  =   " + progperc.ToString());
+   //                 Log.Message("Process is " + progperc.ToString() + " and ReadBefore is :" + readbefore.ToString());
+                    if (threshold <= progperc && !readbefore)
+                    {
+                        Log.Message("Trying Effect");
+                        this.TryPostReadEffect(entry);
+                    }
+                }
             }
         }
-        public void Thoughts(Pawn reader)
+
+        public void TryPostReadEffect(ReadableEffektEntry entry)
         {
-            int num = UnityEngine.Random.Range(1, 100);
-            Thought thought = ThoughtMaker.MakeThought(ThoughtDef.Named("ReadBookGood"));
-            Thought thought2 = ThoughtMaker.MakeThought(ThoughtDef.Named("ReadBookBad"));
-            if (num < 10)
+            switch (entry.readableEffectCategory)
             {
-                Log.Message("Bad Event:"+reader.Name.ToStringShort);
-                if (!reader.needs.mood.thoughts.Thoughts.Contains(thought))
-                {
-                    foreach (Thought current in reader.needs.mood.thoughts.Thoughts)
+                case (ReadableEffectCategory.LearnPsykerPower):
                     {
-                        if (current.def == thought.def)
+                        CompPsyker compPsyker;
+                        if ((compPsyker = this.currentReader.GetComp<CompPsyker>()) != null)
                         {
-                            reader.needs.mood.thoughts.memories.TryGainMemoryThought(ThoughtDef.Named("ReadBookGood"));
+                            compPsyker.psykerPowerManager.AddPsykerPower(entry.PsykerPowerUnlocked);
+                            return;
+                        }
+                        return;
+                    }
+                case (ReadableEffectCategory.GetMentalBreak):
+                    {
+                        if (currentReader.needs != null)
+                        {
+                            currentReader.mindState.mentalStateHandler.TryStartMentalState(entry.MentalBreak);
+                        }
+                        return;
+                    }
+                case (ReadableEffectCategory.GetHediff):
+                    {
+                        if (currentReader.health != null)
+                        {
+                            currentReader.health.AddHediff(entry.HediffGained);
+                        }
+                        return;
+                    }
+            }
+        }
+        public void ReadCorruptionTick(Pawn pawn, ReadableBooks book)
+        {
+            Need_Soul soul = pawn.needs.TryGetNeed<Need_Soul>();
+            if (soul != null)
+            {
+                float num;
+                int sign = 0;
+                switch (book.Tdef.soulItemCategory)
+                {
+                    case (SoulItemCategories.Neutral):
+                        {
+                            sign = 0;
                             break;
                         }
-                    }
-                    reader.needs.mood.thoughts.memories.TryGainMemoryThought(ThoughtDef.Named("ReadBookBad"));
-                }
-                else
-                {
-                    reader.needs.mood.thoughts.memories.TryGainMemoryThought(ThoughtDef.Named("ReadBookBad"));
-                }
-            }
-
-            else
-            {
-                if (num > 70)
-                {
-                    Log.Message("Good Event:" + reader.Name.ToStringShort);
-                    if (reader.needs.mood.thoughts.Thoughts.Contains(thought))
-                    {
-                        foreach (Thought current in reader.needs.mood.thoughts.Thoughts)
+                    case (SoulItemCategories.Corruption):
                         {
-                            if (current.def == thought2.def)
-                            {
-                                reader.needs.mood.thoughts.memories.TryGainMemoryThought(ThoughtDef.Named("ReadBookBad"));
-                                break;
-                            }
+                            sign = -1;
+                            break;
                         }
-                        reader.needs.mood.thoughts.memories.TryGainMemoryThought(ThoughtDef.Named("ReadBookGood"));
-                    }
-                    else
-                    {
-                        reader.needs.mood.thoughts.memories.TryGainMemoryThought(ThoughtDef.Named("ReadBookGood"));
-                    }
+                    case (SoulItemCategories.Redemption):
+                        {
+                            sign = 1;
+                            break;
+                        }
+                    default:
+                        {
+                            Log.Error("No Soul Item Category Found");
+                            break;
+                        }
                 }
+                num = sign * this.Tdef.SoulGainRate * 0.2f / 1200;
+                soul.GainNeed(num);
             }
-            
-            FeedBackPulse();
         }
     }
 }

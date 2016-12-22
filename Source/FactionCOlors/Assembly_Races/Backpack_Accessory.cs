@@ -28,7 +28,7 @@ namespace FactionColors
             base.Tick();
             if (this.wearer != null)
             {
-                this.WornGraphic = BackpackGraphic(this.wearer.story.BodyType, this.Graphic.path);
+                this.WornGraphic = BackpackGraphic(this.wearer.story.bodyType, this.Graphic.path);
             }
             else
             {

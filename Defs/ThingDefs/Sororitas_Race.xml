@@ -22,14 +22,14 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.75</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
+        <defaultCooldownTime>1.75</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>

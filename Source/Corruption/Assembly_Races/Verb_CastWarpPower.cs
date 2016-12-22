@@ -12,7 +12,7 @@ using System.Reflection;
 namespace Corruption
 {
     public class Verb_CastWarpPower : Verb_LaunchProjectile
-    {        
+    {
         public VerbProperties_WarpPower warpverbprops
         {
             get
@@ -29,7 +29,7 @@ namespace Corruption
             }
         } 
 
-        public List<TargetInfo> TargetsAoE = new List<TargetInfo>();
+        public List<LocalTargetInfo> TargetsAoE = new List<LocalTargetInfo>();
 
         public Need_Soul soul
         {
@@ -65,24 +65,24 @@ namespace Corruption
                 List<Thing> targets = new List<Thing>();
                 if (warpProjectileDef != null && warpProjectileDef.IsHealer)
                 {
-                    this.TargetsAoE.Add(this.currentTarget);
-                    targets = Find.ListerThings.AllThings.Where(x => (x.Position.InHorDistOf(caster.Position, this.warpverbprops.range)) && (x.GetType() == this.warpverbprops.AoETargetClass) && !x.Faction.HostileTo(Faction.OfPlayer)).ToList<Thing>();
+                    this.TargetsAoE.Add(new LocalTargetInfo(this.currentTarget.Cell));
+                    targets = this.caster.Map.listerThings.AllThings.Where(x => (x.Position.InHorDistOf(caster.Position, this.warpverbprops.range)) && (x.GetType() == this.warpverbprops.AoETargetClass) && !x.Faction.HostileTo(Faction.OfPlayer)).ToList<Thing>();
                 }
                 else if ((this.warpverbprops.AoETargetClass == typeof(Plant)) || (this.warpverbprops.AoETargetClass == typeof(Building)))
                 {
                     targets.Clear();
-                    targets = Find.ListerThings.AllThings.Where(x => (x.Position.InHorDistOf(caster.Position, this.warpverbprops.range)) && (x.GetType() == this.warpverbprops.AoETargetClass)).ToList<Thing>();
+                    targets = this.caster.Map.listerThings.AllThings.Where(x => (x.Position.InHorDistOf(caster.Position, this.warpverbprops.range)) && (x.GetType() == this.warpverbprops.AoETargetClass)).ToList<Thing>();
                     foreach (Thing targ in targets)
                     {
                         TargetInfo tinfo = new TargetInfo(targ);
-                        TargetsAoE.Add(new TargetInfo(targ));                        
+                        TargetsAoE.Add(new LocalTargetInfo(targ));                        
                     }
                     return;
                 }
                 else
                 {
                     targets.Clear();
-                    targets = Find.ListerThings.AllThings.Where(x => (x.Position.InHorDistOf(caster.Position, this.warpverbprops.range)) && (x.GetType() == this.warpverbprops.AoETargetClass) && x.Faction.HostileTo(Faction.OfPlayer)).ToList<Thing>();
+                    targets = this.caster.Map.listerThings.AllThings.Where(x => (x.Position.InHorDistOf(caster.Position, this.warpverbprops.range)) && (x.GetType() == this.warpverbprops.AoETargetClass) && x.Faction.HostileTo(Faction.OfPlayer)).ToList<Thing>();
                 }
 
                 Log.Message(targets.Count.ToString());
@@ -91,7 +91,7 @@ namespace Corruption
                     TargetInfo tinfo = new TargetInfo(targ);
                     if (this.warpverbprops.targetParams.CanTarget(tinfo))
                     {
-                        TargetsAoE.Add(new TargetInfo(targ));
+                        TargetsAoE.Add(new LocalTargetInfo(targ));
                     }
                 }
             }
@@ -105,10 +105,10 @@ namespace Corruption
         {
             UpdateTargets();
             int burstshots = this.ShotsPerBurst;
-            Log.Message(TargetsAoE.Count.ToString());
+ //           Log.Message(TargetsAoE.Count.ToString());
             for (int i = 0; i < TargetsAoE.Count; i++)
             {
-                Log.Message(TargetsAoE[i].Thing.Label);
+ //               Log.Message(TargetsAoE[i].Thing.Label);
                 for (int j = 0; j < burstshots; j++)
                 {
                     ShootLine shootLine;
@@ -118,7 +118,7 @@ namespace Corruption
                         return false;
                     }
                     Vector3 drawPos = this.caster.DrawPos;
-                    Projectile projectile = (Projectile)GenSpawn.Spawn(this.verbProps.projectileDef, shootLine.Source);
+                    Projectile projectile = (Projectile)GenSpawn.Spawn(this.verbProps.projectileDef, shootLine.Source, this.caster.Map);
                     projectile.FreeIntercept = (this.canFreeInterceptNow && !projectile.def.projectile.flyOverhead);
                     ShotReport shotReport = ShotReport.HitReportFor(this.caster, this, TargetsAoE[i]);
                     if (!this.warpverbprops.AlwaysHits)
@@ -127,7 +127,7 @@ namespace Corruption
                         {
                             if (DebugViewSettings.drawShooting)
                             {
-                                MoteMaker.ThrowText(this.caster.DrawPos, "ToWild", -1f);
+                                MoteMaker.ThrowText(this.caster.DrawPos, this.caster.Map, "ToWild", -1f);
                             }
                             shootLine.ChangeDestToMissWild();
                             if (TargetsAoE[i].HasThing)
@@ -145,7 +145,7 @@ namespace Corruption
                         {
                             if (DebugViewSettings.drawShooting)
                             {
-                                MoteMaker.ThrowText(this.caster.DrawPos, "ToCover", -1f);
+                                MoteMaker.ThrowText(this.caster.DrawPos, this.caster.Map, "ToCover", -1f);
                             }
                             if (TargetsAoE[i].Thing != null && TargetsAoE[i].Thing.def.category == ThingCategory.Pawn)
                             {
@@ -162,7 +162,7 @@ namespace Corruption
                     }
                     if (DebugViewSettings.drawShooting)
                     {
-                        MoteMaker.ThrowText(this.caster.DrawPos, "ToHit", -1f);
+                        MoteMaker.ThrowText(this.caster.DrawPos, this.caster.Map, "ToHit", -1f);
                     }
                     if (!projectile.def.projectile.flyOverhead)
                     {

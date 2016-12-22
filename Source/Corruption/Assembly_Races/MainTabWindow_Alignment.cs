@@ -178,14 +178,6 @@ namespace Corruption
             }
         }
 
-        public float PaneTopY
-        {
-            get
-            {
-                return (float)Screen.height - MainTabWindow_Inspect.PaneSize.y - 35f;
-            }
-        }
-
         protected Pawn SelPawn
         {
             get

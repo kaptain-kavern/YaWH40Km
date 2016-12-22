@@ -105,6 +105,15 @@ namespace Corruption
         public static FactionDef ImperialGuard;
         public static FactionDef Orks;
         public static FactionDef AdeptusSororitas;
+        public static FactionDef Mechanicus;
+
+        // MapConditions
+
+        public static MapConditionDef CorruptiveDrone;
+
+        public static JobDef SummonDemon;
+        public static JobDef SummoningTribute;
+        public static ThingDef WarpRift;
 
 
     }

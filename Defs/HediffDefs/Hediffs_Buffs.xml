@@ -6,20 +6,62 @@
     <defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
   </HediffDef>
 
-  <HediffDef ParentName="HediffPsykerBuff">
+  <HediffDef ParentName="HediffPsykerBuff" Name="Mindcontrol">
     <defName>Mindcontrol</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.73, 0.08, 0.03)</defaultLabelColor>
     <label>mindcontrol</label>
     <comps>
-      <li>
+      <li Class="HediffCompProperties_Disappears">
         <compClass>Corruption.HediffComp_TemporaryRecruit</compClass>
         <disappearsAfterTicks>
           <min>600</min>
-          <max>600</max>
+          <max>900</max>
         </disappearsAfterTicks>
       </li>
     </comps>
   </HediffDef>
+
+  <HediffDef ParentName="HediffPsykerBuff" Name="BurnedRetina">
+    <defName>BurnedRetina</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.73, 0.08, 0.03)</defaultLabelColor>
+    <label>burned retina</label>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>
+          <min>600</min>
+          <max>900</max>
+        </disappearsAfterTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>-0.65</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+
+  </HediffDef>
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>Cataract</defName>
+    <label>cataract</label>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>-0.35</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
 
 </Defs>

@@ -121,14 +121,6 @@
           <max>1</max>
         </countRange>
       </li>
-      <li Class="StockGenerator_SingleDef">
-        <thingDef>ArtilleryShell</thingDef>
-        <price>Cheap</price>
-        <countRange>
-          <min>30</min>
-          <max>60</max>
-        </countRange>
-      </li>
       <li Class="StockGenerator_Tag">
         <tradeTag>Exotic</tradeTag>
         <thingDefCountRange>

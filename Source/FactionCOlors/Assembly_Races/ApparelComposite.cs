@@ -36,7 +36,7 @@ namespace FactionColors
 
         private  Color GetSecondaryStuffColor()
         {
-            List<ThingCount> list = this.def.costList;
+            List<ThingCountClass> list = this.def.costList;
             for (int i=0; i < list.Count; i++)
             {
                 if(list[i].thingDef.IsStuff)

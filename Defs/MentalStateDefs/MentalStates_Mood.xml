@@ -11,7 +11,7 @@
     <stateClass>MentalState_Berserk</stateClass>
     <label>violent lust</label>
     <category>Aggro</category>
-    <recoveryThought>Catharsis</recoveryThought>
+    <moodRecoveryThought>Catharsis</moodRecoveryThought>
     <blockNormalThoughts>true</blockNormalThoughts>
     <nameColor>(0.9,0.2,0.5)</nameColor>
     <beginLetterLabel>Lust(Violent)</beginLetterLabel>
@@ -31,7 +31,7 @@
     <stateClass>Corruption.MentalState_KhorneKillWeak</stateClass>
     <label>kill the weak</label>
     <category>Aggro</category>
-    <recoveryThought>Catharsis</recoveryThought>
+    <moodRecoveryThought>Catharsis</moodRecoveryThought>
     <blockNormalThoughts>true</blockNormalThoughts>
     <nameColor>(0.9,0.2,0.5)</nameColor>
     <beginLetterLabel>Slaughterer!</beginLetterLabel>

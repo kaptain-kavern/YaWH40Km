@@ -21,21 +21,21 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
       </li>    
   <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <defaultCooldownTime>1.85</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
@@ -177,21 +177,21 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <defaultCooldownTime>1.5</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <defaultCooldownTime>1.5</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
       </li>    
   <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <defaultCooldownTime>1.5</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
@@ -329,7 +329,7 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>150</defaultCooldownTicks>
+        <defaultCooldownTime>2.5</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Bite</meleeDamageDef>
         <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>

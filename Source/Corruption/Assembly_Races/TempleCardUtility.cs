@@ -86,7 +86,7 @@ namespace Corruption
 
             IntVec3 result;
             Building chair;
-            foreach (Pawn p in Find.MapPawns.AllPawnsSpawned.FindAll(x => x.RaceProps.intelligence == Intelligence.Humanlike))
+            foreach (Pawn p in altar.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.RaceProps.intelligence == Intelligence.Humanlike))
             {
                 if (! SermonUtility.IsPreacher(p))
                 {
@@ -120,9 +120,9 @@ namespace Corruption
             list.Add(new FloatMenuOption("(" + "NoneLower".Translate() + ")", delegate
             {
                 altar.preacher = null;
-            }, MenuOptionPriority.Medium, null, null, 0f, null));
+            }, MenuOptionPriority.Default, null, null, 0f, null));
 
-            foreach (Pawn current in Find.MapPawns.FreeColonistsSpawned)
+            foreach (Pawn current in altar.Map.mapPawns.FreeColonistsSpawned)
             {
                 if (!SermonUtility.IsPreacher(current))
                 {
@@ -137,7 +137,7 @@ namespace Corruption
                     {
                         altar.preacher = localCol;
                     };
-                    list.Add(new FloatMenuOption(text1, action, MenuOptionPriority.Medium, null, null, 0f, null));
+                    list.Add(new FloatMenuOption(text1, action, MenuOptionPriority.Default, null, null, 0f, null));
                 }
             }
             Find.WindowStack.Add(new FloatMenu(list));

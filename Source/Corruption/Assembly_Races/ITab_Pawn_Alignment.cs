@@ -14,14 +14,6 @@ namespace Corruption
 
         public Texture PatronImage;
 
-        public float PaneTopY
-        {
-            get
-            {
-                return (float)Screen.height - MainTabWindow_Inspect.PaneSize.y - 35f;
-            }
-        }
-
         public ITab_Pawn_Alignment()
         {
             this.SelPawnPatron = this.SelPawn.needs.TryGetNeed<Need_Soul>().PatronName(SelPawn);

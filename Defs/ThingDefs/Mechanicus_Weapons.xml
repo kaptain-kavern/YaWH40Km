@@ -98,7 +98,7 @@ Class="FactionColors.FactionItemDef">
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Pistol</projectileDef>
-        <warmupTicks>54</warmupTicks>
+        <warmupTime>1</warmupTime>
         <range>24</range>
         <soundCast>ShotPistol</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>
@@ -148,7 +148,7 @@ Class="FactionColors.FactionItemDef">
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_SniperRifle</projectileDef>
-        <warmupTicks>240</warmupTicks>
+        <warmupTime>3</warmupTime>
         <range>50</range>
         <soundCast>ShotSniperRifle</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -209,7 +209,7 @@ Class="FactionColors.FactionItemDef">
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Arc</projectileDef>
-        <warmupTicks>90</warmupTicks>
+        <warmupTime>1.5</warmupTime>
         <range>24</range>
         <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
         <burstShotCount>1</burstShotCount>
@@ -257,7 +257,7 @@ Class="FactionColors.FactionItemDef">
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Arc</projectileDef>
-        <warmupTicks>90</warmupTicks>
+        <warmupTime>1.5</warmupTime>
         <range>24</range>
         <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
         <burstShotCount>1</burstShotCount>
@@ -359,7 +359,7 @@ Class="FactionColors.FactionItemDef">
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_LascannonRound</projectileDef>
-        <warmupTicks>176</warmupTicks>
+        <warmupTime>2.5</warmupTime>
         <range>20</range>
         <soundCast>ShotChargeRifle</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>

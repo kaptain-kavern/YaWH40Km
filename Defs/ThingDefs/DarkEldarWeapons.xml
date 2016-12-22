@@ -102,7 +102,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Splinter</projectileDef>
-        <warmupTicks>90</warmupTicks>
+        <warmupTime>1.5</warmupTime>
         <range>35</range>
         <burstShotCount>4</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
@@ -151,7 +151,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Darklight</projectileDef>
-        <warmupTicks>290</warmupTicks>
+        <warmupTime>5</warmupTime>
         <range>30</range>
         <soundCast>Shuriken_Longrifle</soundCast>
         <soundCastTail>GunTail_Medium</soundCastTail>
@@ -193,7 +193,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Shredder</projectileDef>
-        <warmupTicks>240</warmupTicks>
+        <warmupTime>5</warmupTime>
         <range>15</range>
         <burstShotCount>2</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
@@ -240,7 +240,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Splinter</projectileDef>
-        <warmupTicks>90</warmupTicks>
+        <warmupTime>1</warmupTime>
         <range>35</range>
         <soundCast>Shuriken_Small</soundCast>
         <soundCastTail>GunTail_Medium</soundCastTail>

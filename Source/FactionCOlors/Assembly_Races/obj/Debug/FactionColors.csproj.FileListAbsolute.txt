@@ -29,3 +29,11 @@ D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Source\FactionCOlors\Assembly_Races\obj\
 D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Source\FactionCOlors\Assembly_Races\obj\Debug\FactionColors.csprojResolveAssemblyReference.cache
 D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Assemblies\FactionColors.dll.config
 D:\Spiele\RimWorld1284Win\Mods\YaWH40Km\Assemblies\FactionColors.dll
+D:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Source\FactionCOlors\Assembly_Races\obj\Debug\FactionColors.csprojResolveAssemblyReference.cache
+D:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Source\FactionCOlors\Assembly_Races\obj\Debug\FactionColors.dll
+D:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Assemblies\FactionColors.dll.config
+D:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Assemblies\FactionColors.dll
+C:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Assemblies\FactionColors.dll.config
+C:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Assemblies\FactionColors.dll
+C:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Source\FactionCOlors\Assembly_Races\obj\Debug\FactionColors.csprojResolveAssemblyReference.cache
+C:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Source\FactionCOlors\Assembly_Races\obj\Debug\FactionColors.dll

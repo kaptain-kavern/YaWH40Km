@@ -85,7 +85,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYBerserkerBullet</projectileDef>
-        <warmupTicks>300</warmupTicks>
+        <warmupTime>5</warmupTime>
         <TicksToRecharge>1200</TicksToRecharge>
         <range>15</range>
         <soundCast>FlameThrower</soundCast>
@@ -126,7 +126,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYFearBullet</projectileDef>
-        <warmupTicks>300</warmupTicks>
+        <warmupTime>5</warmupTime>
         <TicksToRecharge>3000</TicksToRecharge>
         <range>24</range>
         <soundCast>FlameThrower</soundCast>
@@ -168,7 +168,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYConfusingBullet</projectileDef>
-        <warmupTicks>200</warmupTicks>
+        <warmupTime>3.5</warmupTime>
         <TicksToRecharge>2000</TicksToRecharge>
         <range>24</range>
         <soundCast>FlameThrower</soundCast>
@@ -210,7 +210,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYDrugBullet</projectileDef>
-        <warmupTicks>200</warmupTicks>
+        <warmupTime>3.4</warmupTime>
         <TicksToRecharge>2000</TicksToRecharge>
         <range>24</range>
         <soundCast>FlameThrower</soundCast>
@@ -257,10 +257,60 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpBolt</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTime>1</warmupTime>
         <TicksToRecharge>30</TicksToRecharge>
         <range>24</range>
         <burstShotCount>5</burstShotCount>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+        <soundCast>WarpBolt</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
+    </MainVerb>
+  </ThingDef>
+
+
+  <!-- =========================Warpfire===================================== -->
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ThingDef_LaserProjectile">
+   <thingClass>Corruption.Projectile_Laser</thingClass>
+   <defName>PSYWarpfireJet</defName>
+   <label>Warp Flame</label>
+   <graphicData>
+		<texPath>Things/IG/Weapons/Projectiles/FlamerProjectile</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Flame</damageDef>
+		<damageAmountBase>5</damageAmountBase>
+		<speed>125</speed>
+   </projectile>
+    <preFiringInitialIntensity>0</preFiringInitialIntensity>
+    <preFiringFinalIntensity>2</preFiringFinalIntensity>
+    <postFiringInitialIntensity>2</postFiringInitialIntensity>
+    <postFiringFinalIntensity>0</postFiringFinalIntensity>
+    <preFiringDuration>2</preFiringDuration>
+    <postFiringDuration>63</postFiringDuration>
+    <StartFireChance>1.00</StartFireChance>
+ </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_FireLance</defName>
+    <label>Fire Lance</label>
+    <uiIconPath>UI/Psyker/Fire</uiIconPath>
+    <description>Cast forth a jet of warpfire.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <IconGraphicPath>UI/Glow_Corrupt</IconGraphicPath>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYWarpfireJet</projectileDef>
+        <warmupTime>1</warmupTime>
+        <TicksToRecharge>30</TicksToRecharge>
+        <range>24</range>
+        <burstShotCount>1</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
         <soundCast>WarpBolt</soundCast>
         <muzzleFlashScale>20</muzzleFlashScale>
@@ -284,7 +334,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Scourging</projectileDef>
-        <warmupTicks>150</warmupTicks>
+        <warmupTime>2.5</warmupTime>
         <TicksToRecharge>900</TicksToRecharge>
         <range>24</range>
         <burstShotCount>5</burstShotCount>
@@ -329,7 +379,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYMindcontrol</projectileDef>
-        <warmupTicks>300</warmupTicks>
+        <warmupTime>5</warmupTime>
         <TicksToRecharge>1200</TicksToRecharge>
         <range>15</range>
         <soundCast>FlameThrower</soundCast>
@@ -352,7 +402,7 @@
 	</graphicData>
    <projectile>
 		<flyOverhead>true</flyOverhead>
-		<damageDef>HealGlobal</damageDef>
+		<damageDef>HealMiracle</damageDef>
 		<damageAmountBase>100</damageAmountBase>
 		<speed>10</speed>
    </projectile>
@@ -370,7 +420,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYHealSimple</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTime>1</warmupTime>
         <TicksToRecharge>120</TicksToRecharge>
         <range>10</range>
         <soundCast>FlameThrower</soundCast>
@@ -395,7 +445,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYHealSimple</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTime>1</warmupTime>
         <TicksToRecharge>120</TicksToRecharge>
         <range>2</range>
         <soundCast>FlameThrower</soundCast>
@@ -424,7 +474,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYHealSimple</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTime>1</warmupTime>
         <TicksToRecharge>120</TicksToRecharge>
         <range>15</range>
         <soundCast>FlameThrower</soundCast>
@@ -457,7 +507,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpBolt</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTime>1</warmupTime>
         <TicksToRecharge>300</TicksToRecharge>
         <range>35</range>
         <burstShotCount>7</burstShotCount>
@@ -485,7 +535,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpBolt</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTime>1</warmupTime>
         <TicksToRecharge>120</TicksToRecharge>
         <burstShotCount>5</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
@@ -539,7 +589,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpFire</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTime>1</warmupTime>
         <TicksToRecharge>120</TicksToRecharge>
         <burstShotCount>1</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
@@ -568,7 +618,7 @@
   <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
    <defName>PSYWarpGrowBolt</defName>
    <thingClass>Corruption.Projectile_WarpGrower</thingClass>
-   <label>berserker spell</label>
+   <label>growth spell</label>
    <graphicData>
 		<texPath>UI/Psyker/Growth</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -592,7 +642,7 @@
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpGrowBolt</projectileDef>
-        <warmupTicks>60</warmupTicks>
+        <warmupTime>1</warmupTime>
         <TicksToRecharge>120</TicksToRecharge>
         <range>5</range>
         <soundCast>FlameThrower</soundCast>
@@ -614,5 +664,56 @@
   </ThingDef>
 
 
+  <!-- =========================BlindingBlast===================================== -->
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYBlindingBullet</defName>
+   <thingClass>Corruption.Projectile_WarpGrower</thingClass>
+   <label>blinding bullet</label>
+   <graphicData>
+		<texPath>UI/Psyker/Growth</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Burn</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+    <IsBuffGiver>true</IsBuffGiver>
+    <BuffDef>BurnedRetina</BuffDef>
+ </ThingDef>
+
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_BlindingBlast</defName>
+    <label>Blinding Blast</label>
+    <uiIconPath>UI/Psyker/Flash</uiIconPath>
+    <description>Cast a flash that blinds enemies.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYBlindingBullet</projectileDef>
+        <warmupTime>5</warmupTime>
+        <TicksToRecharge>300</TicksToRecharge>
+        <range>12</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>true</DrawProjectileOnTarget>
+   	   <PsykerPowerCategory>TargetAoE</PsykerPowerCategory>
+        <AoETargetClass>Pawn</AoETargetClass>
+    		<targetParams>
+      	 <canTargetPawns>true</canTargetPawns>
+      	 <canTargetBuildings>false</canTargetBuildings>
+      	 <canTargetSelf>true</canTargetSelf>
+    		</targetParams>
+    </MainVerb>
+    <PowerLevel>Iota</PowerLevel>
+    <MinAfflictionToGet>Lost</MinAfflictionToGet>
+    <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
+  </ThingDef>
 
 </ThingDefs>

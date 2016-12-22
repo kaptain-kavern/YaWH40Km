@@ -35,19 +35,21 @@
       <max>100</max>
     </naturalColonyGoodwill>
     <pawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
             <IG_Trooper>100</IG_Trooper>
             <IG_Sergeant>20</IG_Sergeant>
         </options>
       </li>
-      <li Class="PawnGroupMaker_Trader">
+      <li>
+        <kindDef>Trader</kindDef>
         <traders>
           <IG_Ordinate>1</IG_Ordinate>
         </traders>
         <carriers>
-          <PackMuffalo>1</PackMuffalo>
-          <PackDromedary>1</PackDromedary>
+          <Muffalo>1</Muffalo>
+          <Dromedary>1</Dromedary>
         </carriers>
         <guards>
           <IG_Trooper>250</IG_Trooper>

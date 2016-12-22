@@ -24,12 +24,12 @@ namespace Corruption
             }
         }
 
-        public override void PostDeSpawn()
+        public override void PostDeSpawn(Map map)
         {
             if (!IsSpawned)
             {
                 Thing spiritstone = ThingMaker.MakeThing(CorruptionDefOfs.SpiritStone);
-                GenSpawn.Spawn(spiritstone, curpos);
+                GenSpawn.Spawn(spiritstone, curpos, map);
                 IsSpawned = true;
             }
         }

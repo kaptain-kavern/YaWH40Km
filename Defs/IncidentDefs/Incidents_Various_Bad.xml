@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  
+  <IncidentDef>
+    <defName>CorruptiveDrone</defName>
+    <label>corruptive drone</label>
+    <workerClass>Corruption.IncidentWorker_CorruptiveDrone</workerClass>
+    <mapCondition>CorruptiveDrone</mapCondition>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>15</minRefireDays>
+    <durationDays>
+      <min>0.75</min>
+      <max>1.75</max>
+    </durationDays>
+  </IncidentDef>
+
+
+</Defs>

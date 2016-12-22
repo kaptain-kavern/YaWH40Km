@@ -16,57 +16,9 @@ namespace Corruption
         {
             base.CompPostMake();
 
-            this.Demon = GenerateDemon();
+            this.Demon = DemonUtilities.GenerateDemon();
         }
 
-        protected virtual Pawn GenerateDemon()
-        {
-            PawnKindDef pdef = DemonDefOfs.Demon_Undivided;
-            int num = Rand.RangeInclusive(0, 4);
-            switch (num)
-            {
-                case 0:
-                    {
-                        pdef = DemonDefOfs.Demon_Bloodletter;
-                        break;
-                    }
-                case 1:
-                    {
-                        pdef = DemonDefOfs.Demon_Plaguebearer;
-                        break;
-                    }
-                case 2:
-                    {
-                        pdef = DemonDefOfs.Demon_Daemonette;
-                        break;
-                    }
-                case 3:
-                    {
-                        pdef = DemonDefOfs.Demon_Horror;
-                        break;
-                    }
-                case 4:
-                    {
-                        pdef = DemonDefOfs.Demon_Undivided;
-                        break;
-                    }
-            }
-
-            PawnGenerationRequest request = new PawnGenerationRequest(pdef, null);
-            Pawn pawn = null;
-            try
-            {
-                pawn = PawnGenerator.GeneratePawn(request);
-            }
-            catch (Exception arg)
-            {
-                Log.Error("There was an exception thrown by the PawnGenerator during generating a starting pawn. Trying one more time...\nException: " + arg);
-                pawn = PawnGenerator.GeneratePawn(request);
-            }
-            pawn.relations.everSeenByPlayer = true;
-            PawnComponentsUtility.AddComponentsForSpawn(pawn);
-            return pawn;
-        }
 
         private Need_Soul soul
         {
@@ -100,12 +52,12 @@ namespace Corruption
             });
             Find.LetterStack.ReceiveLetter(label, text2, LetterType.BadUrgent, this.Pawn, null);
 
-            GenSpawn.Spawn(Demon, Pawn.Position);
+            GenSpawn.Spawn(Demon, Pawn.Position, this.Pawn.Map);
             Demon.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.ManhunterPermanent);
 
-            if (this.Pawn.corpse.Spawned)
+            if (this.Pawn.Corpse.Spawned)
             {
-                this.Pawn.corpse.Destroy(DestroyMode.Vanish);
+                this.Pawn.Corpse.Destroy(DestroyMode.Vanish);
             }
 
         }        

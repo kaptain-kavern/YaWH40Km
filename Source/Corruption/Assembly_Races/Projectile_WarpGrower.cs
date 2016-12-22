@@ -20,7 +20,7 @@ namespace Corruption
                     p.Growth = 1f;
                 }
             }
-            Find.MapDrawer.SectionAt(hitThing.Position).RegenerateAllLayers();
+            this.Map.mapDrawer.SectionAt(hitThing.Position).RegenerateAllLayers();
         }
     }
 }

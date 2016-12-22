@@ -39,24 +39,17 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>70</defaultCooldownTicks>
-        <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
+        <defaultCooldownTime>1.75</defaultCooldownTime>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>70</defaultCooldownTicks>
-        <meleeDamageBaseAmount>7</meleeDamageBaseAmount>
-        <meleeDamageDef>Blunt</meleeDamageDef>
-        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-      </li>    
-  <li>
-        <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>90</defaultCooldownTicks>
+        <defaultCooldownTime>1.75</defaultCooldownTime>
         <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
-        <linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
       </li>
     </verbs>
     <race>
@@ -195,16 +188,16 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
-        <meleeDamageBaseAmount>10</meleeDamageBaseAmount>
-        <meleeDamageDef>Cut</meleeDamageDef>
+        <defaultCooldownTime>1.75</defaultCooldownTime>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+        <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>100</defaultCooldownTicks>
-        <meleeDamageBaseAmount>10</meleeDamageBaseAmount>
-        <meleeDamageDef>Cut</meleeDamageDef>
+        <defaultCooldownTime>1.75</defaultCooldownTime>
+        <meleeDamageBaseAmount>8</meleeDamageBaseAmount>
+        <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
       </li>
     </verbs>
@@ -291,7 +284,7 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTicks>70</defaultCooldownTicks>
+        <defaultCooldownTime>1</defaultCooldownTime>
         <meleeDamageBaseAmount>5</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
         <linkedBodyPartsGroup>ManipulatorBlade</linkedBodyPartsGroup>

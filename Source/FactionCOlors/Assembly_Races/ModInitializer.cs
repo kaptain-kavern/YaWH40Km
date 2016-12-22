@@ -17,17 +17,33 @@ namespace FactionColors
 
         public ModInitializer()
         {
-            Log.Message("Initialized Faction Colors Mod");
-            this.modInitializerControllerObject = new GameObject("FactionCol");
-            this.modInitializerControllerObject.AddComponent<ModInitializerBehaviour>();
-            UnityEngine.Object.DontDestroyOnLoad(this.modInitializerControllerObject);
+            LongEventHandler.QueueLongEvent(delegate
+            {
+                Log.Message("Initialized Faction Colors Mod");
+                this.modInitializerControllerObject = new GameObject("FactionCol");
+                this.modInitializerControllerObject.AddComponent<ModInitializerBehaviour>();
+                this.modInitializerControllerObject.AddComponent<DoOnMainThread>();
+                UnityEngine.Object.DontDestroyOnLoad(this.modInitializerControllerObject);
+            }, "queueInject", false, null);
         }
 
         protected override void FillTab()
         {}
     }
-	
 
+    public class DoOnMainThread : MonoBehaviour
+    {
+
+        public static readonly Queue<Action> ExecuteOnMainThread = new Queue<Action>();
+
+        public void Update()
+        {
+            while (ExecuteOnMainThread.Count > 0)
+            {
+                ExecuteOnMainThread.Dequeue().Invoke();
+            }
+        }
+    }
 
 
     class ModInitializerBehaviour : MonoBehaviour

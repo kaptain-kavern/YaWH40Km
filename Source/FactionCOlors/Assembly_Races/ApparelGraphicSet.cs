@@ -1,11 +1,7 @@
 ﻿using System.Linq;
 using RimWorld;
 using Verse;
-using UnityEngine;
-using System;
 using System.Collections.Generic;
-using Corruption;
-using System.Runtime.CompilerServices;
 
 namespace FactionColors
 {
@@ -28,7 +24,7 @@ namespace FactionColors
                 ApparelGraphicRecord item;
                 if (current.GetComp<CompFactionColor>() != null)
                 {
-                    if ((ApparelGraphicGetterFC.TryGetGraphicApparelModded(current, this.pawn.story.BodyType, out item)))
+                    if ((ApparelGraphicGetterFC.TryGetGraphicApparelModded(current, this.pawn.story.bodyType, out item)))
                     {
                         if (current.GetComp<ApparelDetailDrawer>() != null && !current.Spawned)
                         {
@@ -37,12 +33,8 @@ namespace FactionColors
 
                         this.apparelGraphics.Add(item);
                     }
-
-
-
                 }
-
-                else if (ApparelGraphicRecordGetter.TryGetGraphicApparel(current, this.pawn.story.BodyType, out item))
+                else if (ApparelGraphicRecordGetter.TryGetGraphicApparel(current, this.pawn.story.bodyType, out item))
                 {
                     this.apparelGraphics.Add(item);
                 }
@@ -74,7 +66,7 @@ namespace FactionColors
                     }
                     else
                     {
-                        btype = this.pawn.story.BodyType;
+                        btype = this.pawn.story.bodyType;
                     }
                     if (ApparelGraphicGetterFC.TryGetGraphicApparelModded(current, btype, out item))
                     {
@@ -97,7 +89,7 @@ namespace FactionColors
                  //   this.apparelGraphics.Add(item);
 
                 }
-                else if (ApparelGraphicRecordGetter.TryGetGraphicApparel(current, this.pawn.story.BodyType, out item))
+                else if (ApparelGraphicRecordGetter.TryGetGraphicApparel(current, this.pawn.story.bodyType, out item))
                 {
                     this.apparelGraphics.Add(item);
                 }

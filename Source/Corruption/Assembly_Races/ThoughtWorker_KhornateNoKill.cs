@@ -19,7 +19,7 @@ namespace Corruption
         {
             if (Find.TickManager.TicksGame > (lastKill + 600))
             {
-                if ((p.needs.mood.thoughts.situational.SituationalThoughtsAffectingMood.FindAll((Thought_Situational x) => x.def == GodThoughtDefOf.Khornate_Kill)) == null)
+                if ((p.needs.mood.thoughts.situational.GetSituationalThoughtsAffectingMood().FindAll((Thought_Situational x) => x.def == GodThoughtDefOf.Khornate_Kill)) == null)
                 {
                     if (kdegree < 3)
                     {

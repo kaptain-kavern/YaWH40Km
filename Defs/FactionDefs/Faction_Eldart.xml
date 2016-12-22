@@ -39,19 +39,21 @@
       <li>Visitor_Eldar_Ranger</li>
     </visitorTraderKinds>
     <pawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
             <EldarGuardian>100</EldarGuardian>
             <EldarRanger>10</EldarRanger>
             <EldarWarlock>5</EldarWarlock>
         </options>
       </li>
-      <li Class="PawnGroupMaker_Trader">
+      <li>
+        <kindDef>Trader</kindDef>
         <traders>
           <EldarRangerTrader>1</EldarRangerTrader>
         </traders>
         <carriers>
-          <PackMuffalo>1</PackMuffalo>
+          <Muffalo>1</Muffalo>
         </carriers>
         <guards>
           <EldarRanger>250</EldarRanger>

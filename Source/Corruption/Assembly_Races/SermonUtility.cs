@@ -52,9 +52,9 @@ namespace Corruption
             return chairs;
         }
 
-        public static bool IsInside(IntVec3 sermonSpot)
+        public static bool IsInside(IntVec3 sermonSpot, Map map)
         {
-            Room room = sermonSpot.GetRoom();
+            Room room = sermonSpot.GetRoom(map);
             return room != null && !room.PsychologicallyOutdoors && room.CellCount <= 400;
         }
 
@@ -136,7 +136,7 @@ namespace Corruption
 
         private static bool movingSermon(Pawn pr)
         {
-            var f = pr.skills.GetSkill(SkillDefOf.Social).level;
+            var f = pr.skills.GetSkill(SkillDefOf.Social).Level;
             int x = Rand.RangeInclusive(0, 35);
             if ((x + f * 2) > 40)
             {
@@ -178,7 +178,7 @@ namespace Corruption
 
             float num = 0f;
 
-            foreach (Pawn l in Find.MapPawns.AllPawnsSpawned.FindAll(x => x.Position.InHorDistOf(preacher.Position, 20f) == true))
+            foreach (Pawn l in altar.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.Position.InHorDistOf(preacher.Position, 20f) == true))
             {
                 num += 0.002f;
             }
@@ -291,7 +291,7 @@ namespace Corruption
 
         public static bool IsPreacher(Pawn p)
         {
-            List<Thing> list = Find.ListerThings.AllThings.FindAll(s => s.GetType() == typeof(BuildingAltar));
+            List<Thing> list = p.Map.listerThings.AllThings.FindAll(s => s.GetType() == typeof(BuildingAltar));
             foreach (BuildingAltar b in list)
             {
                 if (b.preacher == p) return true;
@@ -303,11 +303,11 @@ namespace Corruption
         {
             List<Pawn> opposingDevotees = p.needs.TryGetNeed<Need_Soul>().OpposingDevotees;
             if (opposingDevotees == null) opposingDevotees = new List<Pawn>();
-            List<Pawn> availablePreachers = Find.MapPawns.FreeColonistsSpawned.ToList<Pawn>().FindAll(s => s.CurJob.def == CorruptionDefOfs.HoldSermon);
+            List<Pawn> availablePreachers = p.Map.mapPawns.FreeColonistsSpawned.ToList<Pawn>().FindAll(s => s.CurJob.def == CorruptionDefOfs.HoldSermon);
 
             //Select best preacher of colony
 
-            bestPreacher = availablePreachers.Aggregate((i1, i2) => i1.skills.GetSkill(SkillDefOf.Social).level > i2.skills.GetSkill(SkillDefOf.Social).level ? i1 : i2);
+            bestPreacher = availablePreachers.Aggregate((i1, i2) => i1.skills.GetSkill(SkillDefOf.Social).Level > i2.skills.GetSkill(SkillDefOf.Social).Level ? i1 : i2);
             altar = SermonUtility.chosenAltar(bestPreacher);
             //Check if pawn has listened to this preacher before and if he is of an opposing faith. If so, another preacher will be chosen
 
@@ -316,7 +316,7 @@ namespace Corruption
                 if (availablePreachers.Count > 1)
                 {
                     availablePreachers.Remove(bestPreacher);
-                    bestPreacher = availablePreachers.Aggregate((i1, i2) => i1.skills.GetSkill(SkillDefOf.Social).level > i2.skills.GetSkill(SkillDefOf.Social).level ? i1 : i2);
+                    bestPreacher = availablePreachers.Aggregate((i1, i2) => i1.skills.GetSkill(SkillDefOf.Social).Level > i2.skills.GetSkill(SkillDefOf.Social).Level ? i1 : i2);
                     altar = chosenAltar(bestPreacher);
                 }
                 else
@@ -337,10 +337,10 @@ namespace Corruption
         {
             List<Pawn> opposingDevotees = p.needs.TryGetNeed<Need_Soul>().OpposingDevotees;
             if (opposingDevotees == null) opposingDevotees = new List<Pawn>();
-            List<Pawn> availablePreachers = Find.MapPawns.FreeColonistsSpawned.ToList<Pawn>().FindAll(s => s.CurJob.def == CorruptionDefOfs.HoldSermon);
+            List<Pawn> availablePreachers = p.Map.mapPawns.FreeColonistsSpawned.ToList<Pawn>().FindAll(s => s.CurJob.def == CorruptionDefOfs.HoldSermon);
             Pawn bestcurrentPreacher;
 
-            bestcurrentPreacher = availablePreachers.Aggregate((i1, i2) => i1.skills.GetSkill(SkillDefOf.Social).level > i2.skills.GetSkill(SkillDefOf.Social).level ? i1 : i2);
+            bestcurrentPreacher = availablePreachers.Aggregate((i1, i2) => i1.skills.GetSkill(SkillDefOf.Social).Level > i2.skills.GetSkill(SkillDefOf.Social).Level ? i1 : i2);
 
             if (bestcurrentPreacher == preacher && !opposingDevotees.Contains(preacher))
             {
@@ -351,16 +351,13 @@ namespace Corruption
 
         public static BuildingAltar chosenAltar(Pawn preacher)
         {
-            return SermonUtility.allAltars.Find(x => x.preacher == preacher);            
+            return SermonUtility.allAltars(preacher).Find(x => x.preacher == preacher);            
         }
 
-        public static List<BuildingAltar> allAltars
+        public static List<BuildingAltar> allAltars(Pawn preacher)
         {
-            get
-            {
-                List<BuildingAltar> y = Find.ListerThings.AllThings.FindAll(a => a.GetType() == typeof(BuildingAltar)).Cast<BuildingAltar>().ToList<BuildingAltar>();
-                return y;
-            }
+            List<BuildingAltar> y = preacher.Map.listerThings.AllThings.FindAll(a => a.GetType() == typeof(BuildingAltar)).Cast<BuildingAltar>().ToList<BuildingAltar>();
+            return y;
         }
 
     }

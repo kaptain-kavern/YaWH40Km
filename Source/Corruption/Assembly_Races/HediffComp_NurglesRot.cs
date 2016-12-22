@@ -45,7 +45,7 @@ namespace Corruption
                         this.Pawn.health.AddHediff(CorruptionDefOfs.MarkNurgle);
                         soul.GainPatron(ChaosGods.Nurgle, true);
                         soul.GainNeed(-0.3f);
-                        this.parent.DirectHeal(1f);
+                        this.parent.Heal(1f);
                     }
                 }
             }
@@ -53,9 +53,9 @@ namespace Corruption
 
         public override void Notify_PawnDied()
         {
-            if (this.Pawn.corpse.Spawned)
+            if (this.Pawn.Corpse.Spawned)
             {
-                GenExplosion.DoExplosion(this.Pawn.Position, 1, CorruptionDefOfs.RottenBurst, null, null, null, null, ThingDefOf.FilthVomit, 1);
+                GenExplosion.DoExplosion(this.Pawn.Position, this.Pawn.Map, 1, CorruptionDefOfs.RottenBurst, null, null, null, null, ThingDefOf.FilthVomit, 1);
             }
         }
 

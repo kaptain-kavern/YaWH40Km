@@ -5,21 +5,40 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-namespace Corruption
+namespace Corruption.BookStuff
 {
     public class JobDriver_ReadBookLong : JobDriver
     {
-        private const TargetIndex Bookshelf = TargetIndex.A;
+        private const TargetIndex BookshelfInd = TargetIndex.A;
         private const TargetIndex BookInd = TargetIndex.B;
         private List<string> Story = new List<string>();
+        private Need_Soul soul;
+        private ReadableBooks tempbook;
+        private Bookshelf tempshelf;
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
+            if (pawn.needs.TryGetNeed<Need_Soul>() != null)
+            {
+                this.soul = pawn.needs.TryGetNeed<Need_Soul>();
+            }
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
             yield return TakeBookFromBookshelf(TargetIndex.A, pawn, TargetIndex.B);
             yield return CarryBookToSeat(pawn);
             yield return PlaceItemToRead(TargetIndex.B);
-            yield return ReadingBook(pawn, 1000, TargetIndex.A, TargetIndex.B);
-            yield return ReadEnd(pawn, TargetIndex.B, TargetIndex.A);
+            yield return Toils_Reserve.Reserve(TargetIndex.B, 1);
+            yield return ReadingBook(pawn, 1500, TargetIndex.A, TargetIndex.B);
+            //         yield return ReadEnd(pawn, TargetIndex.B, TargetIndex.A);Toil toil2 = null;
+            //yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch).FailOnSomeonePhysicallyInteracting(TargetIndex.B);
+            //yield return Toils_Haul.StartCarryThing(TargetIndex.B);
+            //yield return Toils_Haul.CarryHauledThingToCell(TargetIndex.A);
+
+            this.AddFinishAction(delegate
+            {
+                Job newjob = new Job(DefDatabase<JobDef>.GetNamed("AddBookToLibrary"), TargetB, TargetA);
+                pawn.QueueJob(newjob);
+            });
+         //   yield return Bookshelf.PlaceBookInShelf(tempbook, this.TargetA.Thing as Bookshelf);
             yield break;
         }
         public Toil ReadEnd(Pawn reader, TargetIndex bookInd, TargetIndex BookShelfInd)
@@ -30,7 +49,6 @@ namespace Corruption
                 {
                     Bookshelf bookshelf = (Bookshelf)reader.jobs.curJob.GetTarget(BookShelfInd).Thing;
                     ReadableBooks readableBooks = (ReadableBooks)reader.jobs.curJob.GetTarget(bookInd).Thing;
-                    readableBooks.Thoughts(reader);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
@@ -43,6 +61,9 @@ namespace Corruption
             ReadableBooks thingBook = null;
             int s = 0;
             int i = 0;
+            int prog = 0;
+            int oldprog = 0;
+            float showTextFactor = 0;
             bool tickOnce = false;
             toil.tickAction = delegate
             {
@@ -50,29 +71,76 @@ namespace Corruption
                 {
                     thing = (Bookshelf)reader.jobs.curJob.GetTarget(Ind).Thing;
                     thingBook = (ReadableBooks)reader.jobs.curJob.GetTarget(bookInd).Thing;
+                    this.tempbook = thingBook;
                     if (thingBook.PrepareText().Count > 0)
                     {
                         text = thingBook.PrepareText();
                     }
+                    showTextFactor = thingBook.Tdef.TextSpeedShowFactor;
+                    if (soul != null)
+                    {
+                        foreach (KeyValuePair<ThingDef, int> current in soul.readablesManager.ReadableProgressEntry)
+                        {
+                            if(current.Key.defName == thingBook.def.defName)
+                            {
+                                prog = current.Value;
+                                oldprog = prog;
+                                s = current.Value / 150;
+                                Log.Message("Old Progression Found: " + prog.ToString());
+                                break;
+                            }
+                        }
+                    }
                     thingBook.TexChange = true;
                     tickOnce = true;
                 }
+                if (thingBook.Tdef.SkillToLearn != null)
+                {
+                    this.pawn.skills.Learn(thingBook.Tdef.SkillToLearn, thingBook.Tdef.SkillGainFactor * 1f);
+                }
+                prog += 1;
                 if (text.Count > 0)
                 {
-                    if (i > 150)
+                    if (i > showTextFactor * 150)
                     {
-                        s++;
-                        MoteMaker.ThrowText(reader.TrueCenter() + new Vector3(0f, 0f, 0.7f), text.ElementAt(s), Color.green);
-                        reader.needs.joy.CurLevel += 0.03f;
-                        i = 0;
+                        if (text.Count > s)
+                        {
+                            MoteMaker.ThrowText(reader.TrueCenter() + new Vector3(0f, 0f, 0.7f), thingBook.Map, text.ElementAt(s), Color.green);
+                            reader.needs.joy.CurLevel += 0.03f;
+                            s++;
+                            thingBook.ReadCorruptionTick(this.pawn, thingBook);
+                            i = 0;
+                        }
                     }
                     i++;
                 }
+                
                 reader.Drawer.rotator.FaceCell(thingBook.Position);
             };
             toil.defaultCompleteMode = ToilCompleteMode.Delay;
             toil.FailOnDespawnedOrNull(TargetIndex.B);
             toil.defaultDuration = durationMultiplier;
+            toil.AddFinishAction(delegate
+            {
+                if (soul != null)
+                {
+                    Dictionary<ThingDef, int> entries = soul.readablesManager.ReadableProgressEntry;
+                    if (entries.ContainsKey(thingBook.def))
+                    {
+                        entries[thingBook.def] = prog;
+                    }
+                    else
+                    {
+                        Log.Message("Adding Entry");
+                        entries.Add(thingBook.def, prog);
+                    }
+                }
+                thingBook.PostReadEffectSelection(prog, oldprog);
+                thingBook.TexChange = false;
+                this.tempshelf = thing;
+                this.tempbook = thingBook;
+            });
+
             return toil;
         }
         public Toil CarryBookToSeat(Pawn pawn)
@@ -117,7 +185,7 @@ namespace Corruption
                                         bool flag = false;
                                         for (int i = 0; i < 4; i++)
                                         {
-                                            Building edifice = (t.Position + GenAdj.CardinalDirections[i]).GetEdifice();
+                                            Building edifice = (t.Position + GenAdj.CardinalDirections[i]).GetEdifice(this.pawn.Map);
                                             if (edifice != null && (edifice.def.surfaceType == SurfaceType.Eat || edifice.def.surfaceType == SurfaceType.Item))
                                             {
                                                 flag = true;
@@ -132,20 +200,21 @@ namespace Corruption
                     }
                     return result;
                 };
-                Thing thing = GenClosest.ClosestThingReachable(carryBook.actor.Position, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(carryBook.actor), 25f, validator, null, 1);
+                Thing thing = GenClosest.ClosestThingReachable(carryBook.actor.Position, this.pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.OnCell, TraverseParms.For(carryBook.actor), 25f, validator, null, 1);
                 if (thing != null)
                 {
                     position = thing.Position;
-                    Find.Reservations.Reserve(carryBook.actor, thing);
+                    this.pawn.Map.reservationManager.Reserve(carryBook.actor, thing);
                 }
                 else
                 {
                     position = RCellFinder.SpotToChewStandingNear(carryBook.actor, carryBook.actor.CurJob.targetA.Thing);
                 }
-                Find.PawnDestinationManager.ReserveDestinationFor(carryBook.actor, position);
+                this.pawn.Map.pawnDestinationManager.ReserveDestinationFor(carryBook.actor, position);
                 carryBook.actor.pather.StartPath(position, PathEndMode.OnCell);
             };
             carryBook.defaultCompleteMode = ToilCompleteMode.PatherArrival;
+
             return carryBook;
         }
         public Toil PlaceItemToRead(TargetIndex bookInd)
@@ -154,11 +223,11 @@ namespace Corruption
             placeItem.initAction = delegate
             {
                 Pawn actor = placeItem.actor;
-                Thing carriedThing = actor.carrier.CarriedThing;
-                ThingDef_Readables clutterThingDefs = (ThingDef_Readables)carriedThing.def;
-                if (!clutterThingDefs.IsABook)
+                Thing carriedThing = actor.carryTracker.CarriedThing;
+                ThingDef_Readables Readables_Def = (ThingDef_Readables)carriedThing.def;
+                if (!Readables_Def.IsABook)
                 {
-                    Log.Message(actor + " tried to place book for reading but was carrying " + actor.carrier.CarriedThing);
+                    Log.Message(actor + " tried to place book for reading but was carrying " + actor.carryTracker.CarriedThing);
                     actor.jobs.EndCurrentJob(JobCondition.Incompletable);
                 }
                 else
@@ -181,7 +250,7 @@ namespace Corruption
 							}));
                             position = actor.Position;
                         }
-                        if (!position.InBounds())
+                        if (!position.InBounds(this.pawn.Map))
                         {
                             Log.Error(string.Concat(new object[]
 							{
@@ -192,7 +261,7 @@ namespace Corruption
 							}));
                             position = actor.Position;
                         }
-                        if (!actor.carrier.TryDropCarriedThing(position, ThingPlaceMode.Direct, out carriedThing))
+                        if (!actor.carryTracker.TryDropCarriedThing(position, ThingPlaceMode.Direct, out carriedThing))
                         {
                             Log.Error(string.Concat(new object[]
 							{
@@ -214,8 +283,11 @@ namespace Corruption
                         }
                     }
                 }
+
+
             };
             placeItem.defaultCompleteMode = ToilCompleteMode.Instant;
+
             return placeItem;
         }
         public Toil TakeBookFromBookshelf(TargetIndex ind, Pawn reader, TargetIndex bookInd)
@@ -235,14 +307,14 @@ namespace Corruption
                 {
                     ReadableBooks readableBooks = thing as ReadableBooks;
                     readableBooks.currentReader = reader;
-                    actor.carrier.TryStartCarry(readableBooks);
-                    actor.jobs.curJob.targetB = actor.carrier.CarriedThing;
+                    actor.carryTracker.TryStartCarry(readableBooks);
+                    actor.jobs.curJob.targetB = actor.carryTracker.CarriedThing;
                 }
                 if (flag)
                 {
-                    if (Find.Reservations.FirstReserverOf(bookshelf, bookshelf.Faction) == reader)
+                    if (this.pawn.Map.reservationManager.FirstReserverOf(bookshelf, bookshelf.Faction) == reader)
                     {
-                        Find.Reservations.Release(bookshelf, reader);
+                        this.pawn.Map.reservationManager.Release(bookshelf, reader);
                     }
                 }
             };
@@ -258,10 +330,10 @@ namespace Corruption
             {
                 IntVec3 intVec = root + GenAdj.CardinalDirections[i];
                 bool arg_75_0;
-                if (intVec.HasEatSurface())
+                if (intVec.HasEatSurface(this.pawn.Map))
                 {
                     arg_75_0 = (
-                        from t in Find.ThingGrid.ThingsAt(intVec)
+                        from t in this.pawn.Map.thingGrid.ThingsAt(intVec)
                         where t.def == bookDef
                         select t).Any<Thing>();
                 }
@@ -284,11 +356,11 @@ namespace Corruption
                 {
                     IntVec3 intVec2 = root + list[j];
                     bool arg_125_0;
-                    if (intVec2.Walkable())
+                    if (intVec2.Walkable(this.pawn.Map))
                     {
                         arg_125_0 = (
-                            from t in Find.ThingGrid.ThingsAt(intVec2)
-                            where t.def == bookDef
+                        from t in this.pawn.Map.thingGrid.ThingsAt(intVec2)
+                        where t.def == bookDef
                             select t).Any<Thing>();
                     }
                     else

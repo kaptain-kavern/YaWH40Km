@@ -71,7 +71,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Ork</projectileDef>
-        <warmupTicks>150</warmupTicks>
+        <warmupTime>2.4</warmupTime>
         <range>20</range>
         <burstShotCount>4</burstShotCount>
         <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
@@ -114,7 +114,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_LMG</projectileDef>
-        <warmupTicks>120</warmupTicks>
+        <warmupTime>2</warmupTime>
         <range>25</range>
         <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
         <burstShotCount>6</burstShotCount>
@@ -180,7 +180,7 @@
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_OrkRocket</projectileDef>
         <forcedMissRadius>3.0</forcedMissRadius>
-        <warmupTicks>300</warmupTicks>
+        <warmupTime>5</warmupTime>
         <range>40</range>
         <ticksBetweenBurstShots>20</ticksBetweenBurstShots>
         <burstShotCount>3</burstShotCount>
@@ -214,7 +214,7 @@
 
   <ThingDef ParentName="BaseEquipment">
     <defName>Weapon_OrkStikkBomb</defName>
-    <equipmentType>Secondary</equipmentType>
+    <equipmentType>Primary</equipmentType>
     <label>frag grenades</label>
     <description>Crude explosives used by orks.</description>
     <graphicData>
@@ -240,7 +240,7 @@
         <hasStandardCommand>true</hasStandardCommand>
         <range>12.9</range>
         <forcedMissRadius>1.0</forcedMissRadius>
-        <warmupTicks>90</warmupTicks>
+        <warmupTime>1.5</warmupTime>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
         <soundCast>ThrowGrenade</soundCast>
@@ -282,7 +282,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_FlameThrower</projectileDef>
-        <warmupTicks>150</warmupTicks>
+        <warmupTime>2.3</warmupTime>
         <range>6</range>
         <burstShotCount>20</burstShotCount>
         <ticksBetweenBurstShots>3</ticksBetweenBurstShots>

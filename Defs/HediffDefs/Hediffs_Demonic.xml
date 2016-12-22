@@ -5,7 +5,7 @@
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
     <comps>
-      <li>
+      <li Class="HediffCompProperties_Discoverable">
         <compClass>HediffComp_Discoverable</compClass>
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>

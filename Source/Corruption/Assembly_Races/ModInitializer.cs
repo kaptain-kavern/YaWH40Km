@@ -4,6 +4,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Injector40K;
+using System.Collections.Generic;
 
 namespace Corruption
 {
@@ -14,10 +15,14 @@ namespace Corruption
 
         public ModInitializer()
         {
-            Log.Message("Initialized 40k Corruption Mod");
-            this.modInitializerControllerObject = new GameObject("Corruptoid");
-            this.modInitializerControllerObject.AddComponent<ModInitializerBehaviour>();
-            UnityEngine.Object.DontDestroyOnLoad(this.modInitializerControllerObject);
+            LongEventHandler.QueueLongEvent(delegate
+            {
+                Log.Message("Initialized 40k Corruption Mod");
+                this.modInitializerControllerObject = new GameObject("Corruptoid");
+                this.modInitializerControllerObject.AddComponent<ModInitializerBehaviour>();
+                this.modInitializerControllerObject.AddComponent<DoOnMainThread>();
+                UnityEngine.Object.DontDestroyOnLoad(this.modInitializerControllerObject);
+            }, "queueInject", false, null);
         }
 
         protected override void FillTab()
@@ -25,10 +30,23 @@ namespace Corruption
 
         public override void TabTick()
         {
-            Log.Message("TryingTOStart");
+           // Log.Message("TryingTOStart");
         }
     }
 
+    public class DoOnMainThread : MonoBehaviour
+    {
+
+        public static readonly Queue<Action> ExecuteOnMainThread = new Queue<Action>();
+
+        public void Update()
+        {
+            while (ExecuteOnMainThread.Count > 0)
+            {
+                ExecuteOnMainThread.Dequeue().Invoke();
+            }
+        }
+    }
 
 
 

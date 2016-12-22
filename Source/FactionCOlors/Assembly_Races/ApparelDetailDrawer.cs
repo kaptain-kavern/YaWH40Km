@@ -53,7 +53,7 @@ namespace FactionColors
                     }
                     else
                     {
-                        path = this.AppDetail.DetailGraphicPath + "_" + this.apparel.wearer.story.BodyType.ToString();
+                        path = this.AppDetail.DetailGraphicPath + "_" + this.apparel.wearer.story.bodyType.ToString();
                     }
                     detailGraphicInt = GraphicDatabase.Get<Graphic_Multi>(path, ShaderDatabase.CutoutComplex, drawSize, parent.DrawColor, parent.DrawColorTwo);
                 }

@@ -34,7 +34,8 @@
       <max>-100</max>
     </naturalColonyGoodwill>
     <pawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
             <DE_KabaliteWarrior>100</DE_KabaliteWarrior>
             <DE_Wych>20</DE_Wych>

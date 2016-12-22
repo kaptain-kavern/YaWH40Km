@@ -39,9 +39,9 @@ namespace FactionColors
             }
         }
 
-        public override void SpawnSetup()
+        public override void SpawnSetup(Map map)
         {
-            base.SpawnSetup();
+            base.SpawnSetup(map);
             FactionItemDef newDef = this.def as FactionItemDef;
             meshSize = newDef.ItemMeshSize;
             drawPos = this.DrawPos;

@@ -12,11 +12,19 @@ namespace Corruption
     {
         public static List<PawnKindDef> DemonPawnKinds = new List<PawnKindDef>();
 
-        public  Faction ChaosCult;
-        public  Faction DarkEldarKabal;
-        public  Faction EldarWarhost;
-        public  Faction ImperialGuard;
-        public  Faction Orks;
+        public Faction PatronFaction;
+
+        public bool activeRaid;
+        public bool PlayerIsEnemyOfMankind;
+
+        public Pawn Astropath;
+
+        public Faction ChaosCult;
+        public Faction DarkEldarKabal;
+        public Faction EldarWarhost;
+        public Faction ImperialGuard;
+        public Faction Orks;
+        public Faction Mechanicus;
 
         public  Faction AdeptusSororitas;
 
@@ -29,10 +37,27 @@ namespace Corruption
         public override void TickRare()
         {
             base.TickRare();
-            if (GenDate.HourOfDay == 4)
+            for (int i = 0; i < Find.Maps.Count; i++)
+
             {
+                if (Find.Maps[i].lordManager.lords.Any(x => x.LordJob.GetType() == typeof(LordJob_AssaultColony)))
+                {
+                    if (activeRaid == false)
+                    {
+                        activeRaid = true;
+                        if (!PlayerIsEnemyOfMankind && this.PatronFaction != null)
+                        {
+                            this.PatronFactionAssaultTick(this.PatronFaction);
+                        }
+                    }
+                }
+            }
+
+            if (GenLocalDate.HourOfDay(Find.VisibleMap) == 4)
+            {
+                CalculateColonyCorruption();
                 EldarTicksDaily();
-                SororitasTickDaily();
+                CorruptionTicksDaily();
             }
         }
 
@@ -45,11 +70,12 @@ namespace Corruption
             this.ImperialGuard = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.ImperialGuard);
             this.Orks = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.Orks);
             this.AdeptusSororitas = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.AdeptusSororitas);
+            this.Mechanicus = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.Mechanicus);
         }
 
         public void CalculateColonyCorruption()
         {
-            List<Pawn> ColonyPawns = Find.MapPawns.FreeColonistsAndPrisonersSpawned.ToList<Pawn>();
+            List<Pawn> ColonyPawns = Find.VisibleMap.mapPawns.FreeColonistsAndPrisonersSpawned.ToList<Pawn>();
             float totalCorruption = 0f;
             foreach (Pawn cpawn in ColonyPawns)
             {
@@ -59,7 +85,7 @@ namespace Corruption
             ColonyCorruptionAvg = totalCorruption / ColonyPawns.Count;
         }
 
-        public void TickDaily()
+        public void HelpTickReset()
         {
             this.DaysAfterHelp += 1;
             if (this.DaysAfterHelp > 7)
@@ -89,25 +115,37 @@ namespace Corruption
                     EldarWarhost.SetHostileTo(Faction.OfPlayer, true);
                 }
             }
-            if (CheckForSpiritStones() > 0 && !EldarWarhost.HostileTo(Faction.OfPlayer))
+            if (CheckForSpiritStones() > 0)
             {
-                IncidentParms parms = new IncidentParms();
-                parms.faction = EldarWarhost;
-                parms.points = 500;
-                IncidentDef EldarVisitorIncident = DefDatabase<IncidentDef>.AllDefs.First(x => x.defName == "VisitorGroup");
-                EldarVisitorIncident.workerClass = typeof(IncidentWorker_VisitorGroup);
-                EldarVisitorIncident.Worker.TryExecute(parms);
+                if (!EldarWarhost.HostileTo(Faction.OfPlayer))
+                {
+                    IncidentParms parms = new IncidentParms();
+                    parms.faction = EldarWarhost;
+                    parms.points = 500;
+                    IncidentDef EldarVisitorIncident = DefDatabase<IncidentDef>.AllDefs.First(x => x.defName == "VisitorGroup");
+                    EldarVisitorIncident.workerClass = typeof(IncidentWorker_VisitorGroup);
+                    EldarVisitorIncident.Worker.TryExecute(parms);
+                }
+                else
+                {
+                    IncidentParms parms = new IncidentParms();
+                    parms.faction = EldarWarhost;
+                    parms.points = 1000;
+                    IncidentDef EldarRaidIncident = DefDatabase<IncidentDef>.AllDefs.First(x => x.defName == "Assault");
+                    EldarRaidIncident.workerClass = typeof(IncidentWorker_VisitorGroup);
+                    EldarRaidIncident.Worker.TryExecute(parms);
+                }
             }
         }
 
         public int CheckForSpiritStones()
         {
-            List<Thing> list = Find.ListerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways);
+            List<Thing> list = Find.VisibleMap.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways);
             int num = 0;
             for (int i = 0; i < list.Count; i++)
             {
                 Thing thing = list[i];
-                if (!thing.Position.Fogged() && thing.def == CorruptionDefOfs.SpiritStone)
+                if (!thing.Position.Fogged(Find.VisibleMap) && thing.def == CorruptionDefOfs.SpiritStone)
                 {
                     num += 1;
                 }
@@ -115,7 +153,7 @@ namespace Corruption
             return num;
         }
 
-        public void SororitasTickDaily()
+        public void CorruptionTicksDaily()
         {
             if (ColonyCorruptionAvg < 0.4)
             {
@@ -124,28 +162,77 @@ namespace Corruption
                 {
                     EldarWarhost.def.raidCommonality += 10;
                 }
+                AdeptusSororitas.SetHostileTo(Faction.OfPlayer, true);
+                if (this.PatronFaction == AdeptusSororitas)
+                {
+                    this.PatronFaction = null;
+                }
+                if (AdeptusSororitas.def.raidCommonality < 100)
+                {
+                    AdeptusSororitas.def.raidCommonality += 10;
+                }
             }
         }
-        public void SororitasTick()
+
+        public void SororitasAssist()
         {
-            if (!AdeptusSororitas.HostileTo(Faction.OfPlayer) && FactionCanHelp && Rand.Range(0, 100) < 10) 
+            IncidentParms parms = new IncidentParms();
+            parms.faction = AdeptusSororitas;
+            parms.points = 1000;
+            parms.raidArrivalMode = PawnsArriveMode.CenterDrop;
+            parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+            IncidentDef relief = new IncidentDef();
+            relief.workerClass = typeof(IncidentWorker_RaidFriendly);
+            relief.Worker.TryExecute(parms);
+            this.FactionCanHelp = false;
+        }
+
+        public void IGAssist()
+        {
+            IncidentParms parms = new IncidentParms();
+            parms.faction = AdeptusSororitas;
+            parms.points = 1000;
+            parms.raidArrivalMode = PawnsArriveMode.CenterDrop;
+            parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+            IncidentDef relief = new IncidentDef();
+            relief.workerClass = typeof(IncidentWorker_RaidFriendly);
+            relief.Worker.TryExecute(parms);
+            this.FactionCanHelp = false;
+        }
+
+        public void MechanicusAssist()
+        {
+            IncidentParms parms = new IncidentParms();
+            parms.faction = AdeptusSororitas;
+            parms.points = 1000;
+            parms.raidArrivalMode = PawnsArriveMode.CenterDrop;
+            parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
+            IncidentDef relief = new IncidentDef();
+            relief.workerClass = typeof(IncidentWorker_RaidFriendly);
+            relief.Worker.TryExecute(parms);
+            this.FactionCanHelp = false;
+        }
+
+
+        public void PatronFactionAssaultTick(Faction patronFaction)
+        {
+            switch(patronFaction.def.defName)
             {
-                foreach (Lord current in Find.LordManager.lords)
-                {
-                    if (current.CurLordToil is LordToil_AssaultColony && current.faction != AdeptusSororitas && current.faction != ImperialGuard)
+                case ("Mechanicus"):
                     {
-                        IncidentParms parms = new IncidentParms();
-                        parms.faction = AdeptusSororitas;
-                        parms.points = 1000;
-                        parms.raidArrivalMode = PawnsArriveMode.CenterDrop;
-                        parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
-                        IncidentDef relief = new IncidentDef();
-                        relief.workerClass = typeof(IncidentWorker_RaidFriendly);
-                        relief.Worker.TryExecute(parms);
-                        this.FactionCanHelp = false; 
+                        MechanicusAssist();
                         break;
                     }
-                }
+                case ("ImperialGuard"):
+                    {
+                        IGAssist();
+                        break;
+                    }
+                case ("AdeptusSororitas"):
+                    {
+                        SororitasAssist();
+                        break;
+                    }
             }
         }
     }

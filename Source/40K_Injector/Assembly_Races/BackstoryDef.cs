@@ -45,15 +45,15 @@ namespace Injector40K
 
             Backstory b = new Backstory();
             if (!this.title.NullOrEmpty())
-                b.title = this.title;
+                b.SetTitle(this.title);
             else
             {
                 return;
             }
             if (!titleShort.NullOrEmpty())
-                b.titleShort = titleShort;
+                b.SetTitleShort(titleShort);
             else
-                b.titleShort = b.title;
+                b.SetTitleShort(b.Title);
 
             if (!baseDescription.NullOrEmpty())
                 b.baseDesc = baseDescription;
@@ -121,7 +121,6 @@ namespace Injector40K
 
             b.ResolveReferences();
             b.PostLoad();
-            b.uniqueSaveKey = this.UniqueSaveKey();
 
             bool flag = false;
             foreach (var s in b.ConfigErrors(false))

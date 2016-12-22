@@ -59,7 +59,7 @@ namespace Corruption
                         ApparelGraphicRecord bodyOverlay;
                         ApparelGraphicRecord headOverlay;
                         ApparelGraphicRecord hairExtension;
-                        Corruption.AfflictionDrawerUtility.TryGetAfflictionDrawer(pawn, soul, soul.patronInfo.PatronName, pawn.story.BodyType, out bodyOverlay, out headOverlay, out hairExtension);
+                        Corruption.AfflictionDrawerUtility.TryGetAfflictionDrawer(pawn, soul, soul.patronInfo.PatronName, pawn.story.bodyType, out bodyOverlay, out headOverlay, out hairExtension);
                         pawn.Drawer.renderer.graphics.apparelGraphics.Insert(0, bodyOverlay);
                         pawn.Drawer.renderer.graphics.apparelGraphics.Insert(1, headOverlay);
                         if (pawn.Drawer.renderer.graphics.apparelGraphics.FindAll(x => x.sourceApparel.def.apparel.LastLayer == ApparelLayer.Overhead).Count == 1)
@@ -79,7 +79,7 @@ namespace Corruption
             }
             soul = pawn.needs.TryGetNeed<Need_Soul>();
             Graphic headgraphic = AfflictionDrawerUtility.GetHeadGraphic(pawn, patronName);
-            Graphic bodygraphic = AfflictionDrawerUtility.GetBodyOverlay(pawn.story.BodyType, patronName);
+            Graphic bodygraphic = AfflictionDrawerUtility.GetBodyOverlay(pawn.story.bodyType, patronName);
             string hairpath = pawn.Drawer.renderer.graphics.hairGraphic.path;
             Graphic oldhairgraphic = GraphicDatabase.Get<Graphic_Multi>(hairpath, ShaderDatabase.Cutout, Vector2.one, pawn.story.hairColor);
             Apparel temp1 = new Apparel();

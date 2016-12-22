@@ -15,7 +15,7 @@
     <pawnNameMaker>NamerOrkPerson</pawnNameMaker>
     <humanlikeFaction>false</humanlikeFaction>
     <hidden>true</hidden>
-    <canFlee>false</canFlee>
+    <autoFlee>false</autoFlee>
     <hairTags>
       <li>Urban</li>
     </hairTags>
@@ -28,7 +28,8 @@
       <max>-100</max>
     </naturalColonyGoodwill>
     <pawnGroupMakers>
-      <li Class="PawnGroupMaker_Normal">
+      <li>
+        <kindDef>Normal</kindDef>
         <options>
             <OrkGretchin>100</OrkGretchin>
             <OrkBoy>50</OrkBoy>

@@ -9,7 +9,6 @@ namespace Corruption
 {
     public class SituationalThoughtHandlerModded
     {
-
         public SituationalThoughtHandler SituationalThoughtHandler { get; set; }
 
         public ThoughtHandler ThoughtHandler { get; set; }
@@ -96,13 +95,11 @@ namespace Corruption
             ProfilerThreadCheck.BeginSample("CanGetThought()");
             try
             {
-
-                if (this.npawn.MentalState != null && this.tpawn.MentalStateDef.blockNormalThoughts && !def.validWhileInMentalState && !def.IsSocial)
+                if (!def.validWhileDespawned && !this.tpawn.Spawned && !def.IsMemory)
                 {
                     bool result = false;
                     return result;
                 }
-
                 if (def.nullifyingTraits != null)
                 {
                     for (int i = 0; i < def.nullifyingTraits.Count; i++)
@@ -126,6 +123,12 @@ namespace Corruption
                             }
                             else return false;
                         }
+
+                            if (!this.tpawn.story.traits.HasTrait(def.requiredTraits[j]))
+                        {
+                            bool result = false;
+                            return result;
+                        }
                         if (def.RequiresSpecificTraitsDegree && def.requiredTraitsDegree != this.tpawn.story.traits.DegreeOfTrait(def.requiredTraits[j]))
                         {
                             bool result = false;
@@ -133,7 +136,6 @@ namespace Corruption
                         }
                     }
                 }
-
                 if (def.nullifiedIfNotColonist && !this.tpawn.IsColonist)
                 {
                     bool result = false;
@@ -149,11 +151,18 @@ namespace Corruption
                     bool result = false;
                     return result;
                 }
-                if (tpawn == null) Log.Message("No tpawn");
-                if (def == null) Log.Message("No Def");
-
-                if (HasSoulTraitNullyfyingTraits(def, tpawn))
+                            if (HasSoulTraitNullyfyingTraits(def, tpawn))
+                            {
+                                return false;
+                            }
+                if (IsAutomaton(this.tpawn))
                 {
+                    ThoughtDefAutomaton Tdef = new ThoughtDefAutomaton();
+                    if ((Tdef = def as ThoughtDefAutomaton) != null && Tdef.IsAutomatonThought)
+                    {
+                        return true;
+                    }
+
                     return false;
                 }
             }
@@ -161,20 +170,90 @@ namespace Corruption
             {
                 ProfilerThreadCheck.EndSample();
             }
-
-            if (IsAutomaton(this.tpawn))
-            {
-                ThoughtDefAutomaton Tdef = new ThoughtDefAutomaton();
-                if ((Tdef = def as ThoughtDefAutomaton) != null && Tdef.IsAutomatonThought)
-                {
-                    return true;
-                }
-                
-                return false;
-            }
-
             return true;
         }
+
+        public bool CanGetThoughtV2(ThoughtDef def)
+        {
+            ProfilerThreadCheck.BeginSample("CanGetThought()");
+            try
+            {
+                if (!def.validWhileDespawned && !this.npawn.Spawned && !def.IsMemory)
+                {
+                    bool result = false;
+                    return result;
+                }
+                if (def.nullifyingTraits != null)
+                {
+                    for (int i = 0; i < def.nullifyingTraits.Count; i++)
+                    {
+                        if (this.npawn.story.traits.HasTrait(def.nullifyingTraits[i]))
+                        {
+                            bool result = false;
+                            return result;
+                        }
+                    }
+                }
+                if (def.requiredTraits != null)
+                {
+                    for (int j = 0; j < def.requiredTraits.Count; j++)
+                    {
+                        if (!this.tpawn.story.traits.HasTrait(def.requiredTraits[j]))
+         //               {
+         //                   if (def != null && tpawn != null)
+         //                   {
+         //                       return HasSoulTraitRequirements(def, tpawn);
+         //                   }
+         //                   else return false;
+         //               }
+                        if (!this.npawn.story.traits.HasTrait(def.requiredTraits[j]))
+                        {
+                            bool result = false;
+                            return result;
+                        }
+                        if (def.RequiresSpecificTraitsDegree && def.requiredTraitsDegree != this.npawn.story.traits.DegreeOfTrait(def.requiredTraits[j]))
+                        {
+                            bool result = false;
+                            return result;
+                        }
+                    }
+                }
+                if (def.nullifiedIfNotColonist && !this.npawn.IsColonist)
+                {
+                    bool result = false;
+                    return result;
+                }
+                if (ThoughtUtility.IsSituationalThoughtNullifiedByHediffs(def, this.npawn))
+                {
+                    bool result = false;
+                    return result;
+                }
+                if (ThoughtUtility.IsThoughtNullifiedByOwnTales(def, this.npawn))
+                {
+                    bool result = false;
+                    return result;
+                }
+    //            if (HasSoulTraitNullyfyingTraits(def, tpawn))
+    //            {
+    //                return false;
+    //            }
+                if (IsAutomaton(this.tpawn))
+                {
+                    ThoughtDefAutomaton Tdef = new ThoughtDefAutomaton();
+                    if ((Tdef = def as ThoughtDefAutomaton) != null && Tdef.IsAutomatonThought)
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+            }
+            finally
+            {
+                ProfilerThreadCheck.EndSample();
+            }
+            return true;
+        }       
 
         public static void CreateNewSoul(Pawn pepe)
         {

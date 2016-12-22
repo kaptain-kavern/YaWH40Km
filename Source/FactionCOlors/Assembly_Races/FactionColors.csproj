@@ -37,9 +37,8 @@
       <HintPath>..\..\..\Assemblies\AlienRace.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Assembly-CSharp, Version=0.15.6084.24063, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\RimWorld1284Win_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\RimWorldWin_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Corruption, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -58,9 +57,8 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\RimWorld1284Win_Data\Managed\UnityEngine.dll</HintPath>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\RimWorldWin_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -78,11 +76,6 @@
     <Compile Include="CompProperties_ToolUserApparel.cs" />
     <Compile Include="CompRenderToolUserApparel.cs" />
     <Compile Include="CompRestritctedRace.cs" />
-    <Compile Include="Deepstriker.cs" />
-    <Compile Include="Deepstriker_Base.cs" />
-    <Compile Include="Deepstriker_Incoming.cs" />
-    <Compile Include="Deepstriker_Leaving.cs" />
-    <Compile Include="Deepstriker_Utilities.cs" />
     <Compile Include="Deepstrike_Thingdef.cs" />
     <Compile Include="FactionColorsDefOf.cs" />
     <Compile Include="FactionDefUniform.cs" />
@@ -93,7 +86,6 @@
     <Compile Include="ApparelDetailDrawer.cs" />
     <Compile Include="ApparelDetailProps.cs" />
     <Compile Include="FactionUniform.cs" />
-    <Compile Include="IncidentWorker_AirRaidEnemy.cs" />
     <Compile Include="MenuMakerMapRestricted.cs" />
     <Compile Include="ModInitializer.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

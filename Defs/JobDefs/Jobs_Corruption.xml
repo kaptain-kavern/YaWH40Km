@@ -44,4 +44,31 @@
     <alwaysShowWeapon>true</alwaysShowWeapon>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
+
+ <JobDef>
+    <defName>AddBookToLibrary</defName>
+    <driverClass>Corruption.BookStuff.JobDriver_AddBookToLibrary</driverClass>
+    <reportString>Storing a book in a library.</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>SitAndRead</defName>
+    <driverClass>Corruption.BookStuff.JobDriver_ReadBookLong</driverClass>
+    <reportString>Reading a book.</reportString>
+    <joyGainRate>1</joyGainRate>
+    <joyKind>Study</joyKind>
+  </JobDef>
+
+ <JobDef>
+    <defName>SummonDemon</defName>
+    <driverClass>Corruption.JobDriver_Summoning</driverClass>
+    <reportString>Summoning the Dark Powers.</reportString>
+  </JobDef>
+
+ <JobDef>
+    <defName>SummoningTribute</defName>
+    <driverClass>Corruption.JobDriver_SummoningTribute</driverClass>
+    <reportString>Supporting a Dark Ritual.</reportString>
+  </JobDef>
+
 </Defs>

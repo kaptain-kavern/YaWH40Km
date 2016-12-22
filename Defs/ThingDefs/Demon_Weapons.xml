@@ -239,7 +239,7 @@
         <projectileDef>Bullet_LightningStrikeTzeentch</projectileDef>
         <forcedMissRadius>3.5</forcedMissRadius>
         <ai_IsIncendiary>true</ai_IsIncendiary>
-        <warmupTicks>200</warmupTicks>
+        <warmupTime>5</warmupTime>
         <range>35</range>
         <soundCast>InfernoCannon_Fire</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>

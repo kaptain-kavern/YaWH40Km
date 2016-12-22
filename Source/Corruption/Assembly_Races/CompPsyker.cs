@@ -12,7 +12,7 @@ namespace Corruption
 {
     public class CompPsyker : CompUseEffect
     {
-        public PsykerPowerManager PowerManager;
+        public PsykerPowerManager psykerPowerManager;
 
         public bool ShotFired = true;
 
@@ -47,7 +47,7 @@ namespace Corruption
             }
         }
 
-        public TargetInfo CurTarget;
+        public LocalTargetInfo CurTarget;
 
         public PsykerPowerDef curPower;
 
@@ -66,7 +66,7 @@ namespace Corruption
         public override void PostSpawnSetup()
         {
             base.PostSpawnSetup();
-            this.PowerManager = new PsykerPowerManager(this);
+            this.psykerPowerManager = new PsykerPowerManager(this);
         }
 
         public List<PsykerPower> Powers = new List<PsykerPower>();
@@ -116,7 +116,7 @@ namespace Corruption
             this.TicksToCastPercentage = (1 - (this.TicksToCast / this.TicksToCastMax));
         }
 
-        public static Action TryCastPowerAction(Pawn pawn, TargetInfo target, CompPsyker compPsyker, Verb_CastWarpPower verb, PsykerPowerDef psydef)
+        public static Action TryCastPowerAction(Pawn pawn, LocalTargetInfo target, CompPsyker compPsyker, Verb_CastWarpPower verb, PsykerPowerDef psydef)
         {
             Action act = new Action(delegate
             {
@@ -134,12 +134,12 @@ namespace Corruption
                 {
                     job.killIncappedTarget = pawn2.Downed;
                 }
-                pawn.drafter.TakeOrderedJob(job);
+                pawn.jobs.TryTakeOrderedJob(job);
             });
             return act;
         }
 
-        public static Job PsykerJob(PsykerPowerTargetCategory cat, TargetInfo target)
+        public static Job PsykerJob(PsykerPowerTargetCategory cat, LocalTargetInfo target)
         {
             switch(cat)
             {
@@ -186,7 +186,7 @@ namespace Corruption
                 }
                 command_CastPower.icon = allPowers[j].def.uiIcon;
                 string str;
-                if (FloatMenuUtility.GetAttackAction(this.psyker, TargetInfo.Invalid, out str) == null)
+                if (FloatMenuUtility.GetAttackAction(this.psyker, LocalTargetInfo.Invalid, out str) == null)
                 {
                     command_CastPower.Disable(str.CapitalizeFirst() + ".");
                 }
@@ -229,10 +229,11 @@ namespace Corruption
                 yield return command_CastPower;
             }
             yield break;
-        }   
+        }
 
-        public override IEnumerable<Command> CompGetGizmosExtra()
-        {
+
+        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        {        
             if (psyker.Drafted)
             {
                 foreach (Command_Target comm in GetPsykerVerbsNew().ToList())
@@ -276,7 +277,6 @@ namespace Corruption
             Scribe_Collections.LookList<PsykerPower>(ref this.temporaryApparelPowers, "temporaryApparelPowers", LookMode.Deep, new object[0]);
             Scribe_Collections.LookList<PsykerPower>(ref this.temporaryWeaponPowers, "temporaryWeaponPowers", LookMode.Deep, new object[0]);
             Scribe_Collections.LookList<PsykerPower>(ref this.Powers, "Powers", LookMode.Deep, new object[0]);
-            Scribe_Collections.LookList<PsykerPower>(ref this.allPowers, "allPowers", LookMode.Deep, new object[0]);
 
             Scribe_Values.LookValue<int>(ref this.TicksToCast, "TicksToCast", 0, false);
             Scribe_Values.LookValue<int>(ref this.TicksToCastMax, "TicksToCastMax", 1, false);
