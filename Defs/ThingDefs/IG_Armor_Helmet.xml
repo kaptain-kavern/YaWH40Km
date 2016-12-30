@@ -2,7 +2,7 @@
 <ThingDefs>
 
   <ThingDef ParentName="HatBase">
-    <defName>IG_Commissar_cap</defName>
+    <defName>IG_ComCap</defName>
     <label>commissar cap</label>
     <description>The official cap of an Imperial Commissar. The bigger the better.</description>
     <graphicData>

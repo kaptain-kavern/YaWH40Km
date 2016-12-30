@@ -162,48 +162,4 @@
     </costList>
   </ThingDef>
 
-  <ThingDef ParentName="HatBase">
-    <defName>IG_ComCap</defName>
-    <label>commissar cap</label>
-    <description>The cap of Imperial Commissars.</description>
-    <graphicData>
-      <texPath>Things/IG/ComCap/ComCap</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
-    </graphicData>
-    <statBases>
-      <MaxHitPoints>150</MaxHitPoints>
-      <MarketValue>300</MarketValue>
-      <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>0.0</MoveSpeed>
-    </equippedStatOffsets>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <worngraphicPath>Things/IG/ComCap/ComCap</worngraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <commonality>1</commonality>
-      <tags>
-        <li>IG_Commissar</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>IG_Commissar</li>
-      </defaultOutfitTags>
-   </apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(1.00,1.00,1.00,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-  </ThingDef>
-
-
 </ThingDefs>

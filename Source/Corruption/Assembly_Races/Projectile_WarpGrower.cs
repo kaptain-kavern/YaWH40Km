@@ -19,8 +19,9 @@ namespace Corruption
                     Plant p = hitThing as Plant;
                     p.Growth = 1f;
                 }
+
+                this.Map.mapDrawer.SectionAt(hitThing.Position).RegenerateAllLayers();
             }
-            this.Map.mapDrawer.SectionAt(hitThing.Position).RegenerateAllLayers();
         }
     }
 }

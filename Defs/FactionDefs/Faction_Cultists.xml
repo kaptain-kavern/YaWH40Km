@@ -13,6 +13,7 @@
     <canSiege>true</canSiege>
     <canStageAttacks>true</canStageAttacks>
     <leaderTitle>Leader</leaderTitle>
+    <hidden>true</hidden>
     <expandingIconTexture>World/WorldObjects/Expanding/Town</expandingIconTexture>
     <colorSpectrum>
       <li>(0.64, 0.42, 0.36)</li>

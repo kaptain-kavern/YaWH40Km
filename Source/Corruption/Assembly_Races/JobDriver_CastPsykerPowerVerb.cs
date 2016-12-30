@@ -31,7 +31,7 @@ namespace Corruption
             Verb_CastWarpPower verb = pawn.CurJob.verbToUse as Verb_CastWarpPower;
 
             Find.Targeter.targetingVerb = verb;
-            yield return Toils_Combat.CastVerb(TargetIndex.A, false).FailOn(() => !CurToil.actor.Position.InHorDistOf(TargetA.Thing.Position, verb.warpverbprops.range));
+            yield return Toils_Combat.CastVerb(TargetIndex.A, false);
             compPsyker.IsActive = true;
             this.AddFinishAction(() =>
             {

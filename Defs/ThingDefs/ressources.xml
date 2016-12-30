@@ -23,50 +23,6 @@
 		<pathCost>15</pathCost>
 	</ThingDef>
 
-
-
-  <ThingDef ParentName="ResourceBase">
-    <defName>Wraithbone</defName>
-    <label>wraithbone</label>
-    <description>Strange Eldar material. May be of use somehow?</description>
-    <graphicData>
-      <texPath>Things/Eldar/Ressources</texPath>
-      <graphicClass>Graphic_Random</graphicClass>
-      <color>(255,255,255)</color>
-    </graphicData>
-    <soundInteract>Metal_Drop</soundInteract>
-    <soundDrop>Metal_Drop</soundDrop>
-    <statBases>
-      <MarketValue>200.0</MarketValue>
-      <SharpDamageMultiplier>1</SharpDamageMultiplier>
-      <BluntDamageMultiplier>1</BluntDamageMultiplier>
-    </statBases>
-    <useHitPoints>false</useHitPoints>
-    <thingCategories>
-      <li>ResourcesRaw</li>
-    </thingCategories>
-    <stuffProps>
-      <categories>
-        <li>Metallic</li>
-      </categories>
-      <constructEffect>ConstructMetal</constructEffect>
-      <color>(220,210,178)</color>
-      <soundImpactStuff>BulletImpactMetal</soundImpactStuff>
-      <soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
-      <soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>
-      <statFactors>
-        <MaxHitPoints>1</MaxHitPoints>
-        <Beauty>3</Beauty>
-        <Flammability>0.2</Flammability>
-        <MeleeWeapon_Cooldown>0.7</MeleeWeapon_Cooldown>
-      </statFactors>
-      <smeltable>false</smeltable>
-      <commonality>0.25</commonality>
-    </stuffProps>
-    <intricate>true</intricate>
-  </ThingDef>
-  
-
   <ThingDef ParentName="ResourceBase">
     <defName>Wraithbone</defName>
     <label>wraithbone</label>
