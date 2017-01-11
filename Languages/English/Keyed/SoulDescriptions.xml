@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
+
+
   <CulturalToleranceNeutralDesc>{0} doesn't really care about anyones origin.</CulturalToleranceNeutralDesc>
 
   <CulturalToleranceXenophilelDesc>{0} appreciates intelligent Xenos and loves having them around. </CulturalToleranceXenophilelDesc>
 
   <CulturalToleranceXenophobeDesc>{0} doesn't like Xenos and will be unhappy if forced to live with them.</CulturalToleranceXenophobeDesc>
 
+  <CulturalToleranceStat>Cultural Tolerance</CulturalToleranceStat>
+
+  <PurityOfSoulStat>Purity of Soul</PurityOfSoulStat>
+
+  <Soul>Soul</Soul>
+
+  <PawnAlignmentButtonDescription>Click to open the pawn alignment window</PawnAlignmentButtonDescription>
+
   <PsykerLevelDescOmega>{0} is a psychic blank, unaffected by the touch of the warp, yet shunned by normal beings for their unnatural aura.</PsykerLevelDescOmega>
 
+  <PsykerLevelDescOmicron>{0} shows latent psychic talents, barely noticable by others.</PsykerLevelDescOmicron>
 
   <PsykerLevelDescSigma>{0} shows psy-inertia, being less affected by the warp than the average being.</PsykerLevelDescSigma>
 

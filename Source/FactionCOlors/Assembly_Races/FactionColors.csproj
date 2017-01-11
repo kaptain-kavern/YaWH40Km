@@ -72,10 +72,8 @@
     <Compile Include="CamouflageColors.cs" />
     <Compile Include="CompFactionColors.cs" />
     <Compile Include="CompProperties_FactionColors.cs" />
-    <Compile Include="CompProperties_RestrictedRace.cs" />
     <Compile Include="CompProperties_ToolUserApparel.cs" />
     <Compile Include="CompRenderToolUserApparel.cs" />
-    <Compile Include="CompRestritctedRace.cs" />
     <Compile Include="Deepstrike_Thingdef.cs" />
     <Compile Include="FactionColorsDefOf.cs" />
     <Compile Include="FactionDefUniform.cs" />

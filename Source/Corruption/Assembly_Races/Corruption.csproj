@@ -122,6 +122,7 @@
     <Compile Include="LordToilData_DemonSummoner.cs" />
     <Compile Include="LordToil_DemonSummoner.cs" />
     <Compile Include="MainTabWindow_Alignment.cs" />
+    <Compile Include="MainTabWindow_InspectModded.cs" />
     <Compile Include="MapCondition_CorruptiveDrone.cs" />
     <Compile Include="MentalState_KhorneKillWeak.cs" />
     <Compile Include="ModInitializer.cs" />

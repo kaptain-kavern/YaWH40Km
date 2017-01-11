@@ -16,10 +16,10 @@ namespace Corruption
             float num = 0f;
             int psykerPower = (int)psycomp.soul.PsykerPowerLevel;
             int spellPower = (int)spellPowerLevel;
-            num = 0.2f - (Mathf.Pow(spellPower - psykerPower, 2))/100;
-            if (num < 0.01f)
+            num = 0.1f - (Mathf.Pow(psykerPower - spellPower, 2))/100;
+            if (num < 0.001f)
             {
-                num = 0.01f;
+                num = 0.001f;
             }
             return num;
 

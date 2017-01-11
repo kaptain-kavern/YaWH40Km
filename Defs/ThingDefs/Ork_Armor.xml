@@ -64,6 +64,9 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
+      <li Class="AlienRace.CompProperties_RestrictedRace">
+        <RestrictedToRace>Alien_Ork</RestrictedToRace>
+      </li>
     </comps>
   </ThingDef>
 
@@ -171,6 +174,9 @@
       </options>
     </colorGenerator>
     <comps>
+      <li Class="AlienRace.CompProperties_RestrictedRace">
+        <RestrictedToRace>Alien_Ork</RestrictedToRace>
+      </li>
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
@@ -245,6 +251,11 @@
         <li>OrkNob</li>
       </defaultOutfitTags>
     </apparel>
+    <comps>
+      <li Class="AlienRace.CompProperties_RestrictedRace">
+        <RestrictedToRace>Alien_Ork</RestrictedToRace>
+      </li>
+    </comps>
     <colorGenerator Class="ColorGenerator_Options">
       <options>
         <li>
@@ -306,6 +317,11 @@
         <li>OrkKommando</li>
       </defaultOutfitTags>
     </apparel>
+    <comps>
+      <li Class="AlienRace.CompProperties_RestrictedRace">
+        <RestrictedToRace>Alien_Ork</RestrictedToRace>
+      </li>
+    </comps>
     <colorGenerator Class="ColorGenerator_Options">
       <options>
         <li>
@@ -360,6 +376,9 @@
       </options>
     </colorGenerator>
     <comps>
+      <li Class="AlienRace.CompProperties_RestrictedRace">
+        <RestrictedToRace>Alien_Ork</RestrictedToRace>
+      </li>
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>

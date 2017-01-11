@@ -14,7 +14,6 @@ namespace Corruption
 
         public override Job TryGiveJob(Pawn pawn)
         {
-            Log.Message("TryingToHostsermon");
             if (PawnUtility.WillSoonHaveBasicNeed(pawn))
             {
                 return null;

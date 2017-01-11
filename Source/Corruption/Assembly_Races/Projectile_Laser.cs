@@ -78,6 +78,7 @@ namespace Corruption
         /// </summary>
         public override void Tick()
         {
+          //  Log.Message("Tickng Ma Lazor");
             // Directly call the Projectile base Tick function (we want to completely override the Projectile Tick() function).
             //((ThingWithComponents)this).Tick(); // Does not work...
             try
@@ -114,11 +115,9 @@ namespace Corruption
                     if (this.launcher is Pawn)
                     {
                         Pawn launcherPawn = this.launcher as Pawn;
-                        if ((launcherPawn.TryGetComp<CompPsyker>().IsActive) && ((launcherPawn.stances.curStance is Stance_Warmup) == false)
-                            && ((launcherPawn.stances.curStance is Stance_Cooldown) == false)
-                            || ((launcherPawn.Dead) == true) && !this.Destroyed)
+                        if ((((launcherPawn.Dead) == true) && !this.Destroyed))
                         {
-                            this.Destroy(DestroyMode.Vanish);
+                                this.Destroy(DestroyMode.Vanish);                            
                         }
                     }
                 }

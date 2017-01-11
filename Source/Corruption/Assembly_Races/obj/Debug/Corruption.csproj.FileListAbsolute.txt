@@ -19,3 +19,5 @@ C:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Source\Corruption\Assemb
 C:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km\Assemblies\Corruption.dll
 C:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km-Public_A16\Assemblies\Corruption.dll
 C:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km-Public_A16\Source\Corruption\Assembly_Races\obj\Debug\Corruption.dll
+D:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km-Public_A16\Assemblies\Corruption.dll
+D:\Spiele\Steam\SteamApps\common\RimWorld\Mods\YaWH40Km-Public_A16\Source\Corruption\Assembly_Races\obj\Debug\Corruption.dll

@@ -23,5 +23,16 @@ namespace Corruption
                 this.Map.mapDrawer.SectionAt(hitThing.Position).RegenerateAllLayers();
             }
         }
+
+        public override void Tick()
+        {
+            try
+            {
+                base.Tick();
+            }
+            catch
+            {
+            }
+        }
     }
 }

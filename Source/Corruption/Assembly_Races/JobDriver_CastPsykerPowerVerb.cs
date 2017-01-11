@@ -38,9 +38,8 @@ namespace Corruption
                 Log.Message("FinishACtion");
                 if (compPsyker.IsActive)
                 {
-               //     PsykerUtility.PsykerShockEvents(compPsyker, compPsyker.curPower.PowerLevel);
+                    PsykerUtility.PsykerShockEvents(compPsyker, compPsyker.curPower.PowerLevel);
                 }
-                compPsyker.IsActive = false;
                 compPsyker.ShotFired = true;
             });
         }

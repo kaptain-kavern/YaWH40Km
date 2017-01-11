@@ -59,7 +59,7 @@
       </defaultOutfitTags>
     </apparel>
     <comps>
-      <li Class="FactionColors.CompProperties_RestrictedRace">
+      <li Class="AlienRace.CompProperties_RestrictedRace">
         <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
       </li>
       <li Class="FactionColors.CompProperties_FactionColor">
@@ -133,7 +133,7 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
-      <li Class="FactionColors.CompProperties_RestrictedRace">
+      <li Class="AlienRace.CompProperties_RestrictedRace">
         <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
       </li>
     </comps>
@@ -195,7 +195,7 @@
       </defaultOutfitTags>
     </apparel>
     <comps>
-      <li Class="FactionColors.CompProperties_RestrictedRace">
+      <li Class="AlienRace.CompProperties_RestrictedRace">
         <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
       </li>
     </comps>
@@ -403,7 +403,7 @@
       </options>
     </colorGenerator>
     <comps>
-      <li Class="FactionColors.CompProperties_RestrictedRace">
+      <li Class="AlienRace.CompProperties_RestrictedRace">
         <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
       </li>
     </comps>
@@ -469,7 +469,7 @@
       </options>
     </colorGenerator>
     <comps>
-      <li Class="FactionColors.CompProperties_RestrictedRace">
+      <li Class="AlienRace.CompProperties_RestrictedRace">
         <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
       </li>
     </comps>

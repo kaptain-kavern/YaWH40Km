@@ -309,28 +309,28 @@
   <ThingDef ParentName="BuildingBase">
     <thingClass>Building</thingClass>
     <defName>SkullOnPike</defName>
-    <label>Skull on pike</label>
+    <label>Pike Mounted Skull</label>
     <description>The skull of a human being mounted on a spike. A very inviting view for visitors.</description>
     <graphicData>
       <texPath>Things/Worship/SkullOnPike</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>(1,2)</drawSize>
+      <drawSize>(1,1)</drawSize>
       <damageData>
         <rect>(0.35,0.35,0.3,0.3)</rect>
       </damageData>
     </graphicData>
     <minifiedDef>MinifiedFurniture</minifiedDef>
-    <staticSunShadowHeight>0.20</staticSunShadowHeight>
+    <castEdgeShadows>true</castEdgeShadows>
     <altitudeLayer>Building</altitudeLayer>
     <socialPropernessMatters>false</socialPropernessMatters>
-    <fillPercent>0.65</fillPercent>
+    <fillPercent>0.05</fillPercent>
     <statBases>
       <MaxHitPoints>350</MaxHitPoints>
       <WorkToMake>100</WorkToMake>
       <Flammability>1.0</Flammability>
-      <Beauty>10</Beauty>
-      <EntertainmentStrengthFactor>1</EntertainmentStrengthFactor>
+      <Beauty>-10</Beauty>
+      <EntertainmentStrengthFactor>-1</EntertainmentStrengthFactor>
     </statBases>
     <size>(1,1)</size>
     <stuffCategories>
@@ -349,7 +349,52 @@
     </costList>
     <pathCost>50</pathCost>
     <passability>PassThroughOnly</passability>
-    <designationCategory>Security</designationCategory>
+    <designationCategory>Worship</designationCategory>
   </ThingDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <thingClass>Building</thingClass>
+    <defName>SkullOnWall</defName>
+    <label>Wall Mounted Skull</label>
+    <description>The skull of a human being mounted on a wall. A very inviting view for visitors.</description>
+    <graphicData>
+      <texPath>Things/Worship/SkullOnWall</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>Cutout</shaderType>
+      <drawSize>(1,1)</drawSize>
+      <damageData>
+        <rect>(0.35,0.35,0.3,0.3)</rect>
+      </damageData>
+    </graphicData>
+    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <castEdgeShadows>true</castEdgeShadows>
+    <altitudeLayer>ItemImportant</altitudeLayer>
+    <socialPropernessMatters>false</socialPropernessMatters>
+    <fillPercent>0.05</fillPercent>
+    <building>
+	 <isInert>true</isInert>
+      <isEdifice>false</isEdifice>
+    </building>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <WorkToMake>100</WorkToMake>
+      <Flammability>1.0</Flammability>
+      <Beauty>2</Beauty>
+      <EntertainmentStrengthFactor>-1</EntertainmentStrengthFactor>
+    </statBases>
+    <size>(1,1)</size>
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+    </comps>
+    <costList>
+      <HumanSkull>1</HumanSkull>
+    </costList>
+    <pathCost>50</pathCost>
+    <passability>PassThroughOnly</passability>
+    <designationCategory>Worship</designationCategory>
+  </ThingDef>
+
 
 </ThingDefs>

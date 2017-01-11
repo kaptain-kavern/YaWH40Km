@@ -20,6 +20,14 @@ namespace Corruption
 
         public CulturalToleranceCategory culturalTolerance;
 
+        public override Vector2 RequestedTabSize
+        {
+            get
+            {
+                return new Vector2(800f, 600f);
+            }
+        }
+
         private string culturalToleranceToolTip(CulturalToleranceCategory cat)
         {
             switch(cat)
@@ -59,6 +67,13 @@ namespace Corruption
                 case (PsykerPowerLevel.Omega):
                     {
                         return "PsykerLevelDescOmega".Translate(new object[]
+                        {
+                            SelPawn.NameStringShort
+                        });
+                    }
+                case (PsykerPowerLevel.Omicron):
+                    {
+                        return "PsykerLevelDescOmicron".Translate(new object[]
                         {
                             SelPawn.NameStringShort
                         });
@@ -178,19 +193,14 @@ namespace Corruption
             }
         }
 
-        protected Pawn SelPawn
-        {
-            get
-            {
-                return SelThing as Pawn;
-            }
-        }
+        protected Pawn SelPawn;
 
         private Need_Soul soul;
 
         public override void PreOpen()
         {
             base.PreOpen();
+            this.SelPawn = this.SelThing as Pawn;
             if (SelPawn != null)
             {
                 soul = SelPawn.needs.TryGetNeed<Need_Soul>();
@@ -205,6 +215,14 @@ namespace Corruption
         
         public override void DoWindowContents(Rect inRect)
         {
+            if (this.SelThing == null)
+            {
+                this.Close();
+            }
+            if (Find.Selector.SingleSelectedThing as Pawn != this.SelPawn)
+            {
+                this.PreOpen();
+            }
             this.SetInitialSizeAndPosition();
             Rect rect2 = inRect.ContractedBy(10f);
             rect2.height = 30f;

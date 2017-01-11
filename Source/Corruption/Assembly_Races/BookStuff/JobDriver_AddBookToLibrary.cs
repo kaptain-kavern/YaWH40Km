@@ -38,6 +38,7 @@ namespace Corruption.BookStuff
             {
             });
             yield return toil2;
+            this.pawn.CurJob.count = 1;
             yield return Toils_Haul.StartCarryThing(TargetIndex.A);
             Toil toil3 = Toils_Haul.CarryHauledThingToCell(TargetIndex.B);
             toil3.AddFinishAction(delegate

@@ -64,14 +64,24 @@ namespace Corruption
         public void Start()
         {
             Log.Message("Initiated Corruption Detours.");
-            MethodInfo method3 = typeof(RimWorld.ThoughtHandler).GetMethod("CanGetThought", new Type[] { typeof(ThoughtDef) });
-            MethodInfo method4 = typeof(Corruption.SituationalThoughtHandlerModded).GetMethod("CanGetThought", new Type[] { typeof(ThoughtDef) });
-            
+            MethodInfo method1a = typeof(RimWorld.ThoughtHandler).GetMethod("CanGetThought", new Type[] { typeof(ThoughtDef) });
+            MethodInfo method1b = typeof(Corruption.SituationalThoughtHandlerModded).GetMethod("CanGetThought", new Type[] { typeof(ThoughtDef) });
+
+            MethodInfo method2a = typeof(RimWorld.MainTabWindow_Inspect).GetMethod("DoInspectPaneButtons", BindingFlags.Public | BindingFlags.Instance);
+            MethodInfo method2b = typeof(Corruption.MainTabWindow_InspectModded).GetMethod("DoInspectPaneButtons", BindingFlags.Public | BindingFlags.Instance);
+
+   //         Type t = typeof(MainTabWindow_Inspect).Assembly.GetType("RimWorld.InspectPaneFiller");
+   //         if (t == null) Log.Message("NoType");
+
+   //         MethodInfo method3a = t.GetMethod("DrawMood", BindingFlags.NonPublic | BindingFlags.Static);
+   //         MethodInfo method3b = typeof(Corruption.MainTabWindow_InspectModded).GetMethod("DrawMood", BindingFlags.NonPublic | BindingFlags.Static);
+
             try
             {
-                if (method3 == null) Log.Message("No Ori");
-                if (method4 == null) Log.Message("No Src");
-                Detours.TryDetourFromTo(method3, method4);
+                Detours.TryDetourFromTo(method1a, method1b);
+                Detours.TryDetourFromTo(method2a, method2b);
+    //            Detours.TryDetourFromTo(method3a, method3b);
+    
 
                 Log.Message("Corruption methods detoured!");
             }

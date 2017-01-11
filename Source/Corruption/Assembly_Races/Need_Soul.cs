@@ -101,6 +101,18 @@ namespace Corruption
 
         public override void SetInitialLevel()
         {
+            FieldInfo info = typeof(StatsReportUtility).GetField("cachedDrawEntries", BindingFlags.NonPublic | BindingFlags.Static);
+            if (info != null)
+            {
+                List<StatDrawEntry> entries =  info.GetValue(this.pawn) as List<StatDrawEntry>;
+                if (!entries.NullOrEmpty())
+                {
+                    entries.Add(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "Patron", this.Patron.ToString(), 3));
+                    entries.Add(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "CulturalToleranceStat".Translate(), this.Patron.ToString(), 2));
+                    entries.Add(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "PurityOfSoulStat".Translate(), this.CurLevel.ToString(), 1));
+                }
+            }
+
             InitiatePsykerComp();
  //           try
  //           {
@@ -406,7 +418,7 @@ namespace Corruption
                 return pawn.needs.TryGetNeed<Need_Soul>().Patron.ToString();
             }
         }
-
+        
         public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1F, bool drawArrows = true, bool doTooltip = true)            
         {
             if (rect.height > 70f)

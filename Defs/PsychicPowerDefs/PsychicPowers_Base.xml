@@ -234,7 +234,7 @@
    <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>Laser</damageDef>
-		<damageAmountBase>5</damageAmountBase>
+		<damageAmountBase>2</damageAmountBase>
 		<speed>125</speed>
    </projectile>
     <preFiringInitialIntensity>0</preFiringInitialIntensity>
@@ -246,7 +246,7 @@
     <StartFireChance>0.000</StartFireChance>
  </ThingDef>
 
-  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower" Name="LighntingArcBase">
     <defName>PsykerPower_WarpBolt</defName>
     <label>Lighnting Arc</label>
     <uiIconPath>UI/Psyker/Lightning</uiIconPath>
@@ -258,7 +258,7 @@
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpBolt</projectileDef>
         <warmupTime>1</warmupTime>
-        <TicksToRecharge>30</TicksToRecharge>
+        <TicksToRecharge>600</TicksToRecharge>
         <range>24</range>
         <burstShotCount>5</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
@@ -269,7 +269,6 @@
         <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
     </MainVerb>
   </ThingDef>
-
 
   <!-- =========================Warpfire===================================== -->
 

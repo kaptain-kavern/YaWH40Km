@@ -103,7 +103,7 @@ namespace Corruption
 
         protected override bool TryCastShot()
         {
-            Log.Message("TryCastShot");
+       //     Log.Message("TryCastShot");
             this.TargetsAoE.Clear();
             UpdateTargets();
             int burstshots = this.ShotsPerBurst;
@@ -111,10 +111,10 @@ namespace Corruption
             {
                 this.TargetsAoE.RemoveRange(0, TargetsAoE.Count - 1);
             }
-            Log.Message("Targeting: " + TargetsAoE.Count.ToString());
+   //         Log.Message("Targeting: " + TargetsAoE.Count.ToString());
             for (int i = 0; i < TargetsAoE.Count; i++)
             {
-                Log.Message(TargetsAoE[i].Thing.Label);
+       //         Log.Message(TargetsAoE[i].Thing.Label);
                 for (int j = 0; j < burstshots; j++)
                 {
                     ShootLine shootLine;
@@ -144,7 +144,7 @@ namespace Corruption
                             {
                                 projectile.InterceptWalls = true;
                             }
-                            Log.Message("LaunchingIntoWild");
+              //              Log.Message("LaunchingIntoWild");
                             projectile.Launch(this.caster, drawPos, shootLine.Dest, this.ownerEquipment);
                             return true;
                         }
@@ -161,7 +161,7 @@ namespace Corruption
                                 {
                                     projectile.InterceptWalls = true;
                                 }
-                                Log.Message("LaunchingINtoCover");
+                    //            Log.Message("LaunchingINtoCover");
                                 projectile.Launch(this.caster, drawPos, randomCoverToMissInto, this.ownerEquipment);
                                 return true;
                             }
@@ -177,13 +177,14 @@ namespace Corruption
                     }
                     if (TargetsAoE[i].Thing != null)
                     {
-                        Log.Message("Targeting: " + TargetsAoE[i].Thing.Label);
+        //                Log.Message("Release Shot at: " + TargetsAoE[i].Thing.Label);
 
                         if (this.warpverbprops.DrawProjectileOnTarget)
                         {
                             Projectile_WarpPower wprojectile = projectile as Projectile_WarpPower;
                             if (wprojectile != null)
                             {
+          //                      Log.Message("Launched Warpprojectile");
                                 wprojectile.selectedTarget = TargetsAoE[i].Thing;
                                 wprojectile.Caster = this.CasterPawn;
                                 wprojectile.Launch(this.caster, drawPos, TargetsAoE[i]);
@@ -191,6 +192,7 @@ namespace Corruption
                         }
                         else
                         {
+              //              Log.Message("Launched Projectile");
                             projectile.Launch(this.caster, drawPos, TargetsAoE[i]);
                         }
                     }
@@ -202,7 +204,7 @@ namespace Corruption
                             wprojectile.targetVec = shootLine.Dest.ToVector3();
                             wprojectile.Launch(this.caster, drawPos, TargetsAoE[i]);
                         }
-                        Log.Message("LaunchingWild");
+     //                   Log.Message("LaunchingWild");
                         projectile.Launch(this.caster, drawPos, shootLine.Dest);
                     }
 

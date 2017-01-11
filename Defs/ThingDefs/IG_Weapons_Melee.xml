@@ -102,10 +102,10 @@
 
   <!-- ============================================================== -->
   
-  <ThingDef ParentName="BaseMeleeWeapon_IG_Blunt">
-    <defName>MeleeWeapon_ImpPowerStaff</defName>
-    <label>Imperial Force Staff</label>
-    <description>A Force Weapon shaped into a staff. In the hands of a mere mortal, this is a simple blunt weapon, however a competent psyker may turn this into a weapon of terrifying strength.</description>
+  <ThingDef ParentName="BaseMeleeWeapon_IG_Blunt" Abstract="true" Name="ImpPowerStaffBase">
+    <defName>MeleeWeapon_ImpPowerStaffBase</defName>
+    <label>Imperial Staff</label>
+    <description>A simple staff of office.</description>
 	<graphicData>
 		<texPath>Things/IG/Weapons/ForceStaff</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -129,13 +129,57 @@
         <meleeDamageDef>Blunt</meleeDamageDef>
       </li>
     </verbs>
+  </ThingDef>
+
+  <ThingDef ParentName="ImpPowerStaffBase">
+    <defName>MeleeWeapon_ImpPowerStaffLightning</defName>
+    <label>Imperial Force Staff</label>
+    <description>A Force Weapon shaped into a staff. In the hands of a mere mortal, this is a simple blunt weapon, however a competent psyker may turn this into a weapon of terrifying strength.
+
+Unlockable Power: Lightning Arc</description>
     <comps>
       <li Class="Corruption.CompProperties_SoulItem">
         <compClass>Corruption.CompSoulItem</compClass>
-        <Category>Corruption</Category>
+        <Category>Redemption</Category>
         <GainRate>0.1</GainRate>
 	    <UnlockedPsykerPowers>
 	      <li>PsykerPower_WarpBolt</li>
+	    </UnlockedPsykerPowers>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="ImpPowerStaffBase">
+    <defName>MeleeWeapon_ImpPowerStaffFire</defName>
+    <label>Imperial Force Staff</label>
+    <description>A Force Weapon shaped into a staff. In the hands of a mere mortal, this is a simple blunt weapon, however a competent psyker may turn this into a weapon of terrifying strength.
+
+Unlockable Power: Warp Flame</description>
+    <comps>
+      <li Class="Corruption.CompProperties_SoulItem">
+        <compClass>Corruption.CompSoulItem</compClass>
+        <Category>Redemption</Category>
+        <GainRate>0.1</GainRate>
+	    <UnlockedPsykerPowers>
+	      <li>PsykerPower_FireLance</li>
+	    </UnlockedPsykerPowers>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="ImpPowerStaffBase">
+    <defName>MeleeWeapon_ImpPowerStaffBlinding</defName>
+    <label>Imperial Force Staff</label>
+    <description>A Force Weapon shaped into a staff. In the hands of a mere mortal, this is a simple blunt weapon, however a competent psyker may turn this into a weapon of terrifying strength.
+
+Unlockable Power: Blinding Blast</description>
+    <comps>
+      <li Class="Corruption.CompProperties_SoulItem">
+        <compClass>Corruption.CompSoulItem</compClass>
+        <Category>Redemption</Category>
+        <GainRate>0.1</GainRate>
+	    <UnlockedPsykerPowers>
+	      <li>PsykerPower_BlindingBlast</li>
 	    </UnlockedPsykerPowers>
       </li>
     </comps>

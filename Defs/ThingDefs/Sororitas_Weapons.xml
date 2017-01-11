@@ -44,7 +44,7 @@
   
   <!-- ============================================================== -->
   
-  <ThingDef ParentName="BaseMeleeWeaponNoTag">
+  <ThingDef ParentName="BaseMeleeWeaponNoTag" Name="Sororitas_PowerSword">
     <defName>Sororitas_PowerSword</defName>
     <label>Adeptus Sororitas Power Sword</label>
     <description>A Power Sword is a Power Weapon that has been shaped into a sword of varying lengths and designs crafted from one of any number of different materials, though usually Adamantium. When its power cell is activated, often by touching a control located on the hilt, the blade is sheathed in a lethal corona of disruptive energy. This energy field allows the blade to carve through flesh, bone and most forms of armour plate alike, making a Power Sword a highly effective Imperial close combat weapon. Power Swords are used by all members of the Imperial armed forces, including the troops of the Imperial Guard and the Space Marines of the Adeptus Astartes. Xenos races such as the Eldar, their evil kin, the Dark Eldar and the Necrons are also known to make use of such weapons.</description>
@@ -82,5 +82,6 @@
       </li>
     </comps>
   </ThingDef> 
+
   
  </ThingDefs>

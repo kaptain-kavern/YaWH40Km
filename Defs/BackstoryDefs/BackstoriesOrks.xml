@@ -281,7 +281,6 @@
     <bodyTypeFemale>Thin</bodyTypeFemale>
     <slot>Adulthood</slot>
     <workDisables>
-      <li>ManualSkilled</li>
     </workDisables>
     <skillGains>
       <li>

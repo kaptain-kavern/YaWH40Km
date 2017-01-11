@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
+  <PawnAlignment>Pawn Alignment</PawnAlignment>
+ 
   <ReligiousTraits>Religious Traits</ReligiousTraits>
 
   <SoulStatus>State of Soul</SoulStatus>

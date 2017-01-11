@@ -2,6 +2,59 @@
 <Defs>
 
   <Injector40K.BackstoryDef>
+    <defName>MecForgeborn</defName>
+    <title>Forgeworld urchin</title>
+    <baseDescription>NAME grew up on a forge-world. Through hard work and discipline HE earned entry into the ranks of the Adeptus Mechanicus.</baseDescription>
+    <bodytypeMale>Male</bodytypeMale>
+    <bodyTypeFemale>Female</bodyTypeFemale>
+    <slot>Childhood</slot>
+    <workDisables>
+    </workDisables>
+    <skillGains>
+      <li>
+        <defName>Crafting</defName>
+        <amount>4</amount>
+      </li>
+      <li>
+        <defName>Social</defName>
+        <amount>-2</amount>
+      </li>
+    </skillGains>
+    <spawnCategories>
+      <li>Techpriest</li>
+    </spawnCategories>
+  </Injector40K.BackstoryDef>
+
+  <Injector40K.BackstoryDef>
+    <defName>MecProdigy</defName>
+    <title>Tech-Prodigy</title>
+    <baseDescription>NAME showed exceptional talent at understanding, creating and maintaning complex machinery from an early age, awarding him a way into the upper ranks of the Adeptus Mechanicus.</baseDescription>
+    <bodytypeMale>Male</bodytypeMale>
+    <bodyTypeFemale>Female</bodyTypeFemale>
+    <slot>Childhood</slot>
+    <workDisables>
+    </workDisables>
+    <skillGains>
+      <li>
+        <defName>Crafting</defName>
+        <amount>2</amount>
+      </li>
+      <li>
+        <defName>Social</defName>
+        <amount>-2</amount>
+      </li>
+      <li>
+        <defName>Research</defName>
+        <amount>2</amount>
+      </li>
+    </skillGains>
+    <spawnCategories>
+      <li>Techpriest</li>
+    </spawnCategories>
+  </Injector40K.BackstoryDef>
+
+
+  <Injector40K.BackstoryDef>
     <defName>MecArtisan</defName>
     <title>Artisan</title>
     <titleShort>Artisan</titleShort>
@@ -13,12 +66,20 @@
     </workDisables>
     <skillGains>
       <li>
+        <defName>Melee</defName>
+        <amount>3</amount>
+      </li>
+      <li>
+        <defName>Shooting</defName>
+        <amount>3</amount>
+      </li>
+      <li>
         <defName>Crafting</defName>
-        <amount>1</amount>
+        <amount>4</amount>
       </li>
       <li>
         <defName>Construction</defName>
-        <amount>4</amount>
+        <amount>8</amount>
       </li>
       <li>
         <defName>Social</defName>
@@ -46,8 +107,16 @@
     </workDisables>
     <skillGains>
       <li>
+        <defName>Melee</defName>
+        <amount>3</amount>
+      </li>
+      <li>
+        <defName>Shooting</defName>
+        <amount>3</amount>
+      </li>
+      <li>
         <defName>Research</defName>
-        <amount>1</amount>
+        <amount>2</amount>
       </li>
       <li>
         <defName>Social</defName>
@@ -75,8 +144,16 @@
     </workDisables>
     <skillGains>
       <li>
+        <defName>Melee</defName>
+        <amount>3</amount>
+      </li>
+      <li>
+        <defName>Shooting</defName>
+        <amount>3</amount>
+      </li>
+      <li>
         <defName>Research</defName>
-        <amount>1</amount>
+        <amount>2</amount>
       </li>
       <li>
         <defName>Social</defName>
@@ -104,16 +181,24 @@
     </workDisables>
     <skillGains>
       <li>
+        <defName>Melee</defName>
+        <amount>3</amount>
+      </li>
+      <li>
+        <defName>Shooting</defName>
+        <amount>3</amount>
+      </li>
+      <li>
         <defName>Crafting</defName>
-        <amount>2</amount>
+        <amount>4</amount>
       </li>
       <li>
         <defName>Construction</defName>
-        <amount>2</amount>
+        <amount>4</amount>
       </li>
       <li>
         <defName>Research</defName>
-        <amount>1</amount>
+        <amount>2</amount>
       </li>
     </skillGains>
     <spawnCategories>
@@ -138,8 +223,16 @@
     </workDisables>
     <skillGains>
       <li>
+        <defName>Melee</defName>
+        <amount>3</amount>
+      </li>
+      <li>
+        <defName>Shooting</defName>
+        <amount>3</amount>
+      </li>
+      <li>
         <defName>Research</defName>
-        <amount>4</amount>
+        <amount>6</amount>
       </li>
     </skillGains>
     <spawnCategories>
@@ -157,18 +250,23 @@
     <slot>Adulthood</slot>
     <workDisables>
       <li>Cooking</li>
-      <li>Animals</li>
-      <li>PlantWork</li>
-      <li>Caring</li>
     </workDisables>
     <skillGains>
       <li>
+        <defName>Melee</defName>
+        <amount>3</amount>
+      </li>
+      <li>
+        <defName>Shooting</defName>
+        <amount>3</amount>
+      </li>
+      <li>
         <defName>Research</defName>
-        <amount>2</amount>
+        <amount>4</amount>
       </li>
       <li>
         <defName>Medicine</defName>
-        <amount>4</amount>
+        <amount>6</amount>
       </li>
     </skillGains>
     <spawnCategories>
@@ -186,18 +284,23 @@
     <slot>Adulthood</slot>
     <workDisables>
       <li>Cooking</li>
-      <li>Animals</li>
-      <li>PlantWork</li>
-      <li>Caring</li>
     </workDisables>
     <skillGains>
       <li>
-        <defName>Research</defName>
+        <defName>Melee</defName>
         <amount>3</amount>
       </li>
       <li>
+        <defName>Shooting</defName>
+        <amount>3</amount>
+      </li>
+      <li>
+        <defName>Research</defName>
+        <amount>4</amount>
+      </li>
+      <li>
         <defName>Crafting</defName>
-        <amount>2</amount>
+        <amount>4</amount>
       </li>
       <li>
         <defName>Social</defName>

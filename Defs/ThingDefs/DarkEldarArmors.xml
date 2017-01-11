@@ -68,7 +68,7 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
-      <li Class="FactionColors.CompProperties_RestrictedRace">
+      <li Class="AlienRace.CompProperties_RestrictedRace">
         <RestrictedToRace>Alien_DarkEldar</RestrictedToRace>
       </li>
     </comps>

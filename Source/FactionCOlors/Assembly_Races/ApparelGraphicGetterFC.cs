@@ -35,8 +35,8 @@ namespace FactionColors
 
             Graphic graphic = new Graphic();
             graphic = GraphicDatabase.Get<Graphic_Multi>(path, ShaderDatabase.CutoutComplex, apparel.def.graphicData.drawSize, apparel.DrawColor, apparel.DrawColorTwo);
-            Log.Message(apparel.DrawColor.ToString());
-            Log.Message(apparel.DrawColorTwo.ToString());
+     //       Log.Message(apparel.DrawColor.ToString());
+     //       Log.Message(apparel.DrawColorTwo.ToString());
             rec = new ApparelGraphicRecord(graphic, apparel);
             return true;
 

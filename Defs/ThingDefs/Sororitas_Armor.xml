@@ -68,6 +68,9 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
+      <li Class="AlienRace.CompProperties_RestrictedRace">
+        <RestrictedToRace>Alien_Sororitas</RestrictedToRace>
+      </li>
     </comps>
   </ThingDef>
 

@@ -17,7 +17,7 @@ namespace Corruption
         {
             base.ExposeData();
         }
-
+        
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.EndOnDespawnedOrNull(AltarIndex, JobCondition.Incompletable);
@@ -30,16 +30,15 @@ namespace Corruption
             yield return gotoAltarToil;
 
             List<Pawn> Listeners = this.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.CurJob.def == CorruptionDefOfs.AttendSermon);
-
-
-
+            
             var altarToil = new Toil();
             altarToil.defaultCompleteMode = ToilCompleteMode.Delay;
             altarToil.defaultDuration = this.CurJob.def.joyDuration;
             altarToil.AddPreTickAction(() =>
             {
                 this.pawn.Drawer.rotator.FaceCell(this.TargetA.Cell);
-                this.pawn.GainComfortFromCellIfPossible();                
+                this.pawn.GainComfortFromCellIfPossible();
+                ThrowPreacherMote(this.pawn);
             });
             yield return altarToil;
             this.AddFinishAction(() =>
@@ -57,6 +56,14 @@ namespace Corruption
 
 
             });
+        }
+
+        protected void ThrowPreacherMote(Pawn pawn)
+        { 
+            MoteBubble moteBubble2 = (MoteBubble)ThingMaker.MakeThing(ThingDefOf.Mote_Speech, null);
+            moteBubble2.SetupMoteBubble(ChaosGodsUtilities.TryGetPreacherIcon(pawn), pawn);
+            moteBubble2.Attach(pawn);
+            GenSpawn.Spawn(moteBubble2, pawn.Position, pawn.Map);
         }
     }
 }
