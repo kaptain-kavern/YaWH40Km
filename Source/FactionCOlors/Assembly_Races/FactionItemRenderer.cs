@@ -7,7 +7,7 @@ using Verse;
 
 namespace FactionColors
 {
-    public class FactionItemRenderer : PawnRenderer
+    public class FactionItemRenderer : PawnRendererModded
     {
         public FactionItemRenderer(Pawn pawn) : base(pawn)
         {

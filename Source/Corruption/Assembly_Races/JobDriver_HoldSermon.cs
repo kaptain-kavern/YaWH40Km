@@ -16,6 +16,9 @@ namespace Corruption
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Values.LookValue<TargetIndex>(ref this.AltarIndex, "AltarIndex", TargetIndex.A);
+            Scribe_Values.LookValue<TargetIndex>(ref this.AltarInteractionCell, "AltarInteractionCell", TargetIndex.B);
+            Scribe_References.LookReference<Pawn>(ref this.pawn, "pawn", false);
         }
         
         protected override IEnumerable<Toil> MakeNewToils()
@@ -24,23 +27,29 @@ namespace Corruption
             yield return Toils_Reserve.Reserve(AltarIndex, 1);
             yield return Toils_Reserve.Reserve(AltarInteractionCell, 1);
             Toil gotoAltarToil;
-            
                 gotoAltarToil = Toils_Goto.GotoThing(AltarInteractionCell, PathEndMode.OnCell);
 
             yield return gotoAltarToil;
 
-            List<Pawn> Listeners = this.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.CurJob.def == CorruptionDefOfs.AttendSermon);
+       //     Log.Message("A");
+     //       if (this.CurJob == null) Log.Message("NOJob?");
             
             var altarToil = new Toil();
             altarToil.defaultCompleteMode = ToilCompleteMode.Delay;
             altarToil.defaultDuration = this.CurJob.def.joyDuration;
             altarToil.AddPreTickAction(() =>
             {
+      //          if (this.pawn == null) Log.Message("No Pawn??");
+      //          if (this.TargetA == null) Log.Message("NoTargetA");
                 this.pawn.Drawer.rotator.FaceCell(this.TargetA.Cell);
                 this.pawn.GainComfortFromCellIfPossible();
                 ThrowPreacherMote(this.pawn);
             });
             yield return altarToil;
+
+  //          Log.Message("B");
+     //       if (this.pawn.jobs.curDriver == null) Log.Message("NoDriver");
+  //          if (this.pawn.jobs.curJob == null) Log.Message("NoJob");
             this.AddFinishAction(() =>
             {
                 if (this.TargetA.HasThing)
@@ -53,13 +62,14 @@ namespace Corruption
                 }
 
                 SermonUtility.HoldSermonTickCheckEnd(this.pawn, this.TargetA.Thing as BuildingAltar);
-
-
+    //            Log.Message("C");
+                
             });
         }
 
         protected void ThrowPreacherMote(Pawn pawn)
-        { 
+        {
+         //   Log.Message("M1");
             MoteBubble moteBubble2 = (MoteBubble)ThingMaker.MakeThing(ThingDefOf.Mote_Speech, null);
             moteBubble2.SetupMoteBubble(ChaosGodsUtilities.TryGetPreacherIcon(pawn), pawn);
             moteBubble2.Attach(pawn);

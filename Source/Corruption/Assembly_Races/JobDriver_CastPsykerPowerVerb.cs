@@ -35,7 +35,7 @@ namespace Corruption
             compPsyker.IsActive = true;
             this.AddFinishAction(() =>
             {
-                Log.Message("FinishACtion");
+             //   Log.Message("FinishACtion");
                 if (compPsyker.IsActive)
                 {
                     PsykerUtility.PsykerShockEvents(compPsyker, compPsyker.curPower.PowerLevel);

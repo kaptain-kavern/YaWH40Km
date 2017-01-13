@@ -153,8 +153,6 @@
 		</li>
 	</ForcedRaceTraitEntries>
 	<NakedHeadGraphicLocation>Things/Orks/HeadsBase/</NakedHeadGraphicLocation>
-	<NakedBodyGraphicLocation>Things/Orks/OrkBodies/</NakedBodyGraphicLocation>
-
 	<alienpartgenerator>
 	<aliencrowntypes>
 	  <li>Average_Normal</li>

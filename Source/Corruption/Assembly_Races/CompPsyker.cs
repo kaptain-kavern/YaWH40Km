@@ -60,6 +60,22 @@ namespace Corruption
         {
             base.PostSpawnSetup();
             this.psykerPowerManager = new PsykerPowerManager(this);
+
+            ChaosFollowerPawnKindDef pdef = this.psyker.kindDef as ChaosFollowerPawnKindDef;
+            if (pdef != null && pdef.RenamePawns)
+            {
+                    string rawName = NameGenerator.GenerateName(pdef.OverridingNameRulePack, delegate (string x)
+                    {
+                        NameTriple nameTriple4 = NameTriple.FromString(x);
+                        nameTriple4.ResolveMissingPieces(null);
+                        return !nameTriple4.UsedThisGame;
+                    }, false);
+                    NameTriple nameTriple = NameTriple.FromString(rawName);
+                    nameTriple.CapitalizeNick();
+                    nameTriple.ResolveMissingPieces(null);
+                    psyker.Name = nameTriple;                
+            }
+
         }
 
         public List<PsykerPower> Powers = new List<PsykerPower>();
@@ -139,8 +155,8 @@ namespace Corruption
 
                     compPsyker.curPower = psydef;
 
-                    Log.Message("Casting Stuff");
-                    Log.Message(compPsyker.curPower.defName);
+               //     Log.Message("Casting Stuff");
+               //     Log.Message(compPsyker.curPower.defName);
                     compPsyker.curRotation = target.Thing.Rotation;
                     Job job = CompPsyker.PsykerJob(verb.warpverbprops.PsykerPowerCategory, target);
                     job.playerForced = true;

@@ -264,5 +264,42 @@
 	    <parent>DarkEldar</parent>
 	  </ThingCategoryDef>
 
+<ThingCategoryDef>
+ <defName>Tau</defName>
+ <label>Tau</label>
+ <parent>Root</parent>
+</ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>Tau_RangedCommon</defName>
+	    <label>Tau Ranged Weapons(common)</label>
+	    <parent>Tau</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>Tau_RangedUncommon</defName>
+	    <label>Tau Ranged Weapons(uncommon)</label>
+	    <parent>Tau</parent>
+	  </ThingCategoryDef>
+
+
+	  <ThingCategoryDef>
+	    <defName>Tau_Basic</defName>
+	    <label>Tau Basic Armor</label>
+	    <parent>Tau</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>Tau_Aux</defName>
+	    <label>Tau Auxilliary Equipment</label>
+	    <parent>Tau</parent>
+	  </ThingCategoryDef>
+
+
+	  <ThingCategoryDef>
+	    <defName>Tau_Apparel</defName>
+	    <label>Tau Apparel</label>
+	    <parent>Tau</parent>
+	  </ThingCategoryDef>
 
   </ThingCategoryDefs>

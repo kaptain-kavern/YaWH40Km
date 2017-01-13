@@ -137,7 +137,7 @@ namespace Corruption
                             {
                                 if (soul.PsykerPowerLevel >= SProps.UnlockedPsykerPowers[i].PowerLevel)
                                 {
-                                    Log.Message("Adding Power to: " + compPsyker.psyker + " : " + SProps.UnlockedPsykerPowers[i].defName);
+                                //    Log.Message("Adding Power to: " + compPsyker.psyker + " : " + SProps.UnlockedPsykerPowers[i].defName);
                                     compPsyker.temporaryWeaponPowers.Add(new PsykerPower(Owner, SProps.UnlockedPsykerPowers[i]));
                                 }
                             }
@@ -151,7 +151,7 @@ namespace Corruption
             }
             if (this.parent.Spawned && this.LastOwner != null)
             {
-                Log.Message("Clearing TempPowers");
+             //   Log.Message("Clearing TempPowers");
                 LastOwner.temporaryWeaponPowers.Clear();
                 LastOwner.UpdatePowers();
                 LastOwner = null;

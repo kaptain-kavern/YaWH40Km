@@ -47,6 +47,8 @@ namespace Corruption
 
         public bool NoPatron = true;
 
+        public bool SoulInitialized = false;
+
         public List<Pawn> OpposingDevotees = new List<Pawn>();
 
         private ChaosFollowerPawnKindDef cdef
@@ -101,133 +103,141 @@ namespace Corruption
 
         public override void SetInitialLevel()
         {
-            FieldInfo info = typeof(StatsReportUtility).GetField("cachedDrawEntries", BindingFlags.NonPublic | BindingFlags.Static);
-            if (info != null)
+            if (!SoulInitialized)
             {
-                List<StatDrawEntry> entries =  info.GetValue(this.pawn) as List<StatDrawEntry>;
-                if (!entries.NullOrEmpty())
+                FieldInfo info = typeof(StatsReportUtility).GetField("cachedDrawEntries", BindingFlags.NonPublic | BindingFlags.Static);
+                if (info != null)
                 {
-                    entries.Add(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "Patron", this.Patron.ToString(), 3));
-                    entries.Add(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "CulturalToleranceStat".Translate(), this.Patron.ToString(), 2));
-                    entries.Add(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "PurityOfSoulStat".Translate(), this.CurLevel.ToString(), 1));
+                    List<StatDrawEntry> entries = info.GetValue(this.pawn) as List<StatDrawEntry>;
+                    if (!entries.NullOrEmpty())
+                    {
+                        entries.Add(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "Patron", this.Patron.ToString(), 3));
+                        entries.Add(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "CulturalToleranceStat".Translate(), this.Patron.ToString(), 2));
+                        entries.Add(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "PurityOfSoulStat".Translate(), this.CurLevel.ToString(), 1));
+                    }
                 }
-            }
 
-            InitiatePsykerComp();
- //           try
- //           {
- //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Berserker);
- //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_WarpBolt);
- //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Temptation);
- //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Purgatus);
- //           }
- //           catch
- //           { }
-            ChaosFollowerPawnKindDef pdef = this.pawn.kindDef as ChaosFollowerPawnKindDef;
+                InitiatePsykerComp();
+                //           try
+                //           {
+                //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Berserker);
+                //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_WarpBolt);
+                //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Temptation);
+                //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Purgatus);
+                //           }
+                //           catch
+                //           { }
 
-            if (pdef != null && pdef.AfflictionProperty != null)
-            {
-                PawnAfflictionProps = new AfflictionProperty();
-                this.PawnAfflictionProps = pdef.AfflictionProperty;
-                int pllow = (int)this.PawnAfflictionProps.LowerPsykerPowerLimit;
-                int plup = (int)this.PawnAfflictionProps.UpperAfflictionLimit;
-                this.PsykerPowerLevel = (PsykerPowerLevel)Rand.RangeInclusive(pllow, plup);
-
-                if (PawnAfflictionProps.IsImmune)
+                ChaosFollowerPawnKindDef pdef = this.pawn.kindDef as ChaosFollowerPawnKindDef;
+                //       Log.Message("Name is: " + this.pawn.Name.ToStringFull);
+                if (pdef != null && pdef.AfflictionProperty != null)
                 {
-                    this.curLevelInt = 0.99f;
-                    this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
-                    this.IsImmune = true;
-                }
-                else if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
-                {
-                    this.IsImmune = true;
-                    this.curLevelInt = Rand.Range(0.86f, 0.99f);
-                    this.NoPatron = true;
+
+                    PawnAfflictionProps = new AfflictionProperty();
+                    this.PawnAfflictionProps = pdef.AfflictionProperty;
+                    int pllow = (int)this.PawnAfflictionProps.LowerPsykerPowerLimit;
+                    int plup = (int)this.PawnAfflictionProps.UpperAfflictionLimit;
+                    this.PsykerPowerLevel = (PsykerPowerLevel)Rand.RangeInclusive(pllow, plup);
+
+                    if (PawnAfflictionProps.IsImmune)
+                    {
+                        this.curLevelInt = 0.99f;
+                        this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
+                        this.IsImmune = true;
+                    }
+                    else if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
+                    {
+                        this.IsImmune = true;
+                        this.curLevelInt = Rand.Range(0.86f, 0.99f);
+                        this.NoPatron = true;
+                    }
+                    else
+                    {
+                        float afup = pdef.AfflictionProperty.UpperAfflictionLimit;
+                        float afdown = pdef.AfflictionProperty.LowerAfflictionLimit;
+                        this.curLevelInt = (Rand.Range(afup, afdown));
+                    }
+                    if (PawnAfflictionProps.UseOtherFaith)
+                    {
+                        this.patronInfo.PatronName = PawnAfflictionProps.IsofFaith.ToString();
+                    }
+                    this.CulturalTolerance = PawnAfflictionProps.PrimaryToleranceCategory;
                 }
                 else
                 {
-                    float afup = pdef.AfflictionProperty.UpperAfflictionLimit;
-                    float afdown = pdef.AfflictionProperty.LowerAfflictionLimit;
-                    this.curLevelInt = (Rand.Range(afup, afdown));
+                    PawnAfflictionProps = new AfflictionProperty();
+                    this.PsykerPowerLevel = (PsykerPowerLevel)Rand.RangeInclusive(0, Enum.GetValues(typeof(PsykerPowerLevel)).Length - 1);
+                    this.CulturalTolerance = (CulturalToleranceCategory)Rand.RangeInclusive(0, 2);
+                    if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
+                    {
+                        this.IsImmune = true;
+                        this.curLevelInt = Rand.Range(0.86f, 0.99f);
+                        this.NoPatron = true;
+                    }
+                    else
+                    {
+                        this.curLevelInt = Rand.Range(0.01f, 0.99f);
+                    }
                 }
-                if (PawnAfflictionProps.UseOtherFaith)
+
+                if (this.PawnAfflictionProps.CommmonPsykerPowers != null)
                 {
-                    this.patronInfo.PatronName = PawnAfflictionProps.IsofFaith.ToString();
+                    for (int i = 0; i < this.PawnAfflictionProps.CommmonPsykerPowers.Count; i++)
+                    {
+
+                        try
+                        {
+                            this.compPsyker.psykerPowerManager.AddPsykerPower(this.PawnAfflictionProps.CommmonPsykerPowers[i]);
+                        }
+                        catch
+                        { }
+                    }
                 }
-                this.CulturalTolerance = PawnAfflictionProps.PrimaryToleranceCategory;
-            }
-            else
-            {
-                PawnAfflictionProps = new AfflictionProperty();
-                this.PsykerPowerLevel = (PsykerPowerLevel)Rand.RangeInclusive(0, Enum.GetValues(typeof(PsykerPowerLevel)).Length - 1);
-                this.CulturalTolerance = (CulturalToleranceCategory)Rand.RangeInclusive(0, 2);
+
+                if (CorruptionDefOfs.Devotion.SDegreeDatas == null) Log.Message("No stdata");
+
+                if (this.SoulTraits.NullOrEmpty())
+                {
+                    if ((PawnAfflictionProps != null && PawnAfflictionProps.IsImmune))
+                    {
+                        this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
+                        this.IsImmune = true;
+                    }
+                    else
+                    {
+                        this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, Rand.RangeInclusive(-2, 2));
+                    }
+                    this.SoulTraits.Insert(0, DevotionTrait);
+                }
+                if (PawnAfflictionProps.CommonSoulTrait != null && !this.SoulTraits.Any(x => x.SDef == PawnAfflictionProps.CommonSoulTrait))
+                {
+                    this.SoulTraits.Add(new SoulTrait(PawnAfflictionProps.CommonSoulTrait, 0));
+                }
+
+                if (this.curLevelInt < 0.3f && NoPatron == true)
+                {
+                    GainPatron(ChaosGods.Undivided, false);
+
+                }
+                if (NoPatron == false)
+                {
+                    if (curLevelInt > 0.3f)
+                    {
+                        curLevelInt = 0.3f;
+                    }
+                }
                 if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
                 {
                     this.IsImmune = true;
-                    this.curLevelInt = Rand.Range(0.86f, 0.99f);
-                    this.NoPatron = true;
                 }
-                else
-                {
-                    this.curLevelInt = Rand.Range(0.01f, 0.99f);
-                }
-            }
 
-            if (this.PawnAfflictionProps.CommmonPsykerPowers != null)
-            {
-                for (int i=0; i < this.PawnAfflictionProps.CommmonPsykerPowers.Count; i++)
-                {
-                    
-                    try
-                    {
-                        this.compPsyker.psykerPowerManager.AddPsykerPower(this.PawnAfflictionProps.CommmonPsykerPowers[i]);
-                    }
-                    catch
-                    { }
-                }
-            }
-
-            if (CorruptionDefOfs.Devotion.SDegreeDatas == null) Log.Message("No stdata");
-
-            if (this.SoulTraits.NullOrEmpty())
-            {
-                if ((PawnAfflictionProps != null && PawnAfflictionProps.IsImmune))
-                {
-                    this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
-                    this.IsImmune = true;
-                }
-                else
-                {
-                    this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, Rand.RangeInclusive(-2, 2));
-                }
-                this.SoulTraits.Insert(0, DevotionTrait);
-            }
-            if (PawnAfflictionProps.CommonSoulTrait != null && !this.SoulTraits.Any(x => x.SDef == PawnAfflictionProps.CommonSoulTrait))
-            {
-                this.SoulTraits.Add(new SoulTrait(PawnAfflictionProps.CommonSoulTrait, 0));
-            }
-
-            if (this.curLevelInt < 0.3f && NoPatron == true)
-            {
-                GainPatron(ChaosGods.Undivided, false);
-
-            }
-            if (NoPatron == false)
-            {
-                if (curLevelInt > 0.3f)
-                {
-                    curLevelInt = 0.3f;
-                }
-            }
-            if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
-            {
-                this.IsImmune = true;
+                this.SoulInitialized = true;
             }
         }
 
         public override void NeedInterval()
         {
+             
             if (this.curLevelInt < 0f)
             {
                 this.curLevelInt = 0f;
@@ -281,7 +291,8 @@ namespace Corruption
             if (curLevelInt > 1f)
             {
                 curLevelInt = 0.99999f;
-            }            
+            }
+ 
         }
         
         public void GainNeed(float amount)

@@ -6,9 +6,9 @@ namespace Corruption
 {
     public class BuildingAltar : Building
     {
-        public bool OptionMorning = true;
+        public bool OptionMorning = false;
 
-        public bool OptionEvening = true;
+        public bool OptionEvening = false;
 
         private bool HeldSermon;
 
@@ -60,13 +60,14 @@ namespace Corruption
                 {
                     if (!HeldSermon)
                     {
+                //        Log.Message("starting morning sermon");
                         SermonUtility.ForceSermon(this);
                         this.HeldSermon = true;
                     }
                 }
             }
 
-            if (this.OptionMorning)
+            if (this.OptionEvening)
             {
                 if (Rand.RangeInclusive(18, 22) == GenLocalDate.HourInt(this.Map))
                 {
@@ -125,10 +126,13 @@ namespace Corruption
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Deep.LookDeep<Pawn>(ref this.preacher, "preacher", new object[0]);
+
+            Scribe_References.LookReference<Pawn>(ref this.preacher, "preacher", false);
             Scribe_Values.LookValue<string>(ref this.RoomName, "RoomName", "Temple", false);
-            Scribe_Values.LookValue<bool>(ref this.OptionEvening, "OptionEvening", true, false);
-            Scribe_Values.LookValue<bool>(ref this.OptionMorning, "OptionMorning", true, false);
-        }
+            Scribe_Values.LookValue<bool>(ref this.OptionEvening, "OptionEvening", false, false);
+            Scribe_Values.LookValue<bool>(ref this.OptionMorning, "OptionMorning", false, false);
+            Scribe_Values.LookValue<bool>(ref this.HeldSermon, "HeldSermon", true, false);
+
+        }        
     }
 }

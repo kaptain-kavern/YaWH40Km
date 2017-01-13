@@ -53,7 +53,7 @@ namespace Corruption
                 {
                     return 20f;
                 }
-                Log.Message("Getting Chance");
+            //    Log.Message("Getting Chance");
 
             }
             return 0f;

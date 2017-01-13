@@ -71,6 +71,8 @@
     <Compile Include="Backpack_Accessory.cs" />
     <Compile Include="CamouflageColors.cs" />
     <Compile Include="CompFactionColors.cs" />
+    <Compile Include="CompPauldronDrawer.cs" />
+    <Compile Include="CompProperties_DrawShoulderpad.cs" />
     <Compile Include="CompProperties_FactionColors.cs" />
     <Compile Include="CompProperties_ToolUserApparel.cs" />
     <Compile Include="CompRenderToolUserApparel.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="FactionUniform.cs" />
     <Compile Include="MenuMakerMapRestricted.cs" />
     <Compile Include="ModInitializer.cs" />
+    <Compile Include="PawnRendererModded.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

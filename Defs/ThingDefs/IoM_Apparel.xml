@@ -247,7 +247,7 @@
   <ThingDef ParentName="ApparelMakeableBase">
     <thingClass>FactionColors.ApparelComposite</thingClass>
     <defName>IoM_Apparel_RobeGen</defName>
-    <description>A simple robe, commonplace in the Imperium.</description>
+    <description>A simple robe, commonplace in the Galaxy.</description>
     <label>robe</label>
     <recipeMaker>
       <researchPrerequisite>ComplexClothing</researchPrerequisite>

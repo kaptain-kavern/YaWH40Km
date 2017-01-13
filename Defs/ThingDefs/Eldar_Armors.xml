@@ -24,7 +24,7 @@
     <statBases>
       <WorkToMake>3250000</WorkToMake>
       <MaxHitPoints>500</MaxHitPoints>
-      <MarketValue>1200</MarketValue>
+      <MarketValue>4500</MarketValue>
       <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.65</ArmorRating_Sharp>
       <ArmorRating_Heat>0.30</ArmorRating_Heat>
@@ -94,7 +94,7 @@
     <statBases>
       <WorkToMake>60000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>
-      <MarketValue>1000</MarketValue>
+      <MarketValue>1500</MarketValue>
       <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.6</ArmorRating_Sharp>
       <ArmorRating_Heat>0.5</ArmorRating_Heat>

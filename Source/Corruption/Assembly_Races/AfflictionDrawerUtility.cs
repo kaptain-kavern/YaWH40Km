@@ -70,6 +70,25 @@ namespace Corruption
                 }
         }
 
+        public static bool TryGetChaosOverlayGraphics(Pawn pawn, out Graphic headgraphic, out Graphic bodygraphic)
+        {
+            if (pawn.needs != null && pawn.story != null && !pawn.kindDef.factionLeader && pawn.Drawer.renderer.graphics.AllResolved)
+            {
+                Need_Soul soul = pawn.needs.TryGetNeed<Need_Soul>();
+                if (soul != null && !soul.NoPatron && soul.patronInfo.PatronName != "Slaanesh")
+                {
+                    headgraphic = AfflictionDrawerUtility.GetHeadGraphic(pawn, soul.patronInfo.PatronName);
+                    bodygraphic = AfflictionDrawerUtility.GetBodyOverlay(pawn.story.bodyType, soul.patronInfo.PatronName);
+                    return true;
+                }
+            }
+
+            headgraphic = null;
+            bodygraphic = null;
+            return false;
+        }
+
+
         public static bool TryGetAfflictionDrawer(Pawn pawn, Need_Soul soul, string patronName, BodyType bodyType, out ApparelGraphicRecord recBody, out ApparelGraphicRecord recHead, out ApparelGraphicRecord recHair)
         {
             if (bodyType == BodyType.Undefined)

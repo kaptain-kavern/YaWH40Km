@@ -10,5 +10,9 @@ namespace Corruption
     public class ChaosFollowerPawnKindDef : PawnKindDef
     {
         public AfflictionProperty AfflictionProperty;
+
+        public bool RenamePawns = false;
+
+        public RulePackDef OverridingNameRulePack;
     }
 }

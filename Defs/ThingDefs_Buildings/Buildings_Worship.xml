@@ -121,12 +121,76 @@
     <designationCategory>Worship</designationCategory>
   </ThingDef>
 
+
   <ThingDef ParentName="BuildingBase">
     <thingClass>Corruption.BuildingAltar</thingClass>
     <tickerType>Normal</tickerType>
     <defName>AltarSimple</defName>
     <label>Simple Altar</label>
-    <description>A simple bench that may be used as an altar.</description>
+    <description>A simple table that may be used as an altar.</description>
+    <graphicData>
+      <texPath>Things/Worship/Altar_Basic</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>Cutout</shaderType>
+      <drawSize>(3.5,1.5)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <staticSunShadowHeight>0.20</staticSunShadowHeight>
+    <altitudeLayer>Building</altitudeLayer>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <fillPercent>0.65</fillPercent>
+    <inspectorTabs>
+      <li>Corruption.ITab_Altar</li>
+    </inspectorTabs>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <WorkToMake>10000</WorkToMake>
+      <Flammability>1.0</Flammability>
+      <Beauty>5</Beauty>
+      <EntertainmentStrengthFactor>1</EntertainmentStrengthFactor>
+    </statBases>
+    <size>(3,1)</size>
+		<hasInteractionCell>false</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+        <building>
+            <watchBuildingStandDistanceRange>
+                <min>1</min>
+                <max>5</max>
+            </watchBuildingStandDistanceRange>
+            <watchBuildingStandRectWidth>5</watchBuildingStandRectWidth>
+        </building>
+        <placeWorkers>
+            <li>PlaceWorker_WatchArea</li>
+	      <li>PlaceWorker_NeverAdjacentUnstandable</li>
+        </placeWorkers>
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+    </comps>
+    <costStuffCount>80</costStuffCount>
+    <pathCost>70</pathCost>
+    <passability>PassThroughOnly</passability>
+    <designationCategory>Worship</designationCategory>
+  </ThingDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <thingClass>Corruption.BuildingAltar</thingClass>
+    <tickerType>Normal</tickerType>
+    <defName>AltarNormal</defName>
+    <label>Altar</label>
+    <description>A proper altar for acts of worship.</description>
     <graphicData>
       <texPath>Things/Worship/Altar_Simple</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -394,6 +458,7 @@
     <pathCost>50</pathCost>
     <passability>PassThroughOnly</passability>
     <designationCategory>Worship</designationCategory>
+    <uiIconPath>Things/Worship/HumanSkull</uiIconPath>
   </ThingDef>
 
 
