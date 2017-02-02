@@ -79,11 +79,11 @@
         </li>
         <li>
           <def>HumanlikeTeenager</def>
-          <minAge>13</minAge>
+          <minAge>8</minAge>
         </li>
         <li>
           <def>HumanlikeAdult</def>
-          <minAge>18</minAge>
+          <minAge>12</minAge>
         </li>
       </lifeStageAges>
       <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>

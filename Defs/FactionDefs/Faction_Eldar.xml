@@ -45,6 +45,7 @@
             <EldarGuardian>100</EldarGuardian>
             <EldarRanger>10</EldarRanger>
             <EldarWarlock>5</EldarWarlock>
+            <EldarAutarch>1</EldarAutarch>
         </options>
       </li>
       <li>

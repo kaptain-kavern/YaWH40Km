@@ -60,6 +60,7 @@
     <degreeDatas>
       <li>
         <label>placeholder_devotion</label>
+        <description>This is a workaround trait. Do not use!</description>
       </li>
     </degreeDatas>
   </Corruption.SoulTraitDef>

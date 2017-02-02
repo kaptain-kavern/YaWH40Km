@@ -179,7 +179,7 @@ namespace FactionColors
                             if (ApparelDetailDrawer.TryGetApparelDetails(curr, drawer.DetailGraphic, out recDetail))
                             {
   //                              Log.Message("Inserting Detail");
-                                pawn.Drawer.renderer.graphics.apparelGraphics.Insert(0, recDetail);
+                                pawn.Drawer.renderer.graphics.apparelGraphics.Add(recDetail);
                             }
                         }
                     }

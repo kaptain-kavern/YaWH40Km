@@ -79,12 +79,16 @@ namespace Corruption
         }
 
         public List<PsykerPower> Powers = new List<PsykerPower>();
+        
+        public List<PsykerPower> learnedPowers = new List<PsykerPower>();
 
         public List<PsykerPower> temporaryWeaponPowers = new List<PsykerPower>();
 
         public List<PsykerPower> temporaryApparelPowers = new List<PsykerPower>();
 
         public List<PsykerPower> allPowers = new List<PsykerPower>();
+
+        public List<PsykerPowerEntry> allpsykerPowers = new List<PsykerPowerEntry>();
 
         public Dictionary<PsykerPower, Verb_CastWarpPower> psykerPowers = new Dictionary<PsykerPower, Verb_CastWarpPower>();
 
@@ -96,9 +100,10 @@ namespace Corruption
             PowerVerbs.Clear();
             List<PsykerPower> psylist = new List<PsykerPower>();
 
-            psylist.AddRange(this.Powers);
+            psylist.AddRange(this.learnedPowers);
 
             psylist.AddRange(this.temporaryWeaponPowers);
+            psylist.AddRange(this.temporaryApparelPowers);
 
             this.allPowers = psylist;
 
@@ -122,7 +127,7 @@ namespace Corruption
                 {
                     newverb.caster = this.psyker;
                     newverb.verbProps = pow.powerdef.MainVerb;
-                    psykerPowers.Add(pow, newverb);
+                    this.psykerPowers.Add(pow, newverb);
                 }
             }
      //       Log.Message(this.psykerPowers.Count.ToString());
@@ -138,6 +143,8 @@ namespace Corruption
                 this.ShotFired = true;
                 this.TicksToCast = 0;
             }
+
+
             this.TicksToCastPercentage = (1 - (this.TicksToCast / this.TicksToCastMax));
         }
         
@@ -259,6 +266,92 @@ namespace Corruption
             yield break;
         }
 
+        public bool PsykerHasEquipment(PsykerPowerEntry entry)
+        {
+            if (entry.EquipmentDependent && entry.DependendOn != null)
+            {
+                if (psyker.equipment.AllEquipment.Any(item => item.def == entry.DependendOn))
+                {
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+
+        public IEnumerable<Command_CastPower> GetPsykerVerbsNewV3()
+        {
+
+         //   Log.Message("INIT");
+            foreach (PsykerPowerEntry current in this.allpsykerPowers)
+            {
+          //      Log.Message("A");
+                if (PsykerHasEquipment(current))
+                {
+                    Verb_CastWarpPower newverb = (Verb_CastWarpPower)Activator.CreateInstance(current.psykerPowerDef.MainVerb.verbClass);
+                    newverb.caster = this.psyker;
+                    newverb.verbProps = current.psykerPowerDef.MainVerb;
+              //      Log.Message("B");
+
+                    Command_CastPower command_CastPower = new Command_CastPower(this);
+                    command_CastPower.verb = newverb;
+                    command_CastPower.defaultLabel = current.psykerPowerDef.LabelCap;
+                    command_CastPower.defaultDesc = current.psykerPowerDef.description;
+           //         Log.Message("C");
+                    command_CastPower.targetingParams = TargetingParameters.ForAttackAny();
+                    if (newverb.warpverbprops.PsykerPowerCategory == PsykerPowerTargetCategory.TargetSelf || newverb.warpverbprops.PsykerPowerCategory == PsykerPowerTargetCategory.TargetAoE)
+                    {
+                        command_CastPower.targetingParams = TargetingParameters.ForSelf(this.psyker);
+                    }
+                   // Log.Message("C2");
+                    command_CastPower.icon = current.psykerPowerDef.uiIcon;
+           //         Log.Message("D1");
+                    string str;
+                    if (FloatMenuUtility.GetAttackAction(this.psyker, LocalTargetInfo.Invalid, out str) == null)
+                    {
+                        command_CastPower.Disable(str.CapitalizeFirst() + ".");
+                    }
+           //         Log.Message("D");
+                    command_CastPower.action = delegate (Thing target)
+                    {
+                        CompPsyker.TryCastPowerAction(psyker, target, this, newverb, current.psykerPowerDef as PsykerPowerDef)?.Invoke();
+
+                    };
+                    if (newverb.caster.Faction != Faction.OfPlayer)
+                    {
+                        command_CastPower.Disable("CannotOrderNonControlled".Translate());
+                    }
+                    if (newverb.CasterIsPawn)
+                    {
+                        if (newverb.CasterPawn.story.DisabledWorkTags.Contains(WorkTags.Violent))
+                        {
+                            command_CastPower.Disable("IsIncapableOfViolence".Translate(new object[]
+                            {
+                            newverb.CasterPawn.NameStringShort
+                            }));
+                        }
+                        else if (!newverb.CasterPawn.drafter.Drafted)
+                        {
+                            command_CastPower.Disable("IsNotDrafted".Translate(new object[]
+                            {
+                            newverb.CasterPawn.NameStringShort
+                            }));
+                        }
+                        else if (!this.IsActive)
+                        {
+                            command_CastPower.Disable("PsykerPowerRecharging".Translate(new object[]
+                                {
+                                newverb.CasterPawn.NameStringShort
+                                }));
+                        }
+                    }
+                    yield return command_CastPower;
+                }
+            }
+            yield break;
+        }
+
+
         public IEnumerable<Command_CastPower> GetPsykerVerbsNewV2()
         {
             //     Log.Message("Found temp powers: " + this.temporaryPowers.Count.ToString() + " while finding Verbs: " + temporaryPowers.Count.ToString());
@@ -333,7 +426,7 @@ namespace Corruption
         {        
             if (psyker.Drafted)
             {
-                foreach (Command_Target comm in GetPsykerVerbsNew().ToList())
+                foreach (Command_Target comm in GetPsykerVerbsNewV3().ToList())
                 {
                     yield return comm;
                 }
@@ -386,10 +479,21 @@ namespace Corruption
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Collections.LookList<PsykerPower>(ref this.allPowers, "allPowers", LookMode.Deep, new object[0]);
-            Scribe_Collections.LookList<PsykerPower>(ref this.temporaryApparelPowers, "temporaryApparelPowers", LookMode.Deep, new object[0]);
-            Scribe_Collections.LookList<PsykerPower>(ref this.temporaryWeaponPowers, "temporaryWeaponPowers", LookMode.Deep, new object[0]);
-            Scribe_Collections.LookList<PsykerPower>(ref this.Powers, "Powers", LookMode.Deep, new object[0]);
+            //            Scribe_Collections.LookDictionary<PsykerPower, Verb_CastWarpPower>(ref this.psykerPowers, "psykerPowers", LookMode.Deep, LookMode.Reference);
+
+            //          Scribe_Collections.LookList<PsykerPower>(ref this.allPowers, "allPowers", LookMode.Deep, new object[]
+            //          {
+            //              this.psyker,
+            //              new object()
+            //          });
+            //          Scribe_Collections.LookList<PsykerPower>(ref this.temporaryApparelPowers, "temporaryApparelPowers", LookMode.Reference, new object[]
+            //          {
+            //              this.psyker,
+            //              new object()
+            //          });
+            //       Scribe_Collections.LookList<PsykerPower>(ref this.temporaryWeaponPowers, "temporaryWeaponPowers", LookMode.Reference, new object[0]);
+            Scribe_Collections.LookList(ref this.allpsykerPowers, "allpsykerPowers", LookMode.Deep, new object[0]);
+
 
             Scribe_Values.LookValue<int>(ref this.TicksToCast, "TicksToCast", 0, false);
             Scribe_Values.LookValue<int>(ref this.TicksToCastMax, "TicksToCastMax", 1, false);
@@ -399,10 +503,10 @@ namespace Corruption
   //          Scribe_Deep.LookDeep<Verb_CastWarpPower>(ref this.curVerb, "curVerb", null);
   //          Scribe_TargetInfo.LookTargetInfo(ref this.CurTarget, "CurTarget", null);
 
-   //         Scribe_Deep.LookDeep<PsykerPowerManager>(ref this.PowerManager, "PowerManager", new object[]
-   //             {
-   //               this
-   //             });
+            Scribe_Deep.LookDeep<PsykerPowerManager>(ref this.psykerPowerManager, "psykerPowerManager", new object[]
+                {
+                  this
+                });
             
 
 

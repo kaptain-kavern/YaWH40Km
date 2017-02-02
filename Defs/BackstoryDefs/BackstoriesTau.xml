@@ -104,4 +104,51 @@
     </spawnCategories>
   </Injector40K.BackstoryDef>
 
+
+
+  <Injector40K.BackstoryDef>
+    <defName>Aun_CHILD</defName>
+    <title>Ethereal caste</title>
+    <baseDescription>NAME was born as a member of the Fire Caste. As such, the path of the warrior was HIS destiny.</baseDescription>
+    <bodytypeMale>Thin</bodytypeMale>
+    <bodyTypeFemale>Thin</bodyTypeFemale>
+    <slot>Childhood</slot>
+    <workDisables>
+    </workDisables>
+    <skillGains>
+      <li>
+        <defName>Social</defName>
+        <amount>4</amount>
+      </li>
+    </skillGains>
+    <spawnCategories>
+      <li>TauAUN</li>
+    </spawnCategories>
+  </Injector40K.BackstoryDef>
+
+  <Injector40K.BackstoryDef>
+    <defName>Aun_ADULT</defName>
+    <title>Leader</title>
+    <baseDescription>As a fully grown member of the Ethereal Caste, NAME is destined to rule over the other castes in the name of the greater good.</baseDescription>
+    <bodytypeMale>Thin</bodytypeMale>
+    <bodyTypeFemale>Thin</bodyTypeFemale>
+    <slot>Adulthood</slot>
+    <workDisables>
+    </workDisables>
+    <skillGains>
+      <li>
+        <defName>Social</defName>
+        <amount>8</amount>
+      </li>
+      <li>
+        <defName>Research</defName>
+        <amount>2</amount>
+      </li>
+    </skillGains>
+    <spawnCategories>
+      <li>TauAUN</li>
+    </spawnCategories>
+  </Injector40K.BackstoryDef>
+
+
 </Defs>

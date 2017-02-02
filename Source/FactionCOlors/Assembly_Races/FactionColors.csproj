@@ -69,15 +69,21 @@
     <Compile Include="ApparelUniform.cs" />
     <Compile Include="ApparelUniformDef.cs" />
     <Compile Include="Backpack_Accessory.cs" />
+    <Compile Include="BannerType.cs" />
+    <Compile Include="Building_FactionColorChooser.cs" />
     <Compile Include="CamouflageColors.cs" />
     <Compile Include="CompFactionColors.cs" />
+    <Compile Include="CompFlagDrawer.cs" />
     <Compile Include="CompPauldronDrawer.cs" />
     <Compile Include="CompProperties_DrawShoulderpad.cs" />
     <Compile Include="CompProperties_FactionColors.cs" />
+    <Compile Include="CompProperties_FlagDrawer.cs" />
     <Compile Include="CompProperties_ToolUserApparel.cs" />
     <Compile Include="CompRenderToolUserApparel.cs" />
     <Compile Include="Deepstrike_Thingdef.cs" />
+    <Compile Include="Dialog_ChooseColor.cs" />
     <Compile Include="FactionColorsDefOf.cs" />
+    <Compile Include="FactionColorUtilities.cs" />
     <Compile Include="FactionDefUniform.cs" />
     <Compile Include="FactionItem.cs" />
     <Compile Include="FactionItemDef.cs" />
@@ -86,9 +92,11 @@
     <Compile Include="ApparelDetailDrawer.cs" />
     <Compile Include="ApparelDetailProps.cs" />
     <Compile Include="FactionUniform.cs" />
+    <Compile Include="ITab_FactionColor.cs" />
     <Compile Include="MenuMakerMapRestricted.cs" />
     <Compile Include="ModInitializer.cs" />
     <Compile Include="PawnRendererModded.cs" />
+    <Compile Include="PlayerFactionStoryTracker.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

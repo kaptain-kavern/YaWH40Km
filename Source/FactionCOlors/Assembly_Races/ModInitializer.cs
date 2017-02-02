@@ -8,6 +8,7 @@ using Verse;
 using Object = UnityEngine.Object;
 using System.Threading;
 using RimWorld;
+using RimWorld.Planet;
 
 namespace FactionColors
 {
@@ -56,6 +57,21 @@ namespace FactionColors
 
         public void OnLevelWasLoaded()
         {
+            WorldObjectsHolder holder = Find.World.worldObjects;
+            if (holder != null)
+            {
+                //         Log.Message("FoundHolder");
+                if (!holder.AllWorldObjects.Any(x => x.def == FactionColorsDefOf.PlayerFactionStoryTracker))
+                {
+                    //           Log.Message("Adding World Ojbect");
+                    PlayerFactionStoryTracker Tracker = new PlayerFactionStoryTracker();
+                    Tracker.def = FactionColorsDefOf.PlayerFactionStoryTracker;
+                    Tracker.ID = -2;
+                    Tracker.Tile = 1;
+                    holder.Add(Tracker);
+                }
+            }
+
         }
 
         public void Start()

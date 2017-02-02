@@ -13,5 +13,7 @@ namespace FactionColors
         public static ThingDef Overlay_Headgear;
 
         public static ThingDef Overlay_Body;
+
+        public static WorldObjectDef PlayerFactionStoryTracker;
     }
 }

@@ -240,6 +240,12 @@
 	  </ThingCategoryDef>
 
 	  <ThingCategoryDef>
+	    <defName>E_DireAvengers</defName>
+	    <label>Dire Avengers</label>
+	    <parent>EldarGear</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
 	    <defName>E_Warpspider</defName>
 	    <label>Eldar WarpSpider</label>
 	    <parent>EldarGear</parent>

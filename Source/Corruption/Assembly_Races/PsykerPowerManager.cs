@@ -8,11 +8,15 @@ namespace Corruption
 {
    public class PsykerPowerManager : IExposable
     {
-        public void AddPsykerPower(PsykerPowerDef psydef)
+        public void AddPsykerPower(PsykerPowerDef psydef, bool equipmentDependent = false, ThingDef depdef = null)
         {
-            if (!this.compPsyker.Powers.Any(x => x.def.defName == psydef.defName))
+            if (!this.compPsyker.learnedPowers.Any(x => x.def.defName == psydef.defName))
             {
-                this.compPsyker.Powers.Add(new PsykerPower(this.compPsyker.psyker, psydef));
+                this.compPsyker.learnedPowers.Add(new PsykerPower(this.compPsyker.psyker, psydef));
+            }
+            if (!this.compPsyker.allpsykerPowers.Any(x => x.psykerPowerDef.defName == psydef.defName))
+            {
+                this.compPsyker.allpsykerPowers.Add(new PsykerPowerEntry(psydef, equipmentDependent, depdef));
             }
 
             this.compPsyker.UpdatePowers();
@@ -59,6 +63,7 @@ namespace Corruption
         public void ExposeData()
         {
             Scribe_Collections.LookDictionary<PsykerPowerLevel, int>(ref this.PowerLevelSlots, "PowerLevelSlots", LookMode.Value, LookMode.Value);
+  //          Scribe_Deep.LookDeep<CompPsyker>(ref this.compPsyker, "compPsyker", null);
             Scribe_Values.LookValue<CompPsyker>(ref this.compPsyker, "compPsyker", null);
         }
 

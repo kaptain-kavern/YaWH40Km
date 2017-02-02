@@ -259,7 +259,7 @@ namespace FactionColors
                 else if (this.pawn.Rotation == Rot4.North)
                 {
                     Vector3 drawLoc3 = rootLoc + new Vector3(0f, 0f, -0.11f);
-                    drawLoc3.y = drawLoc3.y;
+            //        drawLoc3.y = drawLoc3.y;
                     this.DrawEquipmentAiming(this.pawn.equipment.Primary, drawLoc3, 143f);
                 }
                 else if (this.pawn.Rotation == Rot4.East)

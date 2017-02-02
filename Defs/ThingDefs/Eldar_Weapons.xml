@@ -16,7 +16,7 @@
     <graphicData>
       <texPath>Things/Eldar/bullet_shuriken</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+      <shaderType>Cutout</shaderType>
     </graphicData>
     <projectile>
       <flyOverhead>false</flyOverhead>
@@ -25,6 +25,23 @@
       <Speed>65</Speed>
     </projectile>
   </ThingDef>
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_ShurikenAW</defName>
+    <label>shuriken</label>
+    <graphicData>
+      <texPath>Things/Eldar/bullet_shuriken</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Cutout</shaderType>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Bullet</damageDef>
+      <DamageAmountBase>3</DamageAmountBase>
+      <Speed>65</Speed>
+    </projectile>
+  </ThingDef>
+
 
   <ThingDef ParentName="BaseBullet" Class="Corruption.ThingDef_LaserProjectile">
    <thingClass>Corruption.Projectile_Laser</thingClass>
@@ -349,9 +366,50 @@
 	    </UnlockedPsykerPowers>
       </li>
     </comps>
-
   </ThingDef>
 
+  <ThingDef ParentName="BaseEldarGun" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
+    <defName>EL_ShurikenRifleDA</defName>
+    <label>shuriken catapult</label>
+    <description>Xenotech rifle with a lot of power.</description>
+    <weaponTags>
+      <li>E_DireAvengers</li>
+    </weaponTags>
+    <graphicData>
+      <texPath>Things/Eldar/DireAvengers/DHCatapult</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Cutout</shaderType>
+    </graphicData>
+    <soundInteract>InteractRifle</soundInteract>
+    <statBases>
+      <WorkToMake>920000</WorkToMake>
+      <MarketValue>3650</MarketValue>
+      <AccuracyTouch>0.70</AccuracyTouch>
+      <AccuracyShort>0.89</AccuracyShort>
+      <AccuracyMedium>0.80</AccuracyMedium>
+      <AccuracyLong>0.70</AccuracyLong>
+      <RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Wraithbone>100</Wraithbone>
+      <Component>4</Component>
+    </costList>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_ShurikenAW</projectileDef>
+        <warmupTime>1.5</warmupTime>
+        <range>35</range>
+        <burstShotCount>7</burstShotCount>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+        <soundCast>Shuriken_Small</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
 
 
 

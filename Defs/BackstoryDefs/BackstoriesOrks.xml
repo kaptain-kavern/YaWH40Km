@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>ork_base</defName>
     <title>Orkoid</title>
     <baseDescription>NAME is Orkoid. As such, war is his only passion, with most basic menial tasks being performed only to fuel the warmachine.</baseDescription>
@@ -22,9 +22,9 @@
       <li>Ork_Nob</li>
       <li>Ork_Gretchin</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkShooting</defName>
     <title>Ork sharpshooter</title>
     <titleShort>Shooter</titleShort>
@@ -48,9 +48,9 @@
     <spawnCategories>
       <li>Ork_Standard</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkSlugga</defName>
     <title>Slugger</title>
     <titleShort>Shooter</titleShort>
@@ -74,9 +74,9 @@
     <spawnCategories>
       <li>Ork_Standard</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkBrewer</defName>
     <title>Brewer</title>
     <titleShort>Brewer</titleShort>
@@ -96,9 +96,9 @@
     <spawnCategories>
       <li>Ork_Standard</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkShouter</defName>
     <title>Shouter</title>
     <titleShort>Shouter</titleShort>
@@ -125,9 +125,9 @@
     <spawnCategories>
       <li>Ork_Standard</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkHerda</defName>
     <title>Herda</title>
     <titleShort>Herda</titleShort>
@@ -147,9 +147,9 @@
     <spawnCategories>
       <li>Ork_Standard</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkMadboy</defName>
     <title>Madboy</title>
     <titleShort>Madboy</titleShort>
@@ -179,9 +179,9 @@
     <spawnCategories>
       <li>Ork_Standard</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkNobCrusher</defName>
     <title>Crusher</title>
     <titleShort>Crusher</titleShort>
@@ -211,9 +211,9 @@
     <spawnCategories>
       <li>Ork_Nob</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkNobDevastator</defName>
     <title>Devastator</title>
     <titleShort>Devastator</titleShort>
@@ -243,9 +243,9 @@
     <spawnCategories>
       <li>Ork_Nob</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkSnotling</defName>
     <title>Snotling</title>
     <titleShort>Snotling</titleShort>
@@ -270,9 +270,9 @@
     <spawnCategories>
       <li>Ork_Gretchin</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>OrkGrot</defName>
     <title>Grot</title>
     <titleShort>Grot</titleShort>
@@ -295,7 +295,7 @@
     <spawnCategories>
       <li>Ork_Gretchin</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
 
 

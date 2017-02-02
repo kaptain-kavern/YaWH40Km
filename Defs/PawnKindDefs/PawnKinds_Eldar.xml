@@ -227,4 +227,52 @@
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
   </PawnKindDef>
 
+  <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
+    <defName>DireAvenger</defName>
+    <label>dire avenger</label>
+    <race>Alien_Eldar</race>
+    <combatPower>100</combatPower>
+    <baseRecruitDifficulty>0.90</baseRecruitDifficulty>
+    <backstoryCategory>Eldar</backstoryCategory>
+    <defaultFactionType>EldarWarhost</defaultFactionType>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+    <maxGenerationAge>8000</maxGenerationAge>
+    <itemQuality>Excellent</itemQuality>
+    <apparelMoney>
+      <min>900000</min>
+      <max>1000000</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>DireAvenger</li>
+    </apparelTags>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelAllowHeadwearChance>0.5</apparelAllowHeadwearChance>
+    <weaponMoney>
+      <min>9000</min>
+      <max>9000</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>E_DireAvengers</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>9000</min>
+      <max>9000</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.5</techHediffsChance>
+    <AfflictionProperty>
+      <IsImmune>true</IsImmune>
+      <ImmuneDevotionDegree>-3</ImmuneDevotionDegree>
+      <UseOtherFaith>true</UseOtherFaith>
+      <IsofFaith>Eldar</IsofFaith>
+      <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
+      <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
+      <LowerPsykerPowerLimit>Iota</LowerPsykerPowerLimit>
+      <UpperPsykerPowerLimit>Epsilon</UpperPsykerPowerLimit>
+    </AfflictionProperty>
+  </PawnKindDef>
+
+
 </PawnKindDefs>

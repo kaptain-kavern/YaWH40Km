@@ -14,7 +14,9 @@ namespace Corruption
 
         public string RoomName;
 
-        public Pawn preacher;             
+        public bool CalledInFlock = false;
+
+        public Pawn preacher = null;             
 
         public bool DoMorningSermon
         {
@@ -79,9 +81,10 @@ namespace Corruption
                 }
             }
 
-            if (this.preacher.CurJob.def == CorruptionDefOfs.HoldSermon)
+            if (this.preacher.CurJob.def == CorruptionDefOfs.HoldSermon && !this.CalledInFlock)
             {
                 GetSermonFlock(this);
+                this.CalledInFlock = true;
             }
 
             if (GenLocalDate.HourInt(this.Map) == 1 || GenLocalDate.HourInt(this.Map) == 12)
@@ -132,6 +135,7 @@ namespace Corruption
             Scribe_Values.LookValue<bool>(ref this.OptionEvening, "OptionEvening", false, false);
             Scribe_Values.LookValue<bool>(ref this.OptionMorning, "OptionMorning", false, false);
             Scribe_Values.LookValue<bool>(ref this.HeldSermon, "HeldSermon", true, false);
+            Scribe_Values.LookValue<bool>(ref this.CalledInFlock, "CalledInFlock", false, false);
 
         }        
     }

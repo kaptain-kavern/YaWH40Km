@@ -11,7 +11,7 @@
     </graphicData>
     <costStuffCount>50</costStuffCount>
     <thingCategories>
-      <li>Apparel</li>
+      <li>Root</li>
     </thingCategories>
     <statBases>
       <WorkToMake>100</WorkToMake>
@@ -35,6 +35,7 @@
       <defaultOutfitTags>
       </defaultOutfitTags>
     </apparel>
+      <tradeability>Never</tradeability>
   </ThingDef>
 
 
@@ -48,7 +49,7 @@
     </graphicData>
     <costStuffCount>50</costStuffCount>
     <thingCategories>
-      <li>Apparel</li>
+      <li>Root</li>
     </thingCategories>
     <statBases>
       <WorkToMake>100</WorkToMake>
@@ -72,6 +73,7 @@
       <defaultOutfitTags>
       </defaultOutfitTags>
     </apparel>
+      <tradeability>Never</tradeability>
   </ThingDef>
 
 </ThingDefs>

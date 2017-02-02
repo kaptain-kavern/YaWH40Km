@@ -10,6 +10,7 @@
     <fixedName>Sisters of Battle</fixedName>
     <canSiege>true</canSiege>
     <canStageAttacks>true</canStageAttacks>
+    <pawnNameMaker>NamerSororitas</pawnNameMaker>
     <raidCommonality>37</raidCommonality>
     <techLevel>Spacer</techLevel>
     <backstoryCategory>Sororitas</backstoryCategory>
@@ -25,8 +26,8 @@
       </thingDefs>
     </apparelStuffFilter>
     <startingGoodwill>
-      <min>50</min>
-      <max>100</max>
+      <min>10</min>
+      <max>20</max>
     </startingGoodwill>
     <naturalColonyGoodwill>
       <min>50</min>

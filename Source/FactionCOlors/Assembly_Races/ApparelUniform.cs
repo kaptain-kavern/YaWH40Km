@@ -12,8 +12,8 @@ namespace FactionColors
     {
         public bool FirstSpawned = true;
 
-        public Color Col1 = Color.white;
-        public Color Col2 = Color.black;
+        public Color Col1 = Color.red;
+        public Color Col2 = Color.grey;
         public Graphic Detail;
 
         public override Color DrawColor
@@ -22,20 +22,27 @@ namespace FactionColors
             {
 ;                if (FirstSpawned)
                 {
+                    if (this.wearer != null)
+                    { 
                     FactionDefUniform udef = this.wearer.Faction.def as FactionDefUniform;
                     CompFactionColor compF;
-                    if (udef != null)
-                    {
-                        if ((compF = this.GetComp<CompFactionColor>()) != null && compF.CProps.UseCamouflageColor)
+                        if (udef != null)
                         {
-                //            Log.Message("GettingCamoColor");
-                            Col1 = CamouflageColorsUtility.CamouflageColors[0];
-                        }
-                        else
-                        {
-          //                  Log.Message("StandardColor");
-          //                  Log.Message(udef.FactionColor1.ToString());
-                            Col1 = udef.FactionColor1;
+                            if ((compF = this.GetComp<CompFactionColor>()) != null)
+                            {
+                                if (compF.CProps.UseCamouflageColor)
+                                {
+                                    //            Log.Message("GettingCamoColor");
+                                    Col1 = CamouflageColorsUtility.CamouflageColors[0];
+                                }
+                                else if (udef.FactionColor1 != null)
+                                {
+                                    //                  Log.Message("StandardColor");
+                                    //                  Log.Message(udef.FactionColor1.ToString());
+                                    Col1 = udef.FactionColor1;
+                                }
+     
+                            }
                         }
                     }
                     else
@@ -44,10 +51,6 @@ namespace FactionColors
                         if (comp != null && comp.Active)
                         {
                             Col1 = comp.Color;
-                        }
-                        else
-                        {
-                            Col1 = Color.white; 
                         }
                         
                     }                    
@@ -68,16 +71,19 @@ namespace FactionColors
                 CompFactionColor compF;
                 if (FirstSpawned)
                 {
-                    FactionDefUniform udef = this.wearer.Faction.def as FactionDefUniform;
-                    if (udef != null)
+                    if (this.wearer != null)
                     {
-                        if ((compF = this.GetComp<CompFactionColor>()) != null && compF.CProps.UseCamouflageColor)
+                        FactionDefUniform udef = this.wearer.Faction.def as FactionDefUniform;
+                        if (udef != null)
                         {
-                            Col2 = CamouflageColorsUtility.CamouflageColors[1];
-                        }
-                        else
-                        {
-                            Col2 = udef.FactionColor2;
+                            if ((compF = this.GetComp<CompFactionColor>()) != null && compF.CProps.UseCamouflageColor)
+                            {
+                                Col2 = CamouflageColorsUtility.CamouflageColors[1];
+                            }
+                            else
+                            {
+                                Col2 = udef.FactionColor2;
+                            }
                         }
                     }
                     else
@@ -87,7 +93,6 @@ namespace FactionColors
                         {
                             Col2 = comp.Color;
                         }
-                        Col2 = Color.white;
                     }
                 }
                 FirstSpawned = false;
@@ -111,9 +116,8 @@ namespace FactionColors
         public override void SpawnSetup(Map map)
         {
             base.SpawnSetup(map);
-            if (this.wearer != null)
-            {
-            }
+            this.Col1 = FactionColorUtilities.currentPlayerStoryTracker.PlayerColorOne;
+            this.Col2 = FactionColorUtilities.currentPlayerStoryTracker.PlayerColorTwo;
         }
 
         public override void DrawWornExtras()

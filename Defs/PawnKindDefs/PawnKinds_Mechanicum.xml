@@ -17,7 +17,7 @@
     <combatPower>100</combatPower>
     <baseRecruitDifficulty>0.50</baseRecruitDifficulty>
     <backstoryCategory>Skitarius</backstoryCategory>
-    <defaultFactionType>ImperialGuard</defaultFactionType>
+    <defaultFactionType>Mechanicus</defaultFactionType>
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
     <maxGenerationAge>58</maxGenerationAge>
     <itemQuality>Normal</itemQuality>
@@ -60,7 +60,7 @@
     <combatPower>100</combatPower>
     <baseRecruitDifficulty>0.50</baseRecruitDifficulty>
     <backstoryCategory>Skitarius</backstoryCategory>
-    <defaultFactionType>ImperialGuard</defaultFactionType>
+    <defaultFactionType>Mechanicus</defaultFactionType>
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
     <maxGenerationAge>58</maxGenerationAge>
     <itemQuality>Normal</itemQuality>
@@ -103,7 +103,7 @@
     <combatPower>50</combatPower>
     <baseRecruitDifficulty>0.50</baseRecruitDifficulty>
     <backstoryCategory>Servitor</backstoryCategory>
-    <defaultFactionType>ImperialGuard</defaultFactionType>
+    <defaultFactionType>Mechanicus</defaultFactionType>
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
     <maxGenerationAge>58</maxGenerationAge>
     <itemQuality>Normal</itemQuality>
@@ -144,7 +144,7 @@
     <label>ServoSkull</label>
     <race>Mechanicum_ServoSkull</race>
     <combatPower>50</combatPower>
-    <defaultFactionType>ImperialGuard</defaultFactionType>
+    <defaultFactionType>Mechanicus</defaultFactionType>
     <aiAvoidCover>true</aiAvoidCover>
     <lifeStages>
       <li>
@@ -175,7 +175,7 @@
     <combatPower>150</combatPower>
     <baseRecruitDifficulty>0.30</baseRecruitDifficulty>
     <backstoryCategory>Techpriest</backstoryCategory>
-    <defaultFactionType>ImperialGuard</defaultFactionType>
+    <defaultFactionType>Mechanicus</defaultFactionType>
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
     <trader>true</trader>
     <maxGenerationAge>58</maxGenerationAge>
@@ -216,5 +216,55 @@
       <ResolveFactor>1.5</ResolveFactor>
     </AfflictionProperty>
   </PawnKindDef>
+
+  <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
+    <defName>MEC_Explorator</defName>
+    <label>Explorator Primaris</label>
+    <race>Alien_Mechanicus_Member</race>
+    <combatPower>150</combatPower>
+    <baseRecruitDifficulty>0.50</baseRecruitDifficulty>
+    <backstoryCategory>Techpriest</backstoryCategory>
+    <defaultFactionType>Mechanicus</defaultFactionType>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+    <maxGenerationAge>58</maxGenerationAge>
+    <itemQuality>Excellent</itemQuality>
+    <factionLeader>true</factionLeader>
+    <apparelMoney>
+      <min>7000</min>
+      <max>9000</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>TechPriest</li>
+      <li>Mechanicum</li>
+    </apparelTags>
+    <apparelRequired>
+	 <li>MechadendriteOuter</li>
+	 <li>Mechanicum_PriestRobe</li>
+      <li>MecCowlPriest</li>
+    </apparelRequired>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelAllowHeadwearChance>0.9</apparelAllowHeadwearChance>
+    <weaponMoney>
+      <min>5000</min>
+      <max>5000</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>IG_MecMelee</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>1000</min>
+      <max>5000</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>1.0</techHediffsChance>
+    <AfflictionProperty>
+      <LowerAfflictionLimit>0.8</LowerAfflictionLimit>
+      <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
+      <ResolveFactor>1.5</ResolveFactor>
+    </AfflictionProperty>
+  </PawnKindDef>
+
 
 </PawnKindDefs>

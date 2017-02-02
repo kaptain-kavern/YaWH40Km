@@ -37,7 +37,10 @@ namespace Corruption
         public override void CompTick()
         {
             base.CompTick();
-            this.curpos = Eldar.Position;
+            if (this.parent.Spawned)
+            {
+                this.curpos = Eldar.Position;
+            }
         }
 
         public override void PostExposeData()

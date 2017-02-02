@@ -10,7 +10,7 @@ namespace Corruption
 {
     [StaticConstructorOnStartup]
     public static class ChaosGodsUtilities
-    {       
+    {
         private static Texture2D ButtonUndivided = ContentFinder<Texture2D>.Get("UI/Buttons/ButtonUndivided", true);
         private static Texture2D ButtonKhorne = ContentFinder<Texture2D>.Get("UI/Buttons/ButtonKhorne", true);
         private static Texture2D ButtonNurgle = ContentFinder<Texture2D>.Get("UI/Buttons/ButtonNurgle", true);

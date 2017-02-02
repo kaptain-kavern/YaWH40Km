@@ -99,7 +99,8 @@
       <Insulation_Cold>-3</Insulation_Cold>
       <Insulation_Heat>3</Insulation_Heat>
     </statBases>
-    <equippedStatOffsets>
+    <equippedStatOffsets>	
+      <ShootingAccuracy>0.1</ShootingAccuracy>
       <MoveSpeed>-0.04</MoveSpeed>
     </equippedStatOffsets>
     <costList>

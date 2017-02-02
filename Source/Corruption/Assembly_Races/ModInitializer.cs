@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 using Injector40K;
 using System.Collections.Generic;
+using RimWorld.Planet;
 
 namespace Corruption
 {
@@ -59,6 +60,20 @@ namespace Corruption
 
         public void OnLevelWasLoaded()
         {
+            WorldObjectsHolder holder = Find.World.worldObjects;
+            if (holder != null)
+            {
+       //         Log.Message("FoundHolder");
+                if (!holder.AllWorldObjects.Any(x => x.def == CorruptionDefOfs.CorruptionStoryTracker))
+                {
+         //           Log.Message("Adding World Ojbect");
+                    CorruptionStoryTracker corrTracker = new CorruptionStoryTracker();
+                    corrTracker.def = CorruptionDefOfs.CorruptionStoryTracker;
+                    corrTracker.Tile = 0;
+                    holder.Add(corrTracker);
+                }
+            }
+
         }
         
         public void Start()
@@ -70,18 +85,16 @@ namespace Corruption
             MethodInfo method2a = typeof(RimWorld.MainTabWindow_Inspect).GetMethod("DoInspectPaneButtons", BindingFlags.Public | BindingFlags.Instance);
             MethodInfo method2b = typeof(Corruption.MainTabWindow_InspectModded).GetMethod("DoInspectPaneButtons", BindingFlags.Public | BindingFlags.Instance);
 
-   //         Type t = typeof(MainTabWindow_Inspect).Assembly.GetType("RimWorld.InspectPaneFiller");
-   //         if (t == null) Log.Message("NoType");
 
-   //         MethodInfo method3a = t.GetMethod("DrawMood", BindingFlags.NonPublic | BindingFlags.Static);
-   //         MethodInfo method3b = typeof(Corruption.MainTabWindow_InspectModded).GetMethod("DrawMood", BindingFlags.NonPublic | BindingFlags.Static);
+            MethodInfo method3a = typeof(RimWorld.FloatMenuMakerMap).GetMethod("AddUndraftedOrders", BindingFlags.NonPublic | BindingFlags.Static);
+            MethodInfo method3b = typeof(Corruption.Building_MechanicusMedTable).GetMethod("AddUndraftedOrders", BindingFlags.NonPublic | BindingFlags.Static);
 
             try
             {
                 Detours.TryDetourFromTo(method1a, method1b);
                 Detours.TryDetourFromTo(method2a, method2b);
-    //            Detours.TryDetourFromTo(method3a, method3b);
-    
+           //     Detours.TryDetourFromTo(method3a, method3b);
+
 
                 Log.Message("Corruption methods detoured!");
             }

@@ -193,61 +193,64 @@ namespace Corruption
 
         public static bool ShouldAttendSermon(Pawn p, Pawn preacher)
         {
-            if (!p.Drafted)
+            if (!p.HostileTo(Faction.OfPlayer))
             {
-                int num = 0;
-                Need_Soul soul = p.needs.TryGetNeed<Need_Soul>();
-
-                switch (soul.DevotionTrait.SDegree)
+                if (!p.Drafted)
                 {
-                    case -2:
-                        {
-                            num = 0;
-                            break;
-                        }
-                    case -1:
-                        {
-                            num = 5;
-                            break;
-                        }
-                    case 0:
+                    int num = 0;
+                    Need_Soul soul = p.needs.TryGetNeed<Need_Soul>();
+
+                    switch (soul.DevotionTrait.SDegree)
+                    {
+                        case -2:
+                            {
+                                num = 0;
+                                break;
+                            }
+                        case -1:
+                            {
+                                num = 5;
+                                break;
+                            }
+                        case 0:
+                            {
+                                num = 10;
+                                break;
+                            }
+                        case 1:
+                            {
+                                num = 15;
+                                break;
+                            }
+                        case 2:
+                            {
+                                num = 20;
+                                break;
+                            }
+                    }
+
+                    if (p.CurJob.playerForced)
+                    {
+                        num = 0;
+                        if (soul.DevotionTrait.SDegree == 2)
                         {
                             num = 10;
-                            break;
                         }
-                    case 1:
-                        {
-                            num = 15;
-                            break;
-                        }
-                    case 2:
-                        {
-                            num = 20;
-                            break;
-                        }
-                }
-
-                if (p.CurJob.playerForced)
-                {
-                    num = 0;
-                    if (soul.DevotionTrait.SDegree == 2)
-                    {
-                        num = 10;
                     }
-                }
+           //         Log.Message("starting Jobs");
+                    if (p.CurJob.def == CorruptionDefOfs.AttendSermon)
+                    {
+                        num = 0;
+                    }
 
-                if (p.CurJob.def == CorruptionDefOfs.AttendSermon)
-                {
-                    num = 0;
-                }
-
-                if (!SermonUtility.IsBestPreacher(p, preacher))
-                {
-                    num = 0;
-                }
-                if ((Rand.RangeInclusive(0, 15) + num) >= 20)
-                {
-                    return true;
+                    if (!SermonUtility.IsBestPreacher(p, preacher))
+                    {
+                        num = 0;
+                    }
+                    if ((Rand.RangeInclusive(0, 15) + num) >= 20)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -342,12 +345,14 @@ namespace Corruption
             if (opposingDevotees == null) opposingDevotees = new List<Pawn>();
             List<Pawn> availablePreachers = p.Map.mapPawns.FreeColonistsSpawned.ToList<Pawn>().FindAll(s => s.CurJob.def == CorruptionDefOfs.HoldSermon);
             Pawn bestcurrentPreacher;
-
-            bestcurrentPreacher = availablePreachers.Aggregate((i1, i2) => i1.skills.GetSkill(SkillDefOf.Social).Level > i2.skills.GetSkill(SkillDefOf.Social).Level ? i1 : i2);
-
-            if (bestcurrentPreacher == preacher && !opposingDevotees.Contains(preacher))
+            if (availablePreachers != null)
             {
-                return true;
+                bestcurrentPreacher = availablePreachers.Aggregate((i1, i2) => i1.skills.GetSkill(SkillDefOf.Social).Level > i2.skills.GetSkill(SkillDefOf.Social).Level ? i1 : i2);
+
+                if (bestcurrentPreacher == preacher && !opposingDevotees.Contains(preacher))
+                {
+                    return true;
+                }
             }
             return false;
         }

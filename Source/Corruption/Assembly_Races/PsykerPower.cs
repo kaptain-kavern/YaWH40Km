@@ -11,6 +11,20 @@ namespace Corruption
 {
     public class PsykerPower : ThingWithComps
     {
+        public PsykerPower()
+        {
+        }
+
+        public PsykerPower(Pawn user)
+        {
+            this.pawn = user;
+            PsykerPowerDef randdef = DefDatabase<PsykerPowerDef>.GetRandom();
+            this.powerdef = randdef;
+            this.def = randdef;
+            this.PowerButton = randdef.uiIcon;
+            this.InitializePawnComps(user);
+        }
+
         public PsykerPower(Pawn user, PsykerPowerDef pdef)
         {
             this.pawn = user;
@@ -50,6 +64,15 @@ namespace Corruption
         public CompProperties MainEffectProps;
 
         public Texture2D PowerButton;
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_References.LookReference<Pawn>(ref this.pawn, "pawn", false);
+            Scribe_Defs.LookDef<PsykerPowerDef>(ref this.powerdef, "powerdef");
+            Scribe_Collections.LookList<ThingComp>(ref this.comps, "comps", LookMode.Reference, new object[0]);
+
+        }
 
     }
 }

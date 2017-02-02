@@ -138,4 +138,54 @@
     </AfflictionProperty>
   </PawnKindDef>
 
+  <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
+    <defName>CultistLeader</defName>
+    <label>Arch-Heretic</label>
+    <race>Human</race>
+    <combatPower>100</combatPower>
+    <baseRecruitDifficulty>0.30</baseRecruitDifficulty>
+    <backstoryCategory>Civil</backstoryCategory>
+    <defaultFactionType>ChaosCult</defaultFactionType>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+    <maxGenerationAge>58</maxGenerationAge>
+    <itemQuality>Excellent</itemQuality>
+    <factionLeader>true</factionLeader>
+    <apparelMoney>
+      <min>500</min>
+      <max>800</max>
+    </apparelMoney>
+    <apparelRequired>
+      <li>Apparel_CultistRobe</li>
+      <li>Apparel_CultistHood</li>
+      <li>ChaosBanner</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>CorruptedApparel</li>
+    </apparelTags>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelAllowHeadwearChance>0.0</apparelAllowHeadwearChance>
+    <weaponMoney>
+      <min>3500</min>
+      <max>3500</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>SorcererWeapons</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>10</min>
+      <max>100</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.1</techHediffsChance>
+    <AfflictionProperty>
+      <LowerAfflictionLimit>0</LowerAfflictionLimit>
+      <UpperAfflictionLimit>0.10</UpperAfflictionLimit>
+      <LowerPsykerPowerLimit>Iota</LowerPsykerPowerLimit>
+      <UpperPsykerPowerLimit>Delta</UpperPsykerPowerLimit>
+    </AfflictionProperty>
+  </PawnKindDef>
+
+
 </PawnKindDefs>

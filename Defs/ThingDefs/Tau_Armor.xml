@@ -4,7 +4,7 @@
   <ThingDef ParentName="ArmorMakeableBase" Class="FactionColors.ApparelUniformDef">
     <thingClass>FactionColors.ApparelUniform</thingClass>
     <defName>Tau_Undershirt</defName>
-    <label>Tau Undergarment</label>
+    <label>Tau Bodysuit</label>
     <description>A simple undergarment manufactured by the Tau.</description>
     <graphicData>
       <texPath>Things/Tau/TauUndershirt/TauShirt</texPath>
@@ -23,6 +23,7 @@
     </tradeTags>
     <statBases>
       <WorkToMake>5000</WorkToMake>
+      <MarketValue>100</MarketValue>
       <Mass>0.25</Mass>
       <ArmorRating_Blunt>0.03</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.03</ArmorRating_Sharp>
@@ -40,6 +41,7 @@
       <commonality>1</commonality>
       <tags>
         <li>Tau_Aux</li>
+        <li>Tau_Basic</li>
       </tags>
       <defaultOutfitTags>
         <li>Tau_Aux</li>

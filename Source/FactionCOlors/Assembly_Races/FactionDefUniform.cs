@@ -24,7 +24,6 @@ namespace FactionColors
             if (Subfactions != null)
             {
                 Subfaction SubFac = Subfactions.RandomElementByWeight((Subfaction sub2) => sub2.weight);
-                this.label = SubFac.SubfactionLabel;
                 this.fixedName = SubFac.SubfactionName;
                 this.description = SubFac.SubfactionDescription;
                 this.FactionColor1 = SubFac.SubfactionColor1;

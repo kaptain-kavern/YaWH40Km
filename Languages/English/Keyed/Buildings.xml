@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+
+  <TabIGConsole>Imperium</TabIGConsole>
+
+  <ImperialInstitutions>Imperial Institutions</ImperialInstitutions>
+
+  <StandardOperations>Standard Operations</StandardOperations>
+  <AdvancedOperations>Advanved Operations</AdvancedOperations>
+
+
+  <IG_CCM_ContactFaction>Try and contact the [0]</IG_CCM_ContactFaction>
+
+  <UseCCC>Use the CCC</UseCCC>
+
+  <ImperialFrequencies>Imperial Frequencies</ImperialFrequencies>
+
+  <UnknownFrequencies>Unknown Frequencies</UnknownFrequencies>
+
+  <StarmapObjectInfo>Name: {0}
+Diameter: {1} km
+
+Population Status: {2}
+</StarmapObjectInfo>
+
+
+  <CurrentWorldInfoRect>Name: {0}
+
+This is the planet you're based on. Click for communication options within the planetary bounds.
+</CurrentWorldInfoRect>
+
+  <EnterSurgicalUnit>Enter Surgical Unit</EnterSurgicalUnit>
+
+  <CarryPrisonerSurgicalUnit>Place prisoner {0} in Surgical Unit</CarryPrisonerSurgicalUnit>
+
+
+</LanguageData>

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Corruption
 {
-    public class AfflictionProperty : IExposable
+    public class AfflictionProperty
     {
         public float LowerAfflictionLimit = 0.4f;
         public float UpperAfflictionLimit = 0.99f;
@@ -24,8 +24,5 @@ namespace Corruption
         public PsykerPowerLevel LowerPsykerPowerLimit = PsykerPowerLevel.Omicron;
         public List<PsykerPowerDef> CommmonPsykerPowers = new List<PsykerPowerDef>();
 
-        public void ExposeData()
-        {
-        }
     }
 }

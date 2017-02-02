@@ -24,8 +24,8 @@
       </thingDefs>
     </apparelStuffFilter>
     <startingGoodwill>
-      <min>50</min>
-      <max>100</max>
+      <min>0</min>
+      <max>10</max>
     </startingGoodwill>
     <naturalColonyGoodwill>
       <min>50</min>

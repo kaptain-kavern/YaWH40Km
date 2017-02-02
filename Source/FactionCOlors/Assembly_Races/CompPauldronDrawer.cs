@@ -11,7 +11,8 @@ namespace FactionColors
     public class CompPauldronDrawer : ThingComp
     {
         public string graphicPath;
-        public Shader shader;
+        public Shader shader = ShaderDatabase.Cutout;
+        public ShoulderPadType padType;
         public Apparel apparel
         {
             get
@@ -40,7 +41,32 @@ namespace FactionColors
 
         public override void PostDraw()
         {
+            if (this.PauldronGraphic != null)
+            {
+                Mesh mesh = MeshPool.plane10;
+                float x = 0f;
+                float y = 0.1f;
+                float z = 0f;
+                if (this.pawn.Rotation == Rot4.North)
+                {
+                    y += 0.2f;
+                }
+                else if (this.pawn.Rotation == Rot4.East)
+                {
+                    mesh = MeshPool.plane10Flip;
+                    if (this.padType == ShoulderPadType.Left)
+                    {
+                        y -= 0.2f;
+                    }
+                }
+                else if (this.pawn.Rotation == Rot4.West && this.padType == ShoulderPadType.Right)
+                {
+                    y -= 0.2f;
+                }
 
+                Vector3 vector = new Vector3(x, y, z);
+                GenDraw.DrawMeshNowOrLater(mesh, this.pawn.DrawPos + vector, Quaternion.AngleAxis(0f, Vector3.up), this.PauldronGraphic.MatAt(this.pawn.Rotation, null), false);
+            }
         }
 
         public override void PostSpawnSetup()
@@ -48,6 +74,7 @@ namespace FactionColors
             base.PostSpawnSetup();
             this.graphicPath = this.pprops.PadTexPath;
             this.shader = ShaderDatabase.ShaderFromType(this.pprops.shaderType);
+            this.padType = this.pprops.shoulderPadType;
         }
 
         public override void PostExposeData()

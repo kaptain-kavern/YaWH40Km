@@ -60,8 +60,10 @@ namespace Corruption
                 {
                     this.Map.reservationManager.Release(this.CurJob.targetA.Cell, this.pawn);
                 }
+                BuildingAltar altar = this.TargetA.Thing as BuildingAltar;
+                altar.CalledInFlock = false;
+                SermonUtility.HoldSermonTickCheckEnd(this.pawn, altar);
 
-                SermonUtility.HoldSermonTickCheckEnd(this.pawn, this.TargetA.Thing as BuildingAltar);
     //            Log.Message("C");
                 
             });

@@ -64,5 +64,26 @@
     </rulePack>
   </RulePackDef>
 
+  <RulePackDef>
+    <defName>NamerTauAun</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[TauAunEl]</li>
+        <li>name->[TauAunEl] [TauShasSuff]</li>
+        <li>name->[TauAunEl] [TauShasSuff] [TauShasSuff]</li>
+      </rulesStrings>
+      <rulesRaw>
+        <li Class="Rule_File">
+          <keyword>TauAunEl</keyword>
+          <path>NameBanks/TauAunEl</path>
+        </li>
+        <li Class="Rule_File">
+          <keyword>TauShasSuff</keyword>
+          <path>NameBanks/TauShasSuff</path>
+        </li>
+      </rulesRaw>
+    </rulePack>
+  </RulePackDef>
+
 
 </NameMakerDefs>

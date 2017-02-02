@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using RimWorld;
+using Verse;
+using RimWorld.Planet;
+using UnityEngine;
+
+namespace FactionColors
+{
+    public class PlayerFactionStoryTracker : WorldObject
+    {
+        public PlayerFactionStoryTracker()
+        {
+            this.PlayerColorOne = Color.red;
+            this.PlayerColorTwo = Color.black;
+        }
+
+        public Color PlayerColorOne;
+
+        public Color PlayerColorTwo;
+
+        public string BannerGraphicPath = "UI/Flags/Plain";
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.LookValue<Color>(ref this.PlayerColorOne, "PlayerColorOne", Color.red, false);
+            Scribe_Values.LookValue<Color>(ref this.PlayerColorTwo, "PlayerColorTwo", Color.red, false);
+            Scribe_Values.LookValue<string>(ref this.BannerGraphicPath, "BannerGraphicPath", "UI/Flags/Plain", false);
+        }
+
+        public List<string> BannerOptions
+        {
+            get
+            {
+                IEnumerable<Texture2D> array = ContentFinder<Texture2D>.GetAllInFolder("UI/Flags");
+                Log.Message("Textures : " + array.Count<Texture2D>().ToString());
+                List<string> list = new List<string>();
+                foreach (Texture2D current in array)
+                {
+                    string name = current.name;
+                    if (!name.Contains("_m"))
+                    {
+                        list.Add(name);
+                    }
+                }
+
+                return list;
+            }
+        }
+    }
+}

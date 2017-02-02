@@ -208,4 +208,58 @@
     <trader>true</trader>
   </PawnKindDef>
 
+  <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
+    <defName>TauAunUi</defName>
+    <label>Aun-Ui</label>
+    <race>Alien_TauAUN</race>
+    <combatPower>40</combatPower>
+    <baseRecruitDifficulty>0.90</baseRecruitDifficulty>
+    <backstoryCategory>TauAUN</backstoryCategory>
+    <defaultFactionType>TauVanguard</defaultFactionType>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+    <maxGenerationAge>80</maxGenerationAge>
+    <itemQuality>Excellent</itemQuality>
+    <factionLeader>true</factionLeader>
+    <apparelMoney>
+      <min>500</min>
+      <max>1000</max>
+    </apparelMoney>
+    <apparelRequired>
+	 <li>IoM_Apparel_RobeGen</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Tau_Basic</li>
+    </apparelTags>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelAllowHeadwearChance>0.0</apparelAllowHeadwearChance>
+    <weaponMoney>
+      <min>1200</min>
+      <max>2000</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>Tau_RangedUncommon</li>
+    </weaponTags>
+    <techHediffsMoney>
+      <min>1200</min>
+      <max>2000</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.9</techHediffsChance>
+    <AfflictionProperty>
+      <IsImmune>true</IsImmune>
+      <ImmuneDevotionDegree>0</ImmuneDevotionDegree>
+      <UseOtherFaith>true</UseOtherFaith>
+      <IsofFaith>Tau</IsofFaith>
+      <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
+      <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
+      <LowerPsykerPowerLimit>Sigma</LowerPsykerPowerLimit>
+      <UpperPsykerPowerLimit>Sigma</UpperPsykerPowerLimit>
+    </AfflictionProperty>
+    <RenamePawns>true</RenamePawns>
+    <OverridingNameRulePack>NamerTauAun</OverridingNameRulePack>
+  </PawnKindDef>
+
+
 </PawnKindDefs>

@@ -69,7 +69,7 @@
       <li Class="Corruption.CompProperties_SoulItem">
         <compClass>Corruption.CompSoulItem</compClass>
         <Category>Corruption</Category>
-        <GainRate>1.0</GainRate>
+        <GainRate>1000.0</GainRate>
       </li>
     </comps>
   </ThingDef>

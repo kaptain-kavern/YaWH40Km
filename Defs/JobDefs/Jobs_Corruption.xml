@@ -71,4 +71,36 @@
     <reportString>Supporting a Dark Ritual.</reportString>
   </JobDef>
 
+ <JobDef>
+    <defName>SummonDemon</defName>
+    <driverClass>Corruption.JobDriver_Summoning</driverClass>
+    <reportString>Summoning the Dark Powers.</reportString>
+  </JobDef>
+
+ <JobDef>
+    <defName>UsingCCC</defName>
+    <driverClass>Corruption.JobDriver_UseCCC</driverClass>
+    <reportString>Using Central Command Cogitator.</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>EnterMecMedTable</defName>
+    <driverClass>Corruption.JobDriver_EnterMecMedBay</driverClass>
+    <reportString>entering Mechanicus Surgical Unit.</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>CarryToMecMedTable</defName>
+    <driverClass>Corruption.JobDriver_CarryToMecMedTable</driverClass>
+    <reportString>carrying TargetA to Mechanicus surgical unit.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>OperateMSU</defName>
+    <driverClass>Corruption.JobDriver_OperateMSU</driverClass>
+    <reportString>operating Mechanicus Surgical Unit.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
 </Defs>

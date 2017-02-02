@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Buildings>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>IGCommsConsole</defName>
+    <label>imperial CCC MKIV</label>
+    <thingClass>Corruption.Building_CommsConsoleIG</thingClass>
+    <graphicData>
+      <texPath>Things/IG/CommandConsole/IG_ComConsole</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(3,3)</drawSize>
+      <damageData>
+        <rect>(0,0,3,3)</rect>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <blockWind>true</blockWind>
+    <castEdgeShadows>true</castEdgeShadows>
+    <fillPercent>1</fillPercent>
+    <inspectorTabs>
+      <li>Corruption.ITab_IGCommsConsole</li>
+      <li>FactionColors.ITab_FactionColor</li>
+    </inspectorTabs>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <WorkToBuild>2200</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <description>Imperial Central Command Cogitator. Allows radio contact with remote traders as well as other factions for trade and diplomacy. Also offers encrypted communication and strategic guidance for the subsector you're in.</description>
+    <size>(3,3)</size>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>10</costStuffCount>
+    <costList>
+      <Steel>200</Steel>
+      <Component>20</Component>
+    </costList>
+    <interactionCellOffset>(0,0,-2)</interactionCellOffset>
+    <hasInteractionCell>true</hasInteractionCell>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Misc</designationCategory>
+		<building>
+			<ai_chillDestination>false</ai_chillDestination>
+		</building>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <startElectricalFires>false</startElectricalFires>
+        <basePowerConsumption>50</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>6</glowRadius>
+        <glowColor>(254,206,94,0)</glowColor>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <designationHotkey>Misc3</designationHotkey>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+    </researchPrerequisites>
+  </ThingDef>  
+
+</Buildings>

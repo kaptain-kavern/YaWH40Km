@@ -66,6 +66,7 @@
     <Compile Include="Affliction.cs" />
     <Compile Include="AfflictionDrawerUtility.cs" />
     <Compile Include="AfflictionHeadDrawer.cs" />
+    <Compile Include="Bill_MedicalTable.cs" />
     <Compile Include="BookStuff\Bookshelf.cs" />
     <Compile Include="BookStuff\ITab_Bookshelf.cs" />
     <Compile Include="BookStuff\JobDriver_AddBookToLibrary.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="BuildingAltar.cs" />
     <Compile Include="BuildingAltarDef.cs" />
     <Compile Include="BuildingWorshipDef.cs" />
+    <Compile Include="Building_CommsConsoleIG.cs" />
+    <Compile Include="Building_MechanicusMedTable.cs" />
     <Compile Include="ChaosGodsUtilities.cs" />
     <Compile Include="Command_CastPower.cs" />
     <Compile Include="CompAfflictionDrawer.cs" />
@@ -94,10 +97,12 @@
     <Compile Include="CompThoughtlessAutomaton.cs" />
     <Compile Include="CompUseEffect_PsychicPower.cs" />
     <Compile Include="CorruptionStoryTracker.cs" />
+    <Compile Include="CorruptionStoryTrackerUtilities.cs" />
     <Compile Include="CulturalToleranceCategory.cs" />
     <Compile Include="DamageWorker_Heal.cs" />
     <Compile Include="DemonDefOfs.cs" />
     <Compile Include="DemonUtilities.cs" />
+    <Compile Include="Window_CCMBase.cs" />
     <Compile Include="Dialog_RenameTemple.cs" />
     <Compile Include="ChaosFollowerPawnKindDef.cs" />
     <Compile Include="ChaosGods.cs" />
@@ -110,14 +115,20 @@
     <Compile Include="HediffComp_TemporaryRecruit.cs" />
     <Compile Include="IncidentWorker_CorruptiveDrone.cs" />
     <Compile Include="ITab_Altar.cs" />
+    <Compile Include="ITab_IGCommsConsole.cs" />
     <Compile Include="ITab_Pawn_Alignment.cs" />
     <Compile Include="ItemEffigy.cs" />
     <Compile Include="JobDriver_AttendSermon.cs" />
+    <Compile Include="JobDriver_CarryToMecMedTable.cs" />
     <Compile Include="JobDriver_CastPsykerPowerVerb.cs" />
     <Compile Include="JobDriver_CastPsykerPowerSelf.cs" />
+    <Compile Include="JobDriver_EnterMecMedBay.cs" />
     <Compile Include="JobDriver_HoldSermon.cs" />
     <Compile Include="JobDriver_HostileDemonSummoner.cs" />
+    <Compile Include="JobDriver_MSUPerformTreatment.cs" />
+    <Compile Include="JobDriver_OperateMSU.cs" />
     <Compile Include="JobDriver_SummoningTribute.cs" />
+    <Compile Include="JobDriver_UseCCC.cs" />
     <Compile Include="JoyGiver_HoldSermon.cs" />
     <Compile Include="LordToilData_DemonSummoner.cs" />
     <Compile Include="LordToil_DemonSummoner.cs" />
@@ -148,6 +159,7 @@
     <Compile Include="PsykerPowerCategory.cs" />
     <Compile Include="PsykerPowerDef.cs" />
     <Compile Include="PsykerPowerDefOf.cs" />
+    <Compile Include="PsykerPowerEntry.cs" />
     <Compile Include="PsykerPowerLevel.cs" />
     <Compile Include="PsykerPowerManager.cs" />
     <Compile Include="PsykerPowerMasteryEntry.cs" />
@@ -162,6 +174,8 @@
     <Compile Include="SoulTraitDef.cs" />
     <Compile Include="CorruptionDefOfs.cs" />
     <Compile Include="SoulTraitDegreeData.cs" />
+    <Compile Include="StarMapObject.cs" />
+    <Compile Include="StarMapObjectType.cs" />
     <Compile Include="TempleCardUtility.cs" />
     <Compile Include="ThingComp_CorruptedItem.cs" />
     <Compile Include="SituationalThoughtHandlerModded.cs" />
@@ -185,6 +199,7 @@
     <Compile Include="Verb_CastWarpPower.cs" />
     <Compile Include="WarpPowerUtilities.cs" />
     <Compile Include="WarpRift.cs" />
+    <Compile Include="ITab_SMUOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="xml\Initializer.xml">

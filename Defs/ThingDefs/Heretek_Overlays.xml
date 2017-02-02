@@ -11,7 +11,7 @@
     </graphicData>
     <costStuffCount>50</costStuffCount>
     <thingCategories>
-      <li>Apparel</li>
+      <li>Root</li>
     </thingCategories>
     <statBases>
       <WorkToMake>100</WorkToMake>
@@ -32,6 +32,7 @@
       <defaultOutfitTags>
       </defaultOutfitTags>
     </apparel>
+      <tradeability>Never</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="Overlay_Head">
@@ -50,7 +51,7 @@
     </graphicData>
     <costStuffCount>50</costStuffCount>
     <thingCategories>
-      <li>Apparel</li>
+      <li>Root</li>
     </thingCategories>
     <statBases>
       <WorkToMake>100</WorkToMake>
@@ -75,6 +76,7 @@
       <defaultOutfitTags>
       </defaultOutfitTags>
     </apparel>
+      <tradeability>Never</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="ApparelBase">
@@ -87,7 +89,7 @@
     </graphicData>
     <costStuffCount>50</costStuffCount>
     <thingCategories>
-      <li>Apparel</li>
+      <li>Root</li>
     </thingCategories>
     <statBases>
       <WorkToMake>100</WorkToMake>
@@ -112,6 +114,7 @@
       <defaultOutfitTags>
       </defaultOutfitTags>
     </apparel>
+      <tradeability>Never</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="ApparelBase">
@@ -124,7 +127,7 @@
     </graphicData>
     <costStuffCount>50</costStuffCount>
     <thingCategories>
-      <li>Apparel</li>
+      <li>Root</li>
     </thingCategories>
     <statBases>
       <WorkToMake>100</WorkToMake>
@@ -149,6 +152,7 @@
       <defaultOutfitTags>
       </defaultOutfitTags>
     </apparel>
+      <tradeability>Never</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="ApparelBase">
@@ -161,7 +165,7 @@
     </graphicData>
     <costStuffCount>50</costStuffCount>
     <thingCategories>
-      <li>Apparel</li>
+      <li>Root</li>
     </thingCategories>
     <statBases>
       <WorkToMake>100</WorkToMake>
@@ -186,6 +190,7 @@
       <defaultOutfitTags>
       </defaultOutfitTags>
     </apparel>
+      <tradeability>Never</tradeability>
   </ThingDef>
 
 

@@ -237,8 +237,96 @@
       </defaultOutfitTags>
     </apparel>
     <colorGenerator Class="ColorGenerator_StandardApparel" />
+    <tradeability>Never</tradeability>
   </ThingDef>
 
+  <ThingDef ParentName="ApparelMakeableBase">
+    <defName>Apparel_CultistRobe</defName>
+    <label>Rugged Robe</label>
+    <description>Rugged robe made of leather whose origin is best left undiscussed.</description>
+    <graphicData>
+      <texPath>Things/Chaos/Apostle/DirtyRobe</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <costStuffCount>50</costStuffCount>
+    <stuffCategories>
+      <li>Leathery</li>
+    </stuffCategories>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>90</MaxHitPoints>
+      <MarketValue>20</MarketValue>
+      <WorkToMake>6000</WorkToMake>
+      <ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.03</ArmorRating_Sharp>
+      <Insulation_Cold>-3</Insulation_Cold>
+    </statBases>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+        <li>Shoulders</li>
+      </bodyPartGroups>
+      <worngraphicPath>Things/Chaos/Apostle/DirtyRobe</worngraphicPath>
+      <layers>
+        <li>Shell</li>
+      </layers>
+      <commonality>1</commonality>
+      <tags>
+        <li>CorruptedApparel</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Worker</li>
+      </defaultOutfitTags>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_StandardApparel" />
+    <tradeability>Never</tradeability>
+  </ThingDef>
+
+  <ThingDef ParentName="ApparelMakeableBase">
+    <defName>Apparel_CultistHood</defName>
+    <label>Rugged Hood</label>
+    <description>Rugged hood made of leather whose origin is best left undiscussed.</description>
+    <graphicData>
+      <texPath>Things/Chaos/Apostle/DirtyHighHat</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <costStuffCount>50</costStuffCount>
+    <stuffCategories>
+      <li>Leathery</li>
+    </stuffCategories>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>90</MaxHitPoints>
+      <MarketValue>20</MarketValue>
+      <WorkToMake>6000</WorkToMake>
+      <ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.03</ArmorRating_Sharp>
+      <Insulation_Cold>-3</Insulation_Cold>
+    </statBases>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+        <li>Shoulders</li>
+      </bodyPartGroups>
+      <worngraphicPath>Things/Chaos/Apostle/DirtyHighHat</worngraphicPath>
+      <layers>
+        <li>Overhead</li>
+      </layers>
+      <commonality>1</commonality>
+      <tags>
+        <li>CorruptedApparel</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Worker</li>
+      </defaultOutfitTags>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_StandardApparel" />
+    <tradeability>Never</tradeability>
+  </ThingDef>
 
 
 </ThingDefs>

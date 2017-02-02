@@ -19,8 +19,6 @@ namespace Corruption
 
         private bool PsykerPowerAdded = false;
 
-        private CompPsyker LastOwner;
-
         private Graphic Overlay;
 
         public CompProperties_SoulItem SProps
@@ -142,19 +140,64 @@ namespace Corruption
                                 }
                             }
                             compPsyker.UpdatePowers();
-                            this.LastOwner = compPsyker;
                         }
                         PsykerPowerAdded = true;
                     }
 
                 }
             }
-            if (this.parent.Spawned && this.LastOwner != null)
+            if (this.parent.Spawned)
             {
-             //   Log.Message("Clearing TempPowers");
-                LastOwner.temporaryWeaponPowers.Clear();
-                LastOwner.UpdatePowers();
-                LastOwner = null;
+                PsykerPowerAdded = false;
+            }
+        }
+
+        public void CheckForOwnerV2()
+        {
+            CompEquippable tempcomp;
+            Apparel tempthing;
+            if (this.parent != null && !this.parent.Spawned)
+            {
+                //         Log.Message("Begin Check");
+                if (this.parent is Apparel)
+                {
+                    //             Log.Message("Soul item is Apparel");
+                    tempthing = this.parent as Apparel;
+                    this.Owner = tempthing.wearer;
+                }
+                else if ((tempcomp = this.parent.TryGetComp<CompEquippable>()) != null && tempcomp.PrimaryVerb.CasterPawn != null)
+                {
+                    //         Log.Message("IsGun");
+                    this.Owner = tempcomp.PrimaryVerb.CasterPawn;
+                }
+                if ((this.Owner != null))
+                {
+                    if ((soul = this.Owner.needs.TryGetNeed<Need_Soul>()) != null)
+                    {
+                        this.CalculateSoulChanges(soul, SProps);
+                    }
+                    if (!PsykerPowerAdded)
+                    {
+                        CompPsyker compPsyker;
+                        if ((compPsyker = Owner.TryGetComp<CompPsyker>()) != null)
+                        {
+                            for (int i = 0; i < SProps.UnlockedPsykerPowers.Count; i++)
+                            {
+                                if (soul.PsykerPowerLevel >= SProps.UnlockedPsykerPowers[i].PowerLevel)
+                                {
+                                    //    Log.Message("Adding Power to: " + compPsyker.psyker + " : " + SProps.UnlockedPsykerPowers[i].defName);
+                                    compPsyker.allpsykerPowers.Add(new PsykerPowerEntry(SProps.UnlockedPsykerPowers[i], true, this.parent.def));
+                                }
+                            }
+                            compPsyker.UpdatePowers();
+                        }
+                        PsykerPowerAdded = true;
+                    }
+
+                }
+            }
+            if (this.parent.Spawned)
+            {
                 PsykerPowerAdded = false;
             }
         }
@@ -210,7 +253,13 @@ namespace Corruption
         public override void CompTickRare()
         {
       //      Log.Message("CompTick");
-            this.CheckForOwner();     
+            this.CheckForOwnerV2();     
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.LookValue<bool>(ref this.PsykerPowerAdded, "PsykerPowerAdded", false, false);
         }
     }
 }

@@ -508,7 +508,7 @@ namespace Corruption
 
 
             //        Scribe_Collections.LookList<SoulTrait>(ref this.SoulTraits, "SoulTraits", LookMode.Deep, new object[0]);
-            Scribe_Collections.LookList<Pawn>(ref this.OpposingDevotees, "OpposingDevotees", LookMode.Deep, new object[0]);
+            Scribe_Collections.LookList<Pawn>(ref this.OpposingDevotees, "OpposingDevotees", LookMode.Reference, new object[0]);
 
             Scribe_Values.LookValue<ChaosGods>(ref this.Patron, "Patron", ChaosGods.Undivided, false);
 

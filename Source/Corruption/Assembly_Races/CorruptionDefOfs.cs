@@ -89,6 +89,9 @@ namespace Corruption
 
         // PsykerDefs
 
+        public static PsykerPowerDef PsykerPower_WarpBolt;
+
+
         public static JobDef CastPsykerPowerVerb;
 
         public static JobDef CastPsykerPowerSelf;
@@ -106,6 +109,7 @@ namespace Corruption
         public static FactionDef Orks;
         public static FactionDef AdeptusSororitas;
         public static FactionDef Mechanicus;
+        public static FactionDef TauVanguard;
 
         // MapConditions
 
@@ -115,6 +119,16 @@ namespace Corruption
         public static JobDef SummoningTribute;
         public static ThingDef WarpRift;
 
+
+        // WorldObjects
+
+        public static WorldObjectDef CorruptionStoryTracker;
+        public static JobDef UsingCCC;
+
+        public static JobDef EnterMecMedTable;
+        public static JobDef CarryToMecMedTable;
+
+        public static JobDef OperateMSU;
 
     }
 }
