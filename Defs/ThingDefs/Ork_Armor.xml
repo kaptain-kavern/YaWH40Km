@@ -134,7 +134,7 @@
     </recipeMaker>
     <graphicData>
       <texPath>Things/Orks/OrkHelmet/OrkHelmetVarIcon</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <WorkToMake>6000</WorkToMake>
