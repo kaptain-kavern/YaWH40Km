@@ -71,7 +71,7 @@ namespace Corruption
             if (cpawn.needs.TryGetNeed<Need_Soul>() == null)
             {
                 //Log.Message("NoNeed");
-                SituationalThoughtHandlerModded.CreateNewSoul(cpawn);
+                HarmonyPatches.CreateNewSoul(cpawn);
             }
             if (cpawn.needs.TryGetNeed<Need_Soul>().NoPatron)
             {

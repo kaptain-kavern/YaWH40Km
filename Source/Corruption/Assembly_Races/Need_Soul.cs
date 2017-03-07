@@ -29,7 +29,19 @@ namespace Corruption
 
         public PsykerPowerLevel PsykerPowerLevel;
 
-        public List<SoulTrait> SoulTraits = new List<SoulTrait>();
+        public SoulTraitDegreeData DevotionTraitDegree;
+
+        public List<SoulTrait> SoulTraits
+        {
+            get
+            {
+                List<SoulTrait> list = new List<SoulTrait>();
+                if (this.DevotionTrait != null) list.Add(this.DevotionTrait);
+                if (this.PatronTrait != null) list.Add(this.PatronTrait);
+                if (this.CommonSoulTrait != null) list.Add(this.CommonSoulTrait);
+                return list;
+            }
+        }        
 
         public List<PsykerPower> psykerPowers = new List<PsykerPower>();
 
@@ -39,9 +51,11 @@ namespace Corruption
 
         public PatronInfo patronInfo = new PatronInfo();
 
-        public AfflictionProperty PawnAfflictionProps;
+        public AfflictionProperty PawnAfflictionProps;        
 
         public SoulTrait DevotionTrait;
+
+        public SoulTrait CommonSoulTrait;        
 
         public SoulTrait PatronTrait;
 
@@ -117,7 +131,6 @@ namespace Corruption
                     }
                 }
 
-                InitiatePsykerComp();
                 //           try
                 //           {
                 //               AddPsykerPower(PsykerPowerDefOf.PsykerPower_Berserker);
@@ -127,6 +140,8 @@ namespace Corruption
                 //           }
                 //           catch
                 //           { }
+
+                InitiatePsykerComp();
 
                 ChaosFollowerPawnKindDef pdef = this.pawn.kindDef as ChaosFollowerPawnKindDef;
                 //       Log.Message("Name is: " + this.pawn.Name.ToStringFull);
@@ -176,7 +191,7 @@ namespace Corruption
                     }
                     else
                     {
-                        this.curLevelInt = Rand.Range(0.01f, 0.99f);
+                        this.curLevelInt = Rand.Range(0.4f, 0.99f);
                     }
                 }
 
@@ -193,10 +208,8 @@ namespace Corruption
                         { }
                     }
                 }
-
-                if (CorruptionDefOfs.Devotion.SDegreeDatas == null) Log.Message("No stdata");
-
-                if (this.SoulTraits.NullOrEmpty())
+                
+                if (this.DevotionTrait == null)
                 {
                     if ((PawnAfflictionProps != null && PawnAfflictionProps.IsImmune))
                     {
@@ -207,11 +220,10 @@ namespace Corruption
                     {
                         this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, Rand.RangeInclusive(-2, 2));
                     }
-                    this.SoulTraits.Insert(0, DevotionTrait);
                 }
-                if (PawnAfflictionProps.CommonSoulTrait != null && !this.SoulTraits.Any(x => x.SDef == PawnAfflictionProps.CommonSoulTrait))
+                if (PawnAfflictionProps.CommonSoulTrait != null)
                 {
-                    this.SoulTraits.Add(new SoulTrait(PawnAfflictionProps.CommonSoulTrait, 0));
+                    this.CommonSoulTrait = new SoulTrait(PawnAfflictionProps.CommonSoulTrait, 0);
                 }
 
                 if (this.curLevelInt < 0.3f && NoPatron == true)
@@ -232,6 +244,13 @@ namespace Corruption
                 }
 
                 this.SoulInitialized = true;
+
+                if (this.compPsyker.patronName != patronInfo.PatronName)
+                {
+                    this.compPsyker.patronName = patronInfo.PatronName;
+                    PortraitsCache.SetDirty(this.pawn);
+                }
+
             }
         }
 
@@ -316,6 +335,7 @@ namespace Corruption
             CompProperties_PsykerVerb cprops = new CompProperties_PsykerVerb();
             cprops.compClass = typeof(CompPsyker);
             compPsyker.Initialize(cprops);
+            compPsyker.patronName = this.patronInfo.PatronName;
             FieldInfo info = typeof(ThingWithComps).GetField("comps", BindingFlags.NonPublic | BindingFlags.Instance);
             if (info != null)
             {
@@ -391,9 +411,7 @@ namespace Corruption
 
             patronInfo.PatronName = Patron.ToString();
             GeneratePatronTraits(pawn);
-            this.SoulTraits.Remove(DevotionTrait);
-            DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, Rand.RangeInclusive(0, 2));
-            this.SoulTraits.Add(DevotionTrait);
+            this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, Rand.RangeInclusive(0, 2));
             if (pawn.story == null)
             {
                 pawn.story = new Pawn_StoryTracker(pawn);
@@ -512,16 +530,22 @@ namespace Corruption
 
             Scribe_Values.LookValue<ChaosGods>(ref this.Patron, "Patron", ChaosGods.Undivided, false);
 
-   //         Scribe_Values.LookValue<PsykerPowerLevel>(ref this.PsykerPowerLevel, "PsykerPowerLevel", PsykerPowerLevel.Rho, false);
+            Scribe_Values.LookValue<PsykerPowerLevel>(ref this.PsykerPowerLevel, "PsykerPowerLevel", PsykerPowerLevel.Rho, false);
             Scribe_Values.LookValue<CulturalToleranceCategory>(ref this.CulturalTolerance, "CulturalTolerance", CulturalToleranceCategory.Neutral, false);
 
-    //        Scribe_Deep.LookDeep<AfflictionProperty>(ref this.PawnAfflictionProps, "PawnAfflictionProps", null);
-            Scribe_Deep.LookDeep<SoulTrait>(ref this.DevotionTrait, "DevotionTrait", new object[]
+            //        Scribe_Deep.LookDeep<AfflictionProperty>(ref this.PawnAfflictionProps, "PawnAfflictionProps", null);
+            
+            Scribe_Deep.LookDeep<SoulTrait>(ref this.DevotionTrait, "DevotionTrait", new object[0]);
+            Scribe_Deep.LookDeep<SoulTrait>(ref this.PatronTrait, "PatronTrait", new object[0]);
+            Scribe_Deep.LookDeep<SoulTrait>(ref this.CommonSoulTrait, "CommonSoulTrait", new object[0]);
+            //   {
+            //       CorruptionDefOfs.Devotion,
+            //       this.DevotionTrait.SDegree                
+            //   });
+
+            if (Scribe.mode == LoadSaveMode.ResolvingCrossRefs)
             {
-                CorruptionDefOfs.Devotion,
-                this.DevotionTrait.SDegree
-                
-            });
+            }
         }
     }
 }

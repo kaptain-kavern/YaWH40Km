@@ -11,8 +11,6 @@ namespace FactionColors
     [StaticConstructorOnStartup]
     public static class FactionColorUtilities
     {
-        private static Renderer bannerRenderer;
-
         public static Texture2D buttonBanner = ContentFinder<Texture2D>.Get("UI/Buttons/Banner");
 
         public static Texture2D getColoredBannerTex()

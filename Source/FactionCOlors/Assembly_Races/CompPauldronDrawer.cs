@@ -39,6 +39,33 @@ namespace FactionColors
             }
         }
 
+        public static bool ShouldDrawPauldron(Pawn pawn, Apparel curr, Rot4 bodyFacing, out Material pauldronMaterial)
+        {
+            pauldronMaterial = null;
+            try
+            {
+                if (pawn.needs != null && pawn.story != null)
+                {
+                    CompPauldronDrawer drawer;
+                    if ((drawer = curr.TryGetComp<CompPauldronDrawer>()) != null)
+                    {
+                        drawer.PostSpawnSetup();
+                        if (drawer.PauldronGraphic != null)
+                        {
+                            pauldronMaterial = drawer.PauldronGraphic.MatAt(bodyFacing);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
         public override void PostDraw()
         {
             if (this.PauldronGraphic != null)

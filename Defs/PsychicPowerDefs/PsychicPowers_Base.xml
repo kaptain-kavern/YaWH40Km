@@ -221,6 +221,34 @@
     </MainVerb>
   </ThingDef>
 
+  <!-- =========================WarpLightning===================================== -->
+
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_WarpArrow</defName>
+    <label>Lighnting Bolt</label>
+    <uiIconPath>UI/Psyker/Lightning</uiIconPath>
+    <description>Cast forth a singular lightning bolt.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <IconGraphicPath>UI/Glow_Corrupt</IconGraphicPath>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYWarpBolt</projectileDef>
+        <warmupTime>1</warmupTime>
+        <TicksToRecharge>600</TicksToRecharge>
+        <range>24</range>
+        <burstShotCount>1</burstShotCount>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+        <soundCast>WarpBolt</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
+    </MainVerb>
+  </ThingDef>
+
+
   <!-- =========================Warpbolt===================================== -->
 
   <ThingDef ParentName="BaseBullet" Class="Corruption.ThingDef_LaserProjectile">
@@ -258,7 +286,7 @@
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpBolt</projectileDef>
         <warmupTime>1</warmupTime>
-        <TicksToRecharge>600</TicksToRecharge>
+        <TicksToRecharge>1200</TicksToRecharge>
         <range>24</range>
         <burstShotCount>5</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
@@ -368,6 +396,7 @@
    <IsBuffGiver>true</IsBuffGiver>
    <BuffDef>Mindcontrol</BuffDef>
  </ThingDef>
+
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
     <defName>PsykerPower_Mindcontrol</defName>
     <label>Mindcontrol</label>
@@ -387,6 +416,131 @@
         <isPrimary>false</isPrimary>
     </MainVerb>
   </ThingDef>
+
+
+  <!-- =========================BuffVigor===================================== -->
+
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYBuffVigor</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>vigor spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Vigor</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsBuffGiver>true</IsBuffGiver>
+   <BuffDef>BuffVigor</BuffDef>
+ </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_BuffVigor</defName>
+    <label>Vigor</label>
+    <uiIconPath>UI/Psyker/Vigor</uiIconPath>
+    <description>Temporarily increase a pawns energy at the risk of exhaustion.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYBuffVigor</projectileDef>
+        <warmupTime>5</warmupTime>
+        <TicksToRecharge>2000</TicksToRecharge>
+        <range>15</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+    </MainVerb>
+  </ThingDef>
+
+  <!-- =========================BuffRage===================================== -->
+
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYBuffRage</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>rage spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Frenzy</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsBuffGiver>true</IsBuffGiver>
+   <BuffDef>BuffRage</BuffDef>
+ </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_BuffRage</defName>
+    <label>Vigor</label>
+    <uiIconPath>UI/Psyker/Frenzy</uiIconPath>
+    <description>Temporarily increase a pawns energy at the risk of exhaustion.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYBuffVigor</projectileDef>
+        <warmupTime>5</warmupTime>
+        <TicksToRecharge>2000</TicksToRecharge>
+        <range>15</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+    </MainVerb>
+  </ThingDef>
+
+  <!-- =========================BuffFocus===================================== -->
+
+
+  <ThingDef ParentName="BaseBullet" Class="Corruption.ProjectileDef_WarpPower">
+   <defName>PSYBuffFocus</defName>
+   <thingClass>Corruption.Projectile_WarpPower</thingClass>
+   <label>focus spell</label>
+   <graphicData>
+		<texPath>UI/Psyker/Vigor</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+   <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Cut</damageDef>
+		<damageAmountBase>1</damageAmountBase>
+		<speed>10</speed>
+   </projectile>
+   <IsBuffGiver>true</IsBuffGiver>
+   <BuffDef>BuffFocus</BuffDef>
+ </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_BuffFocus</defName>
+    <label>Vigor</label>
+    <uiIconPath>UI/Psyker/Vigor</uiIconPath>
+    <description>Temporarily increase a pawns energy at the risk of exhaustion.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>PSYBuffVigor</projectileDef>
+        <warmupTime>5</warmupTime>
+        <TicksToRecharge>2000</TicksToRecharge>
+        <range>15</range>
+        <soundCast>FlameThrower</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+    </MainVerb>
+  </ThingDef>
+
 
 
   <!-- =========================HealPowerDefs===================================== -->
@@ -525,10 +679,10 @@
   </ThingDef>
 
   <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
-    <defName>PsykerPower_EldritchThunderstorm</defName>
-    <label>Eldritch storm</label>
+    <defName>PsykerPower_EldrithChainLightning</defName>
+    <label>Eldritch Chain Lightning</label>
     <uiIconPath>UI/Psyker/Lightning</uiIconPath>
-    <description>Cast forth an array of lightning bolts.</description>
+    <description>Cast forth an array of lightning bolts on all nearby targets.</description>
     <thingClass>ThingWithComps</thingClass>
     <MainVerb Class="Corruption.VerbProperties_WarpPower">
         <verbClass>Corruption.Verb_CastWarpPower</verbClass>
@@ -539,7 +693,7 @@
         <burstShotCount>5</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
         <range>8</range>
-        <soundCast>FlameThrower</soundCast>
+        <soundCast>Thunder_OnMap</soundCast>
         <muzzleFlashScale>20</muzzleFlashScale>
         <CorruptionFactor>1</CorruptionFactor>
         <isPrimary>false</isPrimary>
@@ -556,6 +710,40 @@
     <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
     <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
   </ThingDef>
+
+  <ThingDef Class="Corruption.PsykerPowerDef" ParentName="BasePsykerPower">
+    <defName>PsykerPower_EldritchThunderstorm</defName>
+    <label>Eldritch storm</label>
+    <uiIconPath>UI/Psyker/Lightning</uiIconPath>
+    <description>Call down a thunderstorm on all nearby targets.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <MainVerb Class="Corruption.VerbProperties_WarpPower">
+        <verbClass>Corruption.Verb_CastWarpPower</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Scourging</projectileDef>
+        <warmupTime>1</warmupTime>
+        <TicksToRecharge>3000</TicksToRecharge>
+        <burstShotCount>1</burstShotCount>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+        <range>8</range>
+        <soundCast>Thunder_OnMap</soundCast>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <CorruptionFactor>1</CorruptionFactor>
+        <isPrimary>false</isPrimary>
+        <DrawProjectileOnTarget>false</DrawProjectileOnTarget>
+   	   <PsykerPowerCategory>TargetAoE</PsykerPowerCategory>
+        <AoETargetClass>Pawn</AoETargetClass>
+    		<targetParams>
+      	 <canTargetPawns>true</canTargetPawns>
+      	 <canTargetBuildings>false</canTargetBuildings>
+      	 <canTargetSelf>true</canTargetSelf>
+    		</targetParams>
+    </MainVerb>
+    <PowerLevel>Epsilon</PowerLevel>
+    <MinAfflictionToGet>Intrigued</MinAfflictionToGet>
+    <MaxAfflictionToGet>Pure</MaxAfflictionToGet>
+  </ThingDef>
+
 
   <!-- =========================EmpyrealInferno===================================== -->
 
@@ -590,7 +778,7 @@
         <projectileDef>PSYWarpFire</projectileDef>
         <warmupTime>1</warmupTime>
         <TicksToRecharge>120</TicksToRecharge>
-        <burstShotCount>1</burstShotCount>
+        <burstShotCount>3</burstShotCount>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
         <range>8</range>
         <soundCast>FlameThrower</soundCast>
@@ -642,7 +830,7 @@
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYWarpGrowBolt</projectileDef>
         <warmupTime>1</warmupTime>
-        <TicksToRecharge>120</TicksToRecharge>
+        <TicksToRecharge>10000</TicksToRecharge>
         <range>5</range>
         <soundCast>FlameThrower</soundCast>
         <muzzleFlashScale>20</muzzleFlashScale>
@@ -695,7 +883,7 @@
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>PSYBlindingBullet</projectileDef>
         <warmupTime>5</warmupTime>
-        <TicksToRecharge>300</TicksToRecharge>
+        <TicksToRecharge>900</TicksToRecharge>
         <range>12</range>
         <soundCast>FlameThrower</soundCast>
         <muzzleFlashScale>20</muzzleFlashScale>

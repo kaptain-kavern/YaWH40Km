@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AlienRaces_0.8\Assemblies\AlienRace.dll</HintPath>
@@ -85,6 +89,8 @@
     <Compile Include="CompAfflictionDrawer.cs" />
     <Compile Include="CompCorruptionTickManager.cs" />
     <Compile Include="CompEldarSpiritStone.cs" />
+    <Compile Include="CompMechanicusImplants.cs" />
+    <Compile Include="CompNeuroControllerImplant.cs" />
     <Compile Include="CompPropertiesAfflictionDrawer.cs" />
     <Compile Include="CompProperties_LaunchProjectile.cs" />
     <Compile Include="CompProperties_MentalStateGiver.cs" />
@@ -102,6 +108,32 @@
     <Compile Include="DamageWorker_Heal.cs" />
     <Compile Include="DemonDefOfs.cs" />
     <Compile Include="DemonUtilities.cs" />
+    <Compile Include="Dialog_NegotiationIoM.cs" />
+    <Compile Include="FactionDialogMaker_IoM.cs" />
+    <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="HediffCompProperties_DrawImplant.cs" />
+    <Compile Include="HediffCompProperties_PostBuff.cs" />
+    <Compile Include="HediffComp_DrawImplant.cs" />
+    <Compile Include="HediffComp_NeuroController.cs" />
+    <Compile Include="HediffComp_PostBuff.cs" />
+    <Compile Include="HediffComp_TurnServitor.cs" />
+    <Compile Include="ImplantDrawerType.cs" />
+    <Compile Include="JobDriver_TendInMSU.cs" />
+    <Compile Include="MapCondition_IncomingIGHostile.cs" />
+    <Compile Include="Tithes\MapCondition_TitheCollectors.cs" />
+    <Compile Include="PawnRendererModded.cs" />
+    <Compile Include="Recipe_TendInMSU.cs" />
+    <Compile Include="Tithes\CompProperties_TitheContainer.cs" />
+    <Compile Include="Tithes\CompTitheContainer.cs" />
+    <Compile Include="Tithes\ITab_TitheContainer.cs" />
+    <Compile Include="Tithes\TitheContainer.cs" />
+    <Compile Include="Tithes\TitheDef.cs" />
+    <Compile Include="Tithes\TitheDefOfs.cs" />
+    <Compile Include="Tithes\TitheEntry.cs" />
+    <Compile Include="Tithes\TitheEntryForContainer.cs" />
+    <Compile Include="Tithes\TitheUtilities.cs" />
+    <Compile Include="Tithes\Window_IoMTitheArrival.cs" />
+    <Compile Include="Tithes\Workgiver_LoadTithes.cs" />
     <Compile Include="Window_CCMBase.cs" />
     <Compile Include="Dialog_RenameTemple.cs" />
     <Compile Include="ChaosFollowerPawnKindDef.cs" />
@@ -133,7 +165,6 @@
     <Compile Include="LordToilData_DemonSummoner.cs" />
     <Compile Include="LordToil_DemonSummoner.cs" />
     <Compile Include="MainTabWindow_Alignment.cs" />
-    <Compile Include="MainTabWindow_InspectModded.cs" />
     <Compile Include="MapCondition_CorruptiveDrone.cs" />
     <Compile Include="MentalState_KhorneKillWeak.cs" />
     <Compile Include="ModInitializer.cs" />
@@ -178,7 +209,6 @@
     <Compile Include="StarMapObjectType.cs" />
     <Compile Include="TempleCardUtility.cs" />
     <Compile Include="ThingComp_CorruptedItem.cs" />
-    <Compile Include="SituationalThoughtHandlerModded.cs" />
     <Compile Include="ThingDef_BuildingTwoColored.cs" />
     <Compile Include="ThingDef_LaserProjectile.cs" />
     <Compile Include="ThingRequestGroup_Corruption.cs" />
@@ -200,6 +230,8 @@
     <Compile Include="WarpPowerUtilities.cs" />
     <Compile Include="WarpRift.cs" />
     <Compile Include="ITab_SMUOperation.cs" />
+    <Compile Include="Window_IoMAcknowledgement.cs" />
+    <Compile Include="Tithes\Window_IoMTitheDue.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="xml\Initializer.xml">
@@ -212,6 +244,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IG\" />
+    <Folder Include="Ships\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

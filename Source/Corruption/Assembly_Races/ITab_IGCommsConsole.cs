@@ -26,7 +26,7 @@ namespace Corruption
 
         protected override void FillTab()
         {
-            Rect rect = new Rect(0f, 0f, 800f, 800).ContractedBy(5f);
+            Rect rect = new Rect(0f, 0f, this.size.x, this.size.y).ContractedBy(5f);
             CorruptionStoryTrackerUtilities.DrawCorruptionStoryTrackerTab(console.corruptionStoryTracker, rect);
         }
     }

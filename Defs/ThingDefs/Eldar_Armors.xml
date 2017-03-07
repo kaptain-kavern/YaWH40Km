@@ -11,7 +11,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Eldar/Armor/eldar_armorIcon</texPath>
@@ -85,7 +85,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Eldar/Armor/eldar_helmet_icon</texPath>
@@ -151,7 +151,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Eldar/Armor/eldar_robeIcon</texPath>
@@ -221,7 +221,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Eldar/Armor/Warlock_Helmet_Icon</texPath>
@@ -418,7 +418,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Eldar/Ranger/RangerCowl</texPath>
@@ -487,7 +487,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Eldar/Ranger/RangerHelmet</texPath>
@@ -560,7 +560,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Eldar/Ranger/RangerRobe</texPath>
@@ -681,7 +681,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Eldar/DireAvengers/DHArmor</texPath>
@@ -756,7 +756,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Eldar/DireAvengers/DHHelmet</texPath>

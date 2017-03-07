@@ -133,6 +133,9 @@
 	<MaleGenderProbability>0.0</MaleGenderProbability>
 	<GetsGreyAt>60</GetsGreyAt>
 	<HasHair>Custom</HasHair>
+	<alienpartgenerator />
+
+
 	<alienhaircolorgen Class="ColorGenerator_Options">
       <options>
         <li>

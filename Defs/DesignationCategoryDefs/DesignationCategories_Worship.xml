@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+
 <Defs>
   <DesignationCategoryDef>
     <defName>Worship</defName>
@@ -10,4 +11,16 @@
       <li>Designator_Deconstruct</li> 
     </specialDesignatorClasses>
   </DesignationCategoryDef>
+
+  <DesignationCategoryDef>
+    <defName>Mechanicum</defName>
+    <label>Mechanicum</label>
+    <description>Advanced Buildings enabled by contact to the Adeptus Mechanicus.</description>
+    <order>-56</order>
+    <specialDesignatorClasses>
+      <li>Designator_Cancel</li>
+      <li>Designator_Deconstruct</li> 
+    </specialDesignatorClasses>
+  </DesignationCategoryDef>
+
 </Defs>

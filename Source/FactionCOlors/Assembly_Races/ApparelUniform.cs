@@ -20,44 +20,39 @@ namespace FactionColors
         {
             get
             {
-;                if (FirstSpawned)
+                if (FirstSpawned)
                 {
+                    CompFactionColor compF = this.GetComp<CompFactionColor>();
+                    if (compF == null)
+                    {
+                        Log.Error("Uniform Apparel " + this.ToString() + " is missing a CompFactionColors");
+                    }
                     if (this.wearer != null)
-                    { 
-                    FactionDefUniform udef = this.wearer.Faction.def as FactionDefUniform;
-                    CompFactionColor compF;
+                    {
+                        FactionDefUniform udef = this.wearer.Faction.def as FactionDefUniform;
                         if (udef != null)
                         {
-                            if ((compF = this.GetComp<CompFactionColor>()) != null)
-                            {
-                                if (compF.CProps.UseCamouflageColor)
-                                {
-                                    //            Log.Message("GettingCamoColor");
-                                    Col1 = CamouflageColorsUtility.CamouflageColors[0];
-                                }
-                                else if (udef.FactionColor1 != null)
-                                {
-                                    //                  Log.Message("StandardColor");
-                                    //                  Log.Message(udef.FactionColor1.ToString());
-                                    Col1 = udef.FactionColor1;
-                                }
-     
-                            }
+                                Col1 = udef.FactionColor1;
                         }
                     }
                     else
-                    {
-                        CompColorable comp = this.GetComp<CompColorable>();
-                        if (comp != null && comp.Active)
+                    {                        
                         {
-                            Col1 = comp.Color;
+                            CompColorable comp = this.GetComp<CompColorable>();
+                            if (comp != null && comp.Active)
+                            {
+                                Col1 = comp.Color;
+                            }
                         }
-                        
-                    }                    
+
+                    }
+                    if ((compF != null && compF.CProps.UseCamouflageColor))
+                    {
+                        Col1 = CamouflageColorsUtility.CamouflageColors[0];
+                    }
                 }
                 return Col1;
             }
-
             set
             {
                 this.SetColor(value, true);
@@ -68,34 +63,31 @@ namespace FactionColors
         {
             get
             {
-                CompFactionColor compF;
                 if (FirstSpawned)
                 {
+                    CompFactionColor compF = this.GetComp<CompFactionColor>();                    
                     if (this.wearer != null)
                     {
                         FactionDefUniform udef = this.wearer.Faction.def as FactionDefUniform;
                         if (udef != null)
                         {
-                            if ((compF = this.GetComp<CompFactionColor>()) != null && compF.CProps.UseCamouflageColor)
-                            {
-                                Col2 = CamouflageColorsUtility.CamouflageColors[1];
-                            }
-                            else
-                            {
                                 Col2 = udef.FactionColor2;
-                            }
+                            
                         }
                     }
                     else
                     {
-                        CompColorable comp = this.GetComp<CompColorable>();
-                        if (comp != null && comp.Active)
-                        {
-                            Col2 = comp.Color;
-                        }
+                            CompColorable comp = this.GetComp<CompColorable>();
+                            if (comp != null && comp.Active)
+                            {
+                                Col2 = comp.Color;
+                            }                        
+                    }
+                    if ((compF != null && compF.CProps.UseCamouflageColor))
+                    {
+                        Col2 = CamouflageColorsUtility.CamouflageColors[1];
                     }
                 }
-                FirstSpawned = false;
                 return Col2;
             }
         }
@@ -106,29 +98,64 @@ namespace FactionColors
             {
                 return GraphicDatabase.Get<Graphic_Single>(this.def.graphicData.texPath, ShaderDatabase.CutoutComplex, this.def.graphicData.drawSize, this.DrawColor, this.DrawColorTwo);
             }
+
+        }
+
+        private void SetFactionColor(ref Color color, CompFactionColor compF)
+        {
+            if (this.wearer != null)
+            {
+                FactionDefUniform udef = this.wearer.Faction.def as FactionDefUniform;
+                if (udef != null)
+                {
+                    if ((compF != null && compF.CProps.UseCamouflageColor))
+                    {
+                        color = CamouflageColorsUtility.CamouflageColors[1];
+                    }
+                    else
+                    {
+                        color = udef.FactionColor2;
+                    }
+                }
+            }
+            else
+            {
+                    CompColorable comp = this.GetComp<CompColorable>();
+                    if (comp != null && comp.Active)
+                    {
+                        color = comp.Color;
+                    }
+                
+            }
+
         }
 
         public override void PostMake()
         {
-            base.PostMake();            
+            base.PostMake();
+            PlayerFactionStoryTracker tracker = FactionColorUtilities.currentPlayerStoryTracker;
+            if (tracker != null)
+            {
+                Col1 = tracker.PlayerColorOne;
+                Col2 = tracker.PlayerColorTwo;
+                CompFactionColor compF = this.GetComp<CompFactionColor>();
+                if (compF == null)
+                {
+                    Log.Error("Uniform Apparel " + this.ToString() + " is missing a CompFactionColors");
+                }
+                if ((compF != null && compF.CProps.UseCamouflageColor))
+                {
+                    Col1 = CamouflageColorsUtility.CamouflageColors[0];
+                    Col2 = CamouflageColorsUtility.CamouflageColors[1];
+                }
+            }
+
         }
 
         public override void SpawnSetup(Map map)
         {
             base.SpawnSetup(map);
-            this.Col1 = FactionColorUtilities.currentPlayerStoryTracker.PlayerColorOne;
-            this.Col2 = FactionColorUtilities.currentPlayerStoryTracker.PlayerColorTwo;
         }
-
-        public override void DrawWornExtras()
-        {
-           FirstSpawned = false;
-        }
-
-        public override void TickRare()
-        {
-            base.TickRare();
-        }        
 
         public override void ExposeData()
         {

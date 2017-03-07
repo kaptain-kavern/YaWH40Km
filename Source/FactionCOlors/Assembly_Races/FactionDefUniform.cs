@@ -28,8 +28,8 @@ namespace FactionColors
                 this.description = SubFac.SubfactionDescription;
                 this.FactionColor1 = SubFac.SubfactionColor1;
                 this.FactionColor2 = SubFac.SubfactionColor2;
+                if (SubFac.SubfactionPawnGroupMakers != null) this.pawnGroupMakers = SubFac.SubfactionPawnGroupMakers;
                 this.PreferredChaosGod = SubFac.SubfactionPreferredChaosGod;
-                if (SubFac.SubfactionPawnGroupMakers != null) this.pawnGroupMakers = SubFac.SubfactionPawnGroupMakers;                    
             }
 
         }

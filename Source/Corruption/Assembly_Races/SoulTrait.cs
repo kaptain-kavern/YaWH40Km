@@ -8,21 +8,19 @@ using Verse;
 
 namespace Corruption
 {
-    public class SoulTrait : Trait
+    public class SoulTrait : IExposable
     {
         public SoulTraitDef SDef;
 
         public List<SoulTraitDegreeData> SoulDatas;
-        
-        public SoulTraitDegreeData CurrentSData;
 
-        private int degree;
+        private int sdegree = 0;
 
         public int SDegree
         {
             get
             {
-                return this.degree;
+                return this.sdegree;
             }
         }
 
@@ -35,24 +33,24 @@ namespace Corruption
         {
             get
             {
+                if (this.SDef == null) Log.Message("No SDef?");
                 return this.SDef.SDegreeDataAt(SDegree);
             }
         }
 
         public SoulTrait()
-        { }
+        {
+        }
 
         public  SoulTrait(SoulTraitDef traitdef, int newdeg)
         {
-            this.degree = newdeg;
-            this.def = traitdef as TraitDef;
+            this.sdegree = newdeg;
             this.SDef = traitdef;
-            this.CurrentSData = traitdef.SDegreeDataAt(newdeg);
             this.NullifiedThoughtsInt = SDef.NullifiesThoughts;
         }
 
 
-        public List<ThoughtDef> NullifiedThoughtsInt;
+        private List<ThoughtDef> NullifiedThoughtsInt;
 
         public List<ThoughtDef> NullifiedThoughts
         {
@@ -62,49 +60,23 @@ namespace Corruption
             }
         }
 
-        public string STipString(Pawn pawn)
+        public string TipString(Pawn pawn)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            SoulTraitDegreeData currentData = this.CurrentSData;
+            TraitDegreeData currentData = this.SoulCurrentData;
             stringBuilder.Append(currentData.description.AdjustedFor(pawn));
-            int count = this.CurrentData.skillGains.Count;
-            if (count > 0)
-            {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine();
-            }
-            int num = 0;
-            foreach (KeyValuePair<SkillDef, int> current in this.CurrentData.skillGains)
-            {
-                if (current.Value != 0)
-                {
-                    string value = "    " + current.Key.skillLabel + ":   " + current.Value.ToString("+##;-##");
-                    if (num < count - 1)
-                    {
-                        stringBuilder.AppendLine(value);
-                    }
-                    else
-                    {
-                        stringBuilder.Append(value);
-                    }
-                    num++;
-                }
-            }
             return stringBuilder.ToString();
         }
 
-        public new void ExposeData()
+        public void ExposeData()
         {
-            base.ExposeData();
             Scribe_Defs.LookDef<SoulTraitDef>(ref this.SDef, "SDef");
- //           Scribe_Collections.LookList<ThoughtDef>(ref this.NullifiedThoughtsInt, "NullifiedThoughtsInt", LookMode.Deep, new object[0]);
-            Scribe_Values.LookValue<int>(ref this.degree, "degree", 0, false);
-            Scribe_Deep.LookDeep<SoulTraitDegreeData>(ref this.CurrentSData, "CurrentSData", null, false);
-
-            if (Scribe.mode == LoadSaveMode.ResolvingCrossRefs && this.def == null)
+            Scribe_Collections.LookList<ThoughtDef>(ref this.NullifiedThoughtsInt, "NullifiedThoughtsInt", LookMode.Def, new object[0]);
+            Scribe_Values.LookValue<int>(ref this.sdegree, "sdegree", 0, true);
+            if (Scribe.mode == LoadSaveMode.ResolvingCrossRefs && this.SDef == null)
             {
-                this.def = DefDatabase<SoulTraitDef>.GetRandom();
-                this.degree = PawnGenerator.RandomTraitDegree(this.SDef);
+                this.SDef = DefDatabase<SoulTraitDef>.GetRandom();
+                this.sdegree = PawnGenerator.RandomTraitDegree(this.SDef);
             }
         }
     }

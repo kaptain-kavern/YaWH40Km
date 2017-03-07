@@ -350,6 +350,7 @@
         <verbClass>Verb_MeleeAttack</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <meleeDamageDef>Cut</meleeDamageDef>
+        <soundCast>SlashMetal</soundCast>
       </li>
     </verbs>
     <costList>

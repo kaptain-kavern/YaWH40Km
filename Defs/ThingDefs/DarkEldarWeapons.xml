@@ -278,6 +278,7 @@
         <verbClass>Verb_MeleeAttack</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <meleeDamageDef>CutDarkEldar</meleeDamageDef>
+        <soundCast>SlashMetal</soundCast>
       </li>
     </verbs>
     <costList>
@@ -314,6 +315,7 @@
         <verbClass>Verb_MeleeAttack</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <meleeDamageDef>CutDarkEldar</meleeDamageDef>
+        <soundCast>SlashMetal</soundCast>
       </li>
     </verbs>
     <costList>
@@ -350,6 +352,7 @@
         <verbClass>Verb_MeleeAttack</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <meleeDamageDef>CutDarkEldar</meleeDamageDef>
+        <soundCast>SlashMetal</soundCast>
       </li>
     </verbs>
     <costList>

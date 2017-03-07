@@ -266,5 +266,43 @@
     </AfflictionProperty>
   </PawnKindDef>
 
+  <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
+    <defName>ServitorColonist</defName>
+    <label>Servitor</label>
+    <race>Alien_Mechanicus_Member</race>
+    <combatPower>50</combatPower>
+    <baseRecruitDifficulty>0.50</baseRecruitDifficulty>
+    <backstoryCategory>Civil</backstoryCategory>
+    <defaultFactionType>PlayerColony</defaultFactionType>
+    <isFighter>false</isFighter>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+    <maxGenerationAge>58</maxGenerationAge>
+    <itemQuality>Normal</itemQuality>
+    <apparelMoney>
+      <min>500</min>
+      <max>600</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>Mechanicum</li>
+    </apparelTags>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <apparelAllowHeadwearChance>0.5</apparelAllowHeadwearChance>
+    <techHediffsMoney>
+      <min>10</min>
+      <max>50</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.2</techHediffsChance>
+    <AfflictionProperty>
+      <LowerAfflictionLimit>0.8</LowerAfflictionLimit>
+      <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
+      <IsImmune>true</IsImmune>
+      <ImmuneDevotionDegree>-3</ImmuneDevotionDegree>
+    </AfflictionProperty>
+  </PawnKindDef>
+
+
 
 </PawnKindDefs>

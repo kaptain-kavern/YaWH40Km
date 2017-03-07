@@ -30,7 +30,7 @@
       <max>20</max>
     </startingGoodwill>
     <naturalColonyGoodwill>
-      <min>50</min>
+      <min>-100</min>
       <max>100</max>
     </naturalColonyGoodwill>
     <pawnGroupMakers>

@@ -58,6 +58,24 @@
 	  </ThingCategoryDef>
 
 	  <ThingCategoryDef>
+	    <defName>IoM_Psyker</defName>
+	    <label>Psyker</label>
+	    <parent>IoMGear</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>IoM_PsykerWeapon</defName>
+	    <label>Psyker Weapons</label>
+	    <parent>IoM_Psyker</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>IoM_PsykerApparel</defName>
+	    <label>Psyker Apparel</label>
+	    <parent>IoM_Psyker</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
 	    <defName>IG_Ranged</defName>
 	    <label>IG Ranged</label>
 	    <parent>IoMGear</parent>
@@ -118,6 +136,12 @@
 	  </ThingCategoryDef>
 
 	  <ThingCategoryDef>
+	    <defName>IG_MecTemplates</defName>
+	    <label>Mechanicum Templates</label>
+	    <parent>IoM_Mechanicum</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
 	    <defName>IoM_Sororitas</defName>
 	    <label>Sororitas</label>
 	    <parent>IoM_Mechanicum</parent>
@@ -136,9 +160,21 @@
 	  </ThingCategoryDef>
 
 	  <ThingCategoryDef>
+	    <defName>Sororitas_Support</defName>
+	    <label>Sororitas Support</label>
+	    <parent>IoM_Sororitas</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
 	    <defName>Sororitas_Ranged</defName>
 	    <label>Sororitas Ranged</label>
 	    <parent>IoM_Sororitas</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>IoM_HolyItems</defName>
+	    <label>Holy Items</label>
+	    <parent>IoMGear</parent>
 	  </ThingCategoryDef>
 
 

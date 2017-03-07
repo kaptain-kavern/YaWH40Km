@@ -114,6 +114,7 @@ namespace Corruption
         // MapConditions
 
         public static MapConditionDef CorruptiveDrone;
+        public static MapConditionDef TitheCollectorArrived;
 
         public static JobDef SummonDemon;
         public static JobDef SummoningTribute;
@@ -130,5 +131,9 @@ namespace Corruption
 
         public static JobDef OperateMSU;
 
+
+        public static PawnKindDef ServitorColonist;
+       
+        
     }
 }

@@ -36,7 +36,6 @@ namespace FactionColors
             get
             {
                 IEnumerable<Texture2D> array = ContentFinder<Texture2D>.GetAllInFolder("UI/Flags");
-                Log.Message("Textures : " + array.Count<Texture2D>().ToString());
                 List<string> list = new List<string>();
                 foreach (Texture2D current in array)
                 {

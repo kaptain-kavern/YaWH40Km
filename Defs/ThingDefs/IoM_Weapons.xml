@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ThingDefs>    
+  <!-- ============================================================== -->
+  
+  <ThingDef ParentName="BaseMeleeWeaponNoTag" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
+    <ItemMeshSize>(1.2, 1.2, 1.2)</ItemMeshSize>
+    <defName>MeleeWeapon_RelicBlade</defName>
+    <label>Relic Power Sword</label>
+    <description>A relic power weapon that's been rediscovered on some backwater planet on the rim of the Imperium. Showing signs of being manufactured in the Dark Age of Technology, this weapon is one of a kind and almost priceless. It may have belonged to a saint who died on his quest to spread the faith.</description>
+	<graphicData>
+		<texPath>Things/IoM/Weapons/RelicBlade</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+	</graphicData>
+    <soundInteract>InteractPistol</soundInteract>
+    <costStuffCount>150</costStuffCount>
+    <statBases>
+      <MarketValue>10000</MarketValue>
+      <WorkToMake>18000</WorkToMake>
+      <MeleeWeapon_DamageAmount>50</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>1.95</MeleeWeapon_Cooldown>
+    </statBases>
+    <equippedAngleOffset>0</equippedAngleOffset>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <meleeDamageDef>Cut</meleeDamageDef>
+        <soundCast>SlashMetal</soundCast>
+      </li>
+    </verbs>
+    <costList>
+      <Component>2</Component>
+      <MecComponent_Weapon>5</MecComponent_Weapon>
+    </costList>
+    <comps>
+      <li Class="Corruption.CompProperties_SoulItem">
+        <compClass>Corruption.CompSoulItem</compClass>
+        <Category>Redemption</Category>
+        <GainRate>0.1</GainRate>
+	    <UnlockedPsykerPowers>
+	      <li>PsykerPower_BlindingBlast</li>
+	    </UnlockedPsykerPowers>
+        <IsHolyItem>true</IsHolyItem>
+      </li>
+    </comps>
+    <weaponTags>
+      <li>IoM_HolyItems</li>
+    </weaponTags>
+  </ThingDef>
+
+
+    
+ </ThingDefs>

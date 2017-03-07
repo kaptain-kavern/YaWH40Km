@@ -12,6 +12,7 @@
     </graphicData>
     <drawGUIOverlay>true</drawGUIOverlay>
     <statBases>
+      <WorkToMake>15000</WorkToMake>
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>1.0</Flammability>
       <DeteriorationRate>2</DeteriorationRate>
@@ -47,11 +48,12 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-        <li>TableMachining</li>
+        <li>MechanicumAssemblyBench</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
     </recipeMaker>
     <costList>
+      <MecComponent_General>1</MecComponent_General>
       <Component>18</Component>
       <Steel>135</Steel>
     </costList>
@@ -239,7 +241,8 @@
 	</graphicData>
     <soundInteract>InteractRifle</soundInteract>
     <statBases>
-      <MarketValue>1700</MarketValue>
+      <WorkToMake>20000</WorkToMake>
+      <MarketValue>2000</MarketValue>
       <AccuracyTouch>1</AccuracyTouch>
       <AccuracyShort>0.87</AccuracyShort>
       <AccuracyMedium>0.77</AccuracyMedium>
@@ -263,6 +266,15 @@
 		<muzzleFlashScale>15</muzzleFlashScale>
       </li>
     </verbs>
+    <costList>
+      <MecComponent_Weapon>1</MecComponent_Weapon>
+      <Component>10</Component>
+      <Steel>135</Steel>
+    </costList>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceII</researchPrerequisite>
+	</recipeMaker>
+
   </ThingDef>
   <!-- ============================================== -->
 
@@ -298,6 +310,15 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <costList>
+      <MecComponent_Weapon>1</MecComponent_Weapon>
+      <Component>7</Component>
+      <Steel>75</Steel>
+    </costList>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceII</researchPrerequisite>
+	  </recipeMaker>
+
   </ThingDef>
   <!-- ============================================== -->
 
@@ -334,6 +355,15 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <costList>
+      <MecComponent_General>1</MecComponent_General>
+      <Component>5</Component>
+      <Steel>75</Steel>
+    </costList>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceI</researchPrerequisite>
+	  </recipeMaker>
+
   </ThingDef>
   <!-- ============================================== -->
   
@@ -347,6 +377,7 @@
 	</graphicData>
     <soundInteract>InteractRifle</soundInteract>
     <statBases>
+      <WorkToMake>12000</WorkToMake>
       <MarketValue>900</MarketValue>
       <AccuracyTouch>1</AccuracyTouch>
       <AccuracyShort>0.71</AccuracyShort>
@@ -369,6 +400,15 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <costList>
+      <MecComponent_General>1</MecComponent_General>
+      <Component>3</Component>
+      <Steel>50</Steel>
+    </costList>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceI</researchPrerequisite>
+	  </recipeMaker>
+
   </ThingDef>
   <!-- ============================================== -->
   
@@ -382,6 +422,7 @@
 	</graphicData>
     <soundInteract>InteractRifle</soundInteract>
     <statBases>
+      <WorkToMake>18000</WorkToMake>
       <MarketValue>1500</MarketValue>
       <AccuracyTouch>1</AccuracyTouch>
       <AccuracyShort>0.71</AccuracyShort>
@@ -406,6 +447,15 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <costList>
+      <MecComponent_Weapon>1</MecComponent_Weapon>
+      <Component>5</Component>
+      <Steel>75</Steel>
+    </costList>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceII</researchPrerequisite>
+	  </recipeMaker>
+
   </ThingDef>
   <!-- ============================================== -->
   
@@ -419,6 +469,7 @@
 	</graphicData>
     <soundInteract>InteractRifle</soundInteract>
     <statBases>
+      <WorkToMake>20000</WorkToMake>
       <MarketValue>1500</MarketValue>
       <AccuracyTouch>1</AccuracyTouch>
       <AccuracyShort>0.71</AccuracyShort>
@@ -443,6 +494,14 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <costList>
+      <MecComponent_Weapon>1</MecComponent_Weapon>
+      <Component>15</Component>
+      <Steel>135</Steel>
+    </costList>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceII</researchPrerequisite>
+	  </recipeMaker>
   </ThingDef>
   <!-- ============================================== -->
  
@@ -478,15 +537,26 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <costList>
+      <MecComponent_Weapon>1</MecComponent_Weapon>
+      <Component>5</Component>
+      <Steel>75</Steel>
+    </costList>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceIII</researchPrerequisite>
+	  </recipeMaker>
   </ThingDef>
   <!-- ============================================== -->
   	
-  <ThingDef ParentName="BaseHumanMakeableGun_IG">
+  <ThingDef ParentName="BaseHumanMakeableGun_IG" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
+    <ItemMeshSize>(1.2, 1.2, 1.2)</ItemMeshSize>
+
     <defName>Gun_ExitusRifle</defName>
     <label>Exitus Rifle</label>
     <description>The Exitus Rifle is a specialised projectile rifle used exclusively by the Imperial Assassins of the Officio Assassinorum's Vindicare Temple. It is purpose-built for each individual Vindicare sniper. The weapon is outfitted with a variety of micro-sensors that are capable of detecting even slight changes in ambient temperature, humidity, gravity, and air pressure intended to aid the Assassin in effectively targeting his victim at long ranges. Exitus weapons are always manufactured as a matched set including a pistol and sniper rifle for an individual Vindicare Assassin, and the weapons utilise high-powered kinetic rounds with armour-piercing tips for general-purpose executions.</description>
 	<graphicData>
-		<texPath>Things/IG/Weapons/Exitus_Sniper</texPath>
+		<texPath>Things/IoM/Weapons/ExitusSniper</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <soundInteract>InteractRifle</soundInteract>
@@ -513,6 +583,14 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <costList>
+      <MecComponent_Weapon>1</MecComponent_Weapon>
+      <Component>10</Component>
+      <Steel>100</Steel>
+    </costList>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceIII</researchPrerequisite>
+	  </recipeMaker>
   </ThingDef>
   <!-- ============================================== -->
   
@@ -548,10 +626,21 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <costList>
+      <MecComponent_Weapon>1</MecComponent_Weapon>
+      <Component>10</Component>
+      <Steel>135</Steel>
+    </costList>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceII</researchPrerequisite>
+	  </recipeMaker>
   </ThingDef>
   <!-- ============================================== -->
   
-    <ThingDef ParentName="BaseHumanMakeableGun_IG">
+    <ThingDef ParentName="BaseHumanMakeableGun_IG" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
+    <ItemMeshSize>(1.2, 1.2, 1.2)</ItemMeshSize>
+
     <defName>Gun_HellHammerLascannon</defName>
     <label>Hell-Hammer Pattern Lascannon</label>
     <description>The powerful Lascannon is a formidable Laser Weapon whose energetic shot of coherent light is capable of penetrating most armoured vehicles. It is the favorite anti-tank weapon of the Imperial Guard and is also commonly used by the Space Marines. Its high strength and armour-piercing ability make it a formidable weapon and when it is twin-linked, it becomes even more deadly. However, it is very heavy and power-consuming, and must recharge after every shot, making it a poor anti-personnel weapon. Each Lascannon charge pack is good for only one shot before it must be replaced. This means it has a slow rate of fire due to the need to change the pack after each shot, and the packs cannot be recharged like those of a Lasgun. The power of the Lascannon's fire means that the barrel is damaged quickly by the energy discharge but can easily be changed, much like the Lasgun. The Hell-Hammer Pattern Lascannon is a pattern of Lascannon specifically sized to be carried by a Heavy Weapons Specialist of the Imperial Guard.</description>
@@ -583,6 +672,10 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceII</researchPrerequisite>
+	  </recipeMaker>
+
   </ThingDef>
   <!-- ============================================== -->
   	
@@ -618,6 +711,9 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceI</researchPrerequisite>
+	  </recipeMaker>
   </ThingDef>
   <!-- ============================================== -->
   
@@ -653,5 +749,9 @@
 		<muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+    <recipeMaker>
+      <researchPrerequisite>MecTec_ManufacturingLicenceII</researchPrerequisite>
+	  </recipeMaker>
+
   </ThingDef>
 </ThingDefs>

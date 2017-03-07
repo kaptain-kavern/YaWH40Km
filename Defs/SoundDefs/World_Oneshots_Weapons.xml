@@ -88,7 +88,26 @@
     </subSounds>
   </SoundDef>
 
-
+  <SoundDef>
+    <defName>SlashMetal</defName>  
+    <context>MapOnly</context> 
+    <eventNames/>  
+    <maxSimultaneous>8</maxSimultaneous>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Weapons/slash_metal</clipFolderPath>
+          </li>
+        </grains>
+        <pitchRange>
+          <min>0.9082353</min>        
+          <max>1.045882</max>
+        </pitchRange>      
+        <sustainLoop>False</sustainLoop>
+      </li>
+    </subSounds>
+  </SoundDef>
 
   <SoundDef>
     <defName>FlameThrower</defName>

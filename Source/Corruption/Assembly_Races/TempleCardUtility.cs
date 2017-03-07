@@ -129,7 +129,7 @@ namespace Corruption
                     Need_Soul nsoul = current.needs.TryGetNeed<Need_Soul>();
                     if (nsoul == null) nsoul = new Need_Soul(current);
                     SoulTrait strait = nsoul.DevotionTrait;
-                    string text1 = current.NameStringShort + " (" + strait.CurrentSData.label + ")";
+                    string text1 = current.NameStringShort + " (" + strait.SoulCurrentData.label + ")";
 
                     Action action;
                     Pawn localCol = current;

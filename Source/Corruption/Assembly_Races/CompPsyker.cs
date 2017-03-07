@@ -40,6 +40,8 @@ namespace Corruption
             }
         }
 
+        public string patronName = "Emperor";
+
         public LocalTargetInfo CurTarget;
 
         public PsykerPowerDef curPower;
@@ -60,7 +62,6 @@ namespace Corruption
         {
             base.PostSpawnSetup();
             this.psykerPowerManager = new PsykerPowerManager(this);
-
             ChaosFollowerPawnKindDef pdef = this.psyker.kindDef as ChaosFollowerPawnKindDef;
             if (pdef != null && pdef.RenamePawns)
             {
@@ -135,7 +136,16 @@ namespace Corruption
 
         public override void CompTick()
         {
-            base.CompTick();            
+            base.CompTick();
+            if (this.soul != null)
+            {
+                if (this.patronName != soul.patronInfo.PatronName)
+                {
+                    this.patronName = soul.patronInfo.PatronName;
+                    PortraitsCache.SetDirty(this.psyker);
+                }
+            }
+                        
             this.TicksToCast--;
             if (this.TicksToCast <0)
             {
@@ -495,6 +505,7 @@ namespace Corruption
             Scribe_Collections.LookList(ref this.allpsykerPowers, "allpsykerPowers", LookMode.Deep, new object[0]);
 
 
+            Scribe_Values.LookValue<string>(ref this.patronName, "patronName", "Emperor", false);
             Scribe_Values.LookValue<int>(ref this.TicksToCast, "TicksToCast", 0, false);
             Scribe_Values.LookValue<int>(ref this.TicksToCastMax, "TicksToCastMax", 1, false);
             Scribe_Values.LookValue<float>(ref this.TicksToCastPercentage, "TicksToCastPercentage", 1, false);

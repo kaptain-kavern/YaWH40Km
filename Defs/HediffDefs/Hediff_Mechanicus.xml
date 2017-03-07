@@ -2,7 +2,7 @@
 <Defs>
 
   <HediffDef Name="MechanicusImplant" Abstract="True">
-    <hediffClass>Hediff_Implant</hediffClass>
+    <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.37, 0.82, 1.0)</defaultLabelColor>
     <isBad>false</isBad>
   </HediffDef>
@@ -22,5 +22,90 @@
     </stages>
     <spawnThingOnRemoved>NeuroController</spawnThingOnRemoved>
   </HediffDef>
+
+  <HediffDef ParentName="MechanicusImplant">
+    <defName>MechaDendrites_Labour</defName>
+    <label>Mechadendrites</label>
+    <comps>
+      <li Class="Corruption.HediffCompProperties_DrawImplant">
+        <compClass>Corruption.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Backpack</implantDrawerType>
+<implantGraphicPath>Things/Mechanicus/MechaDendrites/MechaDendrites</implantGraphicPath>
+      </li>
+    </comps>
+    <stages>
+      <li>
+          <capMods>
+            <li>
+              <capacity>Manipulation</capacity>
+              <offset>0.8</offset>
+            </li>
+          </capMods>
+        <statOffsets>
+      	<MeleeHitChance>0.1</MeleeHitChance>
+      	<MeleeDPS>1.00</MeleeDPS>
+        </statOffsets>
+      </li>
+    </stages>
+    <spawnThingOnRemoved>MechaDendrites_Labour</spawnThingOnRemoved>
+  </HediffDef>
+
+  <HediffDef ParentName="MechanicusImplant">
+    <defName>MechaDendrites_Medical</defName>
+    <label>Mechadendrites</label>
+    <comps>
+      <li Class="Corruption.HediffCompProperties_DrawImplant">
+        <compClass>Corruption.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Backpack</implantDrawerType>
+<implantGraphicPath>Things/Mechanicus/Dendrites_Med/DendMed</implantGraphicPath>
+      </li>
+    </comps>
+    <stages>
+      <li>
+          <capMods>
+            <li>
+              <capacity>Manipulation</capacity>
+              <offset>0.3</offset>
+            </li>
+          </capMods>
+        <statOffsets>
+      	<MedicalOperationSpeed>0.3</MedicalOperationSpeed>
+      	<HealingSpeed>0.2</HealingSpeed>
+      	<SurgerySuccessChance>0.2</SurgerySuccessChance>
+        </statOffsets>
+
+      </li>
+    </stages>
+    <spawnThingOnRemoved>MechaDendrites_Medical</spawnThingOnRemoved>
+  </HediffDef>
+
+  <HediffDef ParentName="MechanicusImplant">
+    <defName>MechaDendrites_Combat</defName>
+    <label>Mechadendrites</label>
+    <comps>
+      <li Class="Corruption.HediffCompProperties_DrawImplant">
+        <compClass>Corruption.HediffComp_DrawImplant</compClass>
+        <implantDrawerType>Backpack</implantDrawerType>
+<implantGraphicPath>Things/Mechanicus/MechaDendrites/MechaDendrites</implantGraphicPath>
+      </li>
+    </comps>
+    <stages>
+      <li>
+          <capMods>
+            <li>
+              <capacity>Manipulation</capacity>
+              <offset>0.8</offset>
+            </li>
+          </capMods>
+        <statOffsets>
+      	<MeleeHitChance>0.4</MeleeHitChance>
+      	<MeleeDPS>1.00</MeleeDPS>
+      	<ShootingAccuracy>0.3</ShootingAccuracy>
+        </statOffsets>
+      </li>
+    </stages>
+    <spawnThingOnRemoved>MechaDendrites_Combat</spawnThingOnRemoved>
+  </HediffDef>
+
 
 </Defs>

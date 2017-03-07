@@ -11,7 +11,7 @@ using Verse.Sound;
 
 namespace Corruption
 {
-    public class Building_MechanicusMedTable : Building_Casket, IBillGiver, IBillGiverWithTickAction
+    public class Building_MechanicusMedTable : Building_Casket, IBillGiver
     {
         
         private CompPowerTrader powerComp;
@@ -37,6 +37,18 @@ namespace Corruption
             get
             {
                 return this.ContainedThing as Pawn;
+            }
+            set
+            {
+                this.innerContainer[0] = value;
+            }
+        }
+        
+        public Corpse corpse
+        {
+            get
+            {
+                return this.ContainedThing as Corpse;
             }
         }
 
@@ -128,6 +140,7 @@ namespace Corruption
                 {
                     return;
                 }
+                recipe.effectWorking = EffecterDefOf.ConstructMetal;
                 Bill_MedicalTable bill_Medical = new Bill_MedicalTable(recipe);
                 medTable.medOpStack.AddBill(bill_Medical);
                 bill_Medical.Part = part;
@@ -160,7 +173,7 @@ namespace Corruption
                 medTable.patient.playerSettings.medCare.GetLabel()
                     }), medTable, MessageSound.Negative);
                 }
-                Log.Message("C3");
+      //          Log.Message("C3");
             };
             return new FloatMenuOption(text, action, MenuOptionPriority.Default, null, null, 0f, null, null);
         }
@@ -181,28 +194,36 @@ namespace Corruption
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
             Graphics.DrawMesh(MeshPool.plane10, matrix, this.toolMat, 0);
-            if (this.patient != null)
+            if (this.patient != null && !this.patient.Dead)
             {
-                Material bodymat = this.patient.Drawer.renderer.graphics.nakedGraphic.MatFront;
-                Material headmat = this.patient.Drawer.renderer.graphics.headGraphic.MatFront;
-                Material hairmat = this.patient.Drawer.renderer.graphics.hairGraphic.MatFront;
-                Vector3 sBody = new Vector3(1.0f, 1f, 1.0f);
-                Matrix4x4 matrixBody = default(Matrix4x4);
-                vector.y -= 0.05f;
-                matrixBody.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), sBody);
-
-                Graphics.DrawMesh(MeshPool.humanlikeBodySet.MeshAt(this.Rotation), matrixBody, bodymat, 0);
-
-                Matrix4x4 matrixHead = default(Matrix4x4);
-                Vector3 headVec = vector + new Vector3(Mathf.Sin(angle) * 0.2f, 0.03f, Mathf.Cos(angle) * 0.2f);
-                matrixHead.SetTRS(headVec, Quaternion.AngleAxis(angle, Vector3.up), new Vector3(1.0f, 1f, 1.0f));
-                Graphics.DrawMesh(MeshPool.humanlikeHeadSet.MeshAt(this.Rotation), matrixHead, headmat, 0);
-                Graphics.DrawMesh(MeshPool.humanlikeHairSetAverage.MeshAt(this.Rotation), matrixHead, hairmat, 0);
-
-
+                this.DrawBody(this.patient.Drawer.renderer);
                 //        Log.Message("patient: " + this.patient.Rotation.ToString() + "   Bed:  " + this.Rotation.ToString());
-
             }
+            else if (this.corpse != null && !corpse.Spawned)
+            {
+     //           this.DrawBody(this.corpse.InnerPawn.Drawer.renderer);
+            }
+        }
+
+        private void DrawBody(PawnRenderer renderer)
+        {
+            float angle = this.Rotation.AsAngle;
+            Material bodymat = renderer.graphics.nakedGraphic.MatFront;
+            Material headmat = renderer.graphics.headGraphic.MatFront;
+            Material hairmat = this.patient.Drawer.renderer.graphics.hairGraphic.MatFront;
+            Vector3 sBody = new Vector3(1.0f, 1f, 1.0f);
+            Matrix4x4 matrixBody = default(Matrix4x4);
+            Vector3 vector = this.DrawPos;
+            vector.y += 0.05f;
+            matrixBody.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), sBody);
+
+            Graphics.DrawMesh(MeshPool.humanlikeBodySet.MeshAt(this.Rotation), matrixBody, bodymat, 0);
+
+            Matrix4x4 matrixHead = default(Matrix4x4);
+            Vector3 headVec = vector + new Vector3(Mathf.Sin(angle) * 0.2f, 0.03f, Mathf.Cos(angle) * 0.2f);
+            matrixHead.SetTRS(headVec, Quaternion.AngleAxis(angle, Vector3.up), new Vector3(1.0f, 1f, 1.0f));
+            Graphics.DrawMesh(MeshPool.humanlikeHeadSet.MeshAt(this.Rotation), matrixHead, headmat, 0);
+            Graphics.DrawMesh(MeshPool.humanlikeHairSetAverage.MeshAt(this.Rotation), matrixHead, hairmat, 0);
         }
 
         public override IEnumerable<Gizmo> GetGizmos()
@@ -259,9 +280,14 @@ namespace Corruption
                 };
                 yield return new FloatMenuOption(label, action, MenuOptionPriority.Default, null, null, 0f, null, null);
 
-                if (this.patient != null && this.BillStack.Count > 0)
+                if (this.patient != null && this.BillStack.Count == 0)
                 {
-
+                    string labelNoOps = "NoMSUOperations".Translate(new object[]
+                        {
+                            this.patient.LabelShort
+                        });
+                    FloatMenuOption floatMenuOption = new FloatMenuOption(labelNoOps, null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                    yield return floatMenuOption;
                 }
 
                 foreach (Pawn prisoner in selPawn.Map.mapPawns.PrisonersOfColonySpawned)
@@ -277,7 +303,23 @@ namespace Corruption
                     };
                     yield return new FloatMenuOption(label2, action2, MenuOptionPriority.Default, null, null, 0f, null, null);
                 }
+                List<Pawn> downedPawns = this.Map.mapPawns.AllPawnsSpawned.Where(x => x.Downed).ToList<Pawn>();
+                foreach (Pawn current in downedPawns)
+                {
+                    string label2 = "CarryDownedSurgicalUnit".Translate(new object[]
+                        {
+                            current.LabelShort
+                        });
+                    Action action2 = delegate
+                    {
+                        Job job = new Job(CorruptionDefOfs.CarryToMecMedTable, current, this);
+                        selPawn.jobs.TryTakeOrderedJob(job);
+                        selPawn.jobs.curJob.count = 1;
+                    };
+                    yield return new FloatMenuOption(label2, action2, MenuOptionPriority.Default, null, null, 0f, null, null);
+                }
             }
+
             yield break;
         }
 
@@ -291,7 +333,7 @@ namespace Corruption
                 {
                     PawnComponentsUtility.AddComponentsForSpawn(pawn);
                     pawn.filth.GainFilth(filthSlime);
-                    pawn.health.AddHediff(HediffDefOf.CryptosleepSickness, null, null);
+            //        pawn.health.AddHediff(HediffDefOf.CryptosleepSickness, null, null);
                 }
             }
             if (!base.Destroyed)
@@ -312,293 +354,6 @@ namespace Corruption
         public bool CurrentlyUsable()
         {
             return (this.CanWorkWithoutPower || (this.powerComp != null && this.powerComp.PowerOn)) && (this.breakdownableComp == null || !this.breakdownableComp.BrokenDown);
-        }
-
-        public void UsedThisTick()
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void AddUndraftedOrders(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
-        {
-            IntVec3 clickCell = IntVec3.FromVector3(clickPos);
-            bool flag = false;
-            bool flag2 = false;
-            foreach (Thing current in pawn.Map.thingGrid.ThingsAt(clickCell))
-            {
-                flag2 = true;
-                if (pawn.CanReach(current, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
-                {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag2 && !flag)
-            {
-                opts.Add(new FloatMenuOption("(" + "NoPath".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null));
-                return;
-            }
-            JobGiver_Work jobGiver_Work = pawn.thinker.TryGetMainTreeThinkNode<JobGiver_Work>();
-            if (jobGiver_Work != null)
-            {
-                foreach (Thing current2 in pawn.Map.thingGrid.ThingsAt(clickCell))
-                {
-                    Pawn pawn2 = pawn.Map.reservationManager.FirstReserverOf(current2, pawn.Faction, true);
-                    if (pawn2 != null && pawn2 != pawn)
-                    {
-                        opts.Add(new FloatMenuOption("IsReservedBy".Translate(new object[]
-                        {
-                    current2.LabelShort.CapitalizeFirst(),
-                    pawn2.LabelShort
-                        }), null, MenuOptionPriority.Default, null, null, 0f, null, null));
-                    }
-                    else
-                    {
-                        foreach (WorkTypeDef current3 in DefDatabase<WorkTypeDef>.AllDefsListForReading)
-                        {
-                            for (int i = 0; i < current3.workGiversByPriority.Count; i++)
-                            {
-                                WorkGiver_Scanner workGiver_Scanner = current3.workGiversByPriority[i].Worker as WorkGiver_Scanner;
-                                if (workGiver_Scanner != null && workGiver_Scanner.def.directOrderable && !workGiver_Scanner.ShouldSkip(pawn))
-                                {
-                                    JobFailReason.Clear();
-                                    Log.Message("FoundWOrkGiver");
-                                    if (workGiver_Scanner.PotentialWorkThingRequest.Accepts(current2) || (workGiver_Scanner.PotentialWorkThingsGlobal(pawn) != null && workGiver_Scanner.PotentialWorkThingsGlobal(pawn).Contains(current2)))
-                                    {
-                                        Job job;
-                                        if (!workGiver_Scanner.HasJobOnThingForced(pawn, current2))
-                                        {
-                                            job = null;
-                                        }
-                                        else
-                                        {
-                                            job = workGiver_Scanner.JobOnThingForced(pawn, current2);
-                                        }
-                                        if (job == null)
-                                        {
-                                            if (JobFailReason.HaveReason)
-                                            {
-                                                string label3 = "CannotGenericWork".Translate(new object[]
-                                                {
-                                            workGiver_Scanner.def.verb,
-                                            current2.LabelShort
-                                                }) + " (" + JobFailReason.Reason + ")";
-                                                opts.Add(new FloatMenuOption(label3, null, MenuOptionPriority.Default, null, null, 0f, null, null));
-                                            }
-                                        }
-                                        else
-                                        {
-                                            WorkTypeDef workType = workGiver_Scanner.def.workType;
-                                            Action action = null;
-                                            PawnCapacityDef pawnCapacityDef = workGiver_Scanner.MissingRequiredCapacity(pawn);
-                                            string label;
-                                            if (pawnCapacityDef != null)
-                                            {
-                                                label = "CannotMissingHealthActivities".Translate(new object[]
-                                                {
-                                            pawnCapacityDef.label
-                                                });
-                                            }
-                                            else if (pawn.jobs.curJob != null && pawn.jobs.curJob.JobIsSameAs(job))
-                                            {
-                                                label = "CannotGenericAlreadyAm".Translate(new object[]
-                                                {
-                                            workType.gerundLabel,
-                                            current2.LabelShort
-                                                });
-                                            }
-                                            else if (pawn.workSettings.GetPriority(workType) == 0)
-                                            {
-                                                if (pawn.story.WorkTypeIsDisabled(workType))
-                                                {
-                                                    label = "CannotPrioritizeWorkTypeDisabled".Translate(new object[]
-                                                    {
-                                                workType.gerundLabel
-                                                    });
-                                                }
-                                                else if ("CannotPrioritizeNotAssignedToWorkType".CanTranslate())
-                                                {
-                                                    label = "CannotPrioritizeNotAssignedToWorkType".Translate(new object[]
-                                                    {
-                                                workType.gerundLabel
-                                                    });
-                                                }
-                                                else
-                                                {
-                                                    label = "CannotPrioritizeIsNotA".Translate(new object[]
-                                                    {
-                                                pawn.NameStringShort,
-                                                workType.pawnLabel
-                                                    });
-                                                }
-                                            }
-                                            else if (job.def == JobDefOf.Research && current2 is Building_ResearchBench)
-                                            {
-                                                label = "CannotPrioritizeResearch".Translate();
-                                            }
-                                            else if (current2.IsForbidden(pawn))
-                                            {
-                                                if (!current2.Position.InAllowedArea(pawn))
-                                                {
-                                                    label = "CannotPrioritizeForbiddenOutsideAllowedArea".Translate(new object[]
-                                                    {
-                                                current2.Label
-                                                    });
-                                                }
-                                                else
-                                                {
-                                                    label = "CannotPrioritizeForbidden".Translate(new object[]
-                                                    {
-                                                current2.Label
-                                                    });
-                                                }
-                                            }
-                                            else if (!pawn.CanReach(current2, workGiver_Scanner.PathEndMode, Danger.Deadly, false, TraverseMode.ByPawn))
-                                            {
-                                                label = current2.Label + ": " + "NoPath".Translate();
-                                            }
-                                            else
-                                            {
-                                                label = "PrioritizeGeneric".Translate(new object[]
-                                                {
-                                            workGiver_Scanner.def.gerund,
-                                            current2.Label
-                                                });
-                                                Job localJob = job;
-                                                WorkGiver_Scanner localScanner = workGiver_Scanner;
-                                                action = delegate
-                                                {
-                                                    pawn.jobs.TryTakeOrderedJobPrioritizedWork(localJob, localScanner, clickCell);
-                                                };
-                                            }
-                                            if (!opts.Any((FloatMenuOption op) => op.Label == label.TrimEnd(new char[0])))
-                                            {
-                                                opts.Add(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, null, 0f, null, null));
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                Pawn pawn3 = pawn.Map.reservationManager.FirstReserverOf(clickCell, pawn.Faction, true);
-                if (pawn3 != null && pawn3 != pawn)
-                {
-                    opts.Add(new FloatMenuOption("IsReservedBy".Translate(new object[]
-                    {
-                "AreaLower".Translate(),
-                pawn3.LabelShort
-                    }).CapitalizeFirst(), null, MenuOptionPriority.Default, null, null, 0f, null, null));
-                }
-                else
-                {
-                    foreach (WorkTypeDef current4 in DefDatabase<WorkTypeDef>.AllDefsListForReading)
-                    {
-                        for (int j = 0; j < current4.workGiversByPriority.Count; j++)
-                        {
-                            WorkGiver_Scanner workGiver_Scanner2 = current4.workGiversByPriority[j].Worker as WorkGiver_Scanner;
-                            if (workGiver_Scanner2 != null && workGiver_Scanner2.def.directOrderable && !workGiver_Scanner2.ShouldSkip(pawn))
-                            {
-                                JobFailReason.Clear();
-                                if (workGiver_Scanner2.PotentialWorkCellsGlobal(pawn).Contains(clickCell))
-                                {
-                                    Job job2;
-                                    if (!workGiver_Scanner2.HasJobOnCell(pawn, clickCell))
-                                    {
-                                        job2 = null;
-                                    }
-                                    else
-                                    {
-                                        job2 = workGiver_Scanner2.JobOnCell(pawn, clickCell);
-                                    }
-                                    if (job2 == null)
-                                    {
-                                        if (JobFailReason.HaveReason)
-                                        {
-                                            string label2 = "CannotGenericWork".Translate(new object[]
-                                            {
-                                        workGiver_Scanner2.def.verb,
-                                        "AreaLower".Translate()
-                                            }) + " (" + JobFailReason.Reason + ")";
-                                            opts.Add(new FloatMenuOption(label2, null, MenuOptionPriority.Default, null, null, 0f, null, null));
-                                        }
-                                    }
-                                    else
-                                    {
-                                        WorkTypeDef workType2 = workGiver_Scanner2.def.workType;
-                                        Action action2 = null;
-                                        PawnCapacityDef pawnCapacityDef2 = workGiver_Scanner2.MissingRequiredCapacity(pawn);
-                                        string label;
-                                        if (pawnCapacityDef2 != null)
-                                        {
-                                            label = "CannotMissingHealthActivities".Translate(new object[]
-                                            {
-                                        pawnCapacityDef2.label
-                                            });
-                                        }
-                                        else if (pawn.jobs.curJob != null && pawn.jobs.curJob.JobIsSameAs(job2))
-                                        {
-                                            label = "CannotGenericAlreadyAm".Translate(new object[]
-                                            {
-                                        workType2.gerundLabel,
-                                        "AreaLower".Translate()
-                                            });
-                                        }
-                                        else if (pawn.workSettings.GetPriority(workType2) == 0)
-                                        {
-                                            if (pawn.story.WorkTypeIsDisabled(workType2))
-                                            {
-                                                label = "CannotPrioritizeWorkTypeDisabled".Translate(new object[]
-                                                {
-                                            workType2.gerundLabel
-                                                });
-                                            }
-                                            else if ("CannotPrioritizeNotAssignedToWorkType".CanTranslate())
-                                            {
-                                                label = "CannotPrioritizeNotAssignedToWorkType".Translate(new object[]
-                                                {
-                                            workType2.gerundLabel
-                                                });
-                                            }
-                                            else
-                                            {
-                                                label = "CannotPrioritizeIsNotA".Translate(new object[]
-                                                {
-                                            pawn.NameStringShort,
-                                            workType2.pawnLabel
-                                                });
-                                            }
-                                        }
-                                        else if (!pawn.CanReach(clickCell, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
-                                        {
-                                            label = "AreaLower".Translate().CapitalizeFirst() + ": " + "NoPath".Translate();
-                                        }
-                                        else
-                                        {
-                                            label = "PrioritizeGeneric".Translate(new object[]
-                                            {
-                                        workGiver_Scanner2.def.gerund,
-                                        "AreaLower".Translate()
-                                            });
-                                            Job localJob = job2;
-                                            WorkGiver_Scanner localScanner = workGiver_Scanner2;
-                                            action2 = delegate
-                                            {
-                                                pawn.jobs.TryTakeOrderedJobPrioritizedWork(localJob, localScanner, clickCell);
-                                            };
-                                        }
-                                        if (!opts.Any((FloatMenuOption op) => op.Label == label.TrimEnd(new char[0])))
-                                        {
-                                            opts.Add(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, null, 0f, null, null));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        }        
     }
 }

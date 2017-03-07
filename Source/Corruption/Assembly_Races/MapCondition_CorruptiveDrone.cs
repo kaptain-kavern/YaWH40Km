@@ -27,5 +27,6 @@ namespace Corruption
                 glow = 0.85f
             });
         }
+
     }
 }

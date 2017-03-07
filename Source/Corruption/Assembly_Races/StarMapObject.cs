@@ -59,7 +59,7 @@ namespace Corruption
             this.objectType = newObjectType;
             List<string> objectNames = existingObjects;
 
-            float angle = Rand.RangeInclusive(prevAngle, 330);
+            float angle = Rand.RangeInclusive(prevAngle + 30, 330);
             curAngle = (int)angle;
             switch (this.objectType)
             {

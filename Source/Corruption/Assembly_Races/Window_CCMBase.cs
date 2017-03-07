@@ -52,7 +52,7 @@ namespace Corruption
             Rect centerRect = new Rect(baseRect.width / 2f - 220f, 120f, 440f, baseRect.height - 120f);
             Rect rightRect = new Rect(baseRect.width - 120f, 15f, 120f, baseRect.height - 25f);
             GUI.BeginGroup(inRect);
-            Rect titleRect = new Rect(baseRect.x, baseRect.y, baseRect.width, 25f);            
+            Rect titleRect = new Rect(baseRect.x, baseRect.y, baseRect.width, 30f);            
      //       GUI.BeginGroup(titleRect);
             Text.Anchor = TextAnchor.MiddleCenter;
             Text.Font = GameFont.Medium;
@@ -66,9 +66,9 @@ namespace Corruption
             float num = leftRect.y;
             CorruptionStoryTrackerUtilities.ListSeparatorBig(ref num, leftRect.width, "ImperialFrequencies".Translate());
             num += 50f;
-            foreach(Faction current in storyTracker.ImperialFactions)
+            for (int i = 0; i < storyTracker.ImperialFactions.Count; i++)
             {
-                num += DrawFactionRowCommsIoM(current, num, leftRect, negotiator);
+                num += DrawFactionRowCommsIoM(storyTracker.ImperialFactions[i], num, leftRect, negotiator);
             }
       //      Widgets.DrawRectFast(leftRect, Color.white);
             GUI.EndGroup();
@@ -150,14 +150,18 @@ namespace Corruption
             float num2 = rightRect.y;
             CorruptionStoryTrackerUtilities.ListSeparatorBig(ref num2, rightRect.width, "UnknownFrequencies".Translate());
             num2 += 50f;
-            foreach (Faction current in storyTracker.XenoFactions)
+            for (int i = 0; i < storyTracker.XenoFactions.Count; i++)
             {
-                num2 += DrawFactionRowCommsXeno(current, num2, rightRect, negotiator);
+                num2 += DrawFactionRowCommsXeno(storyTracker.XenoFactions[i], num2, rightRect, negotiator);
 
             }
 
             GUI.EndGroup();
             GUI.EndGroup();
+            if (Widgets.CloseButtonFor(inRect.AtZero()))
+            {
+                this.Close();
+            }
         }
 
         private void DrawStarGrid(Rect rect)
@@ -198,8 +202,8 @@ namespace Corruption
             {
                 if (faction.leader == null) Log.Error("NoLeader for: " + faction.Name);
                 this.Close();
-                faction.TryOpenComms(negotiator);
-  
+                CorruptionStoryTrackerUtilities.TryOpenIoMComms(negotiator, faction);
+
             }
             float num = Text.CalcHeight(faction.def.LabelCap, fillRect.width);
             float num2 = Mathf.Max(80f, num);
@@ -215,7 +219,7 @@ namespace Corruption
             {
                 if (faction.leader == null) Log.Error("NoLeader for: " + faction.Name);
                 this.Close();
-                faction.TryOpenComms(negotiator);
+                CorruptionStoryTrackerUtilities.TryOpenIoMComms(negotiator, faction);
 
             }
             GUI.DrawTexture(new Rect(rect.x, rect.y + 15f, rect.width, 20f), CorruptionStoryTrackerUtilities.XenoFactionCrypticLabel(faction));

@@ -22,5 +22,7 @@ namespace Corruption
             this.compClass = typeof(ThingComp_SoulItem);
         }
 
+        public bool IsHolyItem = false;
+
     }
 }

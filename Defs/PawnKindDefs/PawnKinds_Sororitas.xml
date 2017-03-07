@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <PawnKindDefs>
 
+
+
+
   <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
     <defName>SororitasNurse</defName>
     <label>nurse</label>
@@ -29,8 +32,7 @@
       <max>3000</max>
     </weaponMoney>
     <weaponTags>
-      <li>Sororitas_Melee</li>
-      <li>IG_Ranged_Vet</li>
+      <li>Sororitas_Support</li>
     </weaponTags>
     <techHediffsMoney>
       <min>9000</min>

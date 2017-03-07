@@ -156,7 +156,7 @@ namespace Corruption
         {
             CompEquippable tempcomp;
             Apparel tempthing;
-            if (this.parent != null && !this.parent.Spawned)
+            if (this.parent != null && !this.parent.Spawned && this.parent.holdingContainer == null)
             {
                 //         Log.Message("Begin Check");
                 if (this.parent is Apparel)

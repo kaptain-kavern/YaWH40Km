@@ -7,6 +7,8 @@ using RimWorld;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
+using System.Reflection;
+using Verse.Sound;
 
 namespace Corruption
 {
@@ -14,13 +16,14 @@ namespace Corruption
     {
 
         public static List<PawnKindDef> DemonPawnKinds = new List<PawnKindDef>();
-
+        
         public Faction PatronFaction;
 
         public string SubsectorName;
 
         public bool activeRaid;
-        public bool PlayerIsEnemyOfMankind;
+        public bool PlayerIsEnemyOfMankind = false;
+        public bool TitheCollectionActive = false;
 
         public Pawn Astropath;
 
@@ -36,9 +39,19 @@ namespace Corruption
         public List<Faction> ImperialFactions = new List<Faction>();
         public List<Faction> XenoFactions = new List<Faction>();
 
+
+        // Tithe System
+        public bool AcknowledgedByImperium = false;
+        public List<Tithes.TitheEntryGlobal> currentTithes = new List<Tithes.TitheEntryGlobal>();
+        public int DaysToTitheCollection = -1;
+        public Pawn PlanetaryGovernor;
+
+        public bool setTithesDirty = false;
+        public int curTitheID = 0;
+
         public List<StarMapObject> SubSectorObjects = new List<StarMapObject>();
 
-        public bool FactionCanHelp;
+        public bool IoMCanHelp;
         public int DaysAfterHelp;
 
         public float ColonyCorruptionAvg;
@@ -60,17 +73,49 @@ namespace Corruption
                     }
                 }
             }
+            if (this.PlanetaryGovernor != null && this.PlanetaryGovernor.Dead)
+            {
+                this.PlanetaryGovernor = Find.WorldPawns.AllPawnsAlive.Where(x => x.Faction == Faction.OfPlayer).RandomElement();
+                string deadDesc = "GovernorDiedDesc".Translate(new object[]
+                {
+                    PlanetaryGovernor.LabelCap,
+                    PlanetaryGovernor.filth
+                });
+                Find.LetterStack.ReceiveLetter("LetterLabelGovernorDied".Translate(), deadDesc, LetterType.BadUrgent, null);
+            }
 
             if (GenLocalDate.HourOfDay(Find.VisibleMap) == 4)
             {
+                if (this.DaysToTitheCollection > 0)
+                {
+                    this.DaysToTitheCollection--;
+                }
+                if (!this.currentTithes.NullOrEmpty() && this.DaysToTitheCollection == 0 && !TitheCollectionActive && this.AcknowledgedByImperium)
+                {
+                    InitializeTitheCollection();
+                }
                 CalculateColonyCorruption();
                 EldarTicksDaily();
                 CorruptionTicksDaily();
             }
         }
 
+        private void InitializeTitheCollection()
+        {
+            Tithes.MapCondition_TitheCollectors condition = (Tithes.MapCondition_TitheCollectors)MapConditionMaker.MakeCondition(CorruptionDefOfs.TitheCollectorArrived, 1000, 0);
+            if (this.PlanetaryGovernor == null) Log.Error("Planetary Governor is null");
+            this.PlanetaryGovernor.Map.mapConditionManager.RegisterCondition(condition);
+            Find.WindowStack.Add(new Tithes.Window_IoMTitheArrival());
+        //    Find.LetterStack.ReceiveLetter("LetterLabelTithesDue".Translate(), condition.def.description, LetterType.BadUrgent, null);
+            TitheCollectionActive = true;
+        }
+
         public override void PostAdd()
         {
+            //  Log.Message("CreatingSubSector");
+            CreateSubSector();
+            //  Log.Message("Objects created : " + this.SubSectorObjects.Count.ToString());
+
             this.ChaosCult = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.ChaosCult);
             this.DarkEldarKabal = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.DarkEldarKabal);
             this.EldarWarhost = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.EldarWarhost);
@@ -79,38 +124,47 @@ namespace Corruption
             this.AdeptusSororitas = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.AdeptusSororitas);
             this.Mechanicus = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.Mechanicus);
             this.Tau = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.TauVanguard);
-            this.ImperialFactions.Add(this.ImperialGuard);
-            this.ImperialFactions.Add(this.Mechanicus);
-            this.ImperialFactions.Add(this.AdeptusSororitas);
-            this.XenoFactions.Add(this.EldarWarhost);
-            this.XenoFactions.Add(this.Tau);
-            this.XenoFactions.Add(this.ChaosCult);
+            if (!this.ImperialFactions.Contains(this.ImperialGuard)) this.ImperialFactions.Add(this.ImperialGuard);
+            if (!this.ImperialFactions.Contains(this.Mechanicus)) this.ImperialFactions.Add(this.Mechanicus);
+            if (!this.ImperialFactions.Contains(this.AdeptusSororitas)) this.ImperialFactions.Add(this.AdeptusSororitas);
+
+
+
+            if (!this.XenoFactions.Contains(this.EldarWarhost)) this.XenoFactions.Add(this.EldarWarhost);
+            if (!this.XenoFactions.Contains(this.Tau)) this.XenoFactions.Add(this.Tau);
+            if (!this.XenoFactions.Contains(this.ChaosCult)) this.XenoFactions.Add(this.ChaosCult);
+
 
             List<Faction> list = new List<Faction>();
             list.AddRange(this.ImperialFactions);
             list.AddRange(this.XenoFactions);
+            //        Log.Message("CheckingFactionLeaders for " + list.Count.ToString() + " factions");
             foreach (Faction current in list)
             {
                 if (current.leader == null)
                 {
-                  //  Log.Message("NoLeader for "+ current.GetCallLabel());
+                    //     Log.Message("NoLeader for "+ current.GetCallLabel());
                     PawnKindDef kinddef = DefDatabase<PawnKindDef>.AllDefsListForReading.FirstOrDefault(x => x.defaultFactionType == current.def && x.factionLeader);
                     if (kinddef != null)
                     {
-                //        Log.Message("Generating Leader with: " + kinddef.defName);
-                        PawnGenerationRequest request = new PawnGenerationRequest(kinddef, current, PawnGenerationContext.NonPlayer, null, false, false, false, false, true, false, 1f, false, true, true, null, null, null, null, null, null);
+                        //        Log.Message("Generating Leader with: " + kinddef.defName);
+                        PawnGenerationRequest request = new PawnGenerationRequest(kinddef, current, PawnGenerationContext.NonPlayer, null, true, false, false, false, true, false, 1f, false, true, true, null, null, null, null, null, null);
 
-                        Pawn pawn = PawnGenerator.GeneratePawn(request);
+                        //              Log.Message("GeneratedRequest");
+                        Pawn pawn = PawnGenerator.GeneratePawn(kinddef, current);
 
+                        //              Log.Message("Generated Leader");
                         if (kinddef.defName.Contains("Alien_"))
                         {
                             AlienRace.AlienPawn apawn = pawn as AlienRace.AlienPawn;
                             apawn.SpawnSetupAlien();
                             current.leader = apawn;
+                            //                   Log.Message("SettingAlienLeader");
                         }
                         else
                         {
                             current.leader = pawn;
+                            //                     Log.Message("Setting Leader");
                         }
                         if (current.leader.RaceProps.IsFlesh)
                         {
@@ -121,10 +175,16 @@ namespace Corruption
                             Find.WorldPawns.PassToWorld(current.leader, PawnDiscardDecideMode.KeepForever);
                         }
                     }
+                    else
+                    {
+                        Log.Error("No Leader KindDef found for Faction: " + current.Name);
+                    }
+                }
+                else
+                {
+                    //             Log.Message("Leader for " + current.Name + " is " + current.leader.Label);
                 }
             }
-            CreateSubSector();
-  //          Log.Message("Objects created : " + this.SubSectorObjects.Count.ToString());
             base.PostAdd();
         }
 
@@ -159,21 +219,6 @@ namespace Corruption
             }
         }
 
-        public override void PostMake()
-        {
-            this.ChaosCult = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.ChaosCult);
-            this.DarkEldarKabal = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.DarkEldarKabal);
-            this.EldarWarhost = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.EldarWarhost);
-            this.ImperialGuard = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.ImperialGuard);
-            this.Orks = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.Orks);
-            this.AdeptusSororitas = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.AdeptusSororitas);
-            this.Mechanicus = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.Mechanicus);
-            this.ImperialFactions.Add(this.ImperialGuard);
-            this.ImperialFactions.Add(this.Mechanicus);
-            this.ImperialFactions.Add(this.AdeptusSororitas);
-      //      Log.Message("Imperial Factions: "+this.ImperialFactions.Count.ToString());
-        }
-
         public void CalculateColonyCorruption()
         {
             List<Pawn> ColonyPawns = Find.VisibleMap.mapPawns.FreeColonistsAndPrisonersSpawned.ToList<Pawn>();
@@ -191,7 +236,7 @@ namespace Corruption
             this.DaysAfterHelp += 1;
             if (this.DaysAfterHelp > 7)
             {
-                this.FactionCanHelp = true;
+                this.IoMCanHelp = true;
             }
         }
 
@@ -239,6 +284,28 @@ namespace Corruption
             }
         }
 
+        public void CollectTithes()
+        {
+            List<Building> list = Tithes.TitheUtilities.allTitheContainers;
+
+            for (int i=0; i < list.Count; i++)
+            {
+                list[i].Destroy(DestroyMode.Vanish);
+            }
+            SoundStarter.PlayOneShotOnCamera(SoundDefOf.Thunder_OnMap);
+            
+            Tithes.TitheUtilities.CalculateColonyTithes(this);
+        }
+
+        public void ResetIoMAcknowledgement()
+        {
+            this.DaysToTitheCollection = -1;
+            this.currentTithes.Clear();
+            Tithes.TitheUtilities.UpdateAllContaners();
+            this.TitheCollectionActive = false;
+            this.AcknowledgedByImperium = false;
+        }
+
         public int CheckForSpiritStones()
         {
             List<Thing> list = Find.VisibleMap.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways);
@@ -273,8 +340,14 @@ namespace Corruption
                     AdeptusSororitas.def.raidCommonality += 10;
                 }
             }
+
+            if (this.DaysToTitheCollection == 0)
+            {
+                
+            }
         }
 
+        
         public void SororitasAssist()
         {
             IncidentParms parms = new IncidentParms();
@@ -285,7 +358,7 @@ namespace Corruption
             IncidentDef relief = new IncidentDef();
             relief.workerClass = typeof(IncidentWorker_RaidFriendly);
             relief.Worker.TryExecute(parms);
-            this.FactionCanHelp = false;
+            this.IoMCanHelp = false;
         }
 
         public void IGAssist()
@@ -298,7 +371,7 @@ namespace Corruption
             IncidentDef relief = new IncidentDef();
             relief.workerClass = typeof(IncidentWorker_RaidFriendly);
             relief.Worker.TryExecute(parms);
-            this.FactionCanHelp = false;
+            this.IoMCanHelp = false;
         }
 
         public void MechanicusAssist()
@@ -311,7 +384,7 @@ namespace Corruption
             IncidentDef relief = new IncidentDef();
             relief.workerClass = typeof(IncidentWorker_RaidFriendly);
             relief.Worker.TryExecute(parms);
-            this.FactionCanHelp = false;
+            this.IoMCanHelp = false;
         }
 
 
@@ -337,6 +410,27 @@ namespace Corruption
             }
         }
 
+        public int GetTitheID()
+        {
+            return CorruptionStoryTracker.GetNextTitheID(ref this.curTitheID);
+        }
+
+        private static int GetNextTitheID(ref int nextID)
+        {
+            if (Scribe.mode == LoadSaveMode.Saving || Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                Log.Warning("Getting next unique ID during saving or loading. This may cause bugs.");
+            }
+            int result = nextID;
+            nextID++;
+            if (nextID == 2147483647)
+            {
+                Log.Warning("Next ID is at max value. Resetting to 0. This may cause bugs.");
+                nextID = 0;
+            }
+            return result;
+        }
+
         public override void ExposeData()
         {
             Scribe_References.LookReference<Faction>(ref this.PatronFaction, "PatronFaction");
@@ -350,12 +444,15 @@ namespace Corruption
             Scribe_Collections.LookList<Faction>(ref this.ImperialFactions, "ImperialFactions", LookMode.Reference, new object[0]);
             Scribe_Collections.LookList<Faction>(ref this.XenoFactions, "XenoFactions", LookMode.Reference, new object[0]);
             Scribe_Collections.LookList<StarMapObject>(ref this.SubSectorObjects, "SubSectorObjects", LookMode.Deep, new object[0]);
-            Scribe_Values.LookValue<bool>(ref this.FactionCanHelp, "FactionCanHelp", false, true);
+            Scribe_Values.LookValue<bool>(ref this.IoMCanHelp, "FactionCanHelp", false, true);
             Scribe_Values.LookValue<bool>(ref this.activeRaid, "activeRaid", false, true);
             Scribe_Values.LookValue<bool>(ref this.PlayerIsEnemyOfMankind, "PlayerIsEnemyOfMankind", false, true);
+            Scribe_Values.LookValue<bool>(ref this.AcknowledgedByImperium, "AcknowledgedByImperium", false, true);
             Scribe_Values.LookValue<int>(ref this.DaysAfterHelp, "DaysAfterHelp", 4, false);
+            Scribe_Values.LookValue<int>(ref this.DaysToTitheCollection, "DaysToTitheCollection", 30, false);
             Scribe_Values.LookValue<float>(ref this.ColonyCorruptionAvg, "ColonyCorruptionAvg", 0.8f, false);
             Scribe_Values.LookValue<string>(ref this.SubsectorName, "SubsectorName", "Aurelia", false);
+            Scribe_Collections.LookList<Tithes.TitheEntryGlobal>(ref this.currentTithes, "currentTithes", LookMode.Deep, new object[0]);
             base.ExposeData();
         }
     }

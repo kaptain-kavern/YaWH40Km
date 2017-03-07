@@ -191,6 +191,33 @@ namespace FactionColors
 
         }
 
+        public static bool GetDetailGraphic(Pawn pawn, Apparel curr, Rot4 bodyFacing, out Material detailGraphic)
+        {
+            detailGraphic = null;
+            try
+            {
+                if (pawn.needs != null && pawn.story != null)
+                {
+                    ApparelDetailDrawer drawer;
+                    if ((drawer = curr.TryGetComp<ApparelDetailDrawer>()) != null)
+                    {
+                        drawer.PostSpawnSetup();
+                        if (drawer.HasDetail)
+                        {
+                            detailGraphic = drawer.DetailGraphic.MatAt(bodyFacing);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
 
         public override void PostExposeData()
         {

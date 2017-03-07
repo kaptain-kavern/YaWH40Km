@@ -9,7 +9,7 @@
     <techLevel>Industrial</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Ork</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Orks/OrkArmorBase/OrkArmorIcon</texPath>
@@ -77,7 +77,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Ork</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Orks/OrkHelmet/OrkHelmet</texPath>
@@ -130,7 +130,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Ork</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Orks/OrkHelmet/OrkHelmetVarIcon</texPath>
@@ -205,7 +205,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Ork</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Orks/OrkArmorNobs/Orkarmor</texPath>
@@ -273,7 +273,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Ork</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/Orks/OrkArmorNobs/OrkCommandoArmor</texPath>

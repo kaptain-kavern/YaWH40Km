@@ -207,7 +207,12 @@ namespace Corruption
                 this.SelPawnPatron = soul.patronInfo.PatronName;
                 this.SelPawnSoulState = soul.CurCategory.ToString();
                 PatronColor = PatronInfo.PatronColor(SelPawnPatron);
-                STraits = soul.SoulTraits;
+                if (soul.SoulTraits.NullOrEmpty()) Log.Message("NoSoulTraits");
+                if (!soul.SoulTraits.NullOrEmpty())
+                {
+                    Log.Message(soul.SoulTraits.Count.ToString());
+                    STraits = soul.SoulTraits;
+                }
                 this.psykerPowerLevel = soul.PsykerPowerLevel.ToString();
                 this.culturalTolerance = soul.CulturalTolerance;
             }
@@ -271,10 +276,11 @@ namespace Corruption
                 {
                     Widgets.DrawHighlight(rect12);
                 }
-                Widgets.Label(rect12, trait.CurrentSData.label);
+                Widgets.Label(rect12, trait.SoulCurrentData.label);
                 num += rect12.height + 15f;
                 SoulTrait trLocal = trait;
-                TipSignal tip2 = new TipSignal(() => trLocal.STipString(SelPawn), (int)num * 37);
+                TipSignal tip2 = new TipSignal(() => trLocal.TipString(SelPawn), (int)num * 37);
+                
                 TooltipHandler.TipRegion(rect12, tip2);
                 rect13 = rect12;
             }            

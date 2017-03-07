@@ -47,10 +47,6 @@
       <workSkill>Crafting</workSkill>
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
-      <recipeUsers>
-        <li>ElectricSmithy</li>
-        <li>FueledSmithy</li>
-      </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <inspectorTabs>
@@ -369,6 +365,7 @@ Class="FactionColors.FactionItemDef">
         <verbClass>Verb_MeleeAttack</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <meleeDamageDef>Cut</meleeDamageDef>
+        <soundCast>SlashMetal</soundCast>
       </li>
     </verbs>
     <costList>

@@ -1,4 +1,6 @@
-﻿using RimWorld;
+﻿using Corruption.Tithes;
+using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,14 @@ namespace Corruption
         public static Texture2D PlanetMedium = ContentFinder<Texture2D>.Get("UI/SectorMap/Planet_Medium", true);
         public static Texture2D PlanetSmall = ContentFinder<Texture2D>.Get("UI/SectorMap/Planet_Small", true);
         public static Texture2D Moon = ContentFinder<Texture2D>.Get("UI/SectorMap/Moon", true);
+        public static Texture2D ShipsArrival = ContentFinder<Texture2D>.Get("UI/Images/ShipArrival", true);
+
+        public static Texture2D Aquila = ContentFinder<Texture2D>.Get("UI/Images/IoM_Aquila", true);
+
+        public static string BuffNegGraphicPath = "UI/Psyker/BuffNegative";
+        public static string BuffPosGraphicPath = "UI/Psyker/BuffPositive";
+
+        public static bool ImperialInstitutionsSelected = true;
 
         public static CorruptionStoryTracker currentStoryTracker
         {
@@ -47,20 +57,103 @@ namespace Corruption
 
             Rect rect3 = rect2;
             rect3.y = rect2.yMax + 30f;
-            rect3.width = 200f;
-            rect3.height = 25f;
+            rect3.height = rect.height - rect2.height - 30f;
+
+            Widgets.DrawMenuSection(rect3, true);
+            List<TabRecord> list = new List<TabRecord>();
+
+            list.Add(new TabRecord("ImperialInstitutions".Translate(), delegate
+            {
+                CorruptionStoryTrackerUtilities.ImperialInstitutionsSelected = true;
+            }, CorruptionStoryTrackerUtilities.ImperialInstitutionsSelected));
+
+            if (tracker.AcknowledgedByImperium)
+            {
+                list.Add(new TabRecord("TabTitheContainer".Translate(), delegate
+                {
+                    CorruptionStoryTrackerUtilities.ImperialInstitutionsSelected = false;
+                }, !CorruptionStoryTrackerUtilities.ImperialInstitutionsSelected));
+            }
+            TabDrawer.DrawTabs(rect3, list);
+            rect3 = rect3.ContractedBy(9f);
+            GUI.BeginGroup(rect3);
             
-            float num = rect.y + 30f;
-            CorruptionStoryTrackerUtilities.ListSeparatorBig(ref num, rect.width, "ImperialInstitutions".Translate());
-            foreach (Faction current in tracker.ImperialFactions)
+            GUI.color = Color.white;
+
+            if (CorruptionStoryTrackerUtilities.ImperialInstitutionsSelected)
+            {
+                DrawImperialFactionRows(tracker, rect3);
+            }
+            else
+            {
+                DrawImperialTitheTab(tracker, rect3);
+            }
+
+            GUI.EndGroup();
+            GUI.EndGroup();
+        }
+
+        private static void DrawImperialFactionRows(CorruptionStoryTracker tracker, Rect rect)
+        {
+            float num = 0f;
+            for (int i = 0; i < tracker.ImperialFactions.Count; i++)
             {
                 GUI.color = new Color(1f, 1f, 1f, 0.2f);
                 Widgets.DrawLineHorizontal(0f, num, rect.width);
                 GUI.color = Color.white;
-                num += CorruptionStoryTrackerUtilities.DrawImperialFactionRow(current, num, rect);
+                num += CorruptionStoryTrackerUtilities.DrawImperialFactionRow(tracker.ImperialFactions[i], num, rect);
             }
-            GUI.EndGroup();
         }
+
+        public static void DrawImperialTitheTab(CorruptionStoryTracker tracker, Rect rect)
+        {
+            Text.Anchor = TextAnchor.MiddleCenter;
+            float num = 0f;
+            List<TitheEntryGlobal> list = tracker.currentTithes;
+            int numEntriesFirst = Math.Min(list.Count, 5);
+            for (int i = 0; i < numEntriesFirst; i++)
+            {
+                Rect rect3 = new Rect(30f, num, 200f, 25f);
+                Widgets.Label(rect3, list[i].titheDef.LabelCap);
+                Rect rect4 = new Rect(40f, num + 30f, 200f, 30f);
+                Widgets.FillableBar(rect4, list[i].tithePercent, TitheUtilities.TitheBarFillTex, TitheUtilities.TitheBarBGTex, true);
+                Widgets.Label(rect4, list[i].collectedTitheAmount + " / " + list[i].requestedTitheAmount);
+                num += 75f;
+            }
+            if (list.Count > 5)
+            {
+                num = 0f;
+                for (int i = 5; i < 11; i++)
+                {
+                    Rect rect3 = new Rect(240f, num, 200f, 25f);
+                    Widgets.Label(rect3, list[i].titheDef.LabelCap);
+                    Rect rect4 = new Rect(240f, num + 30f, 200f, 30f);
+                    Widgets.FillableBar(rect4, list[i].tithePercent, TitheUtilities.TitheBarFillTex, TitheUtilities.TitheBarBGTex, true);
+                    Widgets.Label(rect4, list[i].collectedTitheAmount + " / " + list[i].requestedTitheAmount);
+                    num += 75f;
+                }
+            }
+
+            Rect rect5 = new Rect(450f, 0f, 200f, 100f);
+            StringBuilder stringBuilder = new StringBuilder();
+            string text = string.Concat(new string[]
+            {
+                "TitheDueIn".Translate(),
+                "\n",
+                tracker.DaysToTitheCollection.ToString()
+            });
+            if (tracker.DaysToTitheCollection < 8)
+            {
+                GUI.color = Color.red;
+            }
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Widgets.Label(rect5, text);
+
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.UpperLeft;
+            Text.Font = GameFont.Small;
+        }
+
         public static void ListSeparatorBig(ref float curY, float width, string label)
         {
             Color color = GUI.color;
@@ -173,5 +266,45 @@ namespace Corruption
             }
         }
 
+        public static void AffectGoodwillWithSpacerFaction(Faction faction, Faction other, float goodwillChange)
+        {
+            if (goodwillChange > 0f && ((faction.IsPlayer && FactionBaseUtility.IsPlayerAttackingAnyFactionBaseOf(other)) || (other.IsPlayer && FactionBaseUtility.IsPlayerAttackingAnyFactionBaseOf(faction))))
+            {
+                return;
+            }
+            float value = other.GoodwillWith(faction) + goodwillChange;
+            FactionRelation factionRelation = other.RelationWith(faction, false);
+            factionRelation.goodwill = Mathf.Clamp(value, -100f, 100f);            
+            
+            if (!faction.HostileTo(other) && faction.GoodwillWith(other) < -80f)
+            {
+                faction.SetHostileTo(other, true);
+                if (Current.ProgramState == ProgramState.Playing && Find.TickManager.TicksGame > 100 && other == Faction.OfPlayer)
+                {
+                    Find.LetterStack.ReceiveLetter("LetterLabelRelationsChangeBad".Translate(), "RelationsBrokenDown".Translate(new object[]
+                    {
+                faction.Name
+                    }), LetterType.BadNonUrgent, null);
+                }
+            }
+            if (faction.HostileTo(other) && faction.GoodwillWith(other) > 0f)
+            {
+                faction.SetHostileTo(other, false);
+                if (Current.ProgramState == ProgramState.Playing && Find.TickManager.TicksGame > 100 && other == Faction.OfPlayer)
+                {
+                    Find.LetterStack.ReceiveLetter("LetterLabelRelationsChangeGood".Translate(), "RelationsWarmed".Translate(new object[]
+                    {
+                faction.Name
+                    }), LetterType.BadNonUrgent, null);
+                }
+            }
+        }
+
+        public static void TryOpenIoMComms(Pawn negotiator, Faction faction)
+        {
+            Dialog_NegotiationIoM dialog_Negotiation = new Dialog_NegotiationIoM(negotiator, faction, FactionDialogMaker_IoM.FactionDialogFor(negotiator, faction), true);
+            dialog_Negotiation.soundAmbient = SoundDefOf.RadioComms_Ambience;
+            Find.WindowStack.Add(dialog_Negotiation);
+        }
     }
 }

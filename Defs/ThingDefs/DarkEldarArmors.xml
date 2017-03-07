@@ -11,7 +11,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/DarkEldar/Armor/KabaliteArmor</texPath>
@@ -82,7 +82,7 @@
     <techLevel>Spacer</techLevel>
     <recipeMaker>
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+      <researchPrerequisite>Xenotech_Eldar</researchPrerequisite>
     </recipeMaker>
     <graphicData>
       <texPath>Things/DarkEldar/Armor/DarkEldarHelmet</texPath>
