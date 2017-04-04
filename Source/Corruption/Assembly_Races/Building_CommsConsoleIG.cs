@@ -5,6 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using Verse.AI;
+using Corruption.DefOfs;
 
 namespace Corruption
 {
@@ -26,7 +27,7 @@ namespace Corruption
         {
             base.SpawnSetup(map);
             this.powerComp = base.GetComp<CompPowerTrader>();
-            this.corruptionStoryTracker = Find.World.worldObjects.AllWorldObjects.Find(x => x.def == CorruptionDefOfs.CorruptionStoryTracker) as CorruptionStoryTracker;
+            this.corruptionStoryTracker = Find.World.worldObjects.AllWorldObjects.Find(x => x.def == C_WorldObjectDefOf.CorruptionStoryTracker) as CorruptionStoryTracker;
             if (this.corruptionStoryTracker == null) Log.Message("StoryTracker not found");
             LessonAutoActivator.TeachOpportunity(ConceptDefOf.BuildOrbitalTradeBeacon, OpportunityType.GoodToKnow);
             LessonAutoActivator.TeachOpportunity(ConceptDefOf.OpeningComms, OpportunityType.GoodToKnow);
@@ -101,7 +102,7 @@ namespace Corruption
                 string text = "UseCCC".Translate();
                 Action action = delegate
                 {
-                    Job job = new Job(CorruptionDefOfs.UsingCCC, this);
+                    Job job = new Job(C_JobDefOf.UsingCCC, this);
                     myPawn.jobs.TryTakeOrderedJob(job);
                     PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDefOf.OpeningComms, KnowledgeAmount.Total);
                 };

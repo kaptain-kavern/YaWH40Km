@@ -68,8 +68,11 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Alien_DarkEldar</RestrictedToRace>
+      <li Class="FactionColors.CompProperties_PauldronDrawer">
+        <compClass>FactionColors.CompPauldronDrawer</compClass>
+        <shoulderPadType>Both</shoulderPadType>
+        <shaderType>CutoutComplex</shaderType>
+        <PadTexPath>Things/DarkEldar/DEPauldrons/DEPauldron</PadTexPath>
       </li>
     </comps>
   </ThingDef>

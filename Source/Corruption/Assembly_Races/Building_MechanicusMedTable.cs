@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -275,7 +276,7 @@ namespace Corruption
                 string label = "EnterSurgicalUnit".Translate();
                 Action action = delegate
                 {
-                    Job job = new Job(CorruptionDefOfs.EnterMecMedTable, this);
+                    Job job = new Job(C_JobDefOf.EnterMecMedTable, this);
                     selPawn.jobs.TryTakeOrderedJob(job);
                 };
                 yield return new FloatMenuOption(label, action, MenuOptionPriority.Default, null, null, 0f, null, null);
@@ -298,7 +299,7 @@ namespace Corruption
                         });
                     Action action2 = delegate
                     {
-                        Job job = new Job(CorruptionDefOfs.CarryToMecMedTable, prisoner, this);
+                        Job job = new Job(C_JobDefOf.CarryToMecMedTable, prisoner, this);
                         selPawn.jobs.TryTakeOrderedJob(job);
                     };
                     yield return new FloatMenuOption(label2, action2, MenuOptionPriority.Default, null, null, 0f, null, null);
@@ -312,7 +313,7 @@ namespace Corruption
                         });
                     Action action2 = delegate
                     {
-                        Job job = new Job(CorruptionDefOfs.CarryToMecMedTable, current, this);
+                        Job job = new Job(C_JobDefOf.CarryToMecMedTable, current, this);
                         selPawn.jobs.TryTakeOrderedJob(job);
                         selPawn.jobs.curJob.count = 1;
                     };

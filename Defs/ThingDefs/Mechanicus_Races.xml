@@ -22,12 +22,71 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="BasePawn" Class="AlienRace.ThingDef_AlienRace">
-<thingClass>AlienRace.AlienPawn</thingClass>
+    <AlienRace.ThingDef_AlienRace ParentName="BasePawn">
+
     <defName>Alien_Mechanicus_Member</defName>
     <label>Human</label>
     <description>A tech-enhanced and possibly gene-enhanced human.</description>
     <uiIconPath>Things/Pawn/Humanlike/UI/IconHuman</uiIconPath>
+
+
+	<alienRace>
+        <generalSettings>
+            <MaleGenderProbability>0.5</MaleGenderProbability>
+            <PawnsSpecificBackstories>true</PawnsSpecificBackstories>
+            <ImmuneToAge>false</ImmuneToAge>
+			<ForcedRaceTraitEntries>
+            </ForcedRaceTraitEntries>
+			<alienPartGenerator>
+                <aliencrowntypes>
+	  <li>MechHeadA</li>
+	  <li>MechHeadB</li>
+	  <li>MechHeadC</li>
+	  <li>MechHeadD</li>
+                </aliencrowntypes>
+                <alienbodytypes>
+					<li>Hulk</li>
+					<li>Thin</li>
+					<li>Male</li>
+					<li>Female</li>
+					<li>Fat</li>
+                </alienbodytypes>
+                <alienskincolorgen Class="ColorGenerator_Options">
+                    <options>
+                        <li>
+							<weight>5</weight>
+							<only>RGBA(1.00,1.00,1.00,1)</only>
+						</li>
+                    </options>
+                </alienskincolorgen>
+
+                <customDrawSize>(1, 1)</customDrawSize>
+                <customPortraitDrawSize>(1, 1)</customPortraitDrawSize>
+            </alienPartGenerator>
+        </generalSettings>
+		<graphicPaths>
+            <li>
+                <head>Things/Mechanicus/MechanicusHeads/</head>
+                <body>Things/Mechanicus/Bodies/</body>
+            </li>
+        </graphicPaths>
+		<hairSettings>
+            <HasHair>false</HasHair>
+            <GetsGreyAt>5000</GetsGreyAt>
+        </hairSettings>
+
+		<relationSettings>
+            <relationChanceModifierChild>1</relationChanceModifierChild>
+            <relationChanceModifierExLover>1</relationChanceModifierExLover>
+            <relationChanceModifierExSpouse>1</relationChanceModifierExSpouse>
+            <relationChanceModifierFiance>1</relationChanceModifierFiance>
+            <relationChanceModifierLover>1</relationChanceModifierLover>
+            <relationChanceModifierParent>1</relationChanceModifierParent>
+            <relationChanceModifierSibling>1</relationChanceModifierSibling>
+            <relationChanceModifierSpouse>1</relationChanceModifierSpouse>
+        </relationSettings>
+	</alienRace>
+
     <statBases>
       <MarketValue>1750</MarketValue>
       <MoveSpeed>4.61</MoveSpeed>
@@ -141,43 +200,80 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
     </recipes>
-<GetsGreyAt>4000</GetsGreyAt>
-	<HasHair>None</HasHair>
-	<CustomSkinColors>true</CustomSkinColors>
-	<alienskincolorgen Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(1.00,1.00,1.00,1)</only>
-        </li>
-      </options>
-    </alienskincolorgen>
-	<PawnsSpecificBackstories>true</PawnsSpecificBackstories>	<NakedHeadGraphicLocation>Things/Mechanicus/MechanicusHeads/</NakedHeadGraphicLocation>
-	<NakedBodyGraphicLocation>Things/Mechanicus/Bodies/</NakedBodyGraphicLocation>
-	<alienpartgenerator>
-      <UseGenderedHeads>false</UseGenderedHeads>
-	<aliencrowntypes>
-	  <li>MechHeadA</li>
-	  <li>MechHeadB</li>
-	  <li>MechHeadC</li>
-	  <li>MechHeadD</li>
-	</aliencrowntypes>
-	</alienpartgenerator>
-    <comps>
-      <li>
-        <compClass>AlienRace.CompImmuneToAge</compClass>
-      </li>
+	<comps>
      <li>
         <compClass>Corruption.CompThoughtlessAutomaton</compClass>
       </li>
     </comps>
-  </ThingDef>
+  </AlienRace.ThingDef_AlienRace>
 
-  <ThingDef ParentName="BaseServitor">
-    <thingClass>AlienRace.AlienPawn</thingClass>
+
+
+
+
+  <AlienRace.ThingDef_AlienRace ParentName="BasePawn">
     <defName>Mechanicum_Servitor</defName>
     <label>servitor</label>
     <description>A standard servitor. Maybe it was a vatgrown blank, maybe a convicted criminal. Whatever it was, not it's only capable of rudimentary tasks and closer to a machine than a human.</description>
+
+	<alienRace>
+        <generalSettings>
+            <MaleGenderProbability>0.5</MaleGenderProbability>
+            <PawnsSpecificBackstories>true</PawnsSpecificBackstories>
+            <ImmuneToAge>false</ImmuneToAge>
+			<ForcedRaceTraitEntries>
+            </ForcedRaceTraitEntries>
+			<alienPartGenerator>
+                <aliencrowntypes>
+	  <li>MechHeadA</li>
+	  <li>MechHeadB</li>
+	  <li>MechHeadC</li>
+	  <li>MechHeadD</li>
+                </aliencrowntypes>
+                <alienbodytypes>
+					<li>Hulk</li>
+					<li>Thin</li>
+					<li>Male</li>
+					<li>Female</li>
+					<li>Fat</li>
+                </alienbodytypes>
+                <alienskincolorgen Class="ColorGenerator_Options">
+                    <options>
+                        <li>
+							<weight>5</weight>
+							<only>RGBA(1.00,1.00,1.00,1)</only>
+						</li>
+                    </options>
+                </alienskincolorgen>
+
+                <customDrawSize>(1, 1)</customDrawSize>
+                <customPortraitDrawSize>(1, 1)</customPortraitDrawSize>
+            </alienPartGenerator>
+        </generalSettings>
+		<graphicPaths>
+            <li>
+                <head>Things/Mechanicus/MechanicusHeads/</head>
+                <body>Things/Mechanicus/Bodies/</body>
+            </li>
+        </graphicPaths>
+		<hairSettings>
+            <HasHair>false</HasHair>
+            <GetsGreyAt>5000</GetsGreyAt>
+        </hairSettings>
+
+		<relationSettings>
+            <relationChanceModifierChild>1</relationChanceModifierChild>
+            <relationChanceModifierExLover>1</relationChanceModifierExLover>
+            <relationChanceModifierExSpouse>1</relationChanceModifierExSpouse>
+            <relationChanceModifierFiance>1</relationChanceModifierFiance>
+            <relationChanceModifierLover>1</relationChanceModifierLover>
+            <relationChanceModifierParent>1</relationChanceModifierParent>
+            <relationChanceModifierSibling>1</relationChanceModifierSibling>
+            <relationChanceModifierSpouse>1</relationChanceModifierSpouse>
+        </relationSettings>
+	</alienRace>
+
+
     <statBases>
       <MoveSpeed>4.5</MoveSpeed>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
@@ -268,7 +364,7 @@
     </colorGenerator>
 
 
-  </ThingDef>
+  </AlienRace.ThingDef_AlienRace>
 
   <ThingDef ParentName="BaseServitor">
     <defName>Mechanicum_ServoSkull</defName>

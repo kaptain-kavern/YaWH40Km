@@ -31,6 +31,10 @@ namespace FactionColors
             Scribe_Values.LookValue<string>(ref this.BannerGraphicPath, "BannerGraphicPath", "UI/Flags/Plain", false);
         }
 
+        public override void Draw()
+        {
+        }
+
         public List<string> BannerOptions
         {
             get

@@ -21,13 +21,19 @@ namespace FactionColors
             }
         }
 
-        public Pawn pawn;
+        public Pawn pawn
+        {
+            get
+            {
+                return this.apparel.wearer;
+            }
+        }
 
         public Graphic PauldronGraphic
         {
             get
             {
-                return GraphicDatabase.Get<Graphic_Multi>(graphicPath, shader,  Vector2.one, this.parent.DrawColor, this.parent.DrawColorTwo);
+                return GraphicDatabase.Get<Graphic_Multi>(graphicPath + "_" + pawn.story.bodyType.ToString(), shader,  Vector2.one, this.parent.DrawColor, this.parent.DrawColorTwo);
             }
         }
 
@@ -64,36 +70,6 @@ namespace FactionColors
                 return false;
             }
 
-        }
-
-        public override void PostDraw()
-        {
-            if (this.PauldronGraphic != null)
-            {
-                Mesh mesh = MeshPool.plane10;
-                float x = 0f;
-                float y = 0.1f;
-                float z = 0f;
-                if (this.pawn.Rotation == Rot4.North)
-                {
-                    y += 0.2f;
-                }
-                else if (this.pawn.Rotation == Rot4.East)
-                {
-                    mesh = MeshPool.plane10Flip;
-                    if (this.padType == ShoulderPadType.Left)
-                    {
-                        y -= 0.2f;
-                    }
-                }
-                else if (this.pawn.Rotation == Rot4.West && this.padType == ShoulderPadType.Right)
-                {
-                    y -= 0.2f;
-                }
-
-                Vector3 vector = new Vector3(x, y, z);
-                GenDraw.DrawMeshNowOrLater(mesh, this.pawn.DrawPos + vector, Quaternion.AngleAxis(0f, Vector3.up), this.PauldronGraphic.MatAt(this.pawn.Rotation, null), false);
-            }
         }
 
         public override void PostSpawnSetup()

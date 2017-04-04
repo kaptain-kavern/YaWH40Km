@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="0Harmony, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Assemblies\0Harmony.dll</HintPath>
     </Reference>
@@ -85,7 +85,6 @@
     <Compile Include="FactionUniform.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="ITab_FactionColor.cs" />
-    <Compile Include="ModInitializer.cs" />
     <Compile Include="PlayerFactionStoryTracker.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

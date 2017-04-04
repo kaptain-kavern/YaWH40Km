@@ -1,4 +1,6 @@
-﻿using Corruption.Tithes;
+﻿using Corruption.DefOfs;
+using Corruption.Ships;
+using Corruption.Tithes;
 using RimWorld;
 using RimWorld.Planet;
 using System;
@@ -7,6 +9,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
+using Verse.AI.Group;
 
 namespace Corruption
 {
@@ -21,6 +24,7 @@ namespace Corruption
         public static Texture2D PlanetSmall = ContentFinder<Texture2D>.Get("UI/SectorMap/Planet_Small", true);
         public static Texture2D Moon = ContentFinder<Texture2D>.Get("UI/SectorMap/Moon", true);
         public static Texture2D ShipsArrival = ContentFinder<Texture2D>.Get("UI/Images/ShipArrival", true);
+        public static readonly Texture2D DropTexture = ContentFinder<Texture2D>.Get("UI/Buttons/UnloadShip", true);
 
         public static Texture2D Aquila = ContentFinder<Texture2D>.Get("UI/Images/IoM_Aquila", true);
 
@@ -33,7 +37,7 @@ namespace Corruption
         {
             get
             {
-                return Find.WorldObjects.AllWorldObjects.FirstOrDefault(x => x.def == CorruptionDefOfs.CorruptionStoryTracker) as CorruptionStoryTracker;
+                return Find.WorldObjects.AllWorldObjects.FirstOrDefault(x => x.def == C_WorldObjectDefOf.CorruptionStoryTracker) as CorruptionStoryTracker;
             }
         }
 
@@ -305,6 +309,45 @@ namespace Corruption
             Dialog_NegotiationIoM dialog_Negotiation = new Dialog_NegotiationIoM(negotiator, faction, FactionDialogMaker_IoM.FactionDialogFor(negotiator, faction), true);
             dialog_Negotiation.soundAmbient = SoundDefOf.RadioComms_Ambience;
             Find.WindowStack.Add(dialog_Negotiation);
+        }
+
+        public static void InitiateGovernorArrestEvent(Map map)
+        {
+            if (CorruptionStoryTrackerUtilities.currentStoryTracker.PlanetaryGovernor == null)
+            {
+                return;
+            }
+            Faction faction = CorruptionStoryTrackerUtilities.currentStoryTracker.ImperialGuard;
+            List<Pawn> arbites = new List<Pawn>();
+            for (int i=0; i< 5; i++)
+            {
+                Pawn member = PawnGenerator.GeneratePawn(PawnKindDef.Named("IoM_Arbites"), faction);
+                arbites.Add(member);
+            }
+            
+            ShipBase dropShip = (ShipBase)ThingMaker.MakeThing(ThingDef.Named("AquilaLander"));
+            dropShip.shipState = ShipState.Incoming;
+            dropShip.drawTickOffset = dropShip.compShip.sProps.TicksToImpact;
+            Thing initialFuel = ThingMaker.MakeThing(DefOfs.C_ThingDefOfs.Chemfuel);
+            initialFuel.stackCount = 2000;
+            dropShip.refuelableComp.Refuel(initialFuel);
+            dropShip.SetFaction(arbites[0].Faction);
+            foreach (Pawn current in arbites)
+            {
+                dropShip.GetInnerContainer().TryAdd(current);
+            }
+
+            List<ShipBase> tmp = new List<ShipBase>();
+            tmp.Add(dropShip);
+            IntVec3 dropCenter; 
+            if (!DropCellFinder.TryFindRaidDropCenterClose(out dropCenter, map))
+            {
+                dropCenter = DropCellFinder.FindRaidDropCenterDistant(map);
+            }
+            DropShipUtility.DropShipGroups(dropCenter, map, tmp);
+            LordMaker.MakeNewLord(dropShip.Faction, new IoM.LordJob_ArrestGovernor(dropShip, dropCenter),map, arbites);
+
+
         }
     }
 }

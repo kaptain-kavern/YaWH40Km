@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>DE_Trueborn</defName>
     <title>Trueborn</title>
     <baseDescription>NAME was naturally conceived and born by a Dark Eldar couple, giving him an elevated status in society.</baseDescription>
@@ -20,9 +20,9 @@
     <spawnCategories>
       <li>DarkEldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>DE_Halfborn</defName>
     <title>Half born</title>
     <baseDescription>NAME was grown in a vat in Commorragh. These creations usually end up as slaves.</baseDescription>
@@ -41,9 +41,9 @@
     <spawnCategories>
       <li>DarkEldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>DE_Torturer</defName>
     <title>Torturer</title>
     <titleShort>Torturer</titleShort>
@@ -62,9 +62,9 @@
     <spawnCategories>
       <li>DarkEldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>DE_Fallen</defName>
     <title>Fallen</title>
     <titleShort>Fallen</titleShort>
@@ -86,9 +86,9 @@
     <spawnCategories>
       <li>DarkEldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>DE_Gladiator</defName>
     <title>Gladiator</title>
     <titleShort>Gladiator</titleShort>
@@ -110,9 +110,9 @@
     <spawnCategories>
       <li>DarkEldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>DE_Gladiator</defName>
     <title>Gladiator</title>
     <titleShort>Gladiator</titleShort>
@@ -134,9 +134,9 @@
     <spawnCategories>
       <li>DarkEldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>DE_Intrigant</defName>
     <title>Intrigant</title>
     <titleShort>Mercenary</titleShort>
@@ -158,9 +158,9 @@
     <spawnCategories>
       <li>DarkEldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>DE_Intrigant</defName>
     <title>Intrigant</title>
     <titleShort>Mercenary</titleShort>
@@ -182,6 +182,6 @@
     <spawnCategories>
       <li>DarkEldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
 </Defs>

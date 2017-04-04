@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,22 +59,22 @@ namespace Corruption
             switch (patName)
             {
                 case "Undivided":
-                    this.PatronTraits.Add(new SoulTrait(CorruptionDefOfs.Undivided_Fervor, 0));
+                    this.PatronTraits.Add(new SoulTrait(C_SoulTraitDefOf.Undivided_Fervor, 0));
                     return;
 
                 case "Khorne":
-                    this.PatronTraits.Add(new SoulTrait(CorruptionDefOfs.Khorne_Fervor, 0));
+                    this.PatronTraits.Add(new SoulTrait(C_SoulTraitDefOf.Khorne_Fervor, 0));
                     return;
 
                 case "Nurgle":
-                    this.PatronTraits.Add(new SoulTrait(CorruptionDefOfs.Nurgle_Fervor, 0));
+                    this.PatronTraits.Add(new SoulTrait(C_SoulTraitDefOf.Nurgle_Fervor, 0));
                     return;
 
                 case "Tzeentch":
-                    this.PatronTraits.Add(new SoulTrait(CorruptionDefOfs.Tzeentch_Fervor, 0));
+                    this.PatronTraits.Add(new SoulTrait(C_SoulTraitDefOf.Tzeentch_Fervor, 0));
                     return;
                 case "Slaanesh":
-                    this.PatronTraits.Add(new SoulTrait(CorruptionDefOfs.Slaanesh_Fervor, 0) );
+                    this.PatronTraits.Add(new SoulTrait(C_SoulTraitDefOf.Slaanesh_Fervor, 0) );
                     return;
 
                 case "Emperor":
@@ -90,22 +91,22 @@ namespace Corruption
             switch(patName)
             {
                 case "Undivided":
-                    return CorruptionDefOfs.Undivided_Fervor;
+                    return C_SoulTraitDefOf.Undivided_Fervor;
 
                 case "Khorne":
-                    return CorruptionDefOfs.Khorne_Fervor;
+                    return C_SoulTraitDefOf.Khorne_Fervor;
 
                 case "Nurgle":
-                    return CorruptionDefOfs.Nurgle_Fervor;
+                    return C_SoulTraitDefOf.Nurgle_Fervor;
 
                 case "Tzeentch":
-                    return CorruptionDefOfs.Tzeentch_Fervor;
+                    return C_SoulTraitDefOf.Tzeentch_Fervor;
 
                 case "Slaanesh":
-                    return CorruptionDefOfs.Slaanesh_Fervor;
+                    return C_SoulTraitDefOf.Slaanesh_Fervor;
 
                 default:
-                    return CorruptionDefOfs.Devotion;
+                    return C_SoulTraitDefOf.Devotion;
 
             }
         }

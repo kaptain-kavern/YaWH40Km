@@ -100,6 +100,13 @@
 	  </ThingCategoryDef>
 
 	  <ThingCategoryDef>
+	    <defName>IG_Ranged_Spec</defName>
+	    <label>Special Issue</label>
+	    <parent>IG_Ranged</parent>
+	  </ThingCategoryDef>
+
+
+	  <ThingCategoryDef>
 	    <defName>IoM_Mechanicum</defName>
 	    <label>Mechanicum</label>
 	    <parent>IoMGear</parent>

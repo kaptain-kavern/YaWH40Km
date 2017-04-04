@@ -6,6 +6,7 @@ using UnityEngine;
 using Verse;
 using RimWorld;
 using Verse.AI.Group;
+using Corruption.DefOfs;
 
 namespace Corruption
 {
@@ -13,7 +14,7 @@ namespace Corruption
     {
         private Graphic lightningOverlay = GraphicDatabase.Get<Graphic_Single>("Things/Chaos/Demons/WarpRiftB_Overlay", ShaderDatabase.MoteGlow);
         private float curRotation = 0;
-        private Faction chaos = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.ChaosCult);
+        private Faction chaos = Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.ChaosCult);
         List<Pawn> spawnedGroup = new List<Pawn>();
 
         public override void TickRare()

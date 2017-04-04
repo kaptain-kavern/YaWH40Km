@@ -5,6 +5,7 @@ using System.Text;
 using Verse;
 using Verse.AI;
 using RimWorld;
+using Corruption.DefOfs;
 
 namespace Corruption
 {
@@ -25,7 +26,7 @@ namespace Corruption
                 summoning.defaultDuration = 10000;
                 summoning.tickAction = delegate
                 {
-                    List<Pawn> list = this.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.CurJob.def == CorruptionDefOfs.SummoningTribute);
+                    List<Pawn> list = this.Map.mapPawns.AllPawnsSpawned.FindAll(x => x.CurJob.def == C_JobDefOf.SummoningTribute);
                     if (list.Count <= 0)
                     {
                         this.EndJobWith(JobCondition.InterruptForced);

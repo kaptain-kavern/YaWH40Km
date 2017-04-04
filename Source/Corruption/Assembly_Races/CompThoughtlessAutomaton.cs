@@ -1,4 +1,6 @@
-﻿using RimWorld;
+﻿using Corruption.BookStuff;
+using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +29,9 @@ namespace Corruption
 
         public override void CompTick()
         {
-            RemoveAutomatonNeed(CorruptionDefOfs.Beauty);
-            RemoveAutomatonNeed(CorruptionDefOfs.Comfort);
-            RemoveAutomatonNeed(CorruptionDefOfs.Space);
+            RemoveAutomatonNeed(C_NeedDefOf.Beauty);
+            RemoveAutomatonNeed(C_NeedDefOf.Comfort);
+            RemoveAutomatonNeed(C_NeedDefOf.Space);
             if (this.pawn.needs.joy != null)
             {
                 this.pawn.needs.joy.CurLevel = 0.9f;

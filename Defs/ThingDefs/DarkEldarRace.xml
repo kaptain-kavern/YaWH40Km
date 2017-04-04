@@ -5,12 +5,105 @@
 
   <!-- ============================ Human ========================== -->
 
-  <ThingDef ParentName="BasePawn" Class="AlienRace.ThingDef_AlienRace">
-<thingClass>AlienRace.AlienPawn</thingClass>
+  <AlienRace.ThingDef_AlienRace ParentName="BasePawn">
     <defName>Alien_DarkEldar</defName>
     <label>dark eldar</label>
     <description>A member of the depraved Dark Eldar race.</description>
     <uiIconPath>Things/Pawn/Humanlike/UI/IconHuman</uiIconPath>
+	<alienRace>
+        <generalSettings>
+            <MaleGenderProbability>0.5</MaleGenderProbability>
+            <PawnsSpecificBackstories>true</PawnsSpecificBackstories>
+				<ForcedRaceTraitEntries>
+                <li>
+                    <defname>Beauty</defname>
+                    <degree>1</degree>
+                    <chance>100</chance>
+                </li>
+                <li>
+                    <defname>Psychopath</defname>
+                    <chance>100</chance>
+                </li>
+            </ForcedRaceTraitEntries>
+
+            <ImmuneToAge>false</ImmuneToAge>
+			<alienPartGenerator>
+                <aliencrowntypes>
+                    <li>EldarHead</li>
+                </aliencrowntypes>
+                <alienbodytypes>
+					<li>Hulk</li>
+					<li>Thin</li>
+					<li>Male</li>
+					<li>Female</li>
+                </alienbodytypes>
+                <alienskincolorgen Class="ColorGenerator_Options">
+                    <options>
+                        <li>
+							<weight>5</weight>
+							<only>RGBA(0.90,0.90,0.86,1)</only>
+						</li>
+                    </options>
+                </alienskincolorgen>
+                <alienhaircolorgen Class="ColorGenerator_Options">
+                    <options>
+                        <li>
+							<weight>10</weight>
+							<only>RGBA(0.2,0.2,0.2,1)</only>
+						</li>
+						<li>
+							<weight>5</weight>
+							<only>RGBA(0.85,0.85,0.85,1)</only>
+						</li>
+						<li>
+							<weight>5</weight>
+							<only>RGBA(0.70,0.0,0.0,1)</only>
+						</li>
+						<li>
+							<weight>5</weight>
+							<only>RGBA(0.28,0.74,0.94,1)</only>
+						</li>												
+						<li>
+							<weight>5</weight>
+							<only>RGBA(0.28,0.74,0.94,1)</only>
+						</li>
+
+                    </options>
+                </alienhaircolorgen>
+                <customDrawSize>(1, 1)</customDrawSize>
+                <customPortraitDrawSize>(1, 1)</customPortraitDrawSize>
+            </alienPartGenerator>
+        </generalSettings>
+		<graphicPaths>
+            <li>
+                <head>Things/Eldar/Head/</head>
+            </li>
+        </graphicPaths>
+		<hairSettings>
+            <HasHair>true</HasHair>
+            <GetsGreyAt>5000</GetsGreyAt>
+        </hairSettings>
+		<relationSettings>
+            <relationChanceModifierChild>1</relationChanceModifierChild>
+            <relationChanceModifierExLover>1</relationChanceModifierExLover>
+            <relationChanceModifierExSpouse>1</relationChanceModifierExSpouse>
+            <relationChanceModifierFiance>1</relationChanceModifierFiance>
+            <relationChanceModifierLover>1</relationChanceModifierLover>
+            <relationChanceModifierParent>1</relationChanceModifierParent>
+            <relationChanceModifierSibling>1</relationChanceModifierSibling>
+            <relationChanceModifierSpouse>1</relationChanceModifierSpouse>
+        </relationSettings>
+		<raceRestriction>
+		  
+		  <apparelList>
+                 <li>DE_KabaliteArmor</li>
+                 <li>DE_KabaliteHelmet</li>
+</apparelList>
+          <onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
+        </raceRestriction>
+
+
+	</alienRace>
     <statBases>
       <MarketValue>1750</MarketValue>
       <MoveSpeed>4.61</MoveSpeed>
@@ -131,35 +224,6 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
     </recipes>
-<GetsGreyAt>4000</GetsGreyAt>
-	<HasHair>Custom</HasHair>
-	<CustomSkinColors>true</CustomSkinColors>
-	<alienskincolorgen Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.90,0.85,0.86,1)</only>
-        </li>
-      </options>
-    </alienskincolorgen>
-	<PawnsSpecificBackstories>false</PawnsSpecificBackstories>
-	<NakedHeadGraphicLocation>Things/Eldar/Head/</NakedHeadGraphicLocation>
-	<alienpartgenerator>
-	<aliencrowntypes>
-	  <li>EldarHead</li>
-	</aliencrowntypes>
-	</alienpartgenerator>
-	<ForcedRaceTraitEntries>
-		<li>
-		 <defname>Masochist</defname>
-		 <degree>0</degree>
-		</li>
-	</ForcedRaceTraitEntries>
+  </AlienRace.ThingDef_AlienRace>
 
-    <comps>
-      <li>
-        <compClass>AlienRace.CompImmuneToAge</compClass>
-      </li>
-    </comps>
-  </ThingDef>
 </ThingDefs>

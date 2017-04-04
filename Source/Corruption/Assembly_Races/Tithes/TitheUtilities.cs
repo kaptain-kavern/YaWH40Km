@@ -64,7 +64,7 @@ namespace Corruption.Tithes
                     }
                 }
             }
-            tracker.DaysToTitheCollection = 1;
+            tracker.DaysToTitheCollection = 60;
             tracker.TitheCollectionActive = false;
         }
 

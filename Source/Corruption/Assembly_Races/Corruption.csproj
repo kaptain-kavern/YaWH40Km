@@ -14,14 +14,16 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,13 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="0Harmony, Version=1.0.9.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Assemblies\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\Assemblies\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AlienRaces_0.8\Assemblies\AlienRace.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\Assemblies\AlienRace.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -48,11 +50,6 @@
     <Reference Include="FactionColors, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Assemblies\FactionColors.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Injector40K, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Assemblies\Injector40K.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -106,6 +103,20 @@
     <Compile Include="CorruptionStoryTrackerUtilities.cs" />
     <Compile Include="CulturalToleranceCategory.cs" />
     <Compile Include="DamageWorker_Heal.cs" />
+    <Compile Include="DefOfs\C_DamageDefOf.cs" />
+    <Compile Include="DefOfs\C_MapConditionDefOf.cs" />
+    <Compile Include="DefOfs\C_MentalStateDefOf.cs" />
+    <Compile Include="DefOfs\C_NeedDefOf.cs" />
+    <Compile Include="DefOfs\C_PawnKindDefOf.cs" />
+    <Compile Include="DefOfs\C_ThingDefOfs.cs" />
+    <Compile Include="DefOfs\C_DutyDefOfs.cs" />
+    <Compile Include="DefOfs\C_JobDefOf.cs" />
+    <Compile Include="DefOfs\C_SoulTraitDefOf.cs" />
+    <Compile Include="DefOfs\C_WorldObjectDefOfs.cs" />
+    <Compile Include="DefOfs\C_FactionDefOf.cs" />
+    <Compile Include="DefOfs\C_HediffDefOf.cs" />
+    <Compile Include="DefOfs\C_PsykerPowerDefOf.cs" />
+    <Compile Include="DefOfs\C_ThoughtDefOf.cs" />
     <Compile Include="DemonDefOfs.cs" />
     <Compile Include="DemonUtilities.cs" />
     <Compile Include="Dialog_NegotiationIoM.cs" />
@@ -118,8 +129,55 @@
     <Compile Include="HediffComp_PostBuff.cs" />
     <Compile Include="HediffComp_TurnServitor.cs" />
     <Compile Include="ImplantDrawerType.cs" />
+    <Compile Include="IoM\JobDriver_ArrestOnMap.cs" />
+    <Compile Include="IoM\JobGiver_AssistArrest.cs" />
+    <Compile Include="Ships\Building_ShipTurret.cs" />
+    <Compile Include="Ships\CompProperties_ShipWeapon.cs" />
+    <Compile Include="Ships\CompShipWeapon.cs" />
+    <Compile Include="Ships\Dialog_LoadShipCargo.cs" />
+    <Compile Include="Ships\Dialog_TradeFromShips.cs" />
+    <Compile Include="Ships\HarmonyPatches.cs" />
+    <Compile Include="Ships\ITab_Fleet.cs" />
+    <Compile Include="Ships\JobDriver_EnterShip.cs" />
+    <Compile Include="Ships\IncidentWorker_AirRaidEnemy.cs" />
+    <Compile Include="Ships\ITab_ShipCargo.cs" />
+    <Compile Include="Ships\JobDriver_InstallShipWeaponSystem.cs" />
+    <Compile Include="Ships\JobDriver_LeaveInShip.cs" />
+    <Compile Include="IoM\JobGiver_ArrestGovernor.cs" />
+    <Compile Include="IoM\LordJob_ArrestGovernor.cs" />
+    <Compile Include="IoM\LordToil_ArrestGovernor.cs" />
+    <Compile Include="IoM\LordToil_LeaveInShip.cs" />
     <Compile Include="JobDriver_TendInMSU.cs" />
     <Compile Include="MapCondition_IncomingIGHostile.cs" />
+    <Compile Include="Ships\CompProperties_Ship.cs" />
+    <Compile Include="Ships\CompShip.cs" />
+    <Compile Include="Ships\DropShipUtility.cs" />
+    <Compile Include="Ships\JobDriver_LoadCargoMultiple.cs" />
+    <Compile Include="Ships\JobDriver_UninstallShipWeaponSystem.cs" />
+    <Compile Include="Ships\JobGiver_EnterShipDuringLoad.cs" />
+    <Compile Include="Ships\LandedShip.cs" />
+    <Compile Include="Ships\ShipBase_Traveling.cs" />
+    <Compile Include="Ships\ShipDropSite.cs" />
+    <Compile Include="Ships\ShipNamespaceDefOfs.cs" />
+    <Compile Include="Ships\ShipTracker.cs" />
+    <Compile Include="Ships\TravelingShips.cs" />
+    <Compile Include="Ships\TravelingShipsUtility.cs" />
+    <Compile Include="Ships\WeaponSystemShipBomb.cs" />
+    <Compile Include="Ships\WITab_LandedShip_Cargo.cs" />
+    <Compile Include="Ships\WorkGiver_InstallShipWeapon.cs" />
+    <Compile Include="Ships\JobGiver_LeaveInShip.cs" />
+    <Compile Include="Ships\JobGiver_LoadShipCargo.cs" />
+    <Compile Include="Ships\LoadShipCargoUtility.cs" />
+    <Compile Include="Ships\LordJob_LoadShipCargo.cs" />
+    <Compile Include="Ships\LordToil_LoadShipCargo.cs" />
+    <Compile Include="Ships\ShipBase.cs" />
+    <Compile Include="Ships\ShipState.cs" />
+    <Compile Include="Ships\ShipWeaponSlot.cs" />
+    <Compile Include="Ships\Verb_ShootShipWeapon.cs" />
+    <Compile Include="Ships\WeaponSystem.cs" />
+    <Compile Include="Ships\WeaponSystemShipLC.cs" />
+    <Compile Include="Ships\WeaponSystemType.cs" />
+    <Compile Include="Ships\WorkGiver_UninstallShipWeapon.cs" />
     <Compile Include="Tithes\MapCondition_TitheCollectors.cs" />
     <Compile Include="PawnRendererModded.cs" />
     <Compile Include="Recipe_TendInMSU.cs" />
@@ -167,7 +225,6 @@
     <Compile Include="MainTabWindow_Alignment.cs" />
     <Compile Include="MapCondition_CorruptiveDrone.cs" />
     <Compile Include="MentalState_KhorneKillWeak.cs" />
-    <Compile Include="ModInitializer.cs" />
     <Compile Include="Need_Soul.cs" />
     <Compile Include="CorruptionThoughtUtility.cs" />
     <Compile Include="OtherGods.cs" />
@@ -245,10 +302,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IG\" />
-    <Folder Include="Ships\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

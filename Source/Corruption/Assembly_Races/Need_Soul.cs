@@ -6,6 +6,7 @@ using System.Reflection;
 using UnityEngine;
 using Verse;
 using Corruption.BookStuff;
+using Corruption.DefOfs;
 
 namespace Corruption
 {
@@ -145,38 +146,45 @@ namespace Corruption
 
                 ChaosFollowerPawnKindDef pdef = this.pawn.kindDef as ChaosFollowerPawnKindDef;
                 //       Log.Message("Name is: " + this.pawn.Name.ToStringFull);
-                if (pdef != null && pdef.AfflictionProperty != null)
+                if (pdef != null)
                 {
+                    if (pdef.UseFixedGender)
+                    {
+                        this.pawn.gender = pdef.FixedGender;
+                    }
+                    if (pdef.AfflictionProperty != null)
+                    {
 
-                    PawnAfflictionProps = new AfflictionProperty();
-                    this.PawnAfflictionProps = pdef.AfflictionProperty;
-                    int pllow = (int)this.PawnAfflictionProps.LowerPsykerPowerLimit;
-                    int plup = (int)this.PawnAfflictionProps.UpperAfflictionLimit;
-                    this.PsykerPowerLevel = (PsykerPowerLevel)Rand.RangeInclusive(pllow, plup);
+                        PawnAfflictionProps = new AfflictionProperty();
+                        this.PawnAfflictionProps = pdef.AfflictionProperty;
+                        int pllow = (int)this.PawnAfflictionProps.LowerPsykerPowerLimit;
+                        int plup = (int)this.PawnAfflictionProps.UpperAfflictionLimit;
+                        this.PsykerPowerLevel = (PsykerPowerLevel)Rand.RangeInclusive(pllow, plup);
 
-                    if (PawnAfflictionProps.IsImmune)
-                    {
-                        this.curLevelInt = 0.99f;
-                        this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
-                        this.IsImmune = true;
+                        if (PawnAfflictionProps.IsImmune)
+                        {
+                            this.curLevelInt = 0.99f;
+                            this.DevotionTrait = new SoulTrait(C_SoulTraitDefOf.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
+                            this.IsImmune = true;
+                        }
+                        else if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
+                        {
+                            this.IsImmune = true;
+                            this.curLevelInt = Rand.Range(0.86f, 0.99f);
+                            this.NoPatron = true;
+                        }
+                        else
+                        {
+                            float afup = pdef.AfflictionProperty.UpperAfflictionLimit;
+                            float afdown = pdef.AfflictionProperty.LowerAfflictionLimit;
+                            this.curLevelInt = (Rand.Range(afup, afdown));
+                        }
+                        if (PawnAfflictionProps.UseOtherFaith)
+                        {
+                            this.patronInfo.PatronName = PawnAfflictionProps.IsofFaith.ToString();
+                        }
+                        this.CulturalTolerance = PawnAfflictionProps.PrimaryToleranceCategory;
                     }
-                    else if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
-                    {
-                        this.IsImmune = true;
-                        this.curLevelInt = Rand.Range(0.86f, 0.99f);
-                        this.NoPatron = true;
-                    }
-                    else
-                    {
-                        float afup = pdef.AfflictionProperty.UpperAfflictionLimit;
-                        float afdown = pdef.AfflictionProperty.LowerAfflictionLimit;
-                        this.curLevelInt = (Rand.Range(afup, afdown));
-                    }
-                    if (PawnAfflictionProps.UseOtherFaith)
-                    {
-                        this.patronInfo.PatronName = PawnAfflictionProps.IsofFaith.ToString();
-                    }
-                    this.CulturalTolerance = PawnAfflictionProps.PrimaryToleranceCategory;
                 }
                 else
                 {
@@ -195,62 +203,62 @@ namespace Corruption
                     }
                 }
 
-                if (this.PawnAfflictionProps.CommmonPsykerPowers != null)
-                {
-                    for (int i = 0; i < this.PawnAfflictionProps.CommmonPsykerPowers.Count; i++)
+                    if (this.PawnAfflictionProps.CommmonPsykerPowers != null)
                     {
-
-                        try
+                        for (int i = 0; i < this.PawnAfflictionProps.CommmonPsykerPowers.Count; i++)
                         {
-                            this.compPsyker.psykerPowerManager.AddPsykerPower(this.PawnAfflictionProps.CommmonPsykerPowers[i]);
+
+                            try
+                            {
+                                this.compPsyker.psykerPowerManager.AddPsykerPower(this.PawnAfflictionProps.CommmonPsykerPowers[i]);
+                            }
+                            catch
+                            { }
                         }
-                        catch
-                        { }
                     }
-                }
-                
-                if (this.DevotionTrait == null)
-                {
-                    if ((PawnAfflictionProps != null && PawnAfflictionProps.IsImmune))
+
+                    if (this.DevotionTrait == null)
                     {
-                        this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
+                        if ((PawnAfflictionProps != null && PawnAfflictionProps.IsImmune))
+                        {
+                            this.DevotionTrait = new SoulTrait(C_SoulTraitDefOf.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
+                            this.IsImmune = true;
+                        }
+                        else
+                        {
+                            this.DevotionTrait = new SoulTrait(C_SoulTraitDefOf.Devotion, Rand.RangeInclusive(-2, 2));
+                        }
+                    }
+                    if (PawnAfflictionProps.CommonSoulTrait != null)
+                    {
+                        this.CommonSoulTrait = new SoulTrait(PawnAfflictionProps.CommonSoulTrait, 0);
+                    }
+
+                    if (this.curLevelInt < 0.3f && NoPatron == true)
+                    {
+                        GainPatron(ChaosGods.Undivided, false);
+
+                    }
+                    if (NoPatron == false)
+                    {
+                        if (curLevelInt > 0.3f)
+                        {
+                            curLevelInt = 0.3f;
+                        }
+                    }
+                    if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
+                    {
                         this.IsImmune = true;
                     }
-                    else
+
+                    this.SoulInitialized = true;
+
+                    if (this.compPsyker.patronName != patronInfo.PatronName)
                     {
-                        this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, Rand.RangeInclusive(-2, 2));
+                        this.compPsyker.patronName = patronInfo.PatronName;
+                        PortraitsCache.SetDirty(this.pawn);
                     }
-                }
-                if (PawnAfflictionProps.CommonSoulTrait != null)
-                {
-                    this.CommonSoulTrait = new SoulTrait(PawnAfflictionProps.CommonSoulTrait, 0);
-                }
-
-                if (this.curLevelInt < 0.3f && NoPatron == true)
-                {
-                    GainPatron(ChaosGods.Undivided, false);
-
-                }
-                if (NoPatron == false)
-                {
-                    if (curLevelInt > 0.3f)
-                    {
-                        curLevelInt = 0.3f;
-                    }
-                }
-                if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
-                {
-                    this.IsImmune = true;
-                }
-
-                this.SoulInitialized = true;
-
-                if (this.compPsyker.patronName != patronInfo.PatronName)
-                {
-                    this.compPsyker.patronName = patronInfo.PatronName;
-                    PortraitsCache.SetDirty(this.pawn);
-                }
-
+                
             }
         }
 
@@ -411,7 +419,7 @@ namespace Corruption
 
             patronInfo.PatronName = Patron.ToString();
             GeneratePatronTraits(pawn);
-            this.DevotionTrait = new SoulTrait(CorruptionDefOfs.Devotion, Rand.RangeInclusive(0, 2));
+            this.DevotionTrait = new SoulTrait(C_SoulTraitDefOf.Devotion, Rand.RangeInclusive(0, 2));
             if (pawn.story == null)
             {
                 pawn.story = new Pawn_StoryTracker(pawn);

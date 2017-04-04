@@ -19,6 +19,10 @@ namespace FactionColors
         public ShaderType shaderType;
         public string PadTexPath;       
         
-            
+        public CompProperties_PauldronDrawer()
+        {
+            this.compClass = typeof(CompPauldronDrawer);
+        }
+
     }
 }

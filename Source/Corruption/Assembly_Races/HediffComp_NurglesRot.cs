@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace Corruption
                 {
                     if (soul.CurLevel < 0.5f)
                     {
-                        this.Pawn.health.AddHediff(CorruptionDefOfs.MarkNurgle);
+                        this.Pawn.health.AddHediff(C_HediffDefOf.MarkNurgle);
                         soul.GainPatron(ChaosGods.Nurgle, true);
                         soul.GainNeed(-0.3f);
                         this.parent.Heal(1f);
@@ -55,7 +56,7 @@ namespace Corruption
         {
             if (this.Pawn.Corpse.Spawned)
             {
-                GenExplosion.DoExplosion(this.Pawn.Position, this.Pawn.Map, 1, CorruptionDefOfs.RottenBurst, null, null, null, null, ThingDefOf.FilthVomit, 1);
+                GenExplosion.DoExplosion(this.Pawn.Position, this.Pawn.Map, 1, C_DamageDefOf.RottenBurst, null, null, null, null, ThingDefOf.FilthVomit, 1);
             }
         }
 

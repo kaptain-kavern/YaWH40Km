@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,13 +101,13 @@ namespace Corruption
                     }
                     if (chair != null)
                     {
-                        Job J = new Job(CorruptionDefOfs.AttendSermon, altar.preacher, altar, chair);
+                        Job J = new Job(C_JobDefOf.AttendSermon, altar.preacher, altar, chair);
                         p.QueueJob(J);
                         p.jobs.EndCurrentJob(JobCondition.InterruptForced);
                     }
                     else
                     {
-                        Job J = new Job(CorruptionDefOfs.AttendSermon, altar.preacher, altar, result);
+                        Job J = new Job(C_JobDefOf.AttendSermon, altar.preacher, altar, result);
                         p.QueueJob(J);
                         p.jobs.EndCurrentJob(JobCondition.InterruptForced);
                     }

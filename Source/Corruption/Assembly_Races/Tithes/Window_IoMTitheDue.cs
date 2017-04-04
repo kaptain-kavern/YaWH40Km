@@ -52,12 +52,18 @@ namespace Corruption.Tithes
 
             bool possible = tracker.currentTithes.All(x => x.tithePercent >= 0.999f);
 
+            if (!possible)
+            {
+                GUI.color = Color.red;
+            }
             if (Widgets.ButtonText(rectA, "PayTithe".Translate(), true, false, possible))
             {
                 this.ChoseOption = true;
                 tracker.CollectTithes();
                 this.Close();
             }
+
+            GUI.color = Color.white;
             if (Widgets.ButtonText(rectB, "RefuseTithe".Translate()))
             {
                 this.ChoseOption = true;

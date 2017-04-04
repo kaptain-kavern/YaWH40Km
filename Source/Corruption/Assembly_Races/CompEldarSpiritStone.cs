@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 using RimWorld;
+using Corruption.DefOfs;
 
 namespace Corruption
 {
@@ -28,7 +29,7 @@ namespace Corruption
         {
             if (!IsSpawned)
             {
-                Thing spiritstone = ThingMaker.MakeThing(CorruptionDefOfs.SpiritStone);
+                Thing spiritstone = ThingMaker.MakeThing(C_ThingDefOfs.SpiritStone);
                 GenSpawn.Spawn(spiritstone, curpos, map);
                 IsSpawned = true;
             }

@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace Corruption
                 float severity = Rand.Range(0f, 1f);
                 if (severity < 0.1f)
                 {
-                    psycomp.psyker.health.AddHediff(CorruptionDefOfs.DemonicPossession);
+                    psycomp.psyker.health.AddHediff(C_HediffDefOf.DemonicPossession);
                     return;
                 }
                 else if (severity < 0.3f)

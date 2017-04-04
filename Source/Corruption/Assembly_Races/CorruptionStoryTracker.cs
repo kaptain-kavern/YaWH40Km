@@ -9,11 +9,23 @@ using RimWorld.Planet;
 using UnityEngine;
 using System.Reflection;
 using Verse.Sound;
+using Corruption.DefOfs;
 
 namespace Corruption
 {
     public class CorruptionStoryTracker : WorldObject
     {
+        public override bool SelectableNow
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override void Draw()
+        {
+        }
 
         public static List<PawnKindDef> DemonPawnKinds = new List<PawnKindDef>();
         
@@ -38,7 +50,7 @@ namespace Corruption
 
         public List<Faction> ImperialFactions = new List<Faction>();
         public List<Faction> XenoFactions = new List<Faction>();
-
+        public List<Ships.ShipBase> shipsInOrbit = new List<Ships.ShipBase>();
 
         // Tithe System
         public bool AcknowledgedByImperium = false;
@@ -98,11 +110,10 @@ namespace Corruption
                 EldarTicksDaily();
                 CorruptionTicksDaily();
             }
-        }
-
+        }        
         private void InitializeTitheCollection()
         {
-            Tithes.MapCondition_TitheCollectors condition = (Tithes.MapCondition_TitheCollectors)MapConditionMaker.MakeCondition(CorruptionDefOfs.TitheCollectorArrived, 1000, 0);
+            Tithes.MapCondition_TitheCollectors condition = (Tithes.MapCondition_TitheCollectors)MapConditionMaker.MakeCondition(C_MapConditionDefOf.TitheCollectorArrived, 420000, 0);
             if (this.PlanetaryGovernor == null) Log.Error("Planetary Governor is null");
             this.PlanetaryGovernor.Map.mapConditionManager.RegisterCondition(condition);
             Find.WindowStack.Add(new Tithes.Window_IoMTitheArrival());
@@ -112,23 +123,24 @@ namespace Corruption
 
         public override void PostAdd()
         {
-            //  Log.Message("CreatingSubSector");
+   //           Log.Message("CreatingSubSector");
             CreateSubSector();
-            //  Log.Message("Objects created : " + this.SubSectorObjects.Count.ToString());
+   //           Log.Message("Objects created : " + this.SubSectorObjects.Count.ToString());
 
-            this.ChaosCult = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.ChaosCult);
-            this.DarkEldarKabal = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.DarkEldarKabal);
-            this.EldarWarhost = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.EldarWarhost);
-            this.ImperialGuard = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.ImperialGuard);
-            this.Orks = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.Orks);
-            this.AdeptusSororitas = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.AdeptusSororitas);
-            this.Mechanicus = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.Mechanicus);
-            this.Tau = Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.TauVanguard);
-            if (!this.ImperialFactions.Contains(this.ImperialGuard)) this.ImperialFactions.Add(this.ImperialGuard);
+            this.ChaosCult = Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.ChaosCult);
+            this.DarkEldarKabal = Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.DarkEldarKabal);
+            this.EldarWarhost = Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.EldarWarhost);
+            this.ImperialGuard = Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.ImperialGuard);
+            this.Orks = Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.Orks);
+            this.AdeptusSororitas = Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.AdeptusSororitas);
+            this.Mechanicus = Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.Mechanicus);
+            this.Tau = Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.TauVanguard);
+            if (!this.ImperialFactions.Contains(this.ImperialGuard))
+            {
+                this.ImperialFactions.Add(this.ImperialGuard);
+            }
             if (!this.ImperialFactions.Contains(this.Mechanicus)) this.ImperialFactions.Add(this.Mechanicus);
             if (!this.ImperialFactions.Contains(this.AdeptusSororitas)) this.ImperialFactions.Add(this.AdeptusSororitas);
-
-
 
             if (!this.XenoFactions.Contains(this.EldarWarhost)) this.XenoFactions.Add(this.EldarWarhost);
             if (!this.XenoFactions.Contains(this.Tau)) this.XenoFactions.Add(this.Tau);
@@ -138,34 +150,24 @@ namespace Corruption
             List<Faction> list = new List<Faction>();
             list.AddRange(this.ImperialFactions);
             list.AddRange(this.XenoFactions);
-            //        Log.Message("CheckingFactionLeaders for " + list.Count.ToString() + " factions");
+     //               Log.Message("CheckingFactionLeaders for " + list.Count.ToString() + " factions");
             foreach (Faction current in list)
             {
                 if (current.leader == null)
                 {
-                    //     Log.Message("NoLeader for "+ current.GetCallLabel());
+  //                  Log.Message("NoLeader");
+  //                       Log.Message("NoLeader for "+ current.GetCallLabel());
                     PawnKindDef kinddef = DefDatabase<PawnKindDef>.AllDefsListForReading.FirstOrDefault(x => x.defaultFactionType == current.def && x.factionLeader);
                     if (kinddef != null)
                     {
-                        //        Log.Message("Generating Leader with: " + kinddef.defName);
+ //                               Log.Message("Generating Leader with: " + kinddef.defName);
                         PawnGenerationRequest request = new PawnGenerationRequest(kinddef, current, PawnGenerationContext.NonPlayer, null, true, false, false, false, true, false, 1f, false, true, true, null, null, null, null, null, null);
 
-                        //              Log.Message("GeneratedRequest");
+    //                                  Log.Message("GeneratedRequest");
                         Pawn pawn = PawnGenerator.GeneratePawn(kinddef, current);
 
-                        //              Log.Message("Generated Leader");
-                        if (kinddef.defName.Contains("Alien_"))
-                        {
-                            AlienRace.AlienPawn apawn = pawn as AlienRace.AlienPawn;
-                            apawn.SpawnSetupAlien();
-                            current.leader = apawn;
-                            //                   Log.Message("SettingAlienLeader");
-                        }
-                        else
-                        {
-                            current.leader = pawn;
-                            //                     Log.Message("Setting Leader");
-                        }
+    //                                  Log.Message("Generated Leader");
+                        current.leader = pawn;
                         if (current.leader.RaceProps.IsFlesh)
                         {
                             current.leader.relations.everSeenByPlayer = true;
@@ -182,7 +184,8 @@ namespace Corruption
                 }
                 else
                 {
-                    //             Log.Message("Leader for " + current.Name + " is " + current.leader.Label);
+           //         Log.Message("Leader Found");
+         //                        Log.Message("Leader for " + current.Name + " is " + current.leader.Label);
                 }
             }
             base.PostAdd();
@@ -313,7 +316,7 @@ namespace Corruption
             for (int i = 0; i < list.Count; i++)
             {
                 Thing thing = list[i];
-                if (!thing.Position.Fogged(Find.VisibleMap) && thing.def == CorruptionDefOfs.SpiritStone)
+                if (!thing.Position.Fogged(Find.VisibleMap) && thing.def == C_ThingDefOfs.SpiritStone)
                 {
                     num += 1;
                 }

@@ -151,19 +151,18 @@
     <itemQuality>Excellent</itemQuality>
     <factionLeader>true</factionLeader>
     <apparelMoney>
-      <min>500</min>
-      <max>800</max>
+      <min>900</min>
+      <max>2000</max>
     </apparelMoney>
     <apparelRequired>
-      <li>Apparel_CultistRobe</li>
+      <li>CoatNoble</li>
       <li>Apparel_CultistHood</li>
-      <li>ChaosBanner</li>
     </apparelRequired>
     <apparelTags>
-      <li>CorruptedApparel</li>
+      <li>Soldier</li>
     </apparelTags>
     <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <apparelAllowHeadwearChance>0.0</apparelAllowHeadwearChance>
+    <apparelAllowHeadwearChance>1.0</apparelAllowHeadwearChance>
     <weaponMoney>
       <min>3500</min>
       <max>3500</max>

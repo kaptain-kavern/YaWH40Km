@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>Exodite</defName>
     <title>Exodite child</title>
     <baseDescription>NAME was born on an Eldar maiden world. Isolationism and Mistrust were prominent.</baseDescription>
@@ -31,10 +31,10 @@
     <spawnCategories>
       <li>Eldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>CraftworldOrigin</defName>
     <title>Craftworld child</title>
     <baseDescription>NAME was born on an Eldar craftworld. The path of the Eldar shaped HIS life.</baseDescription>
@@ -60,9 +60,9 @@
     <spawnCategories>
       <li>Eldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>CraftworldArtist</defName>
     <title>Path of the artisan</title>
     <titleShort>Artisan</titleShort>
@@ -81,9 +81,9 @@
     <spawnCategories>
       <li>Eldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>CraftworldSeer</defName>
     <title>Path of the seer</title>
     <titleShort>Seer</titleShort>
@@ -106,9 +106,9 @@
     <spawnCategories>
       <li>Eldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>CraftworldShaper</defName>
     <title>Path of the shaper</title>
     <titleShort>Shaper</titleShort>
@@ -131,10 +131,10 @@
     <spawnCategories>
       <li>Eldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>CraftworldMariner</defName>
     <title>Path of the mariner</title>
     <titleShort>Mariner</titleShort>
@@ -157,9 +157,9 @@
     <spawnCategories>
       <li>Eldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>CraftworldDreamer</defName>
     <title>Path of the dreamer</title>
     <titleShort>Dreamer</titleShort>
@@ -186,9 +186,9 @@
     <spawnCategories>
       <li>Eldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>CraftworldCommand</defName>
     <title>Path of command</title>
     <titleShort>Commander</titleShort>
@@ -215,6 +215,6 @@
     <spawnCategories>
       <li>Eldar</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
 </Defs>

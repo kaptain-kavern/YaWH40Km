@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Corruption
                 tmplist.Add(HediffDefOf.ToxicBuildup);
                 tmplist.Add(HediffDefOf.Malaria);
                 tmplist.Add(HediffDefOf.Plague);
-                tmplist.Add(CorruptionDefOfs.NurglesRot);
+                tmplist.Add(C_HediffDefOf.NurglesRot);
                 return tmplist;
             }
         }
@@ -34,7 +35,7 @@ namespace Corruption
                 if (p.health.hediffSet.hediffs.Any(x => x.def == hdef))
                 {
                     SumOfGifts += 1;
-                    if (hdef == CorruptionDefOfs.NurglesRot)
+                    if (hdef == C_HediffDefOf.NurglesRot)
                     {
                         SumOfGifts += 2;
                     }

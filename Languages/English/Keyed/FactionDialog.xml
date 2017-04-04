@@ -61,7 +61,9 @@ Any further resistance at this stage will result in the application of force by 
   <PurchaseTemplate>Obtain Template</PurchaseTemplate>
   <PurchaseTemplateConfirmation>Templates for {0} will be transferred into your CCM upon confirmation.</PurchaseTemplateConfirmation>
 
+  <MessageGovernorIsBeingArrested>The arbitors are now coming to arrest governor {0}</MessageGovernorIsBeingArrested>
 
+  <MessageGovernorArrestGoneHostile>The arbitors were attacked. They'll respond with force.</MessageGovernorArrestGoneHostile>
 
 
 </LanguageData>

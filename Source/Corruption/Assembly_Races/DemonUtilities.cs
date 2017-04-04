@@ -6,6 +6,7 @@ using Verse;
 using RimWorld;
 using Verse.Sound;
 using UnityEngine;
+using Corruption.DefOfs;
 
 namespace Corruption
 {
@@ -23,7 +24,7 @@ namespace Corruption
                         IntVec3 spawnloc = summoner.Position;
                         SoundInfo info = SoundInfo.InMap(new TargetInfo(spawnloc, summoner.Map), MaintenanceType.None);
                         SoundDefOf.Thunder_OnMap.PlayOneShot(info);
-                        Thing rift = ThingMaker.MakeThing(CorruptionDefOfs.WarpRift);
+                        Thing rift = ThingMaker.MakeThing(C_ThingDefOfs.WarpRift);
                         summoner.Destroy(DestroyMode.Vanish);
                         GenSpawn.Spawn(rift, spawnloc, summoner.Map);
                         break;
@@ -77,7 +78,7 @@ namespace Corruption
                 }
             }
 
-            PawnGenerationRequest request = new PawnGenerationRequest(pdef, Find.FactionManager.FirstFactionOfDef(CorruptionDefOfs.ChaosCult));
+            PawnGenerationRequest request = new PawnGenerationRequest(pdef, Find.FactionManager.FirstFactionOfDef(C_FactionDefOf.ChaosCult));
             Pawn pawn = null;
             try
             {

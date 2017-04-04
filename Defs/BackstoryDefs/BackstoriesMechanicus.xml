@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecForgeborn</defName>
     <title>Forgeworld urchin</title>
     <baseDescription>NAME grew up on a forge-world. Through hard work and discipline HE earned entry into the ranks of the Adeptus Mechanicus.</baseDescription>
@@ -23,9 +23,9 @@
     <spawnCategories>
       <li>Techpriest</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecProdigy</defName>
     <title>Tech-Prodigy</title>
     <baseDescription>NAME showed exceptional talent at understanding, creating and maintaning complex machinery from an early age, awarding him a way into the upper ranks of the Adeptus Mechanicus.</baseDescription>
@@ -51,10 +51,10 @@
     <spawnCategories>
       <li>Techpriest</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecArtisan</defName>
     <title>Artisan</title>
     <titleShort>Artisan</titleShort>
@@ -89,9 +89,9 @@
     <spawnCategories>
       <li>Techpriest</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecLexmechanic</defName>
     <title>Lexmechanic</title>
     <titleShort>Lexmechanic</titleShort>
@@ -126,9 +126,9 @@
     <spawnCategories>
       <li>Techpriest</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecTransmechanic</defName>
     <title>Transmechanic</title>
     <titleShort>Transmechanic</titleShort>
@@ -163,9 +163,9 @@
     <spawnCategories>
       <li>Techpriest</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecEnginseer</defName>
     <title>Enginseer</title>
     <titleShort>Enginseer</titleShort>
@@ -204,10 +204,10 @@
     <spawnCategories>
       <li>Techpriest</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecLogis</defName>
     <title>Logis</title>
     <titleShort>Logis</titleShort>
@@ -238,9 +238,9 @@
     <spawnCategories>
       <li>Techpriest</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecMagosBiologos</defName>
     <title>Biologos</title>
     <titleShort>Biologos</titleShort>
@@ -272,9 +272,9 @@
     <spawnCategories>
       <li>Techpriest</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecMagosExplorator</defName>
     <title>Explorator</title>
     <titleShort>Explorator</titleShort>
@@ -310,9 +310,9 @@
     <spawnCategories>
       <li>Techpriest</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecSkitarius</defName>
     <title>Skitarius</title>
     <titleShort>Skitarius</titleShort>
@@ -339,9 +339,9 @@
     <spawnCategories>
       <li>Skitarius</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecVatGrown</defName>
     <title>VatGrown</title>
     <titleShort>VatGrown</titleShort>
@@ -356,9 +356,9 @@
     <spawnCategories>
       <li>Servitor</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecServitorCraft</defName>
     <title>Crafting servitor</title>
     <titleShort>Crafter</titleShort>
@@ -388,9 +388,9 @@
     <spawnCategories>
       <li>Servitor</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecServitorGrow</defName>
     <title>Growing servitor</title>
     <titleShort>Grower</titleShort>
@@ -419,9 +419,9 @@
     <spawnCategories>
       <li>Servitor</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
-  <Injector40K.BackstoryDef>
+  <AlienRace.BackstoryDef>
     <defName>MecServitorConstruction</defName>
     <title>Construction servitor</title>
     <titleShort>Constructer</titleShort>
@@ -450,7 +450,7 @@
     <spawnCategories>
       <li>Servitor</li>
     </spawnCategories>
-  </Injector40K.BackstoryDef>
+  </AlienRace.BackstoryDef>
 
 
 

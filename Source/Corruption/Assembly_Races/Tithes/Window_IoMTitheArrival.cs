@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Corruption.Tithes
             Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = GameFont.Small;
             Rect descRect = new Rect(titleRect.x, titleRect.yMax + 30f, inRect.width, 70f);
-            Widgets.Label(descRect, CorruptionDefOfs.TitheCollectorArrived.description);
+            Widgets.Label(descRect, C_MapConditionDefOf.TitheCollectorArrived.description);
             Rect imageRect = new Rect(titleRect.x, descRect.yMax + 5f, 384f, 128f);
             GUI.DrawTexture(imageRect, CorruptionStoryTrackerUtilities.ShipsArrival);
             if (Widgets.CloseButtonFor(inRect.AtZero()))

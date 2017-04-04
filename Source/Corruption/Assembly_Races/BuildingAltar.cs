@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System.Collections.Generic;
 using Verse;
 
@@ -81,7 +82,7 @@ namespace Corruption
                 }
             }
 
-            if (this.preacher.CurJob.def == CorruptionDefOfs.HoldSermon && !this.CalledInFlock)
+            if (this.preacher.CurJob.def == C_JobDefOf.HoldSermon && !this.CalledInFlock)
             {
                 GetSermonFlock(this);
                 this.CalledInFlock = true;

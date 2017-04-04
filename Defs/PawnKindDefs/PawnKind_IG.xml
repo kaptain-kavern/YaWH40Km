@@ -247,7 +247,7 @@
     <factionLeader>true</factionLeader>
     <apparelRequired>
 	 <li>IoM_CarapaceArmor</li>
-	 <li>IG_ComJacket</li>
+      <li>CoatNoble</li>
     </apparelRequired>
     <apparelMoney>
       <min>3800</min>

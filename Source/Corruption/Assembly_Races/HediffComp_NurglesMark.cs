@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 using RimWorld;
+using Corruption.DefOfs;
 
 namespace Corruption
 {
@@ -15,7 +16,7 @@ namespace Corruption
         {
             if (this.Pawn.Corpse.Spawned)
             {
-                GenExplosion.DoExplosion(this.Pawn.Position, this.Pawn.Map, 5, CorruptionDefOfs.RottenBurst ,null, null, null, null, ThingDefOf.FilthVomit, 1);
+                GenExplosion.DoExplosion(this.Pawn.Position, this.Pawn.Map, 5, C_DamageDefOf.RottenBurst ,null, null, null, null, ThingDefOf.FilthVomit, 1);
                 Pawn.Corpse.Destroy(DestroyMode.Vanish);
             }
         }

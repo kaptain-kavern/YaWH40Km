@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 
 namespace FactionColors
@@ -14,10 +15,19 @@ namespace FactionColors
     {
         static HarmonyPatches()
         {
-            HarmonyInstance harmony = HarmonyInstance.Create("rimworld.ohu.factionColor.main");
+            HarmonyInstance harmony = HarmonyInstance.Create("rimworld.ohu.factionColors.main");
 
             harmony.Patch(AccessTools.Method(typeof(Verse.PawnGraphicSet), "ResolveApparelGraphics", null),null , new HarmonyMethod(typeof(HarmonyPatches), "ResolveApparelGraphicsOriginal"));
             harmony.Patch(AccessTools.Method(typeof(Verse.PawnRenderer), "DrawEquipmentAiming", new Type[] { typeof(Thing), typeof(Vector3), typeof(float) }), null, new HarmonyMethod(typeof(HarmonyPatches), "DrawEquipmentAimingModded",null ));
+            harmony.Patch(AccessTools.Method(typeof(RimWorld.FactionGenerator), "GenerateFactionsIntoWorld", new Type[] { typeof(string) }), null, new HarmonyMethod(typeof(HarmonyPatches), "GenerateFactionsIntoWorldPostFix"));
+        }
+
+        public static void GenerateFactionsIntoWorldPostFix()
+        {
+            Log.Message("Generating PlayerFaction Story Tracker");
+            PlayerFactionStoryTracker corrTracker = (PlayerFactionStoryTracker)WorldObjectMaker.MakeWorldObject(FactionColorsDefOf.PlayerFactionStoryTracker);
+            corrTracker.Tile = TileFinder.RandomStartingTile();
+            Find.WorldObjects.Add(corrTracker);
         }
 
         public static void ResolveApparelGraphicsOriginal(PawnGraphicSet __instance)

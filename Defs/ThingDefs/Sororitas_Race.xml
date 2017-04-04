@@ -5,12 +5,82 @@
 
   <!-- ============================ Human ========================== -->
 
-  <ThingDef ParentName="BasePawn" Class="AlienRace.ThingDef_AlienRace">
-<thingClass>AlienRace.AlienPawn</thingClass>
+  <AlienRace.ThingDef_AlienRace ParentName="BasePawn">
     <defName>Alien_Sororitas</defName>
     <label>human</label>
     <description>A baseline human, mostly unmodified by gene engineering and mostly unchanged by evolutionary pressures on non-Earth planets.</description>
     <uiIconPath>Things/Pawn/Humanlike/UI/IconHuman</uiIconPath>
+
+
+	<alienRace>
+        <generalSettings>
+            <MaleGenderProbability>0.5</MaleGenderProbability>
+            <PawnsSpecificBackstories>true</PawnsSpecificBackstories>
+            <ImmuneToAge>false</ImmuneToAge>
+			<ForcedRaceTraitEntries>
+            </ForcedRaceTraitEntries>
+			<alienPartGenerator>
+                <alienhaircolorgen Class="ColorGenerator_Options">
+                    <options>
+                        <li>
+							<weight>10</weight>
+							<only>RGBA(0.9,0.9,0.9,1)</only>
+						</li>
+						<li>
+							<weight>5</weight>
+							<only>RGBA(0.43,0.27,0.04,1)</only>
+						</li>
+						<li>
+							<weight>5</weight>
+							<only>RGBA(0.3,0.3,0.3,1)</only>
+						</li>
+						<li>
+							<weight>5</weight>
+							<only>RGBA(1.0,0.79,0.35,1)</only>
+						</li>												<li>
+							<weight>5</weight>
+							<only>RGBA(0.78,0.19,0.0,1)</only>
+						</li>
+
+                    </options>
+                </alienhaircolorgen>
+                <customDrawSize>(1, 1)</customDrawSize>
+                <customPortraitDrawSize>(1, 1)</customPortraitDrawSize>
+            </alienPartGenerator>
+        </generalSettings>
+		<graphicPaths>
+            <li>
+                <tail>Things/Eldar/Head/</tail>
+            </li>
+        </graphicPaths>
+		<hairSettings>
+            <HasHair>true</HasHair>
+            <GetsGreyAt>5000</GetsGreyAt>
+        </hairSettings>
+
+		<relationSettings>
+            <relationChanceModifierChild>1</relationChanceModifierChild>
+            <relationChanceModifierExLover>1</relationChanceModifierExLover>
+            <relationChanceModifierExSpouse>1</relationChanceModifierExSpouse>
+            <relationChanceModifierFiance>1</relationChanceModifierFiance>
+            <relationChanceModifierLover>1</relationChanceModifierLover>
+            <relationChanceModifierParent>1</relationChanceModifierParent>
+            <relationChanceModifierSibling>1</relationChanceModifierSibling>
+            <relationChanceModifierSpouse>1</relationChanceModifierSpouse>
+        </relationSettings>
+		<raceRestriction>
+		  
+		  <apparelList>
+                 <li>Sororitas_PowerArmor</li>
+</apparelList>
+          <onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
+        </raceRestriction>
+
+	</alienRace>
+
+
+
+
     <statBases>
       <MarketValue>1950</MarketValue>
       <MoveSpeed>4.61</MoveSpeed>
@@ -129,20 +199,5 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
     </recipes>
-	<CustomGenderDistribution>true</CustomGenderDistribution>
-	<MaleGenderProbability>0.0</MaleGenderProbability>
-	<GetsGreyAt>60</GetsGreyAt>
-	<HasHair>Custom</HasHair>
-	<alienpartgenerator />
-
-
-	<alienhaircolorgen Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.96,0.96,0.96,1)</only>
-        </li>
-      </options>
-    </alienhaircolorgen>
-  </ThingDef>
+  </AlienRace.ThingDef_AlienRace>
 </ThingDefs>

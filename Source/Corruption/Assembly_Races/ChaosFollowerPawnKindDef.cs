@@ -13,6 +13,10 @@ namespace Corruption
 
         public bool RenamePawns = false;
 
+        public bool UseFixedGender = false;
+
+        public Gender FixedGender;
+
         public RulePackDef OverridingNameRulePack;
     }
 }

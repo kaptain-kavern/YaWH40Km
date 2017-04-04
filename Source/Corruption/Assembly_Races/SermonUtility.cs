@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -238,7 +239,7 @@ namespace Corruption
                         }
                     }
            //         Log.Message("starting Jobs");
-                    if (p.CurJob.def == CorruptionDefOfs.AttendSermon)
+                    if (p.CurJob.def == C_JobDefOf.AttendSermon)
                     {
                         num = 0;
                     }
@@ -273,13 +274,13 @@ namespace Corruption
                 }
                 if (chair != null)
                 {
-                    Job J = new Job(CorruptionDefOfs.AttendSermon, altar.preacher, altar, chair);
+                    Job J = new Job(C_JobDefOf.AttendSermon, altar.preacher, altar, chair);
                     attendee.QueueJob(J);
                     attendee.jobs.EndCurrentJob(JobCondition.InterruptForced);
                 }
                 else
                 {
-                    Job J = new Job(CorruptionDefOfs.AttendSermon, altar.preacher, altar, result);
+                    Job J = new Job(C_JobDefOf.AttendSermon, altar.preacher, altar, result);
                     attendee.QueueJob(J);
                     attendee.jobs.EndCurrentJob(JobCondition.InterruptForced);
                 }
@@ -289,7 +290,7 @@ namespace Corruption
         public static void ForceSermon(BuildingAltar altar)
         {
             IntVec3 b = altar.def.interactionCellOffset.RotatedBy(altar.Rotation) + altar.Position;
-            Job job = new Job(CorruptionDefOfs.HoldSermon, altar, b);
+            Job job = new Job(C_JobDefOf.HoldSermon, altar, b);
             altar.preacher.QueueJob(job);
             altar.preacher.jobs.EndCurrentJob(JobCondition.InterruptForced);
             BuildingAltar.GetSermonFlock(altar);
@@ -309,7 +310,7 @@ namespace Corruption
         {
             List<Pawn> opposingDevotees = p.needs.TryGetNeed<Need_Soul>().OpposingDevotees;
             if (opposingDevotees == null) opposingDevotees = new List<Pawn>();
-            List<Pawn> availablePreachers = p.Map.mapPawns.FreeColonistsSpawned.ToList<Pawn>().FindAll(s => s.CurJob.def == CorruptionDefOfs.HoldSermon);
+            List<Pawn> availablePreachers = p.Map.mapPawns.FreeColonistsSpawned.ToList<Pawn>().FindAll(s => s.CurJob.def == C_JobDefOf.HoldSermon);
 
             //Select best preacher of colony
 
@@ -343,7 +344,7 @@ namespace Corruption
         {
             List<Pawn> opposingDevotees = p.needs.TryGetNeed<Need_Soul>().OpposingDevotees;
             if (opposingDevotees == null) opposingDevotees = new List<Pawn>();
-            List<Pawn> availablePreachers = p.Map.mapPawns.FreeColonistsSpawned.ToList<Pawn>().FindAll(s => s.CurJob.def == CorruptionDefOfs.HoldSermon);
+            List<Pawn> availablePreachers = p.Map.mapPawns.FreeColonistsSpawned.ToList<Pawn>().FindAll(s => s.CurJob.def == C_JobDefOf.HoldSermon);
             Pawn bestcurrentPreacher;
             if (availablePreachers != null)
             {

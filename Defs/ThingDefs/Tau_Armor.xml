@@ -124,9 +124,6 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Tau</RestrictedToRace>
-      </li>
     </comps>
   </ThingDef>
 

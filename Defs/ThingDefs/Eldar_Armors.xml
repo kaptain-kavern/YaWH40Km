@@ -71,9 +71,6 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Alien_Eldar</RestrictedToRace>
-      </li>
     </comps>
   </ThingDef>
 
@@ -207,9 +204,6 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Alien_Eldar</RestrictedToRace>
-      </li>
     </comps>
   </ThingDef>
 
@@ -291,9 +285,6 @@
 			<FactionTag>EldarWarhost</FactionTag>
 		</li>
 	   </ApparelDetails>
-      </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Alien_Eldar</RestrictedToRace>
       </li>
     </comps>
   </ThingDef>
@@ -473,9 +464,6 @@
         <compClass>FactionColors.CompFactionColor</compClass>
         <UseCamouflageColor>true</UseCamouflageColor>
       </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Alien_Eldar</RestrictedToRace>
-      </li>
     </comps>
   </ThingDef>
 
@@ -544,9 +532,6 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
         <UseCamouflageColor>true</UseCamouflageColor>
-      </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Alien_Eldar</RestrictedToRace>
       </li>
     </comps>
   </ThingDef>
@@ -617,9 +602,6 @@
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
         <UseCamouflageColor>true</UseCamouflageColor>
-      </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Alien_Eldar</RestrictedToRace>
       </li>
     </comps>
   </ThingDef>
@@ -741,9 +723,6 @@
     <comps>
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
-      </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Alien_Eldar</RestrictedToRace>
       </li>
     </comps>
   </ThingDef>

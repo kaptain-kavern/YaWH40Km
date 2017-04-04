@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,7 +113,7 @@ namespace Corruption
 
             if(num >7)
             {
-                return CorruptionDefOfs.LustViolent;
+                return C_MentalStateDefOf.LustViolent;
             }
             if (num > 5)
             {
@@ -122,7 +123,7 @@ namespace Corruption
             {
                 return MentalStateDefOf.BingingDrugMajor;
             }
-            return CorruptionDefOfs.BingingFood;
+            return C_MentalStateDefOf.BingingFood;
         }
 
         public static MentalStateDef KhorneEffects(Pawn pawn, Need_Soul soul)
@@ -133,7 +134,7 @@ namespace Corruption
             {
                 return MentalStateDefOf.Berserk;
             }
-            return CorruptionDefOfs.KhorneKillWeak;
+            return C_MentalStateDefOf.KhorneKillWeak;
         }
     }
 }

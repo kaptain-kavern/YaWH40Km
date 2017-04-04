@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Corruption
                 return null;
             }
 
-            Job job = new Job(CorruptionDefOfs.HoldSermon, assignedAltar, assignedAltar.InteractionCell);
+            Job job = new Job(C_JobDefOf.HoldSermon, assignedAltar, assignedAltar.InteractionCell);
             BuildingAltar.GetSermonFlock(assignedAltar);
             return job;
         }

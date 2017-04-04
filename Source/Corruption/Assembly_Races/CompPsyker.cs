@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -194,19 +195,19 @@ namespace Corruption
             {
                 case PsykerPowerTargetCategory.TargetSelf:
                     {
-                        return new Job(CorruptionDefOfs.CastPsykerPowerSelf, target);
+                        return new Job(C_JobDefOf.CastPsykerPowerSelf, target);
                     }
                 case PsykerPowerTargetCategory.TargetAoE:
                     {
-                        return new Job(CorruptionDefOfs.CastPsykerPowerSelf, target);
+                        return new Job(C_JobDefOf.CastPsykerPowerSelf, target);
                     }
                 case PsykerPowerTargetCategory.TargetThing:
                     {
-                        return new Job(CorruptionDefOfs.CastPsykerPowerVerb, target);
+                        return new Job(C_JobDefOf.CastPsykerPowerVerb, target);
                     }
                 default:
                     {
-                        return new Job(CorruptionDefOfs.CastPsykerPowerVerb, target);
+                        return new Job(C_JobDefOf.CastPsykerPowerVerb, target);
                     }
             }            
         }

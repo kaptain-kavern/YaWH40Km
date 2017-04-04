@@ -1,11 +1,14 @@
-﻿using Harmony;
+﻿using Corruption.DefOfs;
+using Harmony;
 using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace Corruption
 {
@@ -18,6 +21,17 @@ namespace Corruption
 
             harmony.Patch(AccessTools.Method(typeof(RimWorld.ThoughtHandler), "CanGetThought", new Type[] { typeof(ThoughtDef) }), new HarmonyMethod(typeof(HarmonyPatches), "CanGetThought", new Type[] { typeof(ThoughtDef) }), null);
             harmony.Patch(AccessTools.Method(typeof(RimWorld.MainTabWindow_Inspect), "DoInspectPaneButtons", null), null, new HarmonyMethod(typeof(HarmonyPatches), "DoInspectPaneButtons", null));
+            
+            harmony.Patch(AccessTools.Method(typeof(RimWorld.FactionGenerator), "GenerateFactionsIntoWorld", new Type[] { typeof(string) }), null, new HarmonyMethod(typeof(HarmonyPatches), "GenerateFactionsIntoWorldPostFix"), null);
+
+        }
+
+        public static void GenerateFactionsIntoWorldPostFix()
+        {
+            Log.Message("Generating Corruption Story Tracker");
+            CorruptionStoryTracker corrTracker = (CorruptionStoryTracker)WorldObjectMaker.MakeWorldObject(DefOfs.C_WorldObjectDefOf.CorruptionStoryTracker);
+            corrTracker.Tile = TileFinder.RandomStartingTile();
+            Find.WorldObjects.Add(corrTracker);
         }
 
         private static Texture2D patronIcon
@@ -234,7 +248,7 @@ namespace Corruption
                 ProfilerThreadCheck.EndSample();
             }
             return true;
-        }        
+        }
 
         public static void CreateNewSoul(Pawn pepe)
         {
@@ -243,7 +257,7 @@ namespace Corruption
             {
                 pepe
             });
-                need.def = CorruptionDefOfs.Need_Soul;
+                need.def = C_NeedDefOf.Need_Soul;
                 int x = pepe.needs.AllNeeds.Count;
                 pepe.needs.AllNeeds.Insert(x - 1, need);
                 //          pepe.needs.AllNeeds.Add(need);

@@ -22,9 +22,6 @@
     <alwaysHaulable>True</alwaysHaulable>
     <tickerType>Never</tickerType>
     <techLevel>Spacer</techLevel>
-    <weaponTags>
-      <li>IG_MecMelee</li>
-    </weaponTags>
     <thingCategories>
       <li>WeaponsMelee</li>
     </thingCategories>
@@ -269,7 +266,7 @@ Class="FactionColors.FactionItemDef">
     <defName>SkitariusMaul</defName>
     <label>Arc Maul</label>
     <description>Electricity based melee weapon of the Mechanicus forces.</description>
-    <ItemMeshSize>(1.2, 1.2, 1.2)</ItemMeshSize>
+    <ItemMeshSize>(1.0, 1.0, 1.0)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Mechanicus/Skitarius/SkitariiBasher</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -303,7 +300,7 @@ Class="FactionColors.FactionItemDef">
     <defName>SkitariusBlade</defName>
     <label>Transonic Blade</label>
     <description>Sonification based melee weapon of the Mechanicus forces.</description>
-    <ItemMeshSize>(1.2, 1.2, 1.2)</ItemMeshSize>
+    <ItemMeshSize>(1.0, 1.0, 1.0)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Mechanicus/Skitarius/Skitarii_TransonicBlade</texPath>
       <graphicClass>Graphic_Single</graphicClass>

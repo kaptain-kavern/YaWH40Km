@@ -4,12 +4,80 @@
 
 
   <!-- ============================ Human ========================== -->
-  <ThingDef ParentName="BasePawn" Class="AlienRace.ThingDef_AlienRace" Name="Ork">
-<thingClass>AlienRace.AlienPawn</thingClass>
+  <AlienRace.ThingDef_AlienRace ParentName="BasePawn">
     <defName>Alien_Ork</defName>
     <label>Ork</label>
     <description>The pinnacle of the orkoid species: A fully grown Ork.</description>
     <uiIconPath>Things/Pawn/Humanlike/UI/IconHuman</uiIconPath>
+	<alienRace>
+        <generalSettings>
+            <MaleGenderProbability>0.5</MaleGenderProbability>
+            <PawnsSpecificBackstories>true</PawnsSpecificBackstories>
+            <ImmuneToAge>false</ImmuneToAge>
+			<ForcedRaceTraitEntries>
+            </ForcedRaceTraitEntries>
+			<alienPartGenerator>
+                <aliencrowntypes>
+                    <li>Average_Normal</li>
+                </aliencrowntypes>
+                <alienbodytypes>
+					<li>Hulk</li>
+					<li>Thin</li>
+					<li>Male</li>
+                </alienbodytypes>
+                <alienskincolorgen Class="ColorGenerator_Options">
+                    <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.0,0.6,0.33,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.22,0.65,0.22,1)</only>
+        </li>
+                    </options>
+                </alienskincolorgen>
+                <customDrawSize>(1, 1)</customDrawSize>
+                <customPortraitDrawSize>(1, 1)</customPortraitDrawSize>
+            </alienPartGenerator>
+        </generalSettings>
+		<graphicPaths>
+            <li>
+                <head>Things/Orks/HeadBase/</head>
+            </li>
+        </graphicPaths>
+		<hairSettings>
+            <HasHair>false</HasHair>
+            <GetsGreyAt>5000</GetsGreyAt>
+        </hairSettings>
+
+		<relationSettings>
+            <relationChanceModifierChild>1</relationChanceModifierChild>
+            <relationChanceModifierExLover>1</relationChanceModifierExLover>
+            <relationChanceModifierExSpouse>1</relationChanceModifierExSpouse>
+            <relationChanceModifierFiance>1</relationChanceModifierFiance>
+            <relationChanceModifierLover>1</relationChanceModifierLover>
+            <relationChanceModifierParent>1</relationChanceModifierParent>
+            <relationChanceModifierSibling>1</relationChanceModifierSibling>
+            <relationChanceModifierSpouse>1</relationChanceModifierSpouse>
+        </relationSettings>
+
+		<raceRestriction>
+		  
+		  <apparelList>
+                 <li>Ork_Armor</li>
+                 <li>OrkHelmet</li>
+                 <li>OrkHelmetVar</li>
+                 <li>OrkArmorNob</li>
+                 <li>OrkKommandoArmor</li>
+                 <li>OrkBandana</li>
+</apparelList>
+          <onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
+        </raceRestriction>
+
+	</alienRace>
+
+
     <statBases>
       <MarketValue>950</MarketValue>
       <MoveSpeed>3.41</MoveSpeed>
@@ -130,10 +198,30 @@
       <li>Euthanize</li>
     </recipes>
 
-	<HasHair>None</HasHair>
-	<CustomSkinColors>true</CustomSkinColors>
-	<alienskincolorgen Class="ColorGenerator_Options">
-      <options>
+  </AlienRace.ThingDef_AlienRace>
+
+  <AlienRace.ThingDef_AlienRace ParentName="BasePawn">
+    <defName>Alien_Gretchin</defName>
+    <label>gretchin</label>
+    <description>The lesser specimen of the orkoid species.</description>
+    <uiIconPath>Things/Pawn/Humanlike/UI/IconHuman</uiIconPath>
+
+	<alienRace>
+        <generalSettings>
+            <MaleGenderProbability>1.0</MaleGenderProbability>
+            <PawnsSpecificBackstories>true</PawnsSpecificBackstories>
+            <ImmuneToAge>false</ImmuneToAge>
+			<ForcedRaceTraitEntries>
+            </ForcedRaceTraitEntries>
+			<alienPartGenerator>
+                <aliencrowntypes>
+                    <li>Gretchin</li>
+                </aliencrowntypes>
+                <alienbodytypes>
+					<li>Thin</li>
+                </alienbodytypes>
+                <alienskincolorgen Class="ColorGenerator_Options">
+                    <options>
         <li>
           <weight>10</weight>
           <only>RGBA(0.0,0.6,0.33,1)</only>
@@ -142,30 +230,43 @@
           <weight>10</weight>
           <only>RGBA(0.22,0.65,0.22,1)</only>
         </li>
-      </options>
-    </alienskincolorgen>
-	<CustomGenderDistribution>true</CustomGenderDistribution>
-	<MaleGenderProbability>1.0</MaleGenderProbability>
-	<PawnsSpecificBackstories>true</PawnsSpecificBackstories>	<ForcedRaceTraitEntries>
-		<li>
-		 <defname>Bloodlust</defname>
-		 <degree>0</degree>
-		</li>
-	</ForcedRaceTraitEntries>
-	<NakedHeadGraphicLocation>Things/Orks/HeadsBase/</NakedHeadGraphicLocation>
-	<alienpartgenerator>
-	<aliencrowntypes>
-	  <li>Average_Normal</li>
-	</aliencrowntypes>
-	</alienpartgenerator>
-  </ThingDef>
+                    </options>
+                </alienskincolorgen>
+                <customDrawSize>(1, 1)</customDrawSize>
+                <customPortraitDrawSize>(1, 1)</customPortraitDrawSize>
+            </alienPartGenerator>
+        </generalSettings>
+		<graphicPaths>
+            <li>
+                <head>Things/Orks/GretchinBase/</head>
+            </li>
+        </graphicPaths>
+		<hairSettings>
+            <HasHair>false</HasHair>
+            <GetsGreyAt>5000</GetsGreyAt>
+        </hairSettings>
 
-  <ThingDef ParentName="BasePawn" Class="AlienRace.ThingDef_AlienRace" Name="Gretchin">
-<thingClass>AlienRace.AlienPawn</thingClass>
-    <defName>Alien_Gretchin</defName>
-    <label>gretchin</label>
-    <description>The lesser specimen of the orkoid species.</description>
-    <uiIconPath>Things/Pawn/Humanlike/UI/IconHuman</uiIconPath>
+		<thoughtSettings>
+			<replacerList>
+					<li>
+						<original>AteRawFood</original>
+						<replacer>AteRawFoodCrystalloid</replacer> 
+					</li>
+				</replacerList>
+        </thoughtSettings>
+		<relationSettings>
+            <relationChanceModifierChild>1</relationChanceModifierChild>
+            <relationChanceModifierExLover>1</relationChanceModifierExLover>
+            <relationChanceModifierExSpouse>1</relationChanceModifierExSpouse>
+            <relationChanceModifierFiance>1</relationChanceModifierFiance>
+            <relationChanceModifierLover>1</relationChanceModifierLover>
+            <relationChanceModifierParent>1</relationChanceModifierParent>
+            <relationChanceModifierSibling>1</relationChanceModifierSibling>
+            <relationChanceModifierSpouse>1</relationChanceModifierSpouse>
+        </relationSettings>
+	</alienRace>
+
+
     <statBases>
       <MarketValue>950</MarketValue>
       <MoveSpeed>3.41</MoveSpeed>
@@ -285,37 +386,7 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
     </recipes>
-
-	<HasHair>None</HasHair>
-	<CustomSkinColors>true</CustomSkinColors>
-	<alienskincolorgen Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.0,0.6,0.33,1)</only>
-        </li>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.22,0.65,0.22,1)</only>
-        </li>
-      </options>
-    </alienskincolorgen>
-	<CustomGenderDistribution>true</CustomGenderDistribution>
-	<MaleGenderProbability>1.0</MaleGenderProbability>
-	<PawnsSpecificBackstories>true</PawnsSpecificBackstories>	<ForcedRaceTraitEntries>
-		<li>
-		 <defname>Bloodlust</defname>
-		 <degree>0</degree>
-		</li>
-	</ForcedRaceTraitEntries>
-
-	<NakedHeadGraphicLocation>Things/Orks/GretchinBase/</NakedHeadGraphicLocation>
-	<alienpartgenerator>
-	<aliencrowntypes>
-	  <li>Gretchin</li>
-	</aliencrowntypes>
-	</alienpartgenerator>
-  </ThingDef>
+  </AlienRace.ThingDef_AlienRace>
 
   <ThingDef ParentName="AnimalThingBase">
     <defName>Squig</defName>

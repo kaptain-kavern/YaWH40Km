@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace Corruption
         {
             base.Impact(hitThing);
             Pawn pawn = hitThing as Pawn;
-            if ( pawn != null && !pawn.health.hediffSet.HasHediff(CorruptionDefOfs.DE_Toxin))
+            if ( pawn != null && !pawn.health.hediffSet.HasHediff(C_HediffDefOf.DE_Toxin))
             {
-                pawn.health.AddHediff(CorruptionDefOfs.DE_Toxin);
+                pawn.health.AddHediff(C_HediffDefOf.DE_Toxin);
             }
         }
     }

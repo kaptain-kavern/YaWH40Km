@@ -91,20 +91,7 @@ namespace FactionColors
             if (this.DetailGraphic == null) Log.Message("NoAppGraphic");
             InitiateDetails();
         }
-
-        public override void PostDraw()
-        {
-            base.PostDraw();
-            if ((this.apparel!= null) && (apparel.wearer == null))
-            {
-                Vector3 vector = this.parent.DrawPos;
-                vector.y += 0.005f;
-                Vector3 s = new Vector3(1.4f, 1f, 1.4f);
-                Matrix4x4 matrix = default(Matrix4x4);
-                matrix.SetTRS(vector, Quaternion.AngleAxis(this.parent.Rotation.AsInt, Vector3.up), s);
-                Graphics.DrawMesh(MeshPool.plane10, matrix, DetailGraphic.MatSingle, 0);
-            }
-        }
+       
 
         public void InitiateDetails()
         {

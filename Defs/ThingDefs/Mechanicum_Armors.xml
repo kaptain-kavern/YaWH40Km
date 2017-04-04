@@ -59,9 +59,6 @@
       </defaultOutfitTags>
     </apparel>
     <comps>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
-      </li>
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
@@ -78,67 +75,6 @@
 		</li>
     </comps>
   </ThingDef>
-
-  <ThingDef ParentName="ArmorHelmetMakeableBase">
-    <defName>TechPriestHood</defName>
-    <thingClass>FactionColors.ApparelUniform</thingClass>
-    <label>Tech priest hood</label>
-    <description>A facemask and implants used by tech-priests. May not be used by unaugmented humans.</description>
-    <techLevel>Spacer</techLevel>
-    <recipeMaker>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Mechanicus/Magos/MagosHelmetIcon</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <statBases>
-      <WorkToMake>60000</WorkToMake>
-      <MaxHitPoints>160</MaxHitPoints>
-      <MarketValue>1000</MarketValue>
-      <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.6</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.5</ArmorRating_Heat>
-      <ArmorRating_Electric>0</ArmorRating_Electric>
-      <Insulation_Cold>-3</Insulation_Cold>
-      <Insulation_Heat>3</Insulation_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <ShootingAccuracy>0.2</ShootingAccuracy>
-      <ResearchSpeed>0.2</ResearchSpeed>
-      <SocialImpact>-0.2</SocialImpact>
-    </equippedStatOffsets>
-    <costList>
-      <Component>7</Component>
-      <Plasteel>60</Plasteel>
-    </costList>
-    <apparel>
-      <bodyPartGroups>
-        <li>FullHead</li>
-      </bodyPartGroups>
-      <worngraphicPath>Things/Mechanicus/Magos/MagosHelmet</worngraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <commonality>5</commonality>
-      <tags>
-        <li>TechPriest</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>TechPriest</li>
-      </defaultOutfitTags>
-    </apparel>
-    <comps>
-      <li Class="FactionColors.CompProperties_FactionColor">
-        <compClass>FactionColors.CompFactionColor</compClass>
-      </li>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
-      </li>
-    </comps>
-  </ThingDef>
-
 
   <ThingDef ParentName="ArmorMakeableBase">
     <defName>Mechanicum_SkitariusArmor</defName>
@@ -195,9 +131,6 @@
       </defaultOutfitTags>
     </apparel>
     <comps>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
-      </li>
     </comps>
   </ThingDef>
 
@@ -403,9 +336,6 @@
       </options>
     </colorGenerator>
     <comps>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
-      </li>
     </comps>
   </ThingDef>
 
@@ -469,9 +399,6 @@
       </options>
     </colorGenerator>
     <comps>
-      <li Class="AlienRace.CompProperties_RestrictedRace">
-        <RestrictedToRace>Mechanicus_Member</RestrictedToRace>
-      </li>
     </comps>
   </ThingDef>
 

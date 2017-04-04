@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.DefOfs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Corruption
 
         protected override void DoConditionAndLetter(Map map, int duration, Gender gender)
         {
-            MapCondition_CorruptiveDrone MapCondition_corruptiveDrone = (MapCondition_CorruptiveDrone)MapConditionMaker.MakeCondition(CorruptionDefOfs.CorruptiveDrone, duration, 0);
+            MapCondition_CorruptiveDrone MapCondition_corruptiveDrone = (MapCondition_CorruptiveDrone)MapConditionMaker.MakeCondition(C_MapConditionDefOf.CorruptiveDrone, duration, 0);
             map.mapConditionManager.RegisterCondition(MapCondition_corruptiveDrone);
             string text = "LetterIncidentCorruptiveDrone".Translate();
             Find.LetterStack.ReceiveLetter("LetterLabelCorruptiveDrone".Translate(), text, LetterType.BadNonUrgent, null);
