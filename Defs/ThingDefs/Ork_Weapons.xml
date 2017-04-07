@@ -17,6 +17,7 @@
     <weaponTags>
       <li>Ork_Melee</li>
     </weaponTags>
+    <tradeability>Sellable</tradeability>
   </ThingDef>
 
   <ThingDef Name="BaseOrkGun" ParentName="BaseMakeableGun" Abstract="True">
@@ -26,6 +27,7 @@
     <recipeMaker>
       <researchPrerequisite>ChargedShot</researchPrerequisite>
     </recipeMaker>
+    <tradeability>Sellable</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="BaseBullet">

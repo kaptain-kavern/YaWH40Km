@@ -30,7 +30,7 @@ namespace Corruption.Ships
                 return this.SelObject as LandedShip;
             }
         }
-
+        
         protected override void FillTab()
         {
             float num = 0f;
@@ -74,7 +74,7 @@ namespace Corruption.Ships
         private void UpdateItemsList()
         {
             this.items.Clear();
-            this.items.AddRange(CaravanInventoryUtility.AllInventoryItems(base.SelCaravan));
+            this.items.AddRange(landedShip.allLandedShipCargo);
         }
     }
 }

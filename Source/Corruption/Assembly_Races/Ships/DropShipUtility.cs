@@ -219,7 +219,7 @@ namespace Corruption.Ships
                 pawnsToLoad -= num;
                 availableDropShips.Add(newShip);
             }
-            DropShipUtility.DropShipGroups(dropCenter, map, availableDropShips);
+            DropShipUtility.DropShipGroups(dropCenter, map, availableDropShips, TravelingShipArrivalAction.EnterMapFriendly);
         }
 
         public static List<Pawn> AllPawnsInShip(ShipBase ship)
@@ -237,7 +237,7 @@ namespace Corruption.Ships
             return tmp;
         }
 
-        public static void DropShipGroups(IntVec3 dropCenter, Map map, List<ShipBase> shipsToDrop) //, LordJob lordjob = null, List<Pawn> lordPawns = null)
+        public static void DropShipGroups(IntVec3 dropCenter, Map map, List<ShipBase> shipsToDrop, TravelingShipArrivalAction arrivalAction)
         {
             foreach (ShipBase current in shipsToDrop)
             {
@@ -249,7 +249,7 @@ namespace Corruption.Ships
                     current.drawTickOffset = current.compShip.sProps.TicksToImpact + Rand.Range(10, 60);
                     current.ActivatedLaunchSequence = false;
                     current.shipState = ShipState.Incoming;
-                    ShipBase_Traveling incomingShip = new ShipBase_Traveling(current, false, true, false);
+                    ShipBase_Traveling incomingShip = new ShipBase_Traveling(current, false, arrivalAction);
                     Log.Message("Dropping " + incomingShip.containingShip.ShipNick);
                     GenSpawn.Spawn(incomingShip, dropLoc, map);
                 }

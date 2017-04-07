@@ -16,6 +16,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>325000</WorkToMake>
       <MaxHitPoints>200</MaxHitPoints>
@@ -80,6 +81,7 @@
       <texPath>Things/Orks/OrkHelmet/OrkHelmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>6000</WorkToMake>
       <MaxHitPoints>100</MaxHitPoints>
@@ -131,8 +133,9 @@
     </recipeMaker>
     <graphicData>
       <texPath>Things/Orks/OrkHelmet/OrkHelmetVarIcon</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_Multi</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>6000</WorkToMake>
       <MaxHitPoints>100</MaxHitPoints>
@@ -205,6 +208,7 @@
       <texPath>Things/Orks/OrkArmorNobs/Orkarmor</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>250000</WorkToMake>
       <MaxHitPoints>400</MaxHitPoints>
@@ -270,6 +274,7 @@
       <texPath>Things/Orks/OrkArmorNobs/OrkCommandoArmor</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>12000</WorkToMake>
       <MaxHitPoints>250</MaxHitPoints>
@@ -330,6 +335,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <MarketValue>200</MarketValue>

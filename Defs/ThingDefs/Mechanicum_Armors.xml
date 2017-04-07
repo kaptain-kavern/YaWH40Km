@@ -18,6 +18,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>3250000</WorkToMake>
       <MaxHitPoints>500</MaxHitPoints>
@@ -90,6 +91,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>3250000</WorkToMake>
       <MaxHitPoints>500</MaxHitPoints>
@@ -147,6 +149,7 @@
       <texPath>Things/Mechanicus/Robes/AcolyteCowl</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>32000</WorkToMake>
       <MaxHitPoints>120</MaxHitPoints>
@@ -192,6 +195,7 @@
       <texPath>Things/Mechanicus/Robes/MagosCowl</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>50000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>
@@ -239,6 +243,7 @@
       <texPath>Things/Mechanicus/Skitarius/SkitariusHelmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>60000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>
@@ -275,131 +280,6 @@
         <li>TechPriest</li>
       </defaultOutfitTags>
     </apparel>
-  </ThingDef>
-
-  <ThingDef ParentName="ArmorMakeableBase">
-    <defName>Mechadendrite</defName>
-    <label>Mechadendrite</label>
-    <description>A set of tentacle-like tools that are controlled directly by the nervous system via implants.</description>
-    <techLevel>Spacer</techLevel>
-    <recipeMaker>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Mechanicus/MechaDendrites/MechaDendrites</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <statBases>
-      <WorkToMake>250000</WorkToMake>
-      <MaxHitPoints>100</MaxHitPoints>
-      <MarketValue>6500</MarketValue>
-      <ArmorRating_Blunt>0.05</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.15</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.05</ArmorRating_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>0.10</MoveSpeed>
-      <WorkSpeedGlobal>0.20</WorkSpeedGlobal>
-      <MeleeHitChance>0.2</MeleeHitChance>
-      <AimingDelayFactor>-0.05</AimingDelayFactor>
-    </equippedStatOffsets>
-    <thingCategories>
-      <li>Apparel</li>
-    </thingCategories>
-    <costList>
-      <Component>18</Component>
-      <Plasteel>135</Plasteel>
-    </costList>
-    <apparel>
-      <bodyPartGroups>
-        <li>Shoulders</li>
-      </bodyPartGroups>
-      <worngraphicPath>Things/Mechanicus/MechaDendrites/MechaDendrites</worngraphicPath>
-      <layers>
-        <li>Shell</li>
-      </layers>
-      <commonality>2</commonality>
-      <tags>
-        <li>TechPriest</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>TechPriest</li>
-      </defaultOutfitTags>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(1.00,1.00,1.00,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    <comps>
-    </comps>
-  </ThingDef>
-
-  <ThingDef ParentName="ArmorMakeableBase">
-    <thingClass>FactionColors.Backpack_Accessory</thingClass>
-    <defName>MechadendriteOuter</defName>
-    <label>Mechadendrite Addon</label>
-    <description>A set of tentacle-like tools that are controlled directly by the nervous system via implants.</description>
-    <techLevel>Spacer</techLevel>
-    <recipeMaker>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>PoweredArmor</researchPrerequisite>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Mechanicus/MechaDendrites/MechaDendrites</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <statBases>
-      <WorkToMake>250000</WorkToMake>
-      <MaxHitPoints>100</MaxHitPoints>
-      <MarketValue>6500</MarketValue>
-      <ArmorRating_Blunt>0.05</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.15</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.05</ArmorRating_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>0.10</MoveSpeed>
-      <WorkSpeedGlobal>0.20</WorkSpeedGlobal>
-      <MeleeHitChance>0.2</MeleeHitChance>
-      <AimingDelayFactor>-0.05</AimingDelayFactor>
-    </equippedStatOffsets>
-    <thingCategories>
-      <li>Apparel</li>
-    </thingCategories>
-    <costList>
-      <Component>18</Component>
-      <Plasteel>135</Plasteel>
-    </costList>
-    <apparel>
-      <bodyPartGroups>
-        <li>Shoulders</li>
-      </bodyPartGroups>
-      <worngraphicPath>Things/Mechanicus/MechaDendrites/MechaDendrites</worngraphicPath>
-      <layers>
-        <li>Accessory</li>
-      </layers>
-      <commonality>2</commonality>
-      <tags>
-        <li>TechPriest</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>TechPriest</li>
-      </defaultOutfitTags>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(1.00,1.00,1.00,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    <comps>
-    </comps>
   </ThingDef>
 
 </ThingDefs>

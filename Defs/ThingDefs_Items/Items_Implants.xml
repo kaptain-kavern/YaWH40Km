@@ -42,7 +42,7 @@
       <Mass>0.2</Mass>
     </statBases>
     <techHediffsTags>
-      <li>Advanced</li>
+      <li>TechPriest</li>
     </techHediffsTags>
   </ThingDef>
 
@@ -59,7 +59,7 @@
       <Mass>0.2</Mass>
     </statBases>
     <techHediffsTags>
-      <li>Advanced</li>
+      <li>TechPriest</li>
     </techHediffsTags>
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -112,7 +112,7 @@ Utilitys Mechadendrite - Used for general menial tasks.
       <Mass>5.0</Mass>
     </statBases>
     <techHediffsTags>
-      <li>Advanced</li>
+      <li>TechPriest</li>
     </techHediffsTags>
     <costList>
       <MecComponent_General>1</MecComponent_General>
@@ -138,7 +138,7 @@ Manipulator Mechadendrite - Used for handling heavy gear.
       <Mass>5.0</Mass>
     </statBases>
     <techHediffsTags>
-      <li>Advanced</li>
+      <li>TechPriest</li>
     </techHediffsTags>
     <costList>
       <MecComponent_Weapon>1</MecComponent_Weapon>
@@ -166,7 +166,7 @@ Explorator Mechadendrite - Used for sample analysis.
       <Mass>5.0</Mass>
     </statBases>
     <techHediffsTags>
-      <li>Advanced</li>
+      <li>TechPriest</li>
     </techHediffsTags>
     <costList>
       <MecComponent_General>1</MecComponent_General>

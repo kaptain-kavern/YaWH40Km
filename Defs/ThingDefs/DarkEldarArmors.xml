@@ -18,6 +18,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>3250000</WorkToMake>
       <MaxHitPoints>500</MaxHitPoints>
@@ -91,6 +92,7 @@
       <texPath>Things/DarkEldar/Armor/DarkEldarHelmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>60000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>

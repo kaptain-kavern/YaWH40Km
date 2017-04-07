@@ -21,6 +21,7 @@
     <tradeTags>
       <li>Xeno_TauAux</li>
     </tradeTags>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>5000</WorkToMake>
       <MarketValue>100</MarketValue>
@@ -77,6 +78,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>40000</WorkToMake>
       <MaxHitPoints>350</MaxHitPoints>
@@ -137,6 +139,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>200</MaxHitPoints>
       <MarketValue>800</MarketValue>
@@ -198,6 +201,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>30000</WorkToMake>
       <MaxHitPoints>350</MaxHitPoints>

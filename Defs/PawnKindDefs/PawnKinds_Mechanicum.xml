@@ -39,8 +39,8 @@
       <li>IG_MecRanged</li>
     </weaponTags>
     <techHediffsMoney>
-      <min>1000</min>
-      <max>5000</max>
+      <min>6000</min>
+      <max>10000</max>
     </techHediffsMoney>
     <techHediffsTags>
       <li>Advanced</li>
@@ -82,8 +82,8 @@
       <li>IG_MecMelee</li>
     </weaponTags>
     <techHediffsMoney>
-      <min>1000</min>
-      <max>5000</max>
+      <min>5000</min>
+      <max>9000</max>
     </techHediffsMoney>
     <techHediffsTags>
       <li>Advanced</li>
@@ -189,7 +189,6 @@
       <li>Mechanicum</li>
     </apparelTags>
     <apparelRequired>
-	 <li>MechadendriteOuter</li>
 	 <li>Mechanicum_PriestRobe</li>
       <li>MecCowlPriest</li>
     </apparelRequired>
@@ -203,11 +202,11 @@
       <li>IG_MecMelee</li>
     </weaponTags>
     <techHediffsMoney>
-      <min>1000</min>
-      <max>5000</max>
+      <min>5000</min>
+      <max>9000</max>
     </techHediffsMoney>
     <techHediffsTags>
-      <li>Advanced</li>
+      <li>TechPriest</li>
     </techHediffsTags>
     <techHediffsChance>1.0</techHediffsChance>
     <AfflictionProperty>
@@ -238,7 +237,6 @@
       <li>Mechanicum</li>
     </apparelTags>
     <apparelRequired>
-	 <li>MechadendriteOuter</li>
 	 <li>Mechanicum_PriestRobe</li>
       <li>MecCowlPriest</li>
     </apparelRequired>
@@ -252,11 +250,11 @@
       <li>IG_MecMelee</li>
     </weaponTags>
     <techHediffsMoney>
-      <min>1000</min>
-      <max>5000</max>
+      <min>8000</min>
+      <max>10000</max>
     </techHediffsMoney>
     <techHediffsTags>
-      <li>Advanced</li>
+      <li>TechPriest</li>
     </techHediffsTags>
     <techHediffsChance>1.0</techHediffsChance>
     <AfflictionProperty>

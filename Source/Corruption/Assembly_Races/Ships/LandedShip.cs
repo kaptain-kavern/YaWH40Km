@@ -50,7 +50,6 @@ namespace Corruption.Ships
         
         public override void PostRemove()
         {
-            this.ReloadStockIntoShip();
             base.PostRemove();
         }
 
@@ -211,6 +210,7 @@ namespace Corruption.Ships
         public void ReloadStockIntoShip()
         {
             List<Thing> allCargo = this.allLandedShipCargo.ToList<Thing>();
+            List<Thing> remainingCargo = new List<Thing>();
             for (int i = 0; i < this.PawnsListForReading.Count; i++)
             {
                 this.tmpThingsToRemove.Clear();
@@ -221,8 +221,31 @@ namespace Corruption.Ships
                     {
                         this.tmpThingsToRemove.Add(carrier[k]);
                     }
+                    else
+                    {
+                        remainingCargo.Add(carrier[k]);
+                    }
                 }
                 carrier.RemoveAll(x => this.tmpThingsToRemove.Contains(x));
+            }
+            this.LoadNewCargoIntoRandomShips(remainingCargo);
+        }
+
+        private void LoadNewCargoIntoRandomShips(List<Thing> newCargo)
+        {
+            for (int i=0; i < newCargo.Count; i++)
+            {
+                int num = 0;
+                while(!this.ships.RandomElement().GetInnerContainer().TryAdd(newCargo[i], true))
+                {
+                    this.ships.RandomElement().GetInnerContainer().TryAdd(newCargo[i], true);
+                    num++;
+                }
+
+                if (num > this.ships.Count)
+                {
+                    break;
+                }
             }
         }
     }

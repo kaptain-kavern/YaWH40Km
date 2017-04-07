@@ -12,14 +12,14 @@ namespace Corruption.Ships
 {
     public class ShipBase_Traveling : ThingWithComps
     {
-        public bool attackOnArrival;
         public PawnsArriveMode pawnArriveMode;
         public int destinationTile = -1;
         private bool alreadyLeft;
         public bool leavingForTarget;
         private bool launchAsFleet;
-        private bool dropPawnsOnTochdown;
-        private bool dropItemsOnTouchdown;
+        private bool dropPawnsOnTochdown = true;
+        private bool dropItemsOnTouchdown = false;
+        private TravelingShipArrivalAction arrivalAction;
 
         public IntVec3 destinationCell = IntVec3.Invalid;
 
@@ -32,20 +32,20 @@ namespace Corruption.Ships
 
         }
 
-        public ShipBase_Traveling(ShipBase ship, bool launchAsFleet = false, bool dropPawnsOnTochdown = false, bool dropItemsOnTouchdown = false)
+        public ShipBase_Traveling(ShipBase ship, bool launchAsFleet = false, TravelingShipArrivalAction arrivalAction = TravelingShipArrivalAction.StayOnWorldMap)
         {
             this.containingShip = ship;
             this.def = ship.compShip.sProps.LeavingShipDef;
             this.def.size = ship.def.size;
             this.def.graphicData = ship.def.graphicData;
             this.launchAsFleet = launchAsFleet;
-            this.dropPawnsOnTochdown = dropPawnsOnTochdown;
-            this.dropItemsOnTouchdown = dropItemsOnTouchdown;
             this.Rotation = ship.Rotation;
+
+            this.arrivalAction = arrivalAction;
         }
 
 
-        public ShipBase_Traveling(ShipBase ship, RimWorld.Planet.GlobalTargetInfo target, PawnsArriveMode arriveMode, bool attackOnArrival, bool leavingForTarget = true, bool dropPawnsOnTochdown = false, bool dropItemsOnTouchdown = false)
+        public ShipBase_Traveling(ShipBase ship, RimWorld.Planet.GlobalTargetInfo target, PawnsArriveMode arriveMode, TravelingShipArrivalAction arrivalAction = TravelingShipArrivalAction.StayOnWorldMap, bool leavingForTarget = true)
         {
             this.containingShip = ship;
             this.def = ship.compShip.sProps.LeavingShipDef;
@@ -54,11 +54,9 @@ namespace Corruption.Ships
             this.destinationTile = target.Tile;
             this.destinationCell = target.Cell;
             this.pawnArriveMode = arriveMode;
-            this.attackOnArrival = attackOnArrival;
             this.leavingForTarget = leavingForTarget;
-            this.dropPawnsOnTochdown = dropPawnsOnTochdown;
-            this.dropItemsOnTouchdown = dropItemsOnTouchdown;
             this.Rotation = ship.Rotation;
+            this.arrivalAction = arrivalAction;
         }
 
         public ShipBase containingShip;
@@ -134,7 +132,7 @@ namespace Corruption.Ships
             }
 
             GenSpawn.Spawn(this.containingShip, base.Position, this.Map, this.containingShip.Rotation);
-            this.containingShip.ShipUnload();
+            this.containingShip.ShipUnload(false, this.dropPawnsOnTochdown, this.dropItemsOnTouchdown);
             this.DeSpawn();
         }
 
@@ -152,8 +150,7 @@ namespace Corruption.Ships
             travelingShips.destinationTile = this.destinationTile;
             travelingShips.destinationCell = this.destinationCell;
             travelingShips.arriveMode = this.pawnArriveMode;
-            travelingShips.attackOnArrival = this.attackOnArrival;
-            travelingShips.bombingRunOnArrival = this.containingShip.performBombingRun;
+            travelingShips.arrivalAction = this.arrivalAction;
             Find.WorldObjects.Add(travelingShips);
             Predicate<Thing> predicate = delegate (Thing t)
             {
@@ -194,10 +191,10 @@ namespace Corruption.Ships
             Scribe_Values.LookValue<int>(ref this.fleetID, "fleetID", 0, false);
             Scribe_Values.LookValue<int>(ref this.destinationTile, "destinationTile", 0, false);
             Scribe_Values.LookValue<IntVec3>(ref this.destinationCell, "destinationCell", default(IntVec3), false);
+            Scribe_Values.LookValue<TravelingShipArrivalAction>(ref this.arrivalAction, "arrivalAction", TravelingShipArrivalAction.StayOnWorldMap, false);
             Scribe_Values.LookValue<PawnsArriveMode>(ref this.pawnArriveMode, "pawnArriveMode", PawnsArriveMode.Undecided, false);
 
             Scribe_Values.LookValue<bool>(ref this.leavingForTarget, "leavingForTarget", true, false);
-            Scribe_Values.LookValue<bool>(ref this.attackOnArrival, "attackOnArrival", false, false);
             Scribe_Values.LookValue<bool>(ref this.alreadyLeft, "alreadyLeft", false, false);
             Scribe_Deep.LookDeep<ShipBase>(ref this.containingShip, "containingShip", new object[0]);
         }

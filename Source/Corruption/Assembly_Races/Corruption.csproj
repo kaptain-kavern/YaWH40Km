@@ -22,7 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -67,6 +67,7 @@
     <Compile Include="Affliction.cs" />
     <Compile Include="AfflictionDrawerUtility.cs" />
     <Compile Include="AfflictionHeadDrawer.cs" />
+    <Compile Include="Astartes\RecipeDef_AstartesImplant.cs" />
     <Compile Include="Bill_MedicalTable.cs" />
     <Compile Include="BookStuff\Bookshelf.cs" />
     <Compile Include="BookStuff\ITab_Bookshelf.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Ships\ShipDropSite.cs" />
     <Compile Include="Ships\ShipNamespaceDefOfs.cs" />
     <Compile Include="Ships\ShipTracker.cs" />
+    <Compile Include="Ships\TravelingShipArrivalAction.cs" />
     <Compile Include="Ships\TravelingShips.cs" />
     <Compile Include="Ships\TravelingShipsUtility.cs" />
     <Compile Include="Ships\WeaponSystemShipBomb.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="Ships\WeaponSystemShipLC.cs" />
     <Compile Include="Ships\WeaponSystemType.cs" />
     <Compile Include="Ships\WorkGiver_UninstallShipWeapon.cs" />
+    <Compile Include="StockGenerator_TagCorruption.cs" />
     <Compile Include="Tithes\MapCondition_TitheCollectors.cs" />
     <Compile Include="PawnRendererModded.cs" />
     <Compile Include="Recipe_TendInMSU.cs" />

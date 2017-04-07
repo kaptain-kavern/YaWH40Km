@@ -210,7 +210,7 @@
           <max>8000</max>
         </totalPriceRange>
       </li>
-      <li Class="StockGenerator_Tag">
+      <li Class="Corruption.StockGenerator_TagCorruption">
         <tradeTag>Xeno_TauAux</tradeTag>
         <thingDefCountRange>
           <min>0</min>

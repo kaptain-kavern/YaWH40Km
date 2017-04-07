@@ -118,6 +118,7 @@
     <costList>
       <Steel>75</Steel>
     </costList>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>360</MaxHitPoints>
       <WorkToMake>90000</WorkToMake>
@@ -209,6 +210,7 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>120</MaxHitPoints>
       <WorkToMake>50000</WorkToMake>
@@ -265,6 +267,7 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
       <WorkToMake>50000</WorkToMake>
@@ -338,6 +341,7 @@
       <texPath>Things/IoM/Arbites/ArbitesArmor</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>100000</WorkToMake>
       <MaxHitPoints>300</MaxHitPoints>
@@ -406,6 +410,7 @@
       <texPath>Things/IoM/Arbites/ArbitesHelmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>70000</WorkToMake>
       <MaxHitPoints>200</MaxHitPoints>
@@ -625,6 +630,7 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>120</MaxHitPoints>
       <WorkToMake>12000</WorkToMake>
@@ -707,6 +713,7 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>120</MaxHitPoints>
       <WorkToMake>12000</WorkToMake>

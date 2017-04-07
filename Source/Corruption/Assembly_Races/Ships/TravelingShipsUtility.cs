@@ -43,6 +43,7 @@ namespace Corruption.Ships
                 FactionBase factionBase = CaravanVisitUtility.FactionBaseVisitedNow(caravan);
                 if (factionBase != null && factionBase.CanTradeNow)
                 {
+                    caravan.UnloadCargoForTrading();
                     Find.WindowStack.Add(new Dialog_TradeFromShips(caravan, bestNegotiator, factionBase));
                     string empty = string.Empty;
                     string empty2 = string.Empty;
@@ -88,7 +89,7 @@ namespace Corruption.Ships
             {
                 command_Settle.Disable("CommandSettleFailOtherWorldObjectsHere".Translate());
             }
-            else if (SettleUtility.PlayerHomesCountLimitReached)
+            else if (settlePermanent && SettleUtility.PlayerHomesCountLimitReached)
             {
                 if (Prefs.MaxNumberOfPlayerHomes > 1)
                 {
@@ -174,7 +175,7 @@ namespace Corruption.Ships
             {
                 DropShipUtility.ReimbarkWorldPawnsForLandedShip(ship);
             }
-            DropShipUtility.DropShipGroups(TravelingShipsUtility.CenterCell(map), map, ships);            
+            DropShipUtility.DropShipGroups(TravelingShipsUtility.CenterCell(map), map, ships, TravelingShipArrivalAction.EnterMapFriendly);            
             caravan.RemoveAllPawns();
             if (caravan.Spawned)
             {
@@ -197,7 +198,7 @@ namespace Corruption.Ships
             {
                 loc = DropCellFinder.FindRaidDropCenterDistant(map);
             }
-            DropShipUtility.DropShipGroups(loc, map, ships);
+            DropShipUtility.DropShipGroups(loc, map, ships, TravelingShipArrivalAction.EnterMapFriendly);
         }
 
         public static string PawnInfoString(Pawn pawn)
@@ -214,6 +215,16 @@ namespace Corruption.Ships
                 {
                     Log.Message(TravelingShipsUtility.PawnInfoString(pawn));
                 }
+            }
+        }
+
+
+        public static void InitializePayloadAndTurrets(List<ShipBase> ships, List<Building_ShipTurret> turrets, List<WeaponSystemShipBomb> bombs)
+        {
+            for (int i = 0; i < ships.Count; i++)
+            {
+                turrets.AddRange(ships[i].assignedTurrets);
+                bombs.AddRange(ships[i].loadedBombs);
             }
         }
 
@@ -270,7 +281,6 @@ namespace Corruption.Ships
             caravan.Name = name;
 
             caravan.ships.AddRange(incomingShips.ships);
-            caravan.UnloadCargoForTrading();
             foreach (ShipBase ship in caravan.ships)
             {
                 DropShipUtility.PassWorldPawnsForLandedShip(ship);
@@ -299,7 +309,7 @@ namespace Corruption.Ships
             return false;
         }
 
-        public static void LaunchLandedFleet(LandedShip landedShip, int destinationTile, PawnsArriveMode pawnArriveMode, bool attackOnArrival, bool bombingRunOnArrival)
+        public static void LaunchLandedFleet(LandedShip landedShip, int destinationTile, PawnsArriveMode pawnArriveMode, TravelingShipArrivalAction arrivalAction)
         {
             if (destinationTile < 0)
             {
@@ -313,8 +323,7 @@ namespace Corruption.Ships
             travelingShips.destinationTile = destinationTile;
     //        travelingShips.destinationCell = this.destinationCell;
             travelingShips.arriveMode = pawnArriveMode;
-            travelingShips.attackOnArrival = attackOnArrival;
-            travelingShips.bombingRunOnArrival = bombingRunOnArrival;
+            travelingShips.arrivalAction = arrivalAction;
             Find.WorldObjects.Add(travelingShips);
             foreach(ShipBase current in landedShip.ships)
             {

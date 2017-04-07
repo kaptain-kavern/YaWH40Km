@@ -12,6 +12,7 @@
       <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
     </graphicData>
     <drawGUIOverlay>true</drawGUIOverlay>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>0.7</Flammability>
@@ -56,6 +57,8 @@
     <recipeMaker>
       <researchPrerequisite>ChargedShot</researchPrerequisite>
     </recipeMaker>
+
+    <tradeability>Sellable</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="BaseMechanicusGun"

@@ -26,13 +26,11 @@ namespace Corruption.Ships
 
         public static void AnyColonistTameAnimalOrPrisonerOfColonyPreFix(ref bool __result, MapPawns __instance)
         {
-            Log.Message("Checking for travelingships");
             if (!__result)
             {
                 Map map = Traverse.Create(__instance).Field("map").GetValue<Map>();
                 if (map != null)
                 {
-                    Log.Message("CheckingOnMap");
                     List<Thing> list = map.listerThings.AllThings.FindAll(x => x is ShipBase_Traveling || x is ShipBase);
                     if (list.Count > 0)
                     {

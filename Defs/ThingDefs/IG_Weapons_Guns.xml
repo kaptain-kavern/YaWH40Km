@@ -149,7 +149,7 @@
    <defName>Plasma_Ball</defName>
    <label>Plasma Ball</label>
    <graphicData>
-		<texPath>Things/IG/Weapons/Projectiles/PlamsaRound</texPath>
+		<texPath>Things/IG/Weapons/Projectiles/PlasmaRound</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
    </graphicData>
    <projectile>

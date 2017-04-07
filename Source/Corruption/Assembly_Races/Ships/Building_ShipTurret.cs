@@ -5,16 +5,41 @@ using System.Linq;
 using System.Text;
 using Verse;
 using UnityEngine;
+using System.Reflection;
 
 namespace Corruption.Ships
 {
     public class Building_ShipTurret : Building_TurretGun
     {
-        public ShipBase parentShip;
+        private ShipBase parentShipCached;
 
+        public ShipBase ParentShip
+        {
+            get
+            {
+                if (this.parentShipCached == null)
+                {
+                    this.parentShipCached = DropShipUtility.currentShipTracker.AllWorldShips.FirstOrDefault(x => x.GetUniqueLoadID() == this.parentShipLoadID);
+                }
+                return this.parentShipCached;
+            }
+        }
+        
         public string assignedSlotName;
 
         public ThingDef installedByWeaponSystem;
+
+        private string parentShipLoadID = "";
+
+        public void AssignParentShip(ShipBase ship)
+        {
+            this.parentShipLoadID = ship.GetUniqueLoadID();
+        }
+
+        public override void SpawnSetup(Map map)
+        {
+            base.SpawnSetup(map);
+        }
 
         public void SwitchTurret(bool active)
         {
@@ -34,16 +59,16 @@ namespace Corruption.Ships
         {
             get
             {
-                if(this.parentShip != null)
+                if(this.parentShipCached != null)
                 {
-                    ShipWeaponSlot slot = parentShip.installedTurrets.First(x => x.Key.SlotName == this.assignedSlotName).Key;
+                    ShipWeaponSlot slot = parentShipCached.installedTurrets.First(x => x.Key.SlotName == this.assignedSlotName).Key;
                     if (slot != null)
                     {
                         return slot;
                     }
                     else
                     {
-                        Log.Error("No slot found for " + this.ToString() + " on " + parentShip.ToString());
+                        Log.Error("No slot found for " + this.ToString() + " on " + parentShipCached.ToString());
                         return null;
                     }
                 }
@@ -56,13 +81,17 @@ namespace Corruption.Ships
         {
             get
             {
-                KeyValuePair<ShipWeaponSlot, Building_ShipTurret> turretEntry = parentShip.installedTurrets.FirstOrDefault(x => x.Value == this);
-                if (turretEntry.Key != null)
+                if (this.ParentShip != null)
                 {
-                    Vector3 vector = this.parentShip.DrawPos + DropShipUtility.AdjustedIntVecForShip(this.parentShip, turretEntry.Key.turretPosOffset).ToVector3();
-                    vector.y = Altitudes.AltitudeFor(turretEntry.Key.altitudeLayer);
-                    return vector;
+                    KeyValuePair<ShipWeaponSlot, Building_ShipTurret> turretEntry = ParentShip.installedTurrets.FirstOrDefault(x => x.Value == this);
+                    if (turretEntry.Key != null)
+                    {
+                        Vector3 vector = this.ParentShip.DrawPos + DropShipUtility.AdjustedIntVecForShip(this.ParentShip, turretEntry.Key.turretPosOffset).ToVector3();
+                        vector.y = Altitudes.AltitudeFor(turretEntry.Key.altitudeLayer);
+                        return vector;
+                    }
                 }
+                
                 return base.DrawPos;
             }
         }
@@ -81,12 +110,13 @@ namespace Corruption.Ships
                 yield return current;
             }
         }
-        
+
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_References.LookReference<ShipBase>(ref this.parentShip, "parentShip");
             Scribe_Values.LookValue<string>(ref this.assignedSlotName, "assignedSlotName");
+            Scribe_Values.LookValue<string>(ref this.parentShipLoadID, "parentShipLoadID");
+            Scribe_Defs.LookDef<ThingDef>(ref this.installedByWeaponSystem, "installedByWeaponSystem");
         }
     }
 }

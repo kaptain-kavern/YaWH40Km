@@ -16,6 +16,7 @@
 	</graphicData>
     <soundInteract>InteractPistol</soundInteract>
     <costStuffCount>150</costStuffCount>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MarketValue>10000</MarketValue>
       <WorkToMake>18000</WorkToMake>
