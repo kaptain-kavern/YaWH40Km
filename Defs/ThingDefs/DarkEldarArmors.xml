@@ -18,6 +18,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>3250000</WorkToMake>
       <MaxHitPoints>500</MaxHitPoints>
@@ -70,9 +71,14 @@
       </li>
       <li Class="FactionColors.CompProperties_PauldronDrawer">
         <compClass>FactionColors.CompPauldronDrawer</compClass>
-        <shoulderPadType>Both</shoulderPadType>
-        <shaderType>CutoutComplex</shaderType>
-        <PadTexPath>Things/DarkEldar/DEPauldrons/DEPauldron</PadTexPath>
+        <PauldronEntries>
+		<li>
+        	 <shoulderPadType>Both</shoulderPadType>
+  		 <shaderType>Cutout</shaderType>
+    		 <padTexPath>Things/DarkEldar/DEPauldrons/DEPauldron</padTexPath>
+  		 <commonality>10</commonality>
+		</li>
+        </PauldronEntries>
       </li>
     </comps>
   </ThingDef>
@@ -91,6 +97,7 @@
       <texPath>Things/DarkEldar/Armor/DarkEldarHelmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>60000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>

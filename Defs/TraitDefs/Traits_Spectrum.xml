@@ -3,8 +3,14 @@
 
   <Corruption.SoulTraitDef>
     <defName>Devotion</defName>
-    <commonality>0.001</commonality>
     <SDegreeDatas>
+      <li>
+        <label>Ork Mind</label>
+        <description>This is an Ork. The warp may impact this being, but it's more likely that the Ork won't even take notice.</description>
+        <degree>-5</degree>
+        <CorruptionResistanceFactor>1.5</CorruptionResistanceFactor>
+        <PrayerJoyGainFactor>0.0</PrayerJoyGainFactor>
+      </li>
       <li>
         <label>Automaton Mind</label>
         <description>This is an automaton. While the warp may have effects on everything, this entity is not concerned with religions.</description>
@@ -57,12 +63,6 @@
 
       </li>
     </SDegreeDatas>
-    <degreeDatas>
-      <li>
-        <label>placeholder_devotion</label>
-        <description>This is a workaround trait. Do not use!</description>
-      </li>
-    </degreeDatas>
   </Corruption.SoulTraitDef>
 
 </Corruption.SoulTraitDefs>

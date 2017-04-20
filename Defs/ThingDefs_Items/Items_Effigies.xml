@@ -110,6 +110,12 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>2</glowRadius>
+        <glowColor>(200,0,0,0)</glowColor>
+      </li>    
+	</comps>
   </ThingDef>
 
   <ThingDef ParentName="ResourceBase">
@@ -137,6 +143,12 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>2</glowRadius>
+        <glowColor>(0,200,0,0)</glowColor>
+      </li>    
+	</comps>
   </ThingDef>
 
   <ThingDef ParentName="ResourceBase">
@@ -164,10 +176,16 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>2</glowRadius>
+        <glowColor>(0,200,200,0)</glowColor>
+      </li>    
+	</comps>
   </ThingDef>
   
   <ThingDef ParentName="ResourceBase">
-    <defName>Effigy_Chaos</defName>
+    <defName>Effigy_Slaanesh</defName>
     <label>Curious effigy</label>
     <description>A small item of worship. Looks like a hermaphrodite.</description>
     <graphicData>
@@ -191,6 +209,12 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>2</glowRadius>
+        <glowColor>(200,0,0,200)</glowColor>
+      </li>    
+	</comps>
   </ThingDef>
 
   <!--=============== Component ====================-->

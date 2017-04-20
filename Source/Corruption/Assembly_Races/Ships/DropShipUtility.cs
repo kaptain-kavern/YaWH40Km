@@ -198,30 +198,32 @@ namespace Corruption.Ships
             return false;
         }
 
-        public static void DropShips(Faction faction, IntVec3 dropCenter, Map map, IEnumerable<Pawn> pawns, IEnumerable<Thing> cargo, bool canInstaDropDuringInit = false, bool canRoofPunch = true)
+        public static List<ShipBase> CreateDropShips(List<Pawn> pawns, Faction faction, List<ThingDef> fixedShipDefs = null)
         {
-            List<Pawn> tempList = new List<Pawn>();
-            tempList.AddRange(pawns);
-            List<List<Pawn>> pawnGroups = new List<List<Pawn>>();
-            List<ShipBase> availableDropShips = new List<ShipBase>();
-            int pawnsToLoad = pawns.Count();
-            Dictionary<ShipBase, List<Thing>> shipsToLoad = new Dictionary<ShipBase, List<Thing>>();
-            while (pawnsToLoad > 0)
+            List<ShipBase> shipsToDrop = new List<ShipBase>();
+            List<ThingDef> defs = new List<ThingDef>();
+            if (fixedShipDefs.NullOrEmpty())
             {
-                ThingDef randomShipDef = DropShipUtility.AvailableDropShipsForFaction(faction).OrderBy(x => x.GetCompProperties<CompProperties_Ship>().maxPassengers).First(x => x.GetCompProperties<CompProperties_Ship>().maxPassengers >= pawnsToLoad);
-                ShipBase newShip = (ShipBase)ThingMaker.MakeThing(randomShipDef);
-                int num = randomShipDef.GetCompProperties<CompProperties_Ship>().maxPassengers;
-                for (int i = 0; i < Math.Min(num, pawnsToLoad); i++)
-                {
-                    newShip.GetInnerContainer().TryAdd(tempList[i]);
-                    tempList.Remove(tempList[i]);
-                }
-                pawnsToLoad -= num;
-                availableDropShips.Add(newShip);
+                defs.AddRange(DropShipUtility.AvailableDropShipsForFaction(faction));
             }
-            DropShipUtility.DropShipGroups(dropCenter, map, availableDropShips);
+            else
+            {
+                defs.AddRange(fixedShipDefs);
+            }
+            defs.OrderBy(x => x.GetCompProperties<CompProperties_Ship>().maxPassengers);
+            int num = 0;
+            while (num < pawns.Count)
+            {
+                ShipBase newShip = (ShipBase)ThingMaker.MakeThing(defs.RandomElementByWeight(x => x.GetCompProperties<CompProperties_Ship>().maxPassengers));
+                newShip.SetFaction(faction);
+                newShip.ShouldSpawnFueled = true;
+                shipsToDrop.Add(newShip);
+                num += newShip.compShip.sProps.maxPassengers;
+            }
+            DropShipUtility.LoadNewCargoIntoRandomShips(pawns.Cast<Thing>().ToList(), shipsToDrop);
+            return shipsToDrop;
         }
-
+                
         public static List<Pawn> AllPawnsInShip(ShipBase ship)
         {
             List<Pawn> tmp = new List<Pawn>();
@@ -237,7 +239,7 @@ namespace Corruption.Ships
             return tmp;
         }
 
-        public static void DropShipGroups(IntVec3 dropCenter, Map map, List<ShipBase> shipsToDrop) //, LordJob lordjob = null, List<Pawn> lordPawns = null)
+        public static void DropShipGroups(IntVec3 dropCenter, Map map, List<ShipBase> shipsToDrop, TravelingShipArrivalAction arrivalAction)
         {
             foreach (ShipBase current in shipsToDrop)
             {
@@ -249,8 +251,8 @@ namespace Corruption.Ships
                     current.drawTickOffset = current.compShip.sProps.TicksToImpact + Rand.Range(10, 60);
                     current.ActivatedLaunchSequence = false;
                     current.shipState = ShipState.Incoming;
-                    ShipBase_Traveling incomingShip = new ShipBase_Traveling(current, false, true, false);
-                    Log.Message("Dropping " + incomingShip.containingShip.ShipNick);
+                    ShipBase_Traveling incomingShip = new ShipBase_Traveling(current, false, arrivalAction);
+       //             Log.Message("Dropping " + incomingShip.containingShip.ShipNick);
                     GenSpawn.Spawn(incomingShip, dropLoc, map);
                 }
                 else
@@ -404,6 +406,25 @@ namespace Corruption.Ships
             }
             transferableOneWay.things.Add(thing);
             transferableOneWay.countToTransfer = thing.stackCount;
+        }
+
+
+        public static void LoadNewCargoIntoRandomShips(List<Thing> newCargo, List<ShipBase> ships)
+        {
+            for (int i = 0; i < newCargo.Count; i++)
+            {
+                int num = 0;
+                while (!ships.RandomElement().TryAcceptThing(newCargo[i], true))
+                {
+                    ships.RandomElement().TryAcceptThing(newCargo[i], true);
+                    num++;
+                }
+
+                if (num > ships.Count)
+                {
+                    break;
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Corruption.Astartes;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -133,10 +134,12 @@ namespace Corruption
                 List<FloatMenuOption> list = new List<FloatMenuOption>();
 
                 List<RecipeDef> advancedRecipes = DefDatabase<RecipeDef>.AllDefsListForReading.FindAll(x => x.defName.Contains("_MSU") || x.defName == "Euthanize");
+                advancedRecipes.AddRange(DefDatabase<RecipeDef>.AllDefsListForReading.FindAll(x => x is Astartes.RecipeDef_AstartesImplant));
 
                 foreach (RecipeDef current in advancedRecipes)
                 {
-                    if (current.AvailableNow)
+
+                    if (current.AvailableNow && CheckAstartesRecipeDef(current, patient))
                     {
                         IEnumerable<ThingDef> enumerable = current.PotentiallyMissingIngredients(null, medTable.Map);
                         if (enumerable != null && !enumerable.Any((ThingDef x) => x.isBodyPartOrImplant))
@@ -144,8 +147,6 @@ namespace Corruption
 
                             if (!enumerable.Any((ThingDef x) => x.IsDrug))
                             {
-
-
 
                                 if (current.targetsBodyPart)
                                 {
@@ -168,6 +169,23 @@ namespace Corruption
             Rect rect2 = new Rect(rect.x + 20f, 40f, rect.width, rect.height - curY - 20f);
             ITab_MSUOperation.DoBillListingSMU(medTable.BillStack, rect2, recipeOptionsMakerStandard, recipeOptionsMakerAdvanced, ref ITab_MSUOperation.billsScrollPosition, ref ITab_MSUOperation.billsScrollHeight);
             return curY;
+        }
+
+        private static bool CheckAstartesRecipeDef(RecipeDef def, Pawn patient)
+        {
+            RecipeDef_AstartesImplant astDef = def as RecipeDef_AstartesImplant;
+            if (astDef != null && astDef.RequiresHediff != null)
+            {
+                if (patient.health.hediffSet.hediffs.Any(x => x.def == astDef.RequiresHediff))
+                    {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private static Bill DoBillListingSMU(BillStack billStack, Rect rect, Func<List<FloatMenuOption>> recipeOptionsMakerStandard, Func<List<FloatMenuOption>> recipeOptionsMakerAdvanced, ref Vector2 scrollPosition, ref float viewHeight)

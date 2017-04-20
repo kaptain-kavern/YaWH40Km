@@ -34,8 +34,7 @@ namespace Corruption
         public string SubsectorName;
 
         public bool activeRaid;
-        public bool PlayerIsEnemyOfMankind = false;
-        public bool TitheCollectionActive = false;
+
 
         public Pawn Astropath;
 
@@ -53,6 +52,8 @@ namespace Corruption
         public List<Ships.ShipBase> shipsInOrbit = new List<Ships.ShipBase>();
 
         // Tithe System
+        public bool PlayerIsEnemyOfMankind = false;
+        public bool TitheCollectionActive = false;
         public bool AcknowledgedByImperium = false;
         public List<Tithes.TitheEntryGlobal> currentTithes = new List<Tithes.TitheEntryGlobal>();
         public int DaysToTitheCollection = -1;
@@ -67,6 +68,21 @@ namespace Corruption
         public int DaysAfterHelp;
 
         public float ColonyCorruptionAvg;
+
+        public bool GovernorIsPlayer
+        {
+            get
+            {
+                if (this.PlanetaryGovernor!= null)
+                {
+                    if (this.PlanetaryGovernor.Faction == Faction.OfPlayer)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
 
         public override void Tick()
         {

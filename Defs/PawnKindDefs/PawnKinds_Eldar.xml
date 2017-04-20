@@ -4,7 +4,7 @@
   <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
     <defName>EldarGuardian</defName>
     <label>eldar guardian</label>
-    <race>Alien_Sororitas</race>
+    <race>Alien_Eldar</race>
     <combatPower>100</combatPower>
     <baseRecruitDifficulty>0.90</baseRecruitDifficulty>
     <backstoryCategory>Eldar</backstoryCategory>

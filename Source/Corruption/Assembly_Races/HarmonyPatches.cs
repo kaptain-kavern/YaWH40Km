@@ -19,10 +19,10 @@ namespace Corruption
         {
             HarmonyInstance harmony = HarmonyInstance.Create("rimworld.ohu.corruption.main");
 
-            harmony.Patch(AccessTools.Method(typeof(RimWorld.ThoughtHandler), "CanGetThought", new Type[] { typeof(ThoughtDef) }), new HarmonyMethod(typeof(HarmonyPatches), "CanGetThought", new Type[] { typeof(ThoughtDef) }), null);
+            harmony.Patch(AccessTools.Method(typeof(RimWorld.ThoughtHandler), "CanGetThought", new Type[] { typeof(ThoughtDef) }), null, new HarmonyMethod(typeof(HarmonyPatches), "CanGetThoughtPostfix"), null);
             harmony.Patch(AccessTools.Method(typeof(RimWorld.MainTabWindow_Inspect), "DoInspectPaneButtons", null), null, new HarmonyMethod(typeof(HarmonyPatches), "DoInspectPaneButtons", null));
-            
             harmony.Patch(AccessTools.Method(typeof(RimWorld.FactionGenerator), "GenerateFactionsIntoWorld", new Type[] { typeof(string) }), null, new HarmonyMethod(typeof(HarmonyPatches), "GenerateFactionsIntoWorldPostFix"), null);
+            harmony.Patch(AccessTools.Method(typeof(Verse.PawnGenerator), "GenerateInitialHediffs", null), null, new HarmonyMethod(typeof(HarmonyPatches), "GenerateInitialHediffsPostFix", null));
 
         }
 
@@ -97,157 +97,74 @@ namespace Corruption
         public static bool IsAutomaton(Pawn pawn)
         {
             return pawn.AllComps.Any(i => i.GetType() == typeof(CompThoughtlessAutomaton));
-        }
+        }        
 
-        public static bool HasSoulTraitRequirements(ThoughtDef thdef, Pawn p)
+        private static bool HasSoulTraitNullyfyingTraits(ThoughtDef def, Pawn p, out Need_Soul soul)
         {
-
             if (p.needs.TryGetNeed<Need_Soul>() == null)
 
             {
                 HarmonyPatches.CreateNewSoul(p);
             }
-
-            PatronInfo pinfo = p.needs.TryGetNeed<Need_Soul>().patronInfo;
-            List<TraitDef> lvt = thdef.requiredTraits;
-            if (lvt == null) Log.Message("No Required Traits");
-            SoulTraitDef stdef = pinfo.PatronSpecificTrait(pinfo.PatronName);
-            int tt = 0;
-            foreach (TraitDef tdef in lvt)
-            {
-                if (stdef.defName == tdef.defName)
-                {
-                    tt += 1;
-                }
-            }
-            if (tt > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private static bool HasSoulTraitNullyfyingTraits(ThoughtDef def, Pawn p)
-        {
-            if (p == null) Log.Message("NoPawn");
-            if (def == null) Log.Message("NoDef");
-
-            if (p.needs.TryGetNeed<Need_Soul>() == null)
-
-            {
-                Log.Message("New Soul");
-                HarmonyPatches.CreateNewSoul(p);
-            }
-
-            List<SoulTrait> straitlist = p.needs.TryGetNeed<Need_Soul>().SoulTraits;
-            if (straitlist == null) Log.Message("Nolist");
-            int tt = 0;
+            soul = p.needs.TryGetNeed<Need_Soul>();
+            List<SoulTrait> straitlist = soul.SoulTraits;
             foreach (SoulTrait strait in straitlist)
             {
                 foreach (ThoughtDef tdef in strait.SDef.NullifiesThoughts)
                 {
                     if (tdef.defName == def.defName)
                     {
-                        tt += 1;
-                    }
-                }
-            }
-            if (tt > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private static ThoughtDefAutomaton tdef = new ThoughtDefAutomaton();
-
-        public static bool CanGetThought(ThoughtDef def, SituationalThoughtHandler __instance)
-        {
-            ProfilerThreadCheck.BeginSample("CanGetThought()");
-            try
-            {
-                if (!def.validWhileDespawned && !__instance.pawn.Spawned && !def.IsMemory)
-                {
-                    bool result = false;
-                    return result;
-                }
-                if (def.nullifyingTraits != null)
-                {
-                    for (int i = 0; i < def.nullifyingTraits.Count; i++)
-                    {
-                        if (__instance.pawn.story.traits.HasTrait(def.nullifyingTraits[i]))
-                        {
-                            bool result = false;
-                            return result;
-                        }
-                    }
-                }
-                if (def.requiredTraits != null)
-                {
-                    for (int j = 0; j < def.requiredTraits.Count; j++)
-                    {
-                        if (!__instance.pawn.story.traits.HasTrait(def.requiredTraits[j]))
-                        {
-                            if (def != null && __instance.pawn != null)
-                            {
-                                return HasSoulTraitRequirements(def, __instance.pawn);
-                            }
-                            else return false;
-                        }
-
-                        if (!__instance.pawn.story.traits.HasTrait(def.requiredTraits[j]))
-                        {
-                            bool result = false;
-                            return result;
-                        }
-                        if (def.RequiresSpecificTraitsDegree && def.requiredTraitsDegree != __instance.pawn.story.traits.DegreeOfTrait(def.requiredTraits[j]))
-                        {
-                            bool result = false;
-                            return result;
-                        }
-                    }
-                }
-                if (def.nullifiedIfNotColonist && !__instance.pawn.IsColonist)
-                {
-                    bool result = false;
-                    return result;
-                }
-                if (ThoughtUtility.IsSituationalThoughtNullifiedByHediffs(def, __instance.pawn))
-                {
-                    bool result = false;
-                    return result;
-                }
-                if (ThoughtUtility.IsThoughtNullifiedByOwnTales(def, __instance.pawn))
-                {
-                    bool result = false;
-                    return result;
-                }
-                if (HasSoulTraitNullyfyingTraits(def, __instance.pawn))
-                {
-                    return false;
-                }
-                if (IsAutomaton(__instance.pawn))
-                {
-                    ThoughtDefAutomaton Tdef = new ThoughtDefAutomaton();
-                    if ((Tdef = def as ThoughtDefAutomaton) != null && Tdef.IsAutomatonThought)
-                    {
                         return true;
                     }
-
-                    return false;
                 }
             }
-            finally
+                return false;            
+        }
+        
+        public static void CanGetThoughtPostfix(ThoughtDef def, SituationalThoughtHandler __instance, ref bool __result)
+        {
+            if (__result)
             {
-                ProfilerThreadCheck.EndSample();
+                try
+                {
+                    Need_Soul soul;
+                    if (HarmonyPatches.HasSoulTraitNullyfyingTraits(def, __instance.pawn, out soul))
+                    {
+                        __result = false;
+                        return;
+                    }
+                    ThoughtDefCorruption Tdef = def as ThoughtDefCorruption;
+                    if (Tdef != null)
+                    {
+                        if (IsAutomaton(__instance.pawn))
+                        {
+                            if (Tdef.IsAutomatonThought)
+                            {
+                                return;
+                            }
+                            else
+                            {
+                                __result = false;
+                                return;
+                            }
+                        }
+                        if (!Tdef.requiredSoulTraits.NullOrEmpty())
+                        {
+                            for (int i = 0; i < soul.SoulTraits.Count; i++)
+                            {
+                                if (!Tdef.requiredSoulTraits.Contains(soul.SoulTraits[i].SDef))
+                                {
+                                    __result = false;
+                                }
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    ProfilerThreadCheck.EndSample();
+                }
             }
-            return true;
         }
 
         public static void CreateNewSoul(Pawn pepe)
@@ -261,6 +178,19 @@ namespace Corruption
                 int x = pepe.needs.AllNeeds.Count;
                 pepe.needs.AllNeeds.Insert(x - 1, need);
                 //          pepe.needs.AllNeeds.Add(need);
+            }
+        }
+
+        public static void GenerateInitialHediffsPostFix(Pawn pawn, PawnGenerationRequest request)
+        {
+            Need_Soul soul = pawn.needs.TryGetNeed<Need_Soul>();
+            if (soul != null)
+            {
+                ChaosFollowerPawnKindDef pdef = pawn.kindDef as ChaosFollowerPawnKindDef;
+                if (pdef != null)
+                {
+                    soul.GenerateHediffsAndImplants(pdef);
+                }
             }
         }
     }

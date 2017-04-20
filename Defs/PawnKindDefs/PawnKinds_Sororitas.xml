@@ -51,6 +51,8 @@
         <li>PsykerPower_HealSimple</li>
        </CommmonPsykerPowers>
     </AfflictionProperty>
+      <UseFixedGender>true</UseFixedGender>
+      <FixedGender>Female</FixedGender>
   </PawnKindDef>
 
 
@@ -94,6 +96,8 @@
       <LowerAfflictionLimit>8</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
     </AfflictionProperty>
+      <UseFixedGender>true</UseFixedGender>
+      <FixedGender>Female</FixedGender>
   </PawnKindDef>
 
   <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
@@ -141,7 +145,8 @@
         <li>PsykerPower_HealSimple</li>
        </CommmonPsykerPowers>
     </AfflictionProperty>
-
+      <UseFixedGender>true</UseFixedGender>
+      <FixedGender>Female</FixedGender>
   </PawnKindDef>
 
   <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
@@ -192,7 +197,8 @@
         <li>PsykerPower_HealNearby</li>
        </CommmonPsykerPowers>
     </AfflictionProperty>
-
+      <UseFixedGender>true</UseFixedGender>
+      <FixedGender>Female</FixedGender>
   </PawnKindDef>
 
 </PawnKindDefs>

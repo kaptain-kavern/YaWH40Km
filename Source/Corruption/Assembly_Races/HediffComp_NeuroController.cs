@@ -10,11 +10,28 @@ namespace Corruption
 {
     public class HediffComp_NeuroController : HediffComp, IThingContainerOwner
     {
+        private const int maxWeaponSystems = 4;
+
         public ThingContainer innerContainer;
 
+        public bool WeaponSystemsActive = false;
+                
         public HediffComp_NeuroController()
         {
-            this.innerContainer = new ThingContainer(this, false);
+            this.innerContainer = new ThingContainer(this, false, LookMode.Deep);
+        }
+
+        public override void CompPostTick()
+        {
+            base.CompPostTick();
+            for (int i = 0; i < innerContainer.Count; i++)
+            {
+                ThingWithComps thingWithComps = this.innerContainer[i] as ThingWithComps;
+                if (thingWithComps != null)
+                {
+                    thingWithComps.GetComp<CompEquippable>().verbTracker.VerbsTick();
+                }
+            }
         }
 
         public bool Spawned
@@ -39,5 +56,14 @@ namespace Corruption
         {
             return this.Pawn.MapHeld;
         }
+
+        public void InstallWeapon(Thing weapon)
+        {
+            if (this.innerContainer.Count > HediffComp_NeuroController.maxWeaponSystems)
+            {
+                this.innerContainer.TryAdd(weapon);
+            }
+        }
+        
     }
 }

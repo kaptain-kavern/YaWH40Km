@@ -12,6 +12,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
       <MarketValue>300</MarketValue>
@@ -63,6 +64,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
       <MarketValue>300</MarketValue>
@@ -114,6 +116,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
       <MarketValue>300</MarketValue>
@@ -170,6 +173,7 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>6000</WorkToMake>
       <MarketValue>100</MarketValue>
@@ -211,6 +215,7 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>90</MaxHitPoints>
       <MarketValue>20</MarketValue>
@@ -237,7 +242,6 @@
       </defaultOutfitTags>
     </apparel>
     <colorGenerator Class="ColorGenerator_StandardApparel" />
-    <tradeability>Never</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="ApparelMakeableBase">
@@ -255,6 +259,7 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>90</MaxHitPoints>
       <MarketValue>20</MarketValue>
@@ -281,7 +286,6 @@
       </defaultOutfitTags>
     </apparel>
     <colorGenerator Class="ColorGenerator_StandardApparel" />
-    <tradeability>Never</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="ApparelMakeableBase">
@@ -299,6 +303,7 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>90</MaxHitPoints>
       <MarketValue>20</MarketValue>
@@ -325,7 +330,6 @@
       </defaultOutfitTags>
     </apparel>
     <colorGenerator Class="ColorGenerator_StandardApparel" />
-    <tradeability>Never</tradeability>
   </ThingDef>
 
 </ThingDefs>

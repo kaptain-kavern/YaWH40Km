@@ -13,7 +13,7 @@ using Verse.Sound;
 
 namespace Corruption.Ships
 {
-    public class ShipBase : ThingWithComps, IThingContainerOwner
+    public class ShipBase : Building, IThingContainerOwner
     {
         public bool FirstSpawned = true;
 
@@ -154,14 +154,10 @@ namespace Corruption.Ships
                 
         public bool ActivatedLaunchSequence;
 
+        private bool DeepsaveTurrets = false;
+
         public ShipBase()
         {
-      //      if (isIncoming)
-            {
-         //       this.shipState = ShipState.Incoming;
-         //       this.drawTickOffset = 600;
-                //     DropShipUtility.InitializeDropShipSpawn(this);
-            }
             this.innerContainer = new ThingContainer(this, false, LookMode.Deep);
         }
 
@@ -185,9 +181,8 @@ namespace Corruption.Ships
             base.PostMake();
             this.InitiateShipProperties();
             this.InitiateColors();
-
         }
-
+        
         public int MaxLaunchDistance(bool LaunchAsFleet)
         {
             float fuel = this.refuelableComp.Fuel;
@@ -237,40 +232,48 @@ namespace Corruption.Ships
             }
             if (this.installedTurrets.Count == 0)
             {
-                foreach (ShipWeaponSlot current in this.compShip.sProps.weaponSlots)
-                {
-                    if (current.slotType == WeaponSystemType.LightCaliber)
-                    {
-                        this.installedTurrets.Add(current, null);
-                    }
-                    if (current.slotType == WeaponSystemType.Bombing)
-                    {
-                        this.Payload.Add(current, null);
-                    }
-                    if (this.assignedTurrets.Count > 0)
-                    {
-                        Building_ShipTurret turret = this.assignedTurrets.First(x => x.assignedSlotName == current.SlotName);
-
-                        if (turret != null)
-                        {
-                            this.installedTurrets[current] = turret;
-                        }
-                    }
-                    if (this.loadedBombs.Count > 0)
-                    {
-                        WeaponSystemShipBomb bomb = (WeaponSystemShipBomb)this.loadedBombs.First(x => x.assignedSlotName == current.SlotName);
-                        if (bomb != null)
-                        {
-                            this.Payload[current] = bomb;
-                        }
-                    }
-                    if (this.assignedSystemsToModify.Count > 0)
-                    {
-                        KeyValuePair<WeaponSystem, bool> entry = this.assignedSystemsToModify.First(x => x.Key.assignedSlotName == current.SlotName);
-                        this.TryModifyWeaponSystem(current, entry.Key, entry.Value);
-                    }                
-                }
+                this.InitiateInstalledTurrets();
             }            
+        }
+
+        private void InitiateInstalledTurrets()
+        {
+            foreach (ShipWeaponSlot current in this.compShip.sProps.weaponSlots)
+            {
+                if (current.slotType == WeaponSystemType.LightCaliber)
+                {
+                    this.installedTurrets.Add(current, null);
+                }
+                if (current.slotType == WeaponSystemType.Bombing)
+                {
+                    this.Payload.Add(current, null);
+                }
+                if (this.assignedTurrets.Count > 0)
+                {
+                    Building_ShipTurret turret = this.assignedTurrets.Find(x => x.assignedSlotName == current.SlotName);
+                    if (turret != null)
+                    {
+                        turret.AssignParentShip(this);
+                        this.installedTurrets[current] = turret;
+                    }
+                }
+                else
+                {
+                }
+                if (this.loadedBombs.Count > 0)
+                {
+                    WeaponSystemShipBomb bomb = (WeaponSystemShipBomb)this.loadedBombs.First(x => x.assignedSlotName == current.SlotName);
+                    if (bomb != null)
+                    {
+                        this.Payload[current] = bomb;
+                    }
+                }
+                if (this.assignedSystemsToModify.Count > 0)
+                {
+                    KeyValuePair<WeaponSystem, bool> entry = this.assignedSystemsToModify.First(x => x.Key.assignedSlotName == current.SlotName);
+                    this.TryModifyWeaponSystem(current, entry.Key, entry.Value);
+                }
+            }
         }
         
         public bool TryModifyWeaponSystem(ShipWeaponSlot slot, Thing system, bool AddForInstalling = true)
@@ -343,7 +346,15 @@ namespace Corruption.Ships
         public override void Tick()
         {
             base.Tick();
-
+            for (int i=0; i < DropShipUtility.AllPawnsInShip(this).Count; i++)
+            {
+                Pawn pawn = DropShipUtility.AllPawnsInShip(this)[i];
+                float num = 0.6f;
+                float num2 = RestUtility.PawnHealthRestEffectivenessFactor(pawn);
+                num = 0.7f * num + 0.3f * num * num2;
+                pawn.needs.rest.TickResting(num);
+            }
+            
             if (this.shipState == ShipState.Incoming)
             {
                 this.drawTickOffset--;
@@ -385,13 +396,13 @@ namespace Corruption.Ships
                 }
             }
         }
-        public void TryLaunch(RimWorld.Planet.GlobalTargetInfo target, PawnsArriveMode arriveMode, bool attackOnArrival)
+        public void TryLaunch(RimWorld.Planet.GlobalTargetInfo target, PawnsArriveMode arriveMode, TravelingShipArrivalAction arrivalAction)
         {
             this.timeToLiftoff = 0;
             if (this.parentLandedShip == null)
             {
                 this.shipState = ShipState.Outgoing;
-                ShipBase_Traveling travelingShip = new ShipBase_Traveling(this, target, arriveMode, attackOnArrival);
+                ShipBase_Traveling travelingShip = new ShipBase_Traveling(this, target, arriveMode, arrivalAction);
                 GenSpawn.Spawn(travelingShip, this.Position, this.Map);
                 this.DeSpawn();
                 if (this.LaunchAsFleet)
@@ -401,7 +412,7 @@ namespace Corruption.Ships
                         if (current != this)
                         {
                             current.shipState = ShipState.Outgoing;
-                            ShipBase_Traveling travelingShip2 = new ShipBase_Traveling(current, target, arriveMode, attackOnArrival);
+                            ShipBase_Traveling travelingShip2 = new ShipBase_Traveling(current, target, arriveMode, arrivalAction);
                             GenSpawn.Spawn(travelingShip2, current.Position, current.Map);
                             current.DeSpawn();
                         }
@@ -411,7 +422,7 @@ namespace Corruption.Ships
             else
             {
                 Find.MainTabsRoot.SetCurrentTab(MainTabDefOf.World, false);
-                TravelingShipsUtility.LaunchLandedFleet(this.parentLandedShip, target.Tile, arriveMode, attackOnArrival, this.performBombingRun);
+                TravelingShipsUtility.LaunchLandedFleet(this.parentLandedShip, target.Tile, target.Cell, arriveMode, arrivalAction);
                 this.landedShipCached = null;
             }
         }
@@ -444,14 +455,17 @@ namespace Corruption.Ships
             if (mode == DestroyMode.Vanish)
             {
             }
-
+            foreach (Building_ShipTurret current in this.assignedTurrets)
+            {
+                current.Destroy(mode);
+            }
             base.Destroy(mode);
         }
 
         public override void DeSpawn()
         {
             base.DeSpawn();
-
+            this.DeepsaveTurrets = true;
             foreach (KeyValuePair<ShipWeaponSlot, Building_ShipTurret> current in this.installedTurrets)
             {
                 if (current.Value != null)
@@ -590,10 +604,10 @@ namespace Corruption.Ships
         public override void SpawnSetup(Map map)
         {
             base.SpawnSetup(map);
-
+            this.DeepsaveTurrets = false;
             foreach(KeyValuePair<ShipWeaponSlot, Building_ShipTurret> current in this.installedTurrets)
             {
-                if (current.Value != null)
+                if (current.Value != null && !current.Value.Spawned)
                 {
                     IntVec3 drawLoc = this.Position + DropShipUtility.AdjustedIntVecForShip(this, current.Key.turretPosOffset);
                     GenSpawn.Spawn(current.Value, drawLoc, this.Map);
@@ -659,10 +673,11 @@ namespace Corruption.Ships
         {   
             if (comp.SProps.TurretToInstall != null)
             {
-                Building_ShipTurret turret = (Building_ShipTurret)ThingMaker.MakeThing(comp.SProps.TurretToInstall, ThingDefOf.Steel);
+                Building_ShipTurret turret = (Building_ShipTurret)ThingMaker.MakeThing(comp.SProps.TurretToInstall, null);
                 turret.installedByWeaponSystem = comp.parent.def;
                 this.installedTurrets[slot] = turret;
-                turret.parentShip = this;
+                turret.AssignParentShip(this);
+                turret.assignedSlotName = slot.SlotName;
                 turret.SetFactionDirect(this.Faction);
                 if (slot.turretMinSize.x != turret.def.size.x)
                 {
@@ -674,6 +689,8 @@ namespace Corruption.Ships
                 }
                 IntVec3 drawLoc = this.Position + DropShipUtility.AdjustedIntVecForShip(this, slot.turretPosOffset);
                 GenSpawn.Spawn(turret, drawLoc, this.Map);
+                this.assignedTurrets.Add(turret);
+                Log.Message(this.assignedTurrets.Count.ToString());
                 return true;
             }
             return false;
@@ -709,8 +726,6 @@ namespace Corruption.Ships
                     command_Action.icon = DropShipUtility.LaunchSingleCommandTex;
                     command_Action.action = delegate
                     {
-                        CorruptionStoryTrackerUtilities.InitiateGovernorArrestEvent(this.Map);
-
                         SoundDef.Named("ShipTakeoff_SuborbitalLaunch").PlayOneShotOnCamera();
                         this.LaunchAsFleet = false;
                         this.StartChoosingDestination(this, this.LaunchAsFleet);
@@ -880,7 +895,7 @@ namespace Corruption.Ships
                     {
                         return;
                     }
-                    this.TryLaunch(x.ToGlobalTargetInfo(map), PawnsArriveMode.Undecided, false);
+                    this.TryLaunch(x.ToGlobalTargetInfo(map), PawnsArriveMode.Undecided, TravelingShipArrivalAction.EnterMapFriendly);
                 }, null, actionWhenFinished, DropShipUtility.TargeterShipAttachment);
                 return true;
             }
@@ -901,7 +916,7 @@ namespace Corruption.Ships
                         {
                             return;
                         }
-                        this.TryLaunch(target, PawnsArriveMode.Undecided, false);
+                        this.TryLaunch(target, PawnsArriveMode.Undecided, TravelingShipArrivalAction.StayOnWorldMap);
                         JumpToTargetUtility.CloseWorldTab();
                     }, MenuOptionPriority.Default, null, null, 0f, null, null));
                 }
@@ -911,7 +926,7 @@ namespace Corruption.Ships
                     {
                         return;
                     }
-                    this.TryLaunch(target, PawnsArriveMode.EdgeDrop, false);
+                    this.TryLaunch(target, PawnsArriveMode.EdgeDrop, TravelingShipArrivalAction.EnterMapFriendly);
                     JumpToTargetUtility.CloseWorldTab();
                 }, MenuOptionPriority.Default, null, null, 0f, null, null));
                 list.Add(new FloatMenuOption("DropInCenter".Translate(), delegate
@@ -920,7 +935,7 @@ namespace Corruption.Ships
                     {
                         return;
                     }
-                    this.TryLaunch(target, PawnsArriveMode.CenterDrop, false);
+                    this.TryLaunch(target, PawnsArriveMode.CenterDrop, TravelingShipArrivalAction.EnterMapFriendly);
                     JumpToTargetUtility.CloseWorldTab();
                 }, MenuOptionPriority.Default, null, null, 0f, null, null));
 
@@ -930,7 +945,7 @@ namespace Corruption.Ships
                         {
                             return;
                         }
-                        this.TryLaunch(target, PawnsArriveMode.CenterDrop, true);
+                        this.TryLaunch(target, PawnsArriveMode.CenterDrop, TravelingShipArrivalAction.EnterMapAssault);
                         JumpToTargetUtility.CloseWorldTab();
                     }, MenuOptionPriority.Default, null, null, 0f, null, null));
 
@@ -944,7 +959,7 @@ namespace Corruption.Ships
                                 return;
                             }
                             this.performBombingRun = true;
-                            this.TryLaunch(target, PawnsArriveMode.CenterDrop, true);
+                            this.TryLaunch(target, PawnsArriveMode.CenterDrop, TravelingShipArrivalAction.BombingRun);
                             JumpToTargetUtility.CloseWorldTab();
                         }, MenuOptionPriority.Default, null, null, 0f, null, null));
                     }
@@ -959,7 +974,7 @@ namespace Corruption.Ships
                 return false;
             }
             
-            this.TryLaunch(target, PawnsArriveMode.Undecided, false);
+            this.TryLaunch(target, PawnsArriveMode.Undecided, TravelingShipArrivalAction.StayOnWorldMap);
             return true;
         }
 
@@ -993,7 +1008,18 @@ namespace Corruption.Ships
             Scribe_Values.LookValue<Color>(ref this.Col1, "Col1", Color.white, false);
             Scribe_Values.LookValue<Color>(ref this.Col2, "Col2", Color.white, false);
 
-            Scribe_Collections.LookList<Building_ShipTurret>(ref this.assignedTurrets, "assignedTurrets", LookMode.Reference, new object[0]);
+
+            Scribe_Values.LookValue<bool>(ref this.DeepsaveTurrets, "DeepsaveTurrets", false, false);
+            if (this.DeepsaveTurrets)
+            {
+                Scribe_Collections.LookList<Building_ShipTurret>(ref this.assignedTurrets, "assignedTurrets", LookMode.Deep, new object[0]);
+            }
+            else
+            {
+                Scribe_Collections.LookList<Building_ShipTurret>(ref this.assignedTurrets, "assignedTurrets", LookMode.Reference, new object[0]);
+            }
+
+    
             Scribe_Collections.LookList<WeaponSystemShipBomb>(ref this.loadedBombs, "loadedBombs", LookMode.Reference, new object[0]);
             if (this.assignedSystemsToModify.Count > 0)
             {
@@ -1005,6 +1031,11 @@ namespace Corruption.Ships
             {
                 this
             });
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                this.InitiateInstalledTurrets();
+            }
         }
     }
 }

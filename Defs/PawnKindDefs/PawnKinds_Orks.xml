@@ -13,8 +13,8 @@
     <maxGenerationAge>100</maxGenerationAge>
     <itemQuality>Normal</itemQuality>
     <apparelMoney>
-      <min>150</min>
-      <max>300</max>
+      <min>300</min>
+      <max>1000</max>
     </apparelMoney>
     <apparelTags>
       <li>Ork</li>
@@ -39,12 +39,14 @@
     <techHediffsChance>0.3</techHediffsChance>
     <AfflictionProperty>
       <IsImmune>true</IsImmune>
-      <ImmuneDevotionDegree>-3</ImmuneDevotionDegree>
+      <ImmuneDevotionDegree>-5</ImmuneDevotionDegree>
       <UseOtherFaith>true</UseOtherFaith>
       <IsofFaith>Orks</IsofFaith>
       <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
     </AfflictionProperty>
+      <UseFixedGender>true</UseFixedGender>
+      <FixedGender>Male</FixedGender>
   </PawnKindDef>
 
   <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
@@ -86,59 +88,14 @@
     <techHediffsChance>0.7</techHediffsChance>
     <AfflictionProperty>
       <IsImmune>true</IsImmune>
-      <ImmuneDevotionDegree>-3</ImmuneDevotionDegree>
+      <ImmuneDevotionDegree>-5</ImmuneDevotionDegree>
       <UseOtherFaith>true</UseOtherFaith>
       <IsofFaith>Orks</IsofFaith>
       <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
     </AfflictionProperty>
-  </PawnKindDef>
-
-  <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
-    <defName>OrkKommandoNob</defName>
-    <label>ork kommando nob</label>
-    <race>Alien_Ork</race>
-    <combatPower>100</combatPower>
-    <baseRecruitDifficulty>0.99</baseRecruitDifficulty>
-    <backstoryCategory>Ork_Nob</backstoryCategory>
-    <defaultFactionType>Orks</defaultFactionType>
-    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
-    <maxGenerationAge>100</maxGenerationAge>
-    <itemQuality>Normal</itemQuality>
-    <apparelMoney>
-      <min>2500</min>
-      <max>5000</max>
-    </apparelMoney>
-    <apparelTags>
-      <li>OrkKommando</li>
-    </apparelTags>
-    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
-    <apparelAllowHeadwearChance>0.7</apparelAllowHeadwearChance>
-    <weaponMoney>
-      <min>800</min>
-      <max>1200</max>
-    </weaponMoney>
-    <weaponTags>
-      <li>Ork_Ranged</li>
-      <li>Ork_Melee</li>
-      <li>Ork_Heavy</li>
-    </weaponTags>
-    <techHediffsMoney>
-      <min>900</min>
-      <max>900</max>
-    </techHediffsMoney>
-    <techHediffsTags>
-      <li>Good</li>
-    </techHediffsTags>
-    <techHediffsChance>0.7</techHediffsChance>
-    <AfflictionProperty>
-      <IsImmune>true</IsImmune>
-      <ImmuneDevotionDegree>-3</ImmuneDevotionDegree>
-      <UseOtherFaith>true</UseOtherFaith>
-      <IsofFaith>Orks</IsofFaith>
-      <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
-      <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
-    </AfflictionProperty>
+      <UseFixedGender>true</UseFixedGender>
+      <FixedGender>Male</FixedGender>
   </PawnKindDef>
 
   <PawnKindDef Class="Corruption.ChaosFollowerPawnKindDef">
@@ -153,8 +110,8 @@
     <maxGenerationAge>100</maxGenerationAge>
     <itemQuality>Poor</itemQuality>
     <apparelMoney>
-      <min>100</min>
-      <max>150</max>
+      <min>0</min>
+      <max>1</max>
     </apparelMoney>
     <apparelTags>
       <li>Tribal</li>
@@ -163,12 +120,11 @@
     <apparelAllowHeadwearChance>0.1</apparelAllowHeadwearChance>
     <weaponMoney>
       <min>100</min>
-      <max>150</max>
+      <max>200</max>
     </weaponMoney>
     <weaponTags>
       <li>Gun</li>
       <li>Melee</li>
-      <li>Ork_Melee</li>
     </weaponTags>
     <techHediffsMoney>
       <min>0</min>
@@ -180,12 +136,14 @@
     <techHediffsChance>0.1</techHediffsChance>
     <AfflictionProperty>
       <IsImmune>true</IsImmune>
-      <ImmuneDevotionDegree>-3</ImmuneDevotionDegree>
+      <ImmuneDevotionDegree>-5</ImmuneDevotionDegree>
       <UseOtherFaith>true</UseOtherFaith>
       <IsofFaith>Orks</IsofFaith>
       <LowerAfflictionLimit>0.99</LowerAfflictionLimit>
       <UpperAfflictionLimit>0.99</UpperAfflictionLimit>
     </AfflictionProperty>
+      <UseFixedGender>true</UseFixedGender>
+      <FixedGender>Male</FixedGender>
   </PawnKindDef>
 
 </PawnKindDefs>

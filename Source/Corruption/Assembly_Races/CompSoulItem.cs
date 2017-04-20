@@ -101,58 +101,8 @@ namespace Corruption
             GetOverlayGraphic();
             Find.TickManager.RegisterAllTickabilityFor(this.parent);
         }
-
+        
         public void CheckForOwner()
-        {
-            CompEquippable tempcomp;
-            Apparel tempthing;
-            if (this.parent != null && !this.parent.Spawned)
-            {
-                //         Log.Message("Begin Check");
-                if (this.parent is Apparel)
-                {
-                    //             Log.Message("Soul item is Apparel");
-                    tempthing = this.parent as Apparel;
-                    this.Owner = tempthing.wearer;
-                }
-                else if ((tempcomp = this.parent.TryGetComp<CompEquippable>()) != null && tempcomp.PrimaryVerb.CasterPawn != null)
-                {
-                    //         Log.Message("IsGun");
-                    this.Owner = tempcomp.PrimaryVerb.CasterPawn;
-                }
-                if ((this.Owner != null))
-                {
-                    if ((soul = this.Owner.needs.TryGetNeed<Need_Soul>()) != null)
-                    {
-                        this.CalculateSoulChanges(soul, SProps);
-                    }
-                    if (!PsykerPowerAdded)
-                    {
-                        CompPsyker compPsyker;
-                        if ((compPsyker = Owner.TryGetComp<CompPsyker>()) != null)
-                        {
-                            for (int i = 0; i < SProps.UnlockedPsykerPowers.Count; i++)
-                            {
-                                if (soul.PsykerPowerLevel >= SProps.UnlockedPsykerPowers[i].PowerLevel)
-                                {
-                                //    Log.Message("Adding Power to: " + compPsyker.psyker + " : " + SProps.UnlockedPsykerPowers[i].defName);
-                                    compPsyker.temporaryWeaponPowers.Add(new PsykerPower(Owner, SProps.UnlockedPsykerPowers[i]));
-                                }
-                            }
-                            compPsyker.UpdatePowers();
-                        }
-                        PsykerPowerAdded = true;
-                    }
-
-                }
-            }
-            if (this.parent.Spawned)
-            {
-                PsykerPowerAdded = false;
-            }
-        }
-
-        public void CheckForOwnerV2()
         {
             CompEquippable tempcomp;
             Apparel tempthing;
@@ -169,6 +119,11 @@ namespace Corruption
                 {
                     //         Log.Message("IsGun");
                     this.Owner = tempcomp.PrimaryVerb.CasterPawn;
+                }
+                else if (this.parent.holdingContainer != null && this.parent.holdingContainer.owner is Pawn_CarryTracker)
+                {
+                    Pawn_CarryTracker tracker = this.parent.holdingContainer.owner as Pawn_CarryTracker;
+                    this.Owner = tracker.pawn;
                 }
                 if ((this.Owner != null))
                 {
@@ -253,7 +208,7 @@ namespace Corruption
         public override void CompTickRare()
         {
       //      Log.Message("CompTick");
-            this.CheckForOwnerV2();     
+            this.CheckForOwner();     
         }
 
         public override void PostExposeData()

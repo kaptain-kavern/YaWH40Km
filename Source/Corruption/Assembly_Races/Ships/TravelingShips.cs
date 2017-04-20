@@ -12,6 +12,7 @@ namespace Corruption.Ships
     public class TravelingShips : WorldObject
     {
         public List<ShipBase> ships = new List<ShipBase>();
+
         private const float TravelSpeed = 0.00025f;
 
         public int destinationTile = -1;
@@ -19,10 +20,8 @@ namespace Corruption.Ships
         public IntVec3 destinationCell = IntVec3.Invalid;
 
         public PawnsArriveMode arriveMode;
-        
-        public bool bombingRunOnArrival;
 
-        public bool attackOnArrival;
+        public TravelingShipArrivalAction arrivalAction;
 
         private bool arrived;
 
@@ -175,10 +174,11 @@ namespace Corruption.Ships
             Scribe_Values.LookValue<int>(ref this.destinationTile, "destinationTile", 0, false);
             Scribe_Values.LookValue<IntVec3>(ref this.destinationCell, "destinationCell", default(IntVec3), false);
             Scribe_Values.LookValue<PawnsArriveMode>(ref this.arriveMode, "arriveMode", PawnsArriveMode.Undecided, false);
-            Scribe_Values.LookValue<bool>(ref this.attackOnArrival, "attackOnArrival", false, false);
             Scribe_Values.LookValue<bool>(ref this.arrived, "arrived", false, false);
             Scribe_Values.LookValue<int>(ref this.initialTile, "initialTile", 0, false);
             Scribe_Values.LookValue<float>(ref this.traveledPct, "traveledPct", 0f, false);
+            Scribe_Values.LookValue<TravelingShipArrivalAction>(ref this.arrivalAction, "arrivalAction", TravelingShipArrivalAction.StayOnWorldMap, false);
+            
         }
 
         public override void PostAdd()
@@ -230,7 +230,7 @@ namespace Corruption.Ships
             {
                 return;
             }
-            if (this.bombingRunOnArrival)
+            if (this.arrivalAction == TravelingShipArrivalAction.BombingRun)
             {
                 TravelingShips travelingShips = (TravelingShips)WorldObjectMaker.MakeWorldObject(ShipNamespaceDefOfs.TravelingSuborbitalShip);
                 travelingShips.Tile = this.destinationTile;
@@ -238,8 +238,7 @@ namespace Corruption.Ships
                 travelingShips.destinationTile = this.initialTile;
                 travelingShips.destinationCell = this.launchCell;
                 travelingShips.arriveMode = this.arriveMode;
-                travelingShips.attackOnArrival = this.attackOnArrival;
-                travelingShips.bombingRunOnArrival = false;
+                travelingShips.arrivalAction = TravelingShipArrivalAction.EnterMapFriendly;
                 Find.WorldObjects.Add(travelingShips);
                 Find.WorldObjects.Remove(this);
             }
@@ -248,6 +247,7 @@ namespace Corruption.Ships
                 Map map = Current.Game.FindMap(this.destinationTile);
                 if (map != null)
                 {
+                    Log.Message("Dropping in Existing Map");
                     this.SpawnShipsInMap(map, null);
                 }
                 else if (!this.LandedShipHasCaravanOwner)
@@ -263,17 +263,15 @@ namespace Corruption.Ships
                 else
                 {
                     FactionBase factionBase = Find.WorldObjects.FactionBases.Find((FactionBase x) => x.Tile == this.destinationTile);
-
-                    if (factionBase.HasMap) Log.Message("HasMap1");
-                    if (factionBase != null && factionBase.Faction != Faction.OfPlayer)
+                    
+                    if (factionBase != null && factionBase.Faction != Faction.OfPlayer && this.arrivalAction != TravelingShipArrivalAction.StayOnWorldMap)
                     {
                         LongEventHandler.QueueLongEvent(delegate
                         {
                             Map map2 = AttackCaravanArrivalActionUtility.GenerateFactionBaseMap(factionBase);
-
-                            if (factionBase.HasMap) Log.Message("HasMap2");
+                            
                             string extraMessagePart = null;
-                            if (this.attackOnArrival && !factionBase.Faction.HostileTo(Faction.OfPlayer))
+                            if (this.arrivalAction == TravelingShipArrivalAction.EnterMapAssault && !factionBase.Faction.HostileTo(Faction.OfPlayer))
                             {
                                 factionBase.Faction.SetHostileTo(Faction.OfPlayer, true);
                                 extraMessagePart = "MessageTransportPodsArrived_BecameHostile".Translate(new object[]
@@ -339,6 +337,7 @@ namespace Corruption.Ships
             IntVec3 intVec;
             if (this.destinationCell.IsValid && this.destinationCell.InBounds(map))
             {
+                Log.Message("ValidCell");
                 intVec = this.destinationCell;
             }
             else if (this.arriveMode == PawnsArriveMode.CenterDrop)
@@ -354,6 +353,7 @@ namespace Corruption.Ships
                 {
                     Log.Warning("Unsupported arrive mode " + this.arriveMode);
                 }
+                Log.Message("Invalid Cell");
                 intVec = DropCellFinder.FindRaidDropCenterDistant(map);
             }
 
@@ -362,7 +362,7 @@ namespace Corruption.Ships
             {
                 text = text + " " + extraMessagePart;
             }
-            DropShipUtility.DropShipGroups(intVec, map, this.ships);
+            DropShipUtility.DropShipGroups(intVec, map, this.ships, this.arrivalAction);
             Messages.Message(text, new TargetInfo(intVec, map, false), MessageSound.Benefit);
             this.RemoveAllPods();
             Find.WorldObjects.Remove(this);

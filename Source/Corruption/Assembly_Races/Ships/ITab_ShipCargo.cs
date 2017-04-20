@@ -188,7 +188,7 @@ namespace Corruption.Ships
             else
             {
                 Texture2D tex = ContentFinder<Texture2D>.Get(currentWeapon.Value.def.building.turretTopGraphicPath);
-                GUI.DrawTexture(rectslotIcon, currentWeapon.Value.def.uiIcon);
+                GUI.DrawTexture(rectslotIcon, tex);
                 Widgets.DrawWindowBackground(rectslotIcon);
             }
 
@@ -204,16 +204,16 @@ namespace Corruption.Ships
                 if (currentWeapon.Value == null)
                 {
                     List<Thing> list = DropShipUtility.availableWeaponsForSlot(this.ship.Map, currentWeapon.Key);
-           //         Log.Message("List of potentials  " + list.Count.ToString());
+                    //         Log.Message("List of potentials  " + list.Count.ToString());
                     list.OrderBy(x => x.Position.DistanceToSquared(this.ship.Position));
-                    for (int i=0; i < list.Count; i++)
+                    for (int i = 0; i < list.Count; i++)
                     {
                         Thing weapon = list[i];
                         Action action = new Action(delegate
                         {
                             ship.TryModifyWeaponSystem(currentWeapon.Key, weapon, true);
                         });
-                        
+
                         FloatMenuOption newOption = new FloatMenuOption("Install".Translate() + weapon.Label, action);
                         opts.Add(newOption);
                     }
@@ -228,7 +228,7 @@ namespace Corruption.Ships
                     FloatMenuOption newOption = new FloatMenuOption("Uninstall".Translate() + currentWeapon.Value.Label, action);
                     opts.Add(newOption);
                 }
-                if (opts.Count <1)
+                if (opts.Count < 1)
                 {
                     opts.Add(new FloatMenuOption("None", null));
                 }
@@ -236,23 +236,27 @@ namespace Corruption.Ships
             }
             Rect rect3 = new Rect(rectslotIcon.xMax + 10f, y, width - rectslotName.width - rectslotIcon.width - 10f, 30f);
 
-            if (currentWeapon.Value == null)
+            if (currentWeapon.Value == null && !ship.weaponsToInstall.Any(x => x.Key == currentWeapon.Key))
             {
                 Widgets.Label(rect3, "NoneInstalled".Translate());
             }
-            else if (ship.weaponsToInstall.Any(x => x.Key == currentWeapon.Key))
-            {
-                Widgets.Label(rect3, "InstallingShipWeapon".Translate(new object[]
-                    {
-                        currentWeapon.Value.LabelCap
-                    }));
-            }
             else
             {
-                Widgets.Label(rect3, currentWeapon.Value.def.LabelCap);
-            }
+                ShipWeaponSlot installingSlot = ship.weaponsToInstall.FirstOrDefault(x => x.Key == currentWeapon.Key).Key;
+                if (installingSlot != null)
+                {
+                    Widgets.Label(rect3, "InstallingShipWeapon".Translate(new object[]
+                        {
+                        ship.weaponsToInstall[installingSlot].LabelCap
+                        }));
+                }
+                else
+                {
+                    Widgets.Label(rect3, currentWeapon.Value.def.LabelCap);
+                }
 
-                y += 35f;
+            }
+            y += 35f;
         }
 
         private void DrawWeaponsPayloadRow(ref float y, float width, KeyValuePair<ShipWeaponSlot, WeaponSystemShipBomb> currentWeapon)

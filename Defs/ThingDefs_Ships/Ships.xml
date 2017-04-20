@@ -43,6 +43,10 @@
 			<li>ShipBasics</li>
 		</researchPrerequisites>
     <drawOffscreen>true</drawOffscreen>
+    <building>
+      <claimable>true</claimable>
+      <alwaysDeconstructible>true</alwaysDeconstructible>
+    </building>
 
   </ThingDef>
 
@@ -84,6 +88,7 @@ Offensive Capabilities: 1x Payload Slot
       <li Class="Corruption.Ships.CompProperties_Ship">
         <TicksToImpact>200</TicksToImpact>
         <TicksToDespawn>200</TicksToDespawn>
+        <CanBeStartingShip>true</CanBeStartingShip>
         <LeavingShipDef>OHUDropShipLeaving</LeavingShipDef>
         <FuelType>Chemfuel</FuelType>
         <IncomingAngle>65</IncomingAngle>
@@ -123,8 +128,9 @@ Offensive Capabilities: 1x Payload Slot
     </comps>
 
     <costList>
-      <Steel>80</Steel>
-      <Component>1</Component>
+      <Steel>800</Steel>
+      <Plasteel>100</Plasteel>
+      <Component>20</Component>
     </costList>
 		<researchPrerequisites>
 			<li>ShipBasics</li>

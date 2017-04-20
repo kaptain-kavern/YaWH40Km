@@ -6,8 +6,9 @@ using System.Text;
 
 namespace Corruption
 {
-    public class ThoughtDefAutomaton : ThoughtDef
+    public class ThoughtDefCorruption : ThoughtDef
     {
         public bool IsAutomatonThought;
+        public List<SoulTraitDef> requiredSoulTraits = new List<SoulTraitDef>();
     }
 }

@@ -52,7 +52,7 @@ namespace Corruption
 
         public override void PostMake()
         {
-            ThingIDMaker.GiveIDTo(this);
+ //           ThingIDMaker.GiveIDTo(this);
         }
 
         public Pawn pawn;

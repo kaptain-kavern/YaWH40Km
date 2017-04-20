@@ -18,6 +18,7 @@
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <soundInteract>InteractPistol</soundInteract>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>1140000</WorkToMake>
       <MarketValue>3650</MarketValue>
@@ -64,6 +65,7 @@
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <soundInteract>InteractPistol</soundInteract>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>1140000</WorkToMake>
       <MarketValue>3650</MarketValue>
@@ -110,6 +112,7 @@
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <soundInteract>InteractPistol</soundInteract>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>1140000</WorkToMake>
       <MarketValue>3650</MarketValue>
@@ -156,6 +159,7 @@
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <soundInteract>InteractPistol</soundInteract>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>1140000</WorkToMake>
       <MarketValue>3650</MarketValue>
@@ -215,6 +219,7 @@
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <soundInteract>InteractPistol</soundInteract>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>1140000</WorkToMake>
       <MarketValue>3650</MarketValue>

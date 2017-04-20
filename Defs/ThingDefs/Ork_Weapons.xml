@@ -17,6 +17,7 @@
     <weaponTags>
       <li>Ork_Melee</li>
     </weaponTags>
+    <tradeability>Sellable</tradeability>
   </ThingDef>
 
   <ThingDef Name="BaseOrkGun" ParentName="BaseMakeableGun" Abstract="True">
@@ -26,6 +27,7 @@
     <recipeMaker>
       <researchPrerequisite>ChargedShot</researchPrerequisite>
     </recipeMaker>
+    <tradeability>Sellable</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="BaseBullet">
@@ -44,10 +46,12 @@
 
   <!-- ===================== Shoota ========================= -->
 
-  <ThingDef ParentName="BaseOrkGun">
+  <ThingDef ParentName="BaseOrkGun" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
     <defName>OrkShoota</defName>
     <label>Ork Shoota</label>
     <description>Xenotech bolt-action rifle. Unstable, but powerful.</description>
+    <ItemMeshSize>(1.3, 1.3, 1.3)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkShoota</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -88,11 +92,11 @@
     <thingClass>FactionColors.FactionItem</thingClass>
     <defName>OrkDeffgun</defName>
     <label>Deffgun</label>
-    <ItemMeshSize>(1.3, 1.3, 1.3)</ItemMeshSize>
+    <ItemMeshSize>(1.7, 1.7, 1.7)</ItemMeshSize>
     <description>A heavy-duty ork machine gun.</description>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkDeffgun</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
+      <graphicClass>Graphic_Single</graphicClass>
 	 <drawSize>1.3</drawSize>
     </graphicData>
     <soundInteract>InteractRifle</soundInteract>
@@ -143,10 +147,12 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="BaseGun">
+  <ThingDef ParentName="BaseGun" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
     <defName>OrkRocketeer</defName>
     <label>ork rocket launcher</label>
     <description>An ork rocket launcher. Very inaccurate, but dangerous nonetheless.</description>
+    <ItemMeshSize>(1.5, 1.5, 1.5)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkRocketeer</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -212,10 +218,12 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="BaseEquipment">
+  <ThingDef ParentName="BaseEquipment" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
     <defName>Weapon_OrkStikkBomb</defName>
     <equipmentType>Primary</equipmentType>
     <label>frag grenades</label>
+    <ItemMeshSize>(1.3, 1.3, 1.3)</ItemMeshSize>
     <description>Crude explosives used by orks.</description>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkStikkBombEQ</texPath>
@@ -255,10 +263,12 @@
     </smeltProducts>
   </ThingDef>
 
-  <ThingDef ParentName="BaseOrkGun">
+  <ThingDef ParentName="BaseOrkGun" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
     <defName>OrkBurna</defName>
     <label>Ork Burna</label>
     <description>Xenotech flamethrower. Unstable, but powerful.</description>
+    <ItemMeshSize>(1.3, 1.3, 1.3)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkFlamer</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -296,10 +306,11 @@
   <!-- ===================Melee=========================================== -->
 
   <ThingDef ParentName="OrkMeleeWeapon" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
     <defName>Ork_Sword</defName>
     <label>Ork Choppa</label>
     <description>Xenotech melee weapon. Unwieldy and crude.</description>
-    <ItemMeshSize>(1.2, 1.2, 1.2)</ItemMeshSize>
+    <ItemMeshSize>(1.3, 1.3, 1.3)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkChoppa</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -329,10 +340,11 @@
   </ThingDef>
 
   <ThingDef ParentName="OrkMeleeWeapon" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
     <defName>Ork_Axe</defName>
     <label>Ork Choppa</label>
     <description>Xenotech melee weapon. Unwieldy and crude.</description>
-    <ItemMeshSize>(1.6, 1.6, 1.6)</ItemMeshSize>
+    <ItemMeshSize>(1.5, 1.5, 1.5)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkBigChoppa</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -363,10 +375,11 @@
   </ThingDef>
 
   <ThingDef ParentName="OrkMeleeWeapon" Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
     <defName>Ork_Chainaxe</defName>
     <label>Ork Choppa</label>
     <description>Xenotech melee weapon. Unwieldy and crude.</description>
-    <ItemMeshSize>(1.6, 1.6, 1.6)</ItemMeshSize>
+    <ItemMeshSize>(1.5, 1.5, 1.5)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/ChoppaSaw</texPath>
       <graphicClass>Graphic_Single</graphicClass>

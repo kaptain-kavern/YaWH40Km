@@ -16,7 +16,7 @@ namespace Corruption
                 return this.props as HediffCompProperties_DrawImplant;
             }
         }
-
+        
         public Material ImplantMaterial(Pawn pawn, Rot4 bodyFacing)
         {
             string path;

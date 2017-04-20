@@ -344,7 +344,7 @@ namespace Corruption
             {
                 dropCenter = DropCellFinder.FindRaidDropCenterDistant(map);
             }
-            DropShipUtility.DropShipGroups(dropCenter, map, tmp);
+            DropShipUtility.DropShipGroups(dropCenter, map, tmp, TravelingShipArrivalAction.EnterMapFriendly);
             LordMaker.MakeNewLord(dropShip.Faction, new IoM.LordJob_ArrestGovernor(dropShip, dropCenter),map, arbites);
 
 

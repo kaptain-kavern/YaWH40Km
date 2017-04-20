@@ -26,6 +26,13 @@
 
   <ForceListenersDebug>Debug: Force Listeners</ForceListenersDebug>
 
+  <MessageSermonInterrupted>A sermon was interrupted</MessageSermonInterrupted>
 
+  <MessageSermonFinished>A sermon has ended</MessageSermonFinished>
+
+  <StartedSermonMessage>{0} is calling for {1} at {2}</StartedSermonMessage>
+
+  <MorningPrayer>Morning Prayers</MorningPrayer>
+  <EveningPrayer>Evening Prayers</EveningPrayer>
 
 </LanguageData>

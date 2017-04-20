@@ -7,7 +7,7 @@ using Verse;
 
 namespace Corruption
 {
-    public class SoulTraitDef : TraitDef
+    public class SoulTraitDef : Def
     {
         public List<SoulTraitDegreeData> SDegreeDatas;
 
@@ -18,25 +18,6 @@ namespace Corruption
         public override void ResolveReferences()
         {
             base.ResolveReferences();
-        }
-
-        public TraitDegreeData VDegreeDataAt(int deg)
-        {
-            for (int i = 0; i < this.degreeDatas.Count; i++)
-            {
-                if (this.SDegreeDatas[i].degree == deg)
-                {
-                    return this.degreeDatas[i];
-                }
-            }
-            Log.Error(string.Concat(new object[]
-            {
-        this.defName,
-        " found no soul data at degree ",
-        deg,
-        ", returning first defined."
-            }));
-            return this.degreeDatas[0];
         }
 
         public SoulTraitDegreeData SDegreeDataAt(int deg)

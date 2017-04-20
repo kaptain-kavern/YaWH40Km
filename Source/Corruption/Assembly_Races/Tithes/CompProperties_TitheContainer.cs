@@ -8,6 +8,6 @@ namespace Corruption.Tithes
 {
     public class CompProperties_TitheContainer : CompProperties
     {
-        public int maxContainerCapacity = 2000;
+        public int maxContainerCapacity = 1000;
     }
 }

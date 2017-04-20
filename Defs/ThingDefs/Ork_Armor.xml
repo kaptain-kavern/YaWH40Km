@@ -2,45 +2,103 @@
 <ThingDefs>
 
   <ThingDef ParentName="ArmorMakeableBase" Class="FactionColors.ApparelUniformDef">
-    <defName>Ork_Armor</defName>
     <thingClass>FactionColors.ApparelUniform</thingClass>
-    <label>Orkish Armor</label>
-    <description>Crude orkish armor.</description>
-    <techLevel>Industrial</techLevel>
-    <recipeMaker>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>Xenotech_Ork</researchPrerequisite>
-    </recipeMaker>
+    <defName>Apparel_OrkishShirt</defName>
+    <label>Orkish vest</label>
+    <description>A crude assortment of thick leather straps sewn into a vest.</description>
     <graphicData>
-      <texPath>Things/Orks/OrkArmorBase/OrkArmorIcon</texPath>
+      <texPath>Things/Orks/OrkLeatherVest/OrkLeatherVest</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
-    <statBases>
-      <WorkToMake>325000</WorkToMake>
-      <MaxHitPoints>200</MaxHitPoints>
-      <MarketValue>100</MarketValue>
-      <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.05</ArmorRating_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.5</MoveSpeed>
-    </equippedStatOffsets>
+    <costStuffCount>50</costStuffCount>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <statBases>
+      <MarketValue>200</MarketValue>
+      <WorkToMake>5000</WorkToMake>
+      <Mass>2.25</Mass>
+      <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+      <Insulation_Cold>-3</Insulation_Cold>
+    </statBases>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+      </bodyPartGroups>
+      <worngraphicPath>Things/Orks/OrkLeatherVest/OrkLeatherVest</worngraphicPath>
+      <layers>
+        <li>OnSkin</li>
+      </layers>
+      <commonality>1</commonality>
+      <tags>
+        <li>Ork</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Ork</li>
+      </defaultOutfitTags>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(1.00,1.00,1.00,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+    <comps>
+      <li Class="FactionColors.CompProperties_FactionColor">
+        <compClass>FactionColors.CompFactionColor</compClass>
+      </li>
+      <li Class="FactionColors.ApparelDetailProps">
+        <compClass>FactionColors.ApparelDetailDrawer</compClass>
+        <DetailChance>0.5</DetailChance>
+	   <IsHeadDetail>false</IsHeadDetail>
+	   <ApparelDetails>
+		<li>
+			<DetailGraphicPath>Things/Orks/Pads/PadLeft</DetailGraphicPath>					
+<Commonality>10</Commonality>
+			<FactionTag>Orks</FactionTag>			
+		</li>
+	   </ApparelDetails>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="ArmorMakeableBase" Class="FactionColors.ApparelUniformDef">
+    <thingClass>FactionColors.ApparelUniform</thingClass>
+    <defName>Apparel_OrkishChestplate</defName>
+    <label>Orkish chestplate</label>
+    <description>A heavy metal plate held together with leathers and nails to form a basic chestplate.</description>
+    <graphicData>
+      <texPath>Things/Orks/OrkChestPlate/OrkChestPlate</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <statBases>
+      <MarketValue>600</MarketValue>
+      <WorkToMake>9000</WorkToMake>
+      <Mass>5.25</Mass>
+      <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+      <Insulation_Cold>-3</Insulation_Cold>
+    </statBases>
     <costList>
-      <Steel>135</Steel>
+      <Steel>75</Steel>
     </costList>
     <apparel>
       <bodyPartGroups>
         <li>Torso</li>
-        <li>Shoulders</li>
-        <li>Arms</li>
-        <li>Legs</li>
       </bodyPartGroups>
-      <worngraphicPath>Things/Orks/OrkArmorBase/OrkArmor</worngraphicPath>
+      <worngraphicPath>Things/Orks/OrkChestPlate/OrkChestPlate</worngraphicPath>
       <layers>
         <li>Middle</li>
       </layers>
@@ -65,6 +123,7 @@
         <compClass>FactionColors.CompFactionColor</compClass>
       </li>
     </comps>
+
   </ThingDef>
 
   <ThingDef ParentName="ArmorHelmetMakeableBase">
@@ -80,10 +139,11 @@
       <texPath>Things/Orks/OrkHelmet/OrkHelmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>6000</WorkToMake>
       <MaxHitPoints>100</MaxHitPoints>
-      <MarketValue>60</MarketValue>
+      <MarketValue>150</MarketValue>
       <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.6</ArmorRating_Sharp>
     </statBases>
@@ -117,59 +177,6 @@
         </li>
       </options>
     </colorGenerator>
-  </ThingDef>
-
-  <ThingDef ParentName="ArmorHelmetMakeableBase" Class="FactionColors.ApparelUniformDef">
-    <thingClass>FactionColors.ApparelUniform</thingClass>
-    <defName>OrkHelmetVar</defName>
-    <label>Ork Helmet</label>
-    <description>A crude Orkishg helmet.</description>
-    <techLevel>Spacer</techLevel>
-    <recipeMaker>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>Xenotech_Ork</researchPrerequisite>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Orks/OrkHelmet/OrkHelmetVarIcon</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <statBases>
-      <WorkToMake>6000</WorkToMake>
-      <MaxHitPoints>100</MaxHitPoints>
-      <MarketValue>60</MarketValue>
-      <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.6</ArmorRating_Sharp>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.1</MoveSpeed>
-    </equippedStatOffsets>
-    <costList>
-      <Steel>60</Steel>
-    </costList>
-    <apparel>
-      <bodyPartGroups>
-        <li>FullHead</li>
-      </bodyPartGroups>
-      <worngraphicPath>Things/Orks/OrkHelmet/OrkHelmetVar</worngraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <commonality>5</commonality>
-      <tags>
-        <li>Ork</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>Ork</li>
-      </defaultOutfitTags>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(1.00,1.00,1.00,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
     <comps>
       <li Class="FactionColors.CompProperties_FactionColor">
         <compClass>FactionColors.CompFactionColor</compClass>
@@ -187,137 +194,13 @@
 			<DetailGraphicPath>Things/Orks/OrkDetails/Hornup</DetailGraphicPath>					<Commonality>10</Commonality>
 			<FactionTag>Orks</FactionTag>			
 		</li>
+		<li>
+			<DetailGraphicPath>Things/Orks/OrkDetails/OrkJaw</DetailGraphicPath>					<Commonality>10</Commonality>
+			<FactionTag>Orks</FactionTag>
+		</li>
 	   </ApparelDetails>
       </li>
     </comps>
- </ThingDef>
-
-  <ThingDef ParentName="ArmorMakeableBase">
-    <defName>OrkArmorNob</defName>
-    <label>ork nob armor</label>
-    <description>Really heavy ork armor worn by nobs.</description>
-    <techLevel>Spacer</techLevel>
-    <recipeMaker>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>Xenotech_Ork</researchPrerequisite>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Orks/OrkArmorNobs/Orkarmor</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <statBases>
-      <WorkToMake>250000</WorkToMake>
-      <MaxHitPoints>400</MaxHitPoints>
-      <MarketValue>4500</MarketValue>
-      <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.65</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.30</ArmorRating_Heat>
-      <Insulation_Cold>-25</Insulation_Cold>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.10</MoveSpeed>
-      <WorkSpeedGlobal>-0.10</WorkSpeedGlobal>
-    </equippedStatOffsets>
-    <thingCategories>
-      <li>Apparel</li>
-    </thingCategories>
-    <costList>
-      <Component>18</Component>
-      <Plasteel>135</Plasteel>
-    </costList>
-    <apparel>
-      <bodyPartGroups>
-        <li>Torso</li>
-        <li>Shoulders</li>
-        <li>Arms</li>
-        <li>Legs</li>
-      </bodyPartGroups>
-      <worngraphicPath>Things/Orks/OrkArmorNobs/Orkarmor</worngraphicPath>
-      <layers>
-        <li>Middle</li>
-        <li>Shell</li>
-      </layers>
-      <commonality>2</commonality>
-      <tags>
-        <li>OrkNob</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>OrkNob</li>
-      </defaultOutfitTags>
-    </apparel>
-    <comps>
-    </comps>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(1.00,1.00,1.00,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-  </ThingDef>
-
-  <ThingDef ParentName="ArmorMakeableBase">
-    <defName>OrkKommandoArmor</defName>
-    <label>kommando nob armor</label>
-    <description>Heavy leather armor, usually worn by ork kommandos.</description>
-    <techLevel>Spacer</techLevel>
-    <recipeMaker>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <researchPrerequisite>Xenotech_Ork</researchPrerequisite>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Orks/OrkArmorNobs/OrkCommandoArmor</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <statBases>
-      <WorkToMake>12000</WorkToMake>
-      <MaxHitPoints>250</MaxHitPoints>
-      <MarketValue>1000</MarketValue>
-      <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.45</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.10</ArmorRating_Heat>
-      <Insulation_Cold>-25</Insulation_Cold>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.05</MoveSpeed>
-      <WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
-    </equippedStatOffsets>
-    <thingCategories>
-      <li>Apparel</li>
-    </thingCategories>
-    <costList>
-      <Component>18</Component>
-      <Plasteel>135</Plasteel>
-    </costList>
-    <apparel>
-      <bodyPartGroups>
-        <li>Torso</li>
-        <li>Legs</li>
-      </bodyPartGroups>
-      <worngraphicPath>Things/Orks/OrkArmorNobs/OrkCommandoArmor</worngraphicPath>
-      <layers>
-        <li>Middle</li>
-        <li>Shell</li>
-      </layers>
-      <commonality>2</commonality>
-      <tags>
-        <li>OrkKommando</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>OrkKommando</li>
-      </defaultOutfitTags>
-    </apparel>
-    <comps>
-    </comps>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(1.00,1.00,1.00,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
   </ThingDef>
 
   <ThingDef ParentName="HatBase" Class="FactionColors.ApparelUniformDef">
@@ -330,6 +213,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <MarketValue>200</MarketValue>

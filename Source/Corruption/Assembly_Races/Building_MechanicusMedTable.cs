@@ -99,7 +99,7 @@ namespace Corruption
                             }
                             else
                             {
-                                               list.Add(Building_MechanicusMedTable.GenerateSurgeryOptionMedTable(patient, medTable, current, enumerable, null));
+                                list.Add(Building_MechanicusMedTable.GenerateSurgeryOptionMedTable(patient, medTable, current, enumerable, null));
                             }
                         }
                     }
@@ -110,7 +110,6 @@ namespace Corruption
 
         public static FloatMenuOption GenerateSurgeryOptionMedTable(Pawn pawn, Building_MechanicusMedTable medTable, RecipeDef recipe, IEnumerable<ThingDef> missingIngredients, BodyPartRecord part = null)
         {
-            Log.Message("Generatung Option");
             string text = recipe.Worker.GetLabelWhenUsedOn(pawn, part);
             if (part != null && !recipe.hideBodyPartNames)
             {

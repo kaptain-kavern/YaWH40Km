@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -52,6 +55,9 @@
       <HintPath>..\..\..\Assemblies\FactionColors.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp">
+      <HintPath>..\..\..\Assemblies\roslyn\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,7 +72,7 @@
   <ItemGroup>
     <Compile Include="Affliction.cs" />
     <Compile Include="AfflictionDrawerUtility.cs" />
-    <Compile Include="AfflictionHeadDrawer.cs" />
+    <Compile Include="Astartes\RecipeDef_AstartesImplant.cs" />
     <Compile Include="Bill_MedicalTable.cs" />
     <Compile Include="BookStuff\Bookshelf.cs" />
     <Compile Include="BookStuff\ITab_Bookshelf.cs" />
@@ -76,8 +82,10 @@
     <Compile Include="BookStuff\ReadableEffects.cs" />
     <Compile Include="BookStuff\ReadableEffektEntry.cs" />
     <Compile Include="BookStuff\ThingDef_Readables.cs" />
-    <Compile Include="BuildingAltar.cs" />
-    <Compile Include="BuildingAltarDef.cs" />
+    <Compile Include="HediffCompProperties_MechWeapons.cs" />
+    <Compile Include="Ships\ScenPart_StartWithShip.cs" />
+    <Compile Include="Worship\BuildingAltar.cs" />
+    <Compile Include="Worship\BuildingAltarDef.cs" />
     <Compile Include="BuildingWorshipDef.cs" />
     <Compile Include="Building_CommsConsoleIG.cs" />
     <Compile Include="Building_MechanicusMedTable.cs" />
@@ -129,6 +137,7 @@
     <Compile Include="HediffComp_PostBuff.cs" />
     <Compile Include="HediffComp_TurnServitor.cs" />
     <Compile Include="ImplantDrawerType.cs" />
+    <Compile Include="IncidentWorker_CorruptedEffigy.cs" />
     <Compile Include="IoM\JobDriver_ArrestOnMap.cs" />
     <Compile Include="IoM\JobGiver_AssistArrest.cs" />
     <Compile Include="Ships\Building_ShipTurret.cs" />
@@ -137,16 +146,16 @@
     <Compile Include="Ships\Dialog_LoadShipCargo.cs" />
     <Compile Include="Ships\Dialog_TradeFromShips.cs" />
     <Compile Include="Ships\HarmonyPatches.cs" />
+    <Compile Include="Ships\IncidentWorker_AerialRaid.cs" />
     <Compile Include="Ships\ITab_Fleet.cs" />
     <Compile Include="Ships\JobDriver_EnterShip.cs" />
-    <Compile Include="Ships\IncidentWorker_AirRaidEnemy.cs" />
     <Compile Include="Ships\ITab_ShipCargo.cs" />
     <Compile Include="Ships\JobDriver_InstallShipWeaponSystem.cs" />
     <Compile Include="Ships\JobDriver_LeaveInShip.cs" />
     <Compile Include="IoM\JobGiver_ArrestGovernor.cs" />
     <Compile Include="IoM\LordJob_ArrestGovernor.cs" />
     <Compile Include="IoM\LordToil_ArrestGovernor.cs" />
-    <Compile Include="IoM\LordToil_LeaveInShip.cs" />
+    <Compile Include="Ships\LordToil_LeaveInShip.cs" />
     <Compile Include="JobDriver_TendInMSU.cs" />
     <Compile Include="MapCondition_IncomingIGHostile.cs" />
     <Compile Include="Ships\CompProperties_Ship.cs" />
@@ -156,10 +165,12 @@
     <Compile Include="Ships\JobDriver_UninstallShipWeaponSystem.cs" />
     <Compile Include="Ships\JobGiver_EnterShipDuringLoad.cs" />
     <Compile Include="Ships\LandedShip.cs" />
+    <Compile Include="Ships\LordJob_AerialAssault.cs" />
     <Compile Include="Ships\ShipBase_Traveling.cs" />
     <Compile Include="Ships\ShipDropSite.cs" />
     <Compile Include="Ships\ShipNamespaceDefOfs.cs" />
     <Compile Include="Ships\ShipTracker.cs" />
+    <Compile Include="Ships\TravelingShipArrivalAction.cs" />
     <Compile Include="Ships\TravelingShips.cs" />
     <Compile Include="Ships\TravelingShipsUtility.cs" />
     <Compile Include="Ships\WeaponSystemShipBomb.cs" />
@@ -173,11 +184,11 @@
     <Compile Include="Ships\ShipBase.cs" />
     <Compile Include="Ships\ShipState.cs" />
     <Compile Include="Ships\ShipWeaponSlot.cs" />
-    <Compile Include="Ships\Verb_ShootShipWeapon.cs" />
     <Compile Include="Ships\WeaponSystem.cs" />
     <Compile Include="Ships\WeaponSystemShipLC.cs" />
     <Compile Include="Ships\WeaponSystemType.cs" />
     <Compile Include="Ships\WorkGiver_UninstallShipWeapon.cs" />
+    <Compile Include="StockGenerator_TagCorruption.cs" />
     <Compile Include="Tithes\MapCondition_TitheCollectors.cs" />
     <Compile Include="PawnRendererModded.cs" />
     <Compile Include="Recipe_TendInMSU.cs" />
@@ -204,29 +215,27 @@
     <Compile Include="HediffComp_NurglesRot.cs" />
     <Compile Include="HediffComp_TemporaryRecruit.cs" />
     <Compile Include="IncidentWorker_CorruptiveDrone.cs" />
-    <Compile Include="ITab_Altar.cs" />
+    <Compile Include="Worship\ITab_Altar.cs" />
     <Compile Include="ITab_IGCommsConsole.cs" />
     <Compile Include="ITab_Pawn_Alignment.cs" />
     <Compile Include="ItemEffigy.cs" />
-    <Compile Include="JobDriver_AttendSermon.cs" />
+    <Compile Include="Worship\JobDriver_AttendSermon.cs" />
     <Compile Include="JobDriver_CarryToMecMedTable.cs" />
     <Compile Include="JobDriver_CastPsykerPowerVerb.cs" />
     <Compile Include="JobDriver_CastPsykerPowerSelf.cs" />
     <Compile Include="JobDriver_EnterMecMedBay.cs" />
-    <Compile Include="JobDriver_HoldSermon.cs" />
+    <Compile Include="Worship\JobDriver_HoldSermon.cs" />
     <Compile Include="JobDriver_HostileDemonSummoner.cs" />
     <Compile Include="JobDriver_MSUPerformTreatment.cs" />
     <Compile Include="JobDriver_OperateMSU.cs" />
     <Compile Include="JobDriver_SummoningTribute.cs" />
     <Compile Include="JobDriver_UseCCC.cs" />
-    <Compile Include="JoyGiver_HoldSermon.cs" />
     <Compile Include="LordToilData_DemonSummoner.cs" />
     <Compile Include="LordToil_DemonSummoner.cs" />
     <Compile Include="MainTabWindow_Alignment.cs" />
     <Compile Include="MapCondition_CorruptiveDrone.cs" />
     <Compile Include="MentalState_KhorneKillWeak.cs" />
     <Compile Include="Need_Soul.cs" />
-    <Compile Include="CorruptionThoughtUtility.cs" />
     <Compile Include="OtherGods.cs" />
     <Compile Include="PatronInfo.cs" />
     <Compile Include="ProjectileDef_WarpPower.cs" />
@@ -254,9 +263,9 @@
     <Compile Include="PsykerUtility.cs" />
     <Compile Include="BookStuff\ReadablesManager.cs" />
     <Compile Include="RoomRoleWorker_Church.cs" />
-    <Compile Include="SermonSpot.cs" />
-    <Compile Include="SermonThoughtDefOf.cs" />
-    <Compile Include="SermonUtility.cs" />
+    <Compile Include="Worship\SermonSpot.cs" />
+    <Compile Include="Worship\SermonThoughtDefOf.cs" />
+    <Compile Include="Worship\SermonUtility.cs" />
     <Compile Include="SoulItemCategories.cs" />
     <Compile Include="SoulTrait.cs" />
     <Compile Include="SoulTraitDef.cs" />
@@ -264,7 +273,7 @@
     <Compile Include="SoulTraitDegreeData.cs" />
     <Compile Include="StarMapObject.cs" />
     <Compile Include="StarMapObjectType.cs" />
-    <Compile Include="TempleCardUtility.cs" />
+    <Compile Include="Worship\TempleCardUtility.cs" />
     <Compile Include="ThingComp_CorruptedItem.cs" />
     <Compile Include="ThingDef_BuildingTwoColored.cs" />
     <Compile Include="ThingDef_LaserProjectile.cs" />
@@ -289,6 +298,9 @@
     <Compile Include="ITab_SMUOperation.cs" />
     <Compile Include="Window_IoMAcknowledgement.cs" />
     <Compile Include="Tithes\Window_IoMTitheDue.cs" />
+    <Compile Include="Worship\JobGiver_HoldSermon.cs" />
+    <Compile Include="Worship\LordJob_Sermon.cs" />
+    <Compile Include="Worship\LordToil_StartSermom.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="xml\Initializer.xml">
@@ -297,13 +309,19 @@
     <Content Include="xml\TestPawn.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

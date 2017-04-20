@@ -7,6 +7,7 @@
     <recipeMaker>
       <researchPrerequisite>ChargedShot</researchPrerequisite>
     </recipeMaker>
+    <tradeability>Sellable</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="BaseBullet">

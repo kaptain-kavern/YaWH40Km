@@ -172,19 +172,20 @@
       <li>Corruption.Tithes.ITab_TitheContainer</li>
     </inspectorTabs>
     <statBases>
-      <MaxHitPoints>1000</MaxHitPoints>
+      <MaxHitPoints>250</MaxHitPoints>
       <WorkToBuild>3000</WorkToBuild>
-      <Flammability>0</Flammability>
+      <Flammability>0.5</Flammability>
     </statBases>
     <comps>
       <li Class="Corruption.Tithes.CompProperties_TitheContainer">
         <compClass>Corruption.Tithes.CompTitheContainer</compClass>
+	   <maxContainerCapacity>1000</maxContainerCapacity>
       </li>
     </comps>
 		<researchPrerequisites>
-			<li>TransportPod</li>
+			<li>Smithing</li>
 		</researchPrerequisites>
-    <costStuffCount>80</costStuffCount>
+    <costStuffCount>100</costStuffCount>
     <uiIconPath>Things/IoM/Containers/TitheContainerBig_icon</uiIconPath>
   </ThingDef>
 

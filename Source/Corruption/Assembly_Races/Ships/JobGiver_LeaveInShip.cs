@@ -10,18 +10,21 @@ namespace Corruption.Ships
 {
     public class JobGiver_LeaveInShip : ThinkNode_JobGiver
     {       
-
         protected override Job TryGiveJob(Pawn pawn)
         {
-            ShipBase ship = (ShipBase)DropShipUtility.CurrentFactionShips(pawn).RandomElement();
-
-            if (ship != null)
+            List<Thing> ships = DropShipUtility.CurrentFactionShips(pawn).FindAll(x => x.Map == pawn.Map);
+            if (!ships.NullOrEmpty())
             {
-                Job job = new Job(C_JobDefOf.LeaveInShip, pawn, ship);
+                Thing ship = ships.RandomElement();
+                if (ship != null && ship.Map.reservationManager.CanReserve(pawn, ship, ship.TryGetComp<CompShip>().sProps.maxPassengers))
+                {
+                    Job job = new Job(C_JobDefOf.LeaveInShip, pawn, ship);
 
-                return job;
+                    return job;
+                }
             }
             return null;
         }
+
     }
 }

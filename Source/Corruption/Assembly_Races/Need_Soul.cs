@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 using Corruption.BookStuff;
 using Corruption.DefOfs;
+using System.Linq;
 
 namespace Corruption
 {
@@ -42,7 +43,7 @@ namespace Corruption
                 if (this.CommonSoulTrait != null) list.Add(this.CommonSoulTrait);
                 return list;
             }
-        }        
+        }
 
         public List<PsykerPower> psykerPowers = new List<PsykerPower>();
 
@@ -52,11 +53,11 @@ namespace Corruption
 
         public PatronInfo patronInfo = new PatronInfo();
 
-        public AfflictionProperty PawnAfflictionProps;        
+        public AfflictionProperty PawnAfflictionProps;
 
         public SoulTrait DevotionTrait;
 
-        public SoulTrait CommonSoulTrait;        
+        public SoulTrait CommonSoulTrait;
 
         public SoulTrait PatronTrait;
 
@@ -72,7 +73,7 @@ namespace Corruption
             {
                 return this.pawn.kindDef as ChaosFollowerPawnKindDef;
             }
-        }        
+        }
 
         public SoulAffliction CurCategory
         {
@@ -203,68 +204,68 @@ namespace Corruption
                     }
                 }
 
-                    if (this.PawnAfflictionProps.CommmonPsykerPowers != null)
+                if (this.PawnAfflictionProps.CommmonPsykerPowers != null)
+                {
+                    for (int i = 0; i < this.PawnAfflictionProps.CommmonPsykerPowers.Count; i++)
                     {
-                        for (int i = 0; i < this.PawnAfflictionProps.CommmonPsykerPowers.Count; i++)
-                        {
 
-                            try
-                            {
-                                this.compPsyker.psykerPowerManager.AddPsykerPower(this.PawnAfflictionProps.CommmonPsykerPowers[i]);
-                            }
-                            catch
-                            { }
-                        }
-                    }
-
-                    if (this.DevotionTrait == null)
-                    {
-                        if ((PawnAfflictionProps != null && PawnAfflictionProps.IsImmune))
+                        try
                         {
-                            this.DevotionTrait = new SoulTrait(C_SoulTraitDefOf.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
-                            this.IsImmune = true;
+                            this.compPsyker.psykerPowerManager.AddPsykerPower(this.PawnAfflictionProps.CommmonPsykerPowers[i]);
                         }
-                        else
-                        {
-                            this.DevotionTrait = new SoulTrait(C_SoulTraitDefOf.Devotion, Rand.RangeInclusive(-2, 2));
-                        }
+                        catch
+                        { }
                     }
-                    if (PawnAfflictionProps.CommonSoulTrait != null)
-                    {
-                        this.CommonSoulTrait = new SoulTrait(PawnAfflictionProps.CommonSoulTrait, 0);
-                    }
+                }
 
-                    if (this.curLevelInt < 0.3f && NoPatron == true)
+                if (this.DevotionTrait == null)
+                {
+                    if ((PawnAfflictionProps != null && PawnAfflictionProps.IsImmune))
                     {
-                        GainPatron(ChaosGods.Undivided, false);
-
-                    }
-                    if (NoPatron == false)
-                    {
-                        if (curLevelInt > 0.3f)
-                        {
-                            curLevelInt = 0.3f;
-                        }
-                    }
-                    if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
-                    {
+                        this.DevotionTrait = new SoulTrait(C_SoulTraitDefOf.Devotion, PawnAfflictionProps.ImmuneDevotionDegree);
                         this.IsImmune = true;
                     }
-
-                    this.SoulInitialized = true;
-
-                    if (this.compPsyker.patronName != patronInfo.PatronName)
+                    else
                     {
-                        this.compPsyker.patronName = patronInfo.PatronName;
-                        PortraitsCache.SetDirty(this.pawn);
+                        this.DevotionTrait = new SoulTrait(C_SoulTraitDefOf.Devotion, Rand.RangeInclusive(-2, 2));
                     }
-                
+                }
+                if (PawnAfflictionProps.CommonSoulTrait != null)
+                {
+                    this.CommonSoulTrait = new SoulTrait(PawnAfflictionProps.CommonSoulTrait, 0);
+                }
+
+                if (this.curLevelInt < 0.3f && NoPatron == true)
+                {
+                    GainPatron(ChaosGods.Undivided, false);
+
+                }
+                if (NoPatron == false)
+                {
+                    if (curLevelInt > 0.3f)
+                    {
+                        curLevelInt = 0.3f;
+                    }
+                }
+                if (this.PsykerPowerLevel == PsykerPowerLevel.Omega)
+                {
+                    this.IsImmune = true;
+                }
+
+                this.SoulInitialized = true;
+
+                if (this.compPsyker.patronName != patronInfo.PatronName)
+                {
+                    this.compPsyker.patronName = patronInfo.PatronName;
+                    PortraitsCache.SetDirty(this.pawn);
+                }
+
             }
         }
 
         public override void NeedInterval()
         {
-             
+
             if (this.curLevelInt < 0f)
             {
                 this.curLevelInt = 0f;
@@ -285,7 +286,7 @@ namespace Corruption
                 }
             }
             if (NoPatron == false)
-            {                
+            {
                 if (curLevelInt > 0.3f)
                 {
                     curLevelInt = 0.3f;
@@ -319,9 +320,9 @@ namespace Corruption
             {
                 curLevelInt = 0.99999f;
             }
- 
+
         }
-        
+
         public void GainNeed(float amount)
         {
             if (this.cdef != null)
@@ -329,7 +330,7 @@ namespace Corruption
                 if (this.IsImmune)
                 {
                     return;
-                }              
+                }
                 amount = cdef.AfflictionProperty.ResolveFactor * amount;
             }
 
@@ -424,8 +425,8 @@ namespace Corruption
             {
                 pawn.story = new Pawn_StoryTracker(pawn);
             }
-   //         Hediff chaosmark = HediffMaker.MakeHediff(ChaosMarkDef(this.patronInfo.PatronName), this.pawn,null);
-   //         this.pawn.health.hediffSet.AddHediffDirect(chaosmark);
+            //         Hediff chaosmark = HediffMaker.MakeHediff(ChaosMarkDef(this.patronInfo.PatronName), this.pawn,null);
+            //         this.pawn.health.hediffSet.AddHediffDirect(chaosmark);
             if (this.pawn.Drawer != null && this.pawn.story != null)
             {
                 if (this.pawn.Drawer.renderer != null)
@@ -455,8 +456,8 @@ namespace Corruption
                 return pawn.needs.TryGetNeed<Need_Soul>().Patron.ToString();
             }
         }
-        
-        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1F, bool drawArrows = true, bool doTooltip = true)            
+
+        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1F, bool drawArrows = true, bool doTooltip = true)
         {
             if (rect.height > 70f)
             {
@@ -521,6 +522,47 @@ namespace Corruption
             }
             GUI.DrawTexture(position, image);
             GUI.color = Color.white;
+        }
+
+        public void GenerateHediffsAndImplants(ChaosFollowerPawnKindDef pdef)
+        {
+            if (pdef.AdditionalImplantCount.min > 0)
+            {
+                int num = Rand.RangeInclusive(pdef.AdditionalImplantCount.min, pdef.AdditionalImplantCount.max);
+                for (int i = 0; i < num; i++)
+                {
+                    PawnTechHediffsGenerator.GeneratePartsAndImplantsFor(this.pawn);
+                }
+            }
+
+            if (!pdef.DisallowedStartingHediffs.NullOrEmpty())
+            {
+                foreach (HediffDef def in pdef.DisallowedStartingHediffs)
+                {
+                    this.pawn.health.hediffSet.hediffs.RemoveAll(x => x.def == def);
+                }
+            }
+
+            if (!pdef.ForcedStartingHediffs.NullOrEmpty())
+            {
+                foreach (HediffDef hediffDef in pdef.ForcedStartingHediffs)
+                {
+                    Hediff current = HediffMaker.MakeHediff(hediffDef, this.pawn, null);
+                    this.pawn.health.AddHediff(current);
+                }
+            }
+
+            if (!pdef.ForcedStartingImplantRecipes.NullOrEmpty())
+            {
+                foreach (RecipeDef recipeDef in pdef.ForcedStartingImplantRecipes)
+                {
+                    if (!recipeDef.targetsBodyPart || recipeDef.Worker.GetPartsToApplyOn(pawn, recipeDef).Any<BodyPartRecord>())
+                    {
+                        recipeDef.Worker.ApplyOnPawn(pawn, recipeDef.Worker.GetPartsToApplyOn(pawn, recipeDef).RandomElement<BodyPartRecord>(), null, new List<Thing>());
+                    }
+                }
+            }
+
         }
 
         public override void ExposeData()

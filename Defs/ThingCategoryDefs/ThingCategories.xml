@@ -33,6 +33,19 @@
 </ThingCategoryDef>
 
 	  <ThingCategoryDef>
+	    <defName>BodyParts_GeneSeed</defName>
+	    <label>astartes implants</label>
+	    <parent>IoMGear</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>IoM_Inquisition</defName>
+	    <label>Inquisition</label>
+	    <parent>IoMGear</parent>
+	  </ThingCategoryDef>
+
+
+	  <ThingCategoryDef>
 	    <defName>IoM_Apparel</defName>
 	    <label>IoM_Apparel</label>
 	    <parent>IoMGear</parent>

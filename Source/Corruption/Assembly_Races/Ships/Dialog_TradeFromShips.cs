@@ -18,7 +18,7 @@ namespace Corruption.Ships
 
         public Dialog_TradeFromShips(LandedShip landedShip, Pawn playerNegotiator, ITrader trader) : base(playerNegotiator, trader)
         {
-            this.landedShip = landedShip;            
+            this.landedShip = landedShip;
         }        
         
         public override void DoWindowContents(Rect inRect)
@@ -88,6 +88,8 @@ namespace Corruption.Ships
                     container.RemoveAll(x => tmpToRemove.Contains(x));
                 }
             }
+
+            this.landedShip.ReloadStockIntoShip();
         }
 
     }

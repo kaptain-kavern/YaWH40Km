@@ -13,9 +13,5 @@ namespace Corruption
             base.Tick();
         }
     }
-
-    internal sealed class Effigy_Temp : ItemEffigy
-    {
-        
-    }
+    
 }

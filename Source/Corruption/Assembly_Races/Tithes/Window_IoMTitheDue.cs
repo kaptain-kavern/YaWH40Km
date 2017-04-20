@@ -50,7 +50,7 @@ namespace Corruption.Tithes
             Rect rectA = new Rect(0f, descRect.yMax + 10f, 100f, 30f);
             Rect rectB = new Rect(inRect.xMax - 100f, descRect.yMax + 10f, 100f, 30f);
 
-            bool possible = tracker.currentTithes.All(x => x.tithePercent >= 0.999f);
+            bool possible = tracker.currentTithes.All(x => x.tithePercent >= 0.99f);
 
             if (!possible)
             {

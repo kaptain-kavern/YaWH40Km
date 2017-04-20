@@ -10,7 +10,13 @@ namespace Corruption
 {
     public class CompEldarSpiritStone : ThingComp
     {
-        private Pawn Eldar;
+        private Pawn Eldar
+        {
+            get
+            {
+                return this.parent as Pawn;
+            }
+        }
 
         private IntVec3 curpos = new IntVec3();
 
@@ -19,15 +25,15 @@ namespace Corruption
         public override void PostSpawnSetup()
         {
             base.PostSpawnSetup();
-            if (this.parent is Pawn)
+            if (this.Eldar == null)
             {
-                this.Eldar = this.parent as Pawn;
+                Log.Error("Tried to put Spirit Stone Comp on non-Pawn");
             }
         }
 
         public override void PostDeSpawn(Map map)
         {
-            if (!IsSpawned)
+            if (!IsSpawned && this.Eldar.Dead)
             {
                 Thing spiritstone = ThingMaker.MakeThing(C_ThingDefOfs.SpiritStone);
                 GenSpawn.Spawn(spiritstone, curpos, map);

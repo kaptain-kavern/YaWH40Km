@@ -13,7 +13,6 @@ namespace Corruption.Ships
         public static WorldObjectDef TravelingSuborbitalShip;
         public static WorldObjectDef LandedShip;
         public static WorldObjectDef ShipDropSite;
-
-        
+                
     }
 }

@@ -149,7 +149,7 @@
    <defName>Plasma_Ball</defName>
    <label>Plasma Ball</label>
    <graphicData>
-		<texPath>Things/IG/Weapons/Projectiles/PlamsaRound</texPath>
+		<texPath>Things/IG/Weapons/Projectiles/PlasmaRound</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
    </graphicData>
    <projectile>
@@ -337,8 +337,8 @@
       <AccuracyTouch>1</AccuracyTouch>
       <AccuracyShort>0.87</AccuracyShort>
       <AccuracyMedium>0.77</AccuracyMedium>
-      <AccuracyLong>0.64</AccuracyLong>
-      <RangedWeapon_Cooldown>0.33</RangedWeapon_Cooldown>
+      <AccuracyLong>0.69</AccuracyLong>
+      <RangedWeapon_Cooldown>0.63</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
       <li>IG_Ranged_Std</li>
@@ -348,7 +348,7 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Lasround</projectileDef>
-        <warmupTime>0.7</warmupTime>
+        <warmupTime>1.0</warmupTime>
         <range>32</range>
         <soundCast>ShotChargeRifle</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>

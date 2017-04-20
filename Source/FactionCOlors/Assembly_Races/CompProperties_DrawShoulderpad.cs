@@ -13,12 +13,18 @@ namespace FactionColors
         Left
     }
 
-    public class CompProperties_PauldronDrawer : CompProperties
+    public struct ShoulderPadEntry
     {
         public ShoulderPadType shoulderPadType;
         public ShaderType shaderType;
-        public string PadTexPath;       
-        
+        public string padTexPath;
+        public int commonality;
+    }
+
+    public class CompProperties_PauldronDrawer : CompProperties
+    {
+        public List<ShoulderPadEntry> PauldronEntries;
+        public float PauldronEntryChance = 0.5f;
         public CompProperties_PauldronDrawer()
         {
             this.compClass = typeof(CompPauldronDrawer);

@@ -31,12 +31,12 @@ namespace Corruption
             prisoners = this.pawn.Map.mapPawns.PrisonersOfColonySpawned;
             if (!HasChosenVictim && prisoners != null)
             {
-                Log.Message("Getting Victim");
+              //  Log.Message("Getting Victim");
                 prisoners.TryRandomElement(out Victim);
                 if (pawn.CanReserve(Victim, 1))
                 {
                     HasChosenVictim = true;
-                    Log.Message("Chosen Victim :" + Victim.ToString());
+         //           Log.Message("Chosen Victim :" + Victim.ToString());
                     Job job = new Job(JobDefOf.Goto, Victim.Position);
                     Job job2 = new Job(JobDefOf.AttackStatic, Victim);
                     this.pawn.QueueJob(job);
@@ -46,6 +46,11 @@ namespace Corruption
                     Victim.jobs.EndCurrentJob(JobCondition.InterruptForced);
                 }
             }
+        }
+
+        public override RandomSocialMode SocialModeMax()
+        {
+            return RandomSocialMode.Off;
         }
 
         public override bool ForceHostileTo(Thing t)

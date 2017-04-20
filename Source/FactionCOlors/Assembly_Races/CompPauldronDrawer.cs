@@ -58,8 +58,11 @@ namespace FactionColors
                         drawer.PostSpawnSetup();
                         if (drawer.PauldronGraphic != null)
                         {
-                            pauldronMaterial = drawer.PauldronGraphic.MatAt(bodyFacing);
-                            return true;
+                            if (drawer.CheckPauldronRotation(pawn, drawer.padType))
+                            {
+                                pauldronMaterial = drawer.PauldronGraphic.MatAt(bodyFacing);
+                                return true;
+                            }
                         }
                     }
                 }
@@ -72,12 +75,28 @@ namespace FactionColors
 
         }
 
+        public bool CheckPauldronRotation(Pawn pawn, ShoulderPadType shoulderPadType)
+        {
+            if (shoulderPadType == ShoulderPadType.Left && pawn.Rotation == Rot4.East)
+            {
+                return false;
+            }
+            if (shoulderPadType == ShoulderPadType.Right && pawn.Rotation == Rot4.West)
+            {
+                return false;
+            }
+            return true;
+        }
+       
+
+
         public override void PostSpawnSetup()
         {
             base.PostSpawnSetup();
-            this.graphicPath = this.pprops.PadTexPath;
-            this.shader = ShaderDatabase.ShaderFromType(this.pprops.shaderType);
-            this.padType = this.pprops.shoulderPadType;
+            ShoulderPadEntry entry = this.pprops.PauldronEntries.RandomElementByWeight((ShoulderPadEntry x) => x.commonality);
+            this.graphicPath = entry.padTexPath;
+            this.shader = ShaderDatabase.ShaderFromType(entry.shaderType);
+            this.padType = entry.shoulderPadType;
         }
 
         public override void PostExposeData()
@@ -85,6 +104,7 @@ namespace FactionColors
             base.PostExposeData();
             Scribe_Values.LookValue<string>(ref this.graphicPath, "graphicPath", null, false);
             Scribe_Values.LookValue<Shader>(ref this.shader, "shader", ShaderDatabase.Cutout, false);
+            Scribe_Values.LookValue<ShoulderPadType>(ref this.padType, "padType", ShoulderPadType.Both, false);
         }
 
 

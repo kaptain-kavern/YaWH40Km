@@ -86,7 +86,7 @@
       <li Class="Corruption.HediffCompProperties_DrawImplant">
         <compClass>Corruption.HediffComp_DrawImplant</compClass>
         <implantDrawerType>Backpack</implantDrawerType>
-<implantGraphicPath>Things/Mechanicus/MechaDendrites/MechaDendrites</implantGraphicPath>
+<implantGraphicPath>Things/Mechanicus/Dendrites_Combat/DendCbt</implantGraphicPath>
       </li>
     </comps>
     <stages>

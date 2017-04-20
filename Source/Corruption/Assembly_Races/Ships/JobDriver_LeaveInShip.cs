@@ -19,6 +19,7 @@ namespace Corruption.Ships
         
         protected override IEnumerable<Toil> MakeNewToils()
         {
+            yield return Toils_Reserve.Reserve(TargetIndex.B, ship.compShip.sProps.maxPassengers);
             yield return Toils_Haul.CarryHauledThingToContainer();
             yield return Toils_Goto.Goto(TargetIndex.B, PathEndMode.ClosestTouch);
 

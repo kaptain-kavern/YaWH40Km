@@ -11,7 +11,7 @@
     <defaultFactionType>ImperialGuard</defaultFactionType>
     <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
     <maxGenerationAge>58</maxGenerationAge>
-    <itemQuality>Normal</itemQuality>
+    <forceNormalGearQuality>true</forceNormalGearQuality>
     <apparelRequired>
 	 <li>IG_Armor</li>
     </apparelRequired>

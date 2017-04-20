@@ -25,6 +25,7 @@
       <Steel>75</Steel>
     </costList>
     <statBases>
+      <MarketValue>600</MarketValue>
       <MaxHitPoints>360</MaxHitPoints>
       <WorkToMake>90000</WorkToMake>
       <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
@@ -118,7 +119,9 @@
     <costList>
       <Steel>75</Steel>
     </costList>
+    <tradeability>Sellable</tradeability>
     <statBases>
+      <MarketValue>900</MarketValue>
       <MaxHitPoints>360</MaxHitPoints>
       <WorkToMake>90000</WorkToMake>
       <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
@@ -143,7 +146,7 @@
       </layers>
       <commonality>1</commonality>
       <tags>
-        <li>IoM_Apparel</li>
+        <li>IoM_Inquisition</li>
       </tags>
       <defaultOutfitTags>
         <li>Worker</li>
@@ -209,7 +212,9 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
+      <MarketValue>100</MarketValue>
       <MaxHitPoints>120</MaxHitPoints>
       <WorkToMake>50000</WorkToMake>
       <ArmorRating_Blunt>0.05</ArmorRating_Blunt>
@@ -231,7 +236,7 @@
       </layers>
       <commonality>1</commonality>
       <tags>
-        <li>IoM_Apparel</li>
+        <li>IoM_Inquisition</li>
       </tags>
       <defaultOutfitTags>
         <li>Worker</li>
@@ -265,7 +270,9 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
-    <statBases>
+    <tradeability>Sellable</tradeability>
+    <statBases>      
+	<MarketValue>50</MarketValue>
       <MaxHitPoints>150</MaxHitPoints>
       <WorkToMake>50000</WorkToMake>
       <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
@@ -338,10 +345,11 @@
       <texPath>Things/IoM/Arbites/ArbitesArmor</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>100000</WorkToMake>
       <MaxHitPoints>300</MaxHitPoints>
-      <MarketValue>1000</MarketValue>
+      <MarketValue>1500</MarketValue>
       <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.45</ArmorRating_Sharp>
       <ArmorRating_Heat>0.20</ArmorRating_Heat>
@@ -385,9 +393,14 @@
     <comps>
       <li Class="FactionColors.CompProperties_PauldronDrawer">
         <compClass>FactionColors.CompPauldronDrawer</compClass>
-        <shoulderPadType>Both</shoulderPadType>
-        <shaderType>Cutout</shaderType>
-        <PadTexPath>Things/IoM/PadsArmored/PadArmored</PadTexPath>
+        <PauldronEntries>
+		<li>
+        	 <shoulderPadType>Both</shoulderPadType>
+  		 <shaderType>Cutout</shaderType>
+    		 <padTexPath>Things/IoM/PadsArmored/PadArmored</padTexPath>
+  		 <commonality>10</commonality>
+		</li>
+        </PauldronEntries>
       </li>
     </comps>
 
@@ -406,6 +419,7 @@
       <texPath>Things/IoM/Arbites/ArbitesHelmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>70000</WorkToMake>
       <MaxHitPoints>200</MaxHitPoints>
@@ -528,10 +542,14 @@
     <comps>
       <li Class="FactionColors.CompProperties_PauldronDrawer">
         <compClass>FactionColors.CompPauldronDrawer</compClass>
-        <shoulderPadType>Both</shoulderPadType>
-        <shaderType>CutoutComplex</shaderType>
-        <PadTexPath>Things/IoM/PadsArmored/PadArmored</PadTexPath>
-      </li>
+        <PauldronEntries>
+		<li>
+        	 <shoulderPadType>Both</shoulderPadType>
+  		 <shaderType>Cutout</shaderType>
+    		 <padTexPath>Things/IoM/PadsArmored/PadArmored</padTexPath>
+  		 <commonality>10</commonality>
+		</li>
+        </PauldronEntries>      </li>
     </comps>
 
   </ThingDef>
@@ -625,7 +643,9 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
+      <MarketValue>400</MarketValue>
       <MaxHitPoints>120</MaxHitPoints>
       <WorkToMake>12000</WorkToMake>
       <Mass>2.7</Mass>
@@ -683,9 +703,14 @@
     <comps>
       <li Class="FactionColors.CompProperties_PauldronDrawer">
         <compClass>FactionColors.CompPauldronDrawer</compClass>
-        <shoulderPadType>Both</shoulderPadType>
-        <shaderType>CutoutComplex</shaderType>
-        <PadTexPath>Things/IoM/PadsGold/PadGold</PadTexPath>
+        <PauldronEntries>
+		<li>
+        	 <shoulderPadType>Both</shoulderPadType>
+  		 <shaderType>Cutout</shaderType>
+    		 <padTexPath>Things/IoM/PadsGold/PadGold</padTexPath>
+  		 <commonality>10</commonality>
+		</li>
+        </PauldronEntries>
       </li>
     </comps>
   </ThingDef>
@@ -707,7 +732,9 @@
     <thingCategories>
       <li>Apparel</li>
     </thingCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
+      <MarketValue>400</MarketValue>
       <MaxHitPoints>120</MaxHitPoints>
       <WorkToMake>12000</WorkToMake>
       <Mass>2.7</Mass>
@@ -765,9 +792,14 @@
     <comps>
       <li Class="FactionColors.CompProperties_PauldronDrawer">
         <compClass>FactionColors.CompPauldronDrawer</compClass>
-        <shoulderPadType>Both</shoulderPadType>
-        <shaderType>CutoutComplex</shaderType>
-        <PadTexPath>Things/IoM/PadsGold/PadGold</PadTexPath>
+        <PauldronEntries>
+		<li>
+        	 <shoulderPadType>Both</shoulderPadType>
+  		 <shaderType>Cutout</shaderType>
+    		 <padTexPath>Things/IoM/PadsGold/PadGold</padTexPath>
+  		 <commonality>10</commonality>
+		</li>
+        </PauldronEntries>
       </li>
     </comps>
   </ThingDef>

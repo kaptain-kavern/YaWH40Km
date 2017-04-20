@@ -79,7 +79,7 @@ namespace FactionColors
             drawMesh = this.Graphic.MeshAt(this.Rotation);
             Mat = this.Graphic.MatAt(this.Rotation);
             Matrix4x4 matrix = default(Matrix4x4);
-            matrix.SetTRS(drawPos, Quaternion.AngleAxis(0, Vector3.up), meshSize);
+            matrix.SetTRS(drawPos, Quaternion.AngleAxis(0, Vector3.up), 0.7f*meshSize);
             Graphics.DrawMesh(drawMesh, matrix, Mat, 0);
             this.Comps_PostDraw()
 ;        }

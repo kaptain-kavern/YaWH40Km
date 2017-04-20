@@ -123,7 +123,6 @@ namespace Corruption.Ships
 
         public void Notify_PawnEntered(Pawn p)
         {
-            Log.Message(p.Name.ToStringFull + " of " + p.Faction.Name);
             this.SubtractFromToLoadList(p);
         }
 

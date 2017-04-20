@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-<ThoughtDef Class="Corruption.ThoughtDefAutomaton">
+<Corruption.ThoughtDefCorruption>
     <defName>AutomatonThought</defName>
     <workerClass>Corruption.ThoughtWorker_AutomatonThoughts</workerClass>
     <IsAutomatonThought>true</IsAutomatonThought>
@@ -12,6 +12,6 @@
         <baseMoodEffect>1</baseMoodEffect>
       </li>
     </stages>
-  </ThoughtDef>
+  </Corruption.ThoughtDefCorruption>
 
 </Defs>

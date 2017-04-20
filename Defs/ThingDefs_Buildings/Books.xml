@@ -16,6 +16,7 @@
     <altitudeLayer>Item</altitudeLayer>
 	<tickerType>Normal</tickerType>
     <stackLimit>1</stackLimit>
+    <tradeability>Sellable</tradeability>
     <comps>
       <li>
         <compClass>CompForbiddable</compClass>
@@ -30,7 +31,7 @@
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
  <defName>Readables_BloodyCanals</defName>
 		<label>Inspector Horse: Bloody Spires</label>
-<Description>A crime-fiction series about a grizzled detective and her case files. In this episode she gets involved in a Hive Spire's politics.
+<Description>A crime-fiction series about a grizzled detective and her case files. In this episode she gets involved in Hive politics.
 </Description>
 		<graphicData>
 		 <texPath>Things/Items/Books/BookGeneric</texPath>
@@ -44,7 +45,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>StandardLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -61,6 +62,12 @@
 	<li>From her left hand something was dripping to the floor.</li>
 	</BookText>
 	<CloseTexture>Things/Items/Books/Cover_BookGeneric</CloseTexture>
+    <tradeTags>
+      <li>StandardLiterature</li>
+      <li>Art</li>
+    </tradeTags>
+    <tradeability>Stockable</tradeability>
+
   </ThingDef>
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
@@ -80,7 +87,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>StandardLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -92,6 +99,11 @@
 	<li>And this time, he's packing.</li>
 	</BookText>
 	<CloseTexture>Things/Items/Books/Cover_BookGeneric</CloseTexture>
+    <tradeTags>
+      <li>StandardLiterature</li>
+      <li>Art</li>
+    </tradeTags>
+    <tradeability>Stockable</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
@@ -111,7 +123,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>StandardLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -127,6 +139,11 @@
 	<li>And he lived as a carrot head happily ever after.</li>
 	</BookText>
 	<CloseTexture>Things/Items/Books/Cover_BookGeneric</CloseTexture>
+    <tradeTags>
+      <li>StandardLiterature</li>
+      <li>Art</li>
+    </tradeTags>
+    <tradeability>Stockable</tradeability>
   </ThingDef>
 
 
@@ -147,7 +164,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>StandardLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -163,6 +180,11 @@
 	<li>Rule Nr. 10: Trust is overrated. As is personal hygiene.</li>
 	</BookText>
 	<CloseTexture>Things/Items/Books/Cover_BookGeneric</CloseTexture>
+    <tradeTags>
+      <li>StandardLiterature</li>
+      <li>Art</li>
+    </tradeTags>
+    <tradeability>Stockable</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
@@ -181,7 +203,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>StandardLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -195,6 +217,11 @@
 	<li>A rocky field full of steaming geysirs</li>
 	</BookText>
 	<CloseTexture>Things/Items/Books/Cover_BookPictures</CloseTexture>
+    <tradeTags>
+      <li>StandardLiterature</li>
+      <li>Art</li>
+    </tradeTags>
+    <tradeability>Stockable</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
@@ -213,7 +240,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>StandardLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -226,6 +253,11 @@
 	<li>A woven blueish longcoat of muffalo wool.</li>
 	</BookText>
 	<CloseTexture>Things/Items/Books/Cover_BookPictures</CloseTexture>
+    <tradeTags>
+      <li>StandardLiterature</li>
+      <li>Art</li>
+    </tradeTags>
+    <tradeability>Stockable</tradeability>
   </ThingDef>
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
@@ -244,7 +276,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>ProfessionalLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -265,7 +297,92 @@
 	<SkillToLearn>Medicine</SkillToLearn>
 	<SkillGainFactor>0.8</SkillGainFactor>
 	<TextSpeedShowFactor>2.0</TextSpeedShowFactor>
+    <tradeTags>
+      <li>ProfessionalLiterature</li>
+    </tradeTags>
+
   </ThingDef>
+
+  <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
+ <defName>Readables_Eko</defName>
+		<label>Eko's Scientific Studies</label>
+<Description>A work by an intellectual called Eko about the spirit of exploration and how to properly document it.</Description>
+		<graphicData>
+		 <texPath>Things/Items/Books/BookGeneric</texPath>
+		<graphicClass>Graphic_Multi</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+		<color>(140,85,36)</color>
+		<colorTwo>(140,85,36)</colorTwo>	
+		</graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+	    <thingClass>Corruption.BookStuff.ReadableBooks</thingClass>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>false</useHitPoints>
+    <thingCategories>
+      <li>ProfessionalLiterature</li>
+    </thingCategories>
+	<IsABook>true</IsABook>
+	<BookText>
+	<li>Research is far from dead.</li>
+      <li>Research without caution is dangerous.</li>
+      <li>If you did not document it, it didn't happen.</li>
+      <li>Think before you act.</li>
+      <li>Show respect: Do NOT plagiarize.</li>
+      <li>Do not fret over fame or fortune.</li>
+      <li>Ask questions, then evaluate the answers.</li>
+      <li>Consider your readers.</li>
+      <li>Look for failure. Do not tread failed paths.</li>
+      <li>If it looks easy, it probably isn't.</li>
+	</BookText>
+	<CloseTexture>Things/Items/Books/Cover_BookScientific</CloseTexture>
+	<TicksToRead>9000</TicksToRead>
+	<SkillToLearn>Research</SkillToLearn>
+	<SkillGainFactor>0.8</SkillGainFactor>
+	<TextSpeedShowFactor>2.0</TextSpeedShowFactor>
+    <tradeTags>
+      <li>ProfessionalLiterature</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
+ <defName>Readables_Nefton</defName>
+		<label>Nefton: Basics of Science</label>
+<Description>Written by a tech-adept for the Scola Progenium as an introduction to basic physics, chemistry and biology.</Description>
+		<graphicData>
+		 <texPath>Things/Items/Books/BookGeneric</texPath>
+		<graphicClass>Graphic_Multi</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+		<color>(140,85,36)</color>
+		<colorTwo>(140,85,36)</colorTwo>	
+		</graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+	    <thingClass>Corruption.BookStuff.ReadableBooks</thingClass>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>false</useHitPoints>
+    <thingCategories>
+      <li>ProfessionalLiterature</li>
+    </thingCategories>
+	<IsABook>true</IsABook>
+	<BookText>
+	<li>Chapter I: Introduction to Science.</li>
+      <li>Chapter II: Of matter and energy.</li>
+      <li>Chapter III: Entropy and Enthalpie</li>
+      <li>Chapter IV: Forces and Mechanics</li>
+      <li>Chapter V: Basic Chemistry</li>
+      <li>Chapter VI: Advanced Chemistry</li>
+      <li>Chapter VII: Basic Biology</li>
+      <li>Chapter VIII: Advanced Biology</li>
+	</BookText>
+	<CloseTexture>Things/Items/Books/Cover_BookScientific</CloseTexture>
+	<TicksToRead>150000</TicksToRead>
+	<SkillToLearn>Research</SkillToLearn>
+	<SkillGainFactor>0.2</SkillGainFactor>
+	<TextSpeedShowFactor>0.5</TextSpeedShowFactor>
+    <tradeTags>
+      <li>ProfessionalLiterature</li>
+    </tradeTags>
+  </ThingDef>
+
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
  <defName>Readables_Cicero</defName>
@@ -283,7 +400,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>ProfessionalLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -304,6 +421,50 @@
 	<SkillToLearn>Social</SkillToLearn>
 	<SkillGainFactor>0.8</SkillGainFactor>
 	<TextSpeedShowFactor>10.0</TextSpeedShowFactor>
+    <tradeTags>
+      <li>ProfessionalLiterature</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
+ <defName>Readables_Olivie</defName>
+		<label>Olivie's 1000 dishes</label>
+<Description>A book by a traveling chef that has been personal cook to both imperial governors of hive worlds and tribal chieftains on primitive planets. His personal motto is: If it contains carbon, I can make a meal out of it.</Description>
+		<graphicData>
+		 <texPath>Things/Items/Books/BookGeneric</texPath>
+		<graphicClass>Graphic_Multi</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+		<color>(95,65,35)</color>
+		<colorTwo>(255,200,50)</colorTwo>	
+		</graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+	    <thingClass>Corruption.BookStuff.ReadableBooks</thingClass>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>false</useHitPoints>
+    <thingCategories>
+      <li>ProfessionalLiterature</li>
+    </thingCategories>
+	<IsABook>true</IsABook>
+	<BookText>
+	<li>This is a cookbook.</li>
+	<li>An average chef is a good cook.</li>
+	<li>A good chef is a manager and a good cook.</li>
+	<li>A great chef is a manager, scientist and a cook.</li>
+	<li>Produce is precious. Waste is sacrilege.</li>
+	<li>Taste and health benefits do not correlate!</li>
+	<li>Chemsynth-sugar tastes stronger than beetroot</li>
+	<li>Still beetroot is the better option.</li>
+	<li>Shop local, or plant your own crop.</li>
+	<li>Feeding a trillion people is different from feeding 10.</li>
+	</BookText>
+	<CloseTexture>Things/Items/Books/Cover_BookOldA</CloseTexture>
+	<TicksToRead>15000</TicksToRead>
+	<SkillToLearn>Cooking</SkillToLearn>
+	<SkillGainFactor>1.5</SkillGainFactor>
+	<TextSpeedShowFactor>10.0</TextSpeedShowFactor>
+    <tradeTags>
+      <li>ProfessionalLiterature</li>
+    </tradeTags>
   </ThingDef>
 
 
@@ -323,7 +484,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>ProfessionalLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -343,6 +504,9 @@
 	<SkillToLearn>Medicine</SkillToLearn>
 	<SkillGainFactor>0.5</SkillGainFactor>
 	<TextSpeedShowFactor>10</TextSpeedShowFactor>
+    <tradeTags>
+      <li>ProfessionalLiterature</li>
+    </tradeTags>
   </ThingDef>
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
@@ -361,7 +525,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>ProfessionalLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -381,6 +545,9 @@
 	<SkillToLearn>Medicine</SkillToLearn>
 	<SkillGainFactor>0.5</SkillGainFactor>
 	<TextSpeedShowFactor>10</TextSpeedShowFactor>
+    <tradeTags>
+      <li>ProfessionalLiterature</li>
+    </tradeTags>
   </ThingDef>
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
@@ -399,7 +566,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>ProfessionalLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -419,6 +586,9 @@
 	<SkillToLearn>Animals</SkillToLearn>
 	<SkillGainFactor>1.0</SkillGainFactor>
 	<TextSpeedShowFactor>10</TextSpeedShowFactor>
+    <tradeTags>
+      <li>ProfessionalLiterature</li>
+    </tradeTags>
   </ThingDef>
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
@@ -437,7 +607,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>StandardLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -452,6 +622,11 @@
 	<li>A sudden breeze flicked out the candles as their lips gravitated towards each other.</li>
 	</BookText>
 	<CloseTexture>Things/Items/Books/Cover_BookRomance</CloseTexture>
+    <tradeTags>
+      <li>StandardLiterature</li>
+      <li>Art</li>
+    </tradeTags>
+    <tradeability>Stockable</tradeability>
 
   </ThingDef>
 
@@ -471,7 +646,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>WeirdLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -510,6 +685,10 @@
 		<PsykerPowerUnlocked>PsykerPower_EldritchThunderstorm</PsykerPowerUnlocked>
 	   </li>	
 	</ReadableEffectEntries>
+    <tradeTags>
+      <li>WeirdLiterature</li>
+    </tradeTags>
+
   </ThingDef>
 
   <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
@@ -528,7 +707,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>WeirdLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -580,7 +759,7 @@
     <stackLimit>1</stackLimit>
     <useHitPoints>false</useHitPoints>
     <thingCategories>
-      <li>Items</li>
+      <li>WeirdLiterature</li>
     </thingCategories>
 	<IsABook>true</IsABook>
 	<BookText>
@@ -634,7 +813,196 @@
 		<PsykerPowerUnlocked>PsykerPower_Mindcontrol</PsykerPowerUnlocked>
 	   </li>	
 	</ReadableEffectEntries>
+    <tradeTags>
+      <li>WeirdLiterature</li>
+    </tradeTags>
   </ThingDef>
+
+
+  <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
+ <defName>Readables_TomeOfIsha</defName>
+		<label>Tome of Isha</label>
+<Description>A piece of literature that seems to be centered around a being called Isha. It seems to radiate warmth and an aura of peace.</Description>
+		<graphicData>
+		 <texPath>Things/Items/Books/BookGeneric</texPath>
+		<graphicClass>Graphic_Multi</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+		<color>(0,200,35)</color>
+		<colorTwo>(255,200,50)</colorTwo>	
+		</graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+	    <thingClass>Corruption.BookStuff.ReadableBooks</thingClass>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>false</useHitPoints>
+    <thingCategories>
+      <li>WeirdLiterature</li>
+    </thingCategories>
+	<IsABook>true</IsABook>
+	<BookText>
+	<li>Life is all around you.</li>
+	<li>It is in the air you breath.</li>
+	<li>It is in the water you drink.</li>
+	<li>It is in the melodies you hear.</li>
+	<li>It is in the beauty you see.</li>
+	<li>It is in the sensations you feel.</li>
+	<li>It is all encompassing.</li>
+	<li>Do not isolate yourself.</li>
+	<li>Isolation is not the way of life.</li>
+	<li>Recognize your surroundings.</li>
+	<li>You are part of something greater.</li>
+	<li>Alone, yet never lonesome.</li>
+	<li>Let love for all guide you.</li>
+	<li>Mirror the warmth that you receive.</li>
+	<li>Let the wonders of life flow through you.</li>
+	<li>Inhalte life, and breathe it out.</li>
+	<li>Let it grow.</li>
+	</BookText>
+	<CloseTexture>Things/Items/Books/Cover_BookOldB</CloseTexture>
+	<TicksToRead>120000</TicksToRead>
+	<SkillToLearn>Growing</SkillToLearn>
+	<SkillGainFactor>1.5</SkillGainFactor>
+	<TextSpeedShowFactor>2.0</TextSpeedShowFactor>
+	<soulItemCategory>Corruption</soulItemCategory>
+	<SoulGainRate>0.2</SoulGainRate>
+	<ReadableEffectEntries>
+ 	   <li>
+		<ReadThreshold>0.74</ReadThreshold>
+		<readableEffectCategory>GetMentalBreak</readableEffectCategory>
+		<MentalBreak>WanderConfused</MentalBreak>
+	   </li>
+ 	   <li>
+		<ReadThreshold>0.95</ReadThreshold>
+		<readableEffectCategory>LearnPsykerPower</readableEffectCategory>
+		<PsykerPowerUnlocked>PsykerPower_UnnaturalGrowth</PsykerPowerUnlocked>
+	   </li>	
+	</ReadableEffectEntries>
+    <tradeTags>
+      <li>WeirdLiterature</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
+ <defName>Readables_Druj</defName>
+		<label>Calling of Druj</label>
+<Description>A piece of literature that seems to be written in strange hyroglyphs, with some gibberish in High Gothic interspersed. It seems to radiate an aura of unease.</Description>
+		<graphicData>
+		 <texPath>Things/Items/Books/BookGeneric</texPath>
+		<graphicClass>Graphic_Multi</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+		<color>(190,150,210)</color>
+		<colorTwo>(255,200,50)</colorTwo>	
+		</graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+	    <thingClass>Corruption.BookStuff.ReadableBooks</thingClass>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>false</useHitPoints>
+    <thingCategories>
+      <li>WeirdLiterature</li>
+    </thingCategories>
+	<IsABook>true</IsABook>
+	<BookText>
+	<li>Ahrastab is calling.</li>
+	<li>Trust the feather in the red.</li>
+	<li>Glancing in shadows.</li>
+	<li>Cuts deep.</li>
+	<li>Cannot see, cannot unsee.</li>
+	<li>Voices in the back.</li>
+	<li>What lies beneath.</li>
+	<li>Always there, never existed.</li>
+	<li>Sow silence, harvest pain.</li>
+	<li>Recognize yourself.</li>
+	<li>Lost by being found.</li>
+	<li>Whispers in the dark.</li>
+	<li>Destroy by creating.</li>
+	<li>I am Druj.</li>
+	</BookText>
+	<CloseTexture>Things/Items/Books/Cover_BookOldB</CloseTexture>
+	<TicksToRead>9000</TicksToRead>
+	<SkillToLearn>Social</SkillToLearn>
+	<SkillGainFactor>0.5</SkillGainFactor>
+	<TextSpeedShowFactor>2.0</TextSpeedShowFactor>
+	<soulItemCategory>Corruption</soulItemCategory>
+	<SoulGainRate>1.0</SoulGainRate>
+	<ReadableEffectEntries>
+ 	   <li>
+		<ReadThreshold>0.55</ReadThreshold>
+		<readableEffectCategory>GetHediff</readableEffectCategory>
+		<HediffGained>DemonicPossession</HediffGained>
+	   </li>	
+	</ReadableEffectEntries>
+    <tradeTags>
+      <li>WeirdLiterature</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="BookBase" Class="Corruption.BookStuff.ThingDef_Readables">
+ <defName>Readables_Asumod</defName>
+		<label>Litany of Asumod</label>
+<Description>A piece of literature that seems to be written in strange hyroglyphs, with some gibberish in High Gothic interspersed. It seems to radiate an aura of anger.</Description>
+		<graphicData>
+		 <texPath>Things/Items/Books/BookGeneric</texPath>
+		<graphicClass>Graphic_Multi</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+		<color>(255,150,0)</color>
+		<colorTwo>(255,100,20)</colorTwo>	
+		</graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+	    <thingClass>Corruption.BookStuff.ReadableBooks</thingClass>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>false</useHitPoints>
+    <thingCategories>
+      <li>WeirdLiterature</li>
+    </thingCategories>
+	<IsABook>true</IsABook>
+	<BookText>
+	<li>Blaaargh.</li>
+	<li>Flower in red.</li>
+	<li>Sweetly dripping.</li>
+	<li>Flowing freely.</li>
+	<li>Hatred rising.</li>
+	<li>Rivers in crimson.</li>
+	<li>Branches in white.</li>
+	<li>Harmonies in mist.</li>
+	<li>Calling, craving.</li>
+	<li>Cleansing by renewal.</li>
+	<li>Smoldering beneath.</li>
+	<li>Glow in the darkness.</li>
+	<li>Ripping and tearing.</li>
+	</BookText>
+	<CloseTexture>Things/Items/Books/Cover_BookOldA</CloseTexture>
+	<TicksToRead>9000</TicksToRead>
+	<SkillToLearn>Melee</SkillToLearn>
+	<SkillGainFactor>1.5</SkillGainFactor>
+	<TextSpeedShowFactor>2.0</TextSpeedShowFactor>
+	<soulItemCategory>Corruption</soulItemCategory>
+	<SoulGainRate>1.0</SoulGainRate>
+	<ReadableEffectEntries>
+ 	   <li>
+		<ReadThreshold>0.25</ReadThreshold>
+		<readableEffectCategory>GetMentalBreak</readableEffectCategory>
+		<MentalBreak>WanderConfused</MentalBreak>
+	   </li>
+ 	   <li>
+		<ReadThreshold>0.6</ReadThreshold>
+		<readableEffectCategory>LearnPsykerPower</readableEffectCategory>
+		<PsykerPowerUnlocked>PsykerPower_Berserker</PsykerPowerUnlocked>
+	   </li>
+ 	   <li>
+		<ReadThreshold>0.8</ReadThreshold>
+		<readableEffectCategory>GetHediff</readableEffectCategory>
+		<HediffGained>DemonicPossession</HediffGained>
+	   </li>	
+ 	   <li>
+		<ReadThreshold>0.9</ReadThreshold>
+		<readableEffectCategory>GetMentalBreak</readableEffectCategory>
+		<MentalBreak>Berserk</MentalBreak>
+	   </li>
+	</ReadableEffectEntries>
+    <tradeTags>
+      <li>WeirdLiterature</li>
+    </tradeTags>
+  </ThingDef>
+
 
 
 </GameData>

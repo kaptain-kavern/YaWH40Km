@@ -34,6 +34,7 @@
       <texPath>Things/Chaos/Warpstaff/Warpstaff</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MarketValue>3400</MarketValue>
       <AccuracyTouch>0.79</AccuracyTouch>
@@ -42,7 +43,6 @@
       <AccuracyLong>0.06</AccuracyLong>
       <RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
     </statBases>
-    <tradeability>Never</tradeability>
     <techLevel>Spacer</techLevel>
     <destroyOnDrop>false</destroyOnDrop>
     <menuHidden>false</menuHidden>

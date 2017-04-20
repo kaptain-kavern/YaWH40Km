@@ -34,7 +34,7 @@
         <generalSettings>
             <MaleGenderProbability>0.5</MaleGenderProbability>
             <PawnsSpecificBackstories>true</PawnsSpecificBackstories>
-            <ImmuneToAge>false</ImmuneToAge>
+            <ImmuneToAge>true</ImmuneToAge>
 			<ForcedRaceTraitEntries>
             </ForcedRaceTraitEntries>
 			<alienPartGenerator>
@@ -43,6 +43,7 @@
 	  <li>MechHeadB</li>
 	  <li>MechHeadC</li>
 	  <li>MechHeadD</li>
+	  <li>MechHeadE</li>
                 </aliencrowntypes>
                 <alienbodytypes>
 					<li>Hulk</li>

@@ -34,6 +34,7 @@
     </graphicData>
     <soundInteract>Metal_Drop</soundInteract>
     <soundDrop>Metal_Drop</soundDrop>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MarketValue>200.0</MarketValue>
       <SharpDamageMultiplier>1</SharpDamageMultiplier>
@@ -68,7 +69,7 @@
     <label>armaplas</label>
     <description>A heat absorbing plastic and metal composite.</description>
     <graphicData>
-      <texPath>Things/Item/Resource/Plasteel</texPath>
+      <texPath>Things/Items/Resource/Armaplas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <color>(255,255,255)</color>
     </graphicData>
@@ -106,12 +107,13 @@
     <label>ceramite</label>
     <description>A tough, heat absorbing ceramic composite.</description>
     <graphicData>
-      <texPath>Things/Item/Resource/Plasteel</texPath>
+      <texPath>Things/Items/Resource/Ceramite</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <color>(255,255,255)</color>
     </graphicData>
     <soundInteract>Metal_Drop</soundInteract>
     <soundDrop>Metal_Drop</soundDrop>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MarketValue>50.0</MarketValue>
       <ArmorRating_Sharp>1.1</ArmorRating_Sharp>
@@ -153,6 +155,7 @@
     <soundInteract>Wood_Drop</soundInteract>
     <soundDrop>Standard_Drop</soundDrop>
     <stackLimit>75</stackLimit>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
       <MarketValue>0.5</MarketValue>

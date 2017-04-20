@@ -118,15 +118,19 @@ namespace Corruption.Tithes
         {
             CorruptionStoryTracker tracker = CorruptionStoryTrackerUtilities.currentStoryTracker;
             tracker.ResetIoMAcknowledgement();
-            int num = tracker.PlanetaryGovernor.skills.GetSkill(SkillDefOf.Social).levelInt + Rand.Range(5, 15);
-            if (num > 30)
+            int num = tracker.PlanetaryGovernor.skills.GetSkill(SkillDefOf.Social).levelInt + Rand.Range(10, 15);
+            if (num > 27)
             {
                 return;
             }
             else if (num > 20)
             {
-                
+                CorruptionStoryTrackerUtilities.InitiateGovernorArrestEvent(tracker.PlanetaryGovernor.Map);
             }            
+            else
+            {
+
+            }
         }
 
     }

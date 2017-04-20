@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-<ThoughtDef>
+<Corruption.ThoughtDefCorruption>
     <defName>Khornate_NoKill</defName>
     <workerClass>Corruption.ThoughtWorker_KhornateNoKill</workerClass>
-    <requiredTraits>
+    <requiredSoulTraits>
       <li>Khorne_Fervor</li>
-    </requiredTraits>
+    </requiredSoulTraits>
     <stages>
       <li>
         <label>Khornate Urge</label>
@@ -24,14 +24,14 @@
         <baseMoodEffect>-25</baseMoodEffect>
       </li>
     </stages>
-  </ThoughtDef>
+  </Corruption.ThoughtDefCorruption>
 
-  <ThoughtDef>
+  <Corruption.ThoughtDefCorruption>
     <defName>Khornate_Kill</defName>
     <workerClass>Corruption.ThoughtWorker_KhornateKill</workerClass>
-    <requiredTraits>
+    <requiredSoulTraits>
       <li>Khorne_Fervor</li>
-    </requiredTraits>
+    </requiredSoulTraits>
     <stages>
       <li>
         <label>Khornate sacrifice</label>
@@ -49,14 +49,14 @@
         <baseMoodEffect>20</baseMoodEffect>
       </li>
     </stages>
-  </ThoughtDef>
+  </Corruption.ThoughtDefCorruption>
 
-  <ThoughtDef>
+  <Corruption.ThoughtDefCorruption>
     <defName>Nurgle_Happy</defName>
     <workerClass>ThoughtWorker_AlwaysActive</workerClass>
-    <requiredTraits>
+    <requiredSoulTraits>
       <li>Nurgle_Fervor</li>
-    </requiredTraits>
+    </requiredSoulTraits>
     <stages>
       <li>
         <label>There's only death</label>
@@ -64,14 +64,14 @@
         <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>
-  </ThoughtDef>
+  </Corruption.ThoughtDefCorruption>
 
-  <ThoughtDef>
+  <Corruption.ThoughtDefCorruption>
     <defName>Nurgle_Blessings</defName>
     <workerClass>Corruption.ThoughtWorker_NurgleGifts</workerClass>
-    <requiredTraits>
+    <requiredSoulTraits>
       <li>Nurgle_Fervor</li>
-    </requiredTraits>
+    </requiredSoulTraits>
     <stages>
       <li>
         <label>Nurgles Gift</label>
@@ -89,15 +89,15 @@
         <baseMoodEffect>15</baseMoodEffect>
       </li>
     </stages>
-  </ThoughtDef>
+  </Corruption.ThoughtDefCorruption>
 
 
-  <ThoughtDef>
+  <Corruption.ThoughtDefCorruption>
     <defName>Tzeentch_Happy</defName>
     <workerClass>Corruption.ThoughtWorker_Tzeentchian</workerClass>
-    <requiredTraits>
+    <requiredSoulTraits>
       <li>Tzeentch_Fervor</li>
-    </requiredTraits>
+    </requiredSoulTraits>
     <stages>
       <li>
         <label>JUST AS PLANNED!</label>
@@ -130,14 +130,14 @@
         <baseMoodEffect>-10</baseMoodEffect>
       </li>
     </stages>
-  </ThoughtDef>
+  </Corruption.ThoughtDefCorruption>
 
-<ThoughtDef>
+<Corruption.ThoughtDefCorruption>
     <defName>Undivided_Unhappy</defName>
     <workerClass>Corruption.ThoughtWorker_Undivided</workerClass>
-    <requiredTraits>
+    <requiredSoulTraits>
       <li>Undivided_Fervor</li>
-    </requiredTraits>
+    </requiredSoulTraits>
     <stages>
       <li>
         <label>Tainted Colony</label>
@@ -161,6 +161,6 @@
         <baseMoodEffect>-15</baseMoodEffect>
       </li>
     </stages>
-  </ThoughtDef>
+  </Corruption.ThoughtDefCorruption>
 
 </Defs>

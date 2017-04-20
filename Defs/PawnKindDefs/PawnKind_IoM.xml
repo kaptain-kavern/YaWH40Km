@@ -50,4 +50,30 @@
     </AfflictionProperty>
   </PawnKindDef>
 
+
+  <PawnKindDef>
+    <defName>IoM_Colonist</defName>
+    <race>Human</race>
+    <combatPower>30</combatPower>
+    <baseRecruitDifficulty>0.60</baseRecruitDifficulty>
+    <isFighter>false</isFighter>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <forceNormalGearQuality>true</forceNormalGearQuality>
+    <label>colonist</label>
+    <defaultFactionType>IoM_PlayerFaction</defaultFactionType>
+    <backstoryCategory>Civil</backstoryCategory>
+    <chemicalAddictionChance>0.06</chemicalAddictionChance>
+    <apparelTags>
+      <li>Spacer</li>
+      <li>IoM_Apparel</li>
+      <li>Noble</li>
+    </apparelTags>
+    <apparelMoney>
+      <min>390</min>
+      <max>4400</max>
+    </apparelMoney>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+  </PawnKindDef>
+
+
 </PawnKindDefs>

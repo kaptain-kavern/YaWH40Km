@@ -21,6 +21,7 @@
     <tradeTags>
       <li>Xeno_Eldar</li>
     </tradeTags>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>3250000</WorkToMake>
       <MaxHitPoints>500</MaxHitPoints>
@@ -88,6 +89,7 @@
       <texPath>Things/Eldar/Armor/eldar_helmet_icon</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>60000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>
@@ -155,6 +157,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>3250000</WorkToMake>
       <MaxHitPoints>450</MaxHitPoints>
@@ -221,6 +224,7 @@
       <texPath>Things/Eldar/Armor/Warlock_Helmet_Icon</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>60000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>
@@ -305,6 +309,7 @@
       <texPath>Things/Eldar/Ranger/eldar_rangerarmor</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>60000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>
@@ -360,6 +365,7 @@
       <texPath>Things/Eldar/Ranger/Eldar_Helmet_Neutral</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>60000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>
@@ -421,6 +427,7 @@
       <li>Leathery</li>
       <li>Fabric</li>
     </stuffCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>32500</WorkToMake>
       <MaxHitPoints>150</MaxHitPoints>
@@ -490,6 +497,7 @@
     <costList>
       <Wraithbone>20</Wraithbone>
     </costList>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>32500</WorkToMake>
       <MaxHitPoints>150</MaxHitPoints>
@@ -557,6 +565,7 @@
       <li>Leathery</li>
       <li>Fabric</li>
     </stuffCategories>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>32500</WorkToMake>
       <MaxHitPoints>150</MaxHitPoints>
@@ -623,6 +632,7 @@
     <soundInteract>Metal_Drop</soundInteract>
     <soundDrop>Standard_Drop</soundDrop>
     <stackLimit>50</stackLimit>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>70</MaxHitPoints>
       <MarketValue>3000</MarketValue>
@@ -673,6 +683,7 @@
     <tradeTags>
       <li>Xeno_Eldar</li>
     </tradeTags>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>3250000</WorkToMake>
       <MaxHitPoints>700</MaxHitPoints>
@@ -741,6 +752,7 @@
       <texPath>Things/Eldar/DireAvengers/DHHelmet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <tradeability>Sellable</tradeability>
     <statBases>
       <WorkToMake>60000</WorkToMake>
       <MaxHitPoints>160</MaxHitPoints>

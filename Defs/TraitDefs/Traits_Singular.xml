@@ -3,7 +3,6 @@
 
   <Corruption.SoulTraitDef>
     <defName>Khorne_Fervor</defName>
-    <commonality>0.001</commonality>
     <SDegreeDatas>
       <li>
         <label>Khornate</label>
@@ -33,20 +32,10 @@
       <li>KnowColonistExecuted</li>
       <li>KnowPrisonerDiedInnocent</li>
     </NullifiesThoughts>
-    <degreeDatas>
-      <li>
-        <label>placeholder_khorne</label>
-        <description>This is a workaround trait. Do not use!</description>
-      </li>
-    </degreeDatas>
-    <requiredWorkTags>
-      <li>Violent</li>
-    </requiredWorkTags>
   </Corruption.SoulTraitDef>
 
   <Corruption.SoulTraitDef>
     <defName>Nurgle_Fervor</defName>
-    <commonality>0.001</commonality>
     <SDegreeDatas>
       <li>
         <label>Nurglite</label>
@@ -66,18 +55,10 @@
       <li>KnowGuestExecuted</li>
       <li>KnowColonistExecuted</li>
       <li>KnowPrisonerDiedInnocent</li>
-    </NullifiesThoughts>
-    <degreeDatas>
-      <li>
-        <label>placeholder_nurgle</label>
-        <description>This is a workaround trait. Do not use!</description>
-      </li>
-    </degreeDatas>
-  </Corruption.SoulTraitDef>
+    </NullifiesThoughts>  </Corruption.SoulTraitDef>
 
   <Corruption.SoulTraitDef>
     <defName>Slaanesh_Fervor</defName>
-    <commonality>0.01</commonality>
     <SDegreeDatas>
       <li>
         <label>Slaaneshi</label>
@@ -98,18 +79,10 @@
       <li>KnowPrisonerDiedInnocent</li>
       <li>AteHumanlikeMeatDirect</li>
       <li>AteHumanlikeMeatAsIngredient</li>
-    </NullifiesThoughts>
-    <degreeDatas>
-      <li>
-        <label>placeholder_slaan</label>
-        <description>This is a workaround trait. Do not use!</description>
-      </li>
-    </degreeDatas>
-  </Corruption.SoulTraitDef>
+    </NullifiesThoughts>  </Corruption.SoulTraitDef>
 
   <Corruption.SoulTraitDef>
     <defName>Tzeentch_Fervor</defName>
-    <commonality>0.001</commonality>
     <SDegreeDatas>
       <li>
         <label>Tzeentchian</label>
@@ -129,17 +102,10 @@
       <li>KnowColonistExecuted</li>
       <li>KnowPrisonerDiedInnocent</li>
     </NullifiesThoughts>
-    <degreeDatas>
-      <li>
-        <label>placeholder_tzeentch</label>
-        <description>This is a workaround trait. Do not use!</description>
-      </li>
-    </degreeDatas>
   </Corruption.SoulTraitDef>    
 
   <Corruption.SoulTraitDef>
     <defName>Undivided_Fervor</defName>
-    <commonality>0.001</commonality>
     <SDegreeDatas>
       <li>
         <label>Chaos follower</label>
@@ -159,18 +125,10 @@
       <li>KnowColonistExecuted</li>
       <li>KnowPrisonerDiedInnocent</li>
     </NullifiesThoughts>
-
-    <degreeDatas>
-      <li>
-        <label>placeholder_undiv</label>
-        <description>This is a workaround trait. Do not use!</description>
-      </li>
-    </degreeDatas>
   </Corruption.SoulTraitDef>
 
   <Corruption.SoulTraitDef>
     <defName>DE_Depravity</defName>
-    <commonality>0.001</commonality>
     <SDegreeDatas>
       <li>
         <label>Dark Eldar Depravity</label>
@@ -190,14 +148,30 @@
       <li>KnowColonistExecuted</li>
       <li>KnowPrisonerDiedInnocent</li>
     </NullifiesThoughts>
-
-    <degreeDatas>
-      <li>
-        <label>placeholder_DarkEldar</label>
-        <description>This is a workaround trait. Do not use!</description>
-      </li>
-    </degreeDatas>
   </Corruption.SoulTraitDef>
+
+
+  <Corruption.SoulTraitDef>
+    <defName>ORK_Brutality</defName>
+    <SDegreeDatas>
+      <li>
+        <label>Ork mindedness</label>
+        <description>NAME is an Orkoid, meaning HIS life evolves around seemingly mindless bloodshed.</description>
+      </li>
+    </SDegreeDatas>
+    <NullifiesThoughts>
+      <li>KnowPrisonerSold</li>
+      <li>KnowGuestOrganHarvested</li>
+      <li>KnowBuriedInSarcophagus</li>
+      <li>ButcheredHumanlikeCorpse</li>
+      <li>KnowButcheredHumanlikeCorpse</li>
+      <li>ObservedLayingCorpse</li>
+      <li>ObservedLayingRottingCorpse</li>
+      <li>WitnessedDeathNonAlly</li>
+      <li>KnowGuestExecuted</li>
+      <li>KnowColonistExecuted</li>
+      <li>KnowPrisonerDiedInnocent</li>
+    </NullifiesThoughts>  </Corruption.SoulTraitDef>
 
 
 </Corruption.SoulTraitDefs>

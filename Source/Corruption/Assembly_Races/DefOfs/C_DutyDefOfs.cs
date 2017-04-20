@@ -15,5 +15,7 @@ namespace Corruption.DefOfs
         public static DutyDef LeaveInShip;
 
         public static DutyDef LoadShipCargo;
+
+        public static DutyDef JoinSermon;
     }
 }

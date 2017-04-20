@@ -76,7 +76,7 @@ namespace Corruption
             if (Scribe.mode == LoadSaveMode.ResolvingCrossRefs && this.SDef == null)
             {
                 this.SDef = DefDatabase<SoulTraitDef>.GetRandom();
-                this.sdegree = PawnGenerator.RandomTraitDegree(this.SDef);
+                this.sdegree =  this.SDef.SDegreeDatas.RandomElementByWeight((SoulTraitDegreeData dd) => dd.Commonality).degree;
             }
         }
     }

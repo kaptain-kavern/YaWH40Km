@@ -26,7 +26,7 @@ namespace Corruption.Ships
         public ThingDef LeavingShipDef;
         public string FleetIconGraphicPath = "UI/Buttons/ButtonShip";
         public List<ShipWeaponSlot> weaponSlots = new List<ShipWeaponSlot>();
-
+        public bool CanBeStartingShip = false;
 
     }
 }
