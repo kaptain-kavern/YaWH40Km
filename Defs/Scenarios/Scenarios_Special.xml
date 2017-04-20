@@ -34,6 +34,11 @@ You'll start in a dropship.</description>
 			</li>
 			<li Class="ScenPart_StartingThing_Defined">
 				<def>StartingThing_Defined</def>
+				<thingDef>Readables_Cicero</thingDef>
+				<count>1</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
 				<thingDef>Steel</thingDef>
 				<count>700</count>
 			</li>
