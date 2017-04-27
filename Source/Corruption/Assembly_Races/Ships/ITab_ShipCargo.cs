@@ -125,9 +125,9 @@ namespace Corruption.Ships
             Rect rect = inRect.ContractedBy(4f);
             GUI.BeginGroup(rect);
             GUI.color = Color.white;
-            Rect totalRect = new Rect(0f, 0f, rect.width, 900);
+            Rect totalRect = new Rect(0f, 0f, rect.width - 50f, 900);
             Rect viewRect = new Rect(0f, 0f, rect.width, this.scrollViewHeight);
-            Widgets.BeginScrollView(totalRect, ref this.scrollPosition, viewRect);
+            Widgets.BeginScrollView(viewRect, ref this.scrollPosition, totalRect);
             float num = 0f;
             if (this.ship.GetInnerContainer() != null)
             {
@@ -139,14 +139,14 @@ namespace Corruption.Ships
                     {
                         if (thing.GetType() != typeof(Pawn))
                         {
-                            this.DrawThingRow(ref num, viewRect.width, thing);
+                            this.DrawThingRow(ref num, viewRect.width - 100f, thing);
                         }
                     }
                     else
                     {
                         if (thing.GetType() == typeof(Pawn))
                         {
-                            this.DrawThingRow(ref num, viewRect.width, thing);
+                            this.DrawThingRow(ref num, viewRect.width - 100f, thing);
                         }
                     }
                 }

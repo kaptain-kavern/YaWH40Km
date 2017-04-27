@@ -49,9 +49,6 @@
             </alienPartGenerator>
         </generalSettings>
 		<graphicPaths>
-            <li>
-                <tail>Things/Eldar/Head/</tail>
-            </li>
         </graphicPaths>
 		<hairSettings>
             <HasHair>true</HasHair>

@@ -93,6 +93,20 @@
       </options>
     </Coloring>
       </li>
+      <li Class="FactionColors.CompProperties_PauldronDrawer">
+        <compClass>FactionColors.CompPauldronDrawer</compClass>
+  		 <PauldronEntryChance>1.0</PauldronEntryChance>
+
+        <PauldronEntries>
+		<li>
+        	 <shoulderPadType>Both</shoulderPadType>
+  		 <shaderType>Cutout</shaderType>
+  		 <UseSecondaryColor>true</UseSecondaryColor>
+    		 <padTexPath>Things/IoM/PadsLeather/PadLeather</padTexPath>
+  		 <commonality>10</commonality>
+		</li>
+        </PauldronEntries>
+      </li>
     </comps>
   </ThingDef>
 
@@ -188,6 +202,18 @@
         </li>
       </options>
     </Coloring>
+      </li>
+      <li Class="FactionColors.CompProperties_PauldronDrawer">
+        <compClass>FactionColors.CompPauldronDrawer</compClass>
+        <PauldronEntries>
+		<li>
+        	 <shoulderPadType>Both</shoulderPadType>
+  		 <shaderType>Cutout</shaderType>
+  		 <UseSecondaryColor>true</UseSecondaryColor>
+    		 <padTexPath>Things/IoM/PadsLeather/PadLeather</padTexPath>
+  		 <commonality>10</commonality>
+		</li>
+        </PauldronEntries>
       </li>
     </comps>
   </ThingDef>

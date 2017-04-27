@@ -17,6 +17,7 @@ namespace FactionColors
         public Color SubfactionColor1;
         public Color SubfactionColor2;
         public List<PawnGroupMaker> SubfactionPawnGroupMakers;
+        public RulePackDef SubfactionNameMaker;
         public float weight;
         public ChaosGods SubfactionPreferredChaosGod = ChaosGods.Undivided;
     }

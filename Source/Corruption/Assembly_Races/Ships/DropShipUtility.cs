@@ -32,12 +32,18 @@ namespace Corruption.Ships
         public static readonly Texture2D movingShip = ContentFinder<Texture2D>.Get("UI/Images/MovingShip", true);
 
         public static readonly Texture2D TargeterShipAttachment = ContentFinder<Texture2D>.Get("UI/Overlays/LaunchableMouseAttachment", true);
-        
+
         public static ShipTracker currentShipTracker
         {
             get
             {
-                return Find.WorldObjects.AllWorldObjects.FirstOrDefault(x => x.def == ShipNamespaceDefOfs.ShipTracker) as ShipTracker;
+                ShipTracker tracker = Find.WorldObjects.AllWorldObjects.FirstOrDefault(x => x.def == ShipNamespaceDefOfs.ShipTracker) as ShipTracker;
+                if (tracker == null)
+                {
+                    HarmonyPatches.GenerateFactionsIntoWorldPostFix();
+                    return Find.WorldObjects.AllWorldObjects.FirstOrDefault(x => x.def == ShipNamespaceDefOfs.ShipTracker) as ShipTracker;
+                }
+                return tracker;
             }
         }
 

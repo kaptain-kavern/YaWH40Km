@@ -119,6 +119,29 @@
     <canInterruptJobs>false</canInterruptJobs>
   </DamageDef>
 
+  <DamageDef ParentName="LocalInjuryBase">
+    <defName>BulletBolter</defName>
+    <label>bolt</label>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <battleWound>true</battleWound>
+    <deathMessage>{0} has been shot to death.</deathMessage>
+    <hediff>Gunshot</hediff>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Bullet</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <spreadOut>true</spreadOut>
+    <explosionDamage>15</explosionDamage>
+    <explosionBuildingDamageFactor>2</explosionBuildingDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>1</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionColorCenter>(1, 0.55, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_Bomb</soundExplosion>
+  </DamageDef>
+
+
 
 
 </Defs>

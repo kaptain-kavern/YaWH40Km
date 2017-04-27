@@ -16,7 +16,6 @@ namespace Corruption
     [StaticConstructorOnStartup]
     public class CorruptionStoryTrackerUtilities
     {
-
         public static Texture2D ButtonIG = ContentFinder<Texture2D>.Get("UI/Buttons/ButtonIG", true);
         public static Texture2D ButtonAM = ContentFinder<Texture2D>.Get("UI/Buttons/ButtonAM", true);
         public static Texture2D ButtonAS = ContentFinder<Texture2D>.Get("UI/Buttons/ButtonAS", true);

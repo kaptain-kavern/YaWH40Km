@@ -221,6 +221,7 @@ namespace Corruption.Ships
 
         private void InitiateShipProperties()
         {
+
             DropShipUtility.currentShipTracker.AllWorldShips.Add(this);
             this.ShipNick = NameGenerator.GenerateName(RulePackDef.Named("NamerShipGeneric"));
             this.compShipCached = this.TryGetComp<CompShip>();

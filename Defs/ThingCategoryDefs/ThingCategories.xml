@@ -33,9 +33,46 @@
 </ThingCategoryDef>
 
 	  <ThingCategoryDef>
+	    <defName>Astartes_Base</defName>
+	    <label>astartes</label>
+	    <parent>IoMGear</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>Astartes_Weapons</defName>
+	    <label>astartes weapons</label>
+	    <parent>Astartes_Base</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>Astartes_Ranged</defName>
+	    <label>ranged</label>
+	    <parent>Astartes_Weapons</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>Astartes_Heavy</defName>
+	    <label>heavy</label>
+	    <parent>Astartes_Weapons</parent>
+	  </ThingCategoryDef>
+
+
+	  <ThingCategoryDef>
+	    <defName>Astartes_Melee</defName>
+	    <label>melee</label>
+	    <parent>Astartes_Weapons</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
+	    <defName>Astartes_Armor</defName>
+	    <label>astartes armor</label>
+	    <parent>Astartes_Base</parent>
+	  </ThingCategoryDef>
+
+	  <ThingCategoryDef>
 	    <defName>BodyParts_GeneSeed</defName>
 	    <label>astartes implants</label>
-	    <parent>IoMGear</parent>
+	    <parent>Astartes_Base</parent>
 	  </ThingCategoryDef>
 
 	  <ThingCategoryDef>

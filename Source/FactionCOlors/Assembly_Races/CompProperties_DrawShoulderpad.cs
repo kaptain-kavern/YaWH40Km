@@ -19,6 +19,8 @@ namespace FactionColors
         public ShaderType shaderType;
         public string padTexPath;
         public int commonality;
+        public bool UseSecondaryColor;
+        public bool UseFactionTextures;
     }
 
     public class CompProperties_PauldronDrawer : CompProperties

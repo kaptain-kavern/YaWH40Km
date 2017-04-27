@@ -78,8 +78,9 @@
 	</graphicData>
     <projectile>
 		<flyOverhead>false</flyOverhead>
-		<damageDef>Bullet</damageDef>
+		<damageDef>BulletBolter</damageDef>
 		<damageAmountBase>26</damageAmountBase>
+	 	<explosionRadius>1.0</explosionRadius>
 		<speed>80</speed>
     </projectile>
   </ThingDef>
@@ -234,7 +235,7 @@
     <thingClass>ThingWithComps</thingClass>
     <defName>Gun_StandardBolter</defName>
     <label>Standard Issue Bolter</label>
-    <description>The current standard-issue bolter is the .75 calibre Astartes Mark Vb Godwyn Pattern Bolter equiped with Standard Bolts</description>
+    <description>A bolter weapon designed to be carried by non-Astartes personel. Usually reserved for officers</description>
 	<graphicData>
 		<texPath>Things/IG/Weapons/StandardBolter</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -259,7 +260,7 @@
         <projectileDef>Bullet_StandardBolt</projectileDef>
         <warmupTime>0.7</warmupTime>
         <range>32</range>
-        <burstShotCount>4</burstShotCount>
+        <burstShotCount>3</burstShotCount>
         <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
         <soundCast>Bolter</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -281,7 +282,7 @@
   <ThingDef ParentName="BaseHumanMakeableGun_IG">
     <defName>Gun_BoltPistol</defName>
     <label>Standard Issue Bolt Pistol</label>
-    <description>The current standard-issue bolter is the .75 calibre Astartes Mark Vb Godwyn Pattern Bolter equiped with Standard Bolts</description>
+    <description>A bolter weapon designed to be carried by non-Astartes personel. Usually reserved for officers.</description>
 	<graphicData>
 		<texPath>Things/IG/Weapons/Bolt_Pistol</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -459,7 +460,10 @@
   </ThingDef>
   <!-- ============================================== -->
   
-  <ThingDef ParentName="BaseHumanMakeableGun_IG">
+  <ThingDef ParentName="BaseHumanMakeableGun_IG"
+Class="FactionColors.FactionItemDef">
+    <thingClass>FactionColors.FactionItem</thingClass>
+    <ItemMeshSize>(1.1, 1.1, 1.1)</ItemMeshSize>
     <defName>Gun_StormBolter</defName>
     <label>Standard Issue Storm Bolter</label>
     <description>he Storm Bolter is a double-barrelled version of the standard Bolter. As it is heavier and causes more recoil than a normal Bolter, it is rarely used.</description>
@@ -479,6 +483,7 @@
     </statBases>
     <weaponTags>
       <li>IG_Ranged_Vet</li>
+      <li>Astartes_Ranged</li>
     </weaponTags>
     <verbs>
       <li>
@@ -736,6 +741,7 @@
     </statBases>
     <weaponTags>
       <li>IG_Ranged_Ass</li>
+      <li>Astartes_Ranged</li>
     </weaponTags>
     <verbs>
       <li>

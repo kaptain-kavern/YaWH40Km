@@ -212,7 +212,7 @@
       <PersonalShieldEnergyMax>1.5</PersonalShieldEnergyMax>
     </statBases>
     <thingCategories>
-      <li>Apparel</li>
+      <li>Sororitas_Support</li>
     </thingCategories>
     <apparel>
 			<bodyPartGroups>

@@ -13,6 +13,8 @@ namespace FactionColors
         public string graphicPath;
         public Shader shader = ShaderDatabase.Cutout;
         public ShoulderPadType padType;
+        private bool useSecondaryColor;
+        private bool useFactionTextures;
         public Apparel apparel
         {
             get
@@ -29,11 +31,23 @@ namespace FactionColors
             }
         }
 
+        public Color mainColor
+        {
+            get
+            {
+                if (this.useSecondaryColor)
+                {
+                    return this.parent.DrawColorTwo;
+                }
+                return this.parent.DrawColor;
+            }           
+        }
+
         public Graphic PauldronGraphic
         {
             get
             {
-                return GraphicDatabase.Get<Graphic_Multi>(graphicPath + "_" + pawn.story.bodyType.ToString(), shader,  Vector2.one, this.parent.DrawColor, this.parent.DrawColorTwo);
+                return GraphicDatabase.Get<Graphic_Multi>(graphicPath + "_" + pawn.story.bodyType.ToString(), shader,  Vector2.one, this.mainColor, this.parent.DrawColorTwo);
             }
         }
 
@@ -95,7 +109,13 @@ namespace FactionColors
             base.PostSpawnSetup();
             ShoulderPadEntry entry = this.pprops.PauldronEntries.RandomElementByWeight((ShoulderPadEntry x) => x.commonality);
             this.graphicPath = entry.padTexPath;
+
+            if (entry.UseFactionTextures)
+            {
+                this.graphicPath += ("_" + this.apparel.wearer.Faction.Name);
+            }
             this.shader = ShaderDatabase.ShaderFromType(entry.shaderType);
+            this.useSecondaryColor = entry.UseSecondaryColor;
             this.padType = entry.shoulderPadType;
         }
 
@@ -105,6 +125,8 @@ namespace FactionColors
             Scribe_Values.LookValue<string>(ref this.graphicPath, "graphicPath", null, false);
             Scribe_Values.LookValue<Shader>(ref this.shader, "shader", ShaderDatabase.Cutout, false);
             Scribe_Values.LookValue<ShoulderPadType>(ref this.padType, "padType", ShoulderPadType.Both, false);
+            Scribe_Values.LookValue<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
+
         }
 
 

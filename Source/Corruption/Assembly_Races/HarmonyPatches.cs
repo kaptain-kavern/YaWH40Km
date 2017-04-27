@@ -183,13 +183,16 @@ namespace Corruption
 
         public static void GenerateInitialHediffsPostFix(Pawn pawn, PawnGenerationRequest request)
         {
-            Need_Soul soul = pawn.needs.TryGetNeed<Need_Soul>();
-            if (soul != null)
+            if (pawn.needs != null)
             {
-                ChaosFollowerPawnKindDef pdef = pawn.kindDef as ChaosFollowerPawnKindDef;
-                if (pdef != null)
+                Need_Soul soul = pawn.needs.TryGetNeed<Need_Soul>();
+                if (soul != null)
                 {
-                    soul.GenerateHediffsAndImplants(pdef);
+                    ChaosFollowerPawnKindDef pdef = pawn.kindDef as ChaosFollowerPawnKindDef;
+                    if (pdef != null)
+                    {
+                        soul.GenerateHediffsAndImplants(pdef);
+                    }
                 }
             }
         }

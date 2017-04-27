@@ -2,33 +2,72 @@
 <ThingDefs>
 
 
-  <!-- ============================ Astrartes ========================== -->
 
-  <ThingDef ParentName="BasePawn">
-    <defName>Astartes</defName>
+  <!-- ============================ Human ========================== -->
+
+  <AlienRace.ThingDef_AlienRace ParentName="BasePawn">
+    <defName>Alien_Astartes</defName>
     <label>astartes</label>
-    <description>What was once mearly an exceptional human was turned into a demi-god of war thansk to the Emperors blessed gene-seed.</description>
-    <uiIconPath>Things/Pawn/Humanlike/UI/IconHuman</uiIconPath>
+    <description>A heavily gene-enhanced warrior, the culmination of humanity's raw potential.</description>
+	<alienRace>
+        <generalSettings>
+            <MaleGenderProbability>1.0</MaleGenderProbability>
+            <PawnsSpecificBackstories>true</PawnsSpecificBackstories>
+            <ImmuneToAge>false</ImmuneToAge>
+			<ForcedRaceTraitEntries>
+            </ForcedRaceTraitEntries>
+			<alienPartGenerator>
+                <customDrawSize>(1.3, 1.3)</customDrawSize>
+                <customPortraitDrawSize>(1, 1)</customPortraitDrawSize>
+            </alienPartGenerator>
+        </generalSettings>
+		<graphicPaths>
+        </graphicPaths>
+		<hairSettings>
+            <HasHair>true</HasHair>
+            <GetsGreyAt>400</GetsGreyAt>
+        </hairSettings>
+
+		<relationSettings>
+            <relationChanceModifierChild>1</relationChanceModifierChild>
+            <relationChanceModifierExLover>1</relationChanceModifierExLover>
+            <relationChanceModifierExSpouse>1</relationChanceModifierExSpouse>
+            <relationChanceModifierFiance>1</relationChanceModifierFiance>
+            <relationChanceModifierLover>1</relationChanceModifierLover>
+            <relationChanceModifierParent>1</relationChanceModifierParent>
+            <relationChanceModifierSibling>1</relationChanceModifierSibling>
+            <relationChanceModifierSpouse>1</relationChanceModifierSpouse>
+        </relationSettings>
+		<raceRestriction>
+		  
+		  <apparelList>
+                 <li>Astartes_PowerArmor</li>
+                 <li>Astartes_PowerArmorHelmet</li>
+</apparelList>
+          <onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
+        </raceRestriction>
+	</alienRace>
+
     <statBases>
-      <MarketValue>10750</MarketValue>
-      <MoveSpeed>9.0</MoveSpeed>
-      <Flammability>0.9</Flammability>
-      <ComfyTemperatureMin>5</ComfyTemperatureMin>
-      <ComfyTemperatureMax>40</ComfyTemperatureMax>
+      <MarketValue>3950</MarketValue>
+      <MoveSpeed>5.61</MoveSpeed>
+      <Flammability>1.0</Flammability>
+      <ComfyTemperatureMin>0</ComfyTemperatureMin>
+      <ComfyTemperatureMax>50</ComfyTemperatureMax>
       <LeatherAmount>40</LeatherAmount>
     </statBases>
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTime>1.45</defaultCooldownTime>
-        <meleeDamageBaseAmount>12</meleeDamageBaseAmount>
+        <defaultCooldownTime>1.75</defaultCooldownTime>
+        <meleeDamageBaseAmount>9</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
       </li>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <defaultCooldownTime>1.45</defaultCooldownTime>
-        <meleeDamageBaseAmount>12</meleeDamageBaseAmount>
+        <defaultCooldownTime>1.75</defaultCooldownTime>
+        <meleeDamageBaseAmount>9</meleeDamageBaseAmount>
         <meleeDamageDef>Blunt</meleeDamageDef>
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
       </li>
@@ -38,15 +77,14 @@
       <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
-      <lifeExpectancy>1000</lifeExpectancy>
+      <lifeExpectancy>80</lifeExpectancy>
       <leatherColor>(211,194,143)</leatherColor>
       <leatherCommonalityFactor>0.01</leatherCommonalityFactor>
-      <leatherInsulation>0.780</leatherInsulation>
-      <leatherMarketValueFactor>3</leatherMarketValueFactor>
+      <leatherInsulation>0.70</leatherInsulation>
       <nameCategory>HumanStandard</nameCategory>
       <body>Human</body>
-      <baseBodySize>1.5</baseBodySize>
-      <baseHealthScale>2</baseHealthScale>
+      <baseBodySize>1</baseBodySize>
+      <baseHealthScale>1</baseHealthScale>
       <foodType>OmnivoreHuman</foodType>
       <gestationPeriodDays>45</gestationPeriodDays>
       <litterSizeCurve>
@@ -88,17 +126,25 @@
       </specialshadowData>
       <ageGenerationCurve>
         <points>
-          <li>(20,0)</li>
-          <li>(200,100)</li>
-          <li>(400,80)</li>
-          <li>(600,50)</li>
-          <li>(800,20)</li>
-          <li>(1000,0)</li>
+          <li>(18,0)</li>
+          <li>(20,100)</li>
+          <li>(40,100)</li>
+          <li>(60,30)</li>
+          <li>(100,18)</li>
+          <li>(300,10)</li>
+          <li>(500,3)</li>
+          <li>(100,0)</li>
         </points>
       </ageGenerationCurve>
       <hediffGiverSets>
         <li>OrganicStandard</li>
       </hediffGiverSets>
+      <useMeatFrom>
+        <li>Human</li>
+      </useMeatFrom>
+      <useLeatherFrom>
+        <li>Human</li>
+      </useLeatherFrom>
     </race>
     <recipes>
       <li>InstallPowerClaw</li>
@@ -120,8 +166,5 @@
       <li>RemoveBodyPart</li>
       <li>Euthanize</li>
     </recipes>
-  </ThingDef>
-
-
-
+  </AlienRace.ThingDef_AlienRace>
 </ThingDefs>

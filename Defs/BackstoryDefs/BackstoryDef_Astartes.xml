@@ -9,7 +9,7 @@
   <AlienRace.BackstoryDef>
     <defName>Astartes_Artisan</defName>
     <title>Astartes weaponsmith</title>
-    <titleShort>AWeaponsmith</titleShort>
+    <titleShort>Weaponsmith</titleShort>
     <baseDescription>NAME serves the chapter as a Teachmarine. HECAP has dedicated HIS life to crafting weapons of war and anything else his brotehrs need.
 </baseDescription>
 
@@ -133,7 +133,7 @@
   <AlienRace.BackstoryDef>
     <defName>Astartes_Guard</defName>
     <title>Guard cadet</title>
-    <titleShort>guardcadet</titleShort>
+    <titleShort>guard cadet</titleShort>
     <baseDescription>NAME was born on one of the more prosperous planets in the Imperium. HECAP was slated to join the Imperial Guard, but caught the eye of an Astartes who brought him to the aspirant trials.</baseDescription>
 
     <bodyTypeMale>Thin</bodyTypeMale>
@@ -178,7 +178,7 @@
   <AlienRace.BackstoryDef>
     <defName>Astartes_HiveWorld</defName>
     <title>Hive world aspirant</title>
-    <titleShort>hwaspirant</titleShort>
+    <titleShort>aspirant</titleShort>
     <baseDescription>NAME was born on the lower levels of a hive world. The overpopulation and fierce competition meant that survival required quick wit and tounge and a disposition for violence.</baseDescription>
 
     <bodyTypeMale>Hulk</bodyTypeMale>

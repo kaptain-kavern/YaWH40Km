@@ -51,7 +51,7 @@
     <defName>OrkShoota</defName>
     <label>Ork Shoota</label>
     <description>Xenotech bolt-action rifle. Unstable, but powerful.</description>
-    <ItemMeshSize>(1.3, 1.3, 1.3)</ItemMeshSize>
+    <ItemMeshSize>(1.1, 1.1, 1.1)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkShoota</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -92,7 +92,7 @@
     <thingClass>FactionColors.FactionItem</thingClass>
     <defName>OrkDeffgun</defName>
     <label>Deffgun</label>
-    <ItemMeshSize>(1.7, 1.7, 1.7)</ItemMeshSize>
+    <ItemMeshSize>(1.5, 1.5, 1.5)</ItemMeshSize>
     <description>A heavy-duty ork machine gun.</description>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkDeffgun</texPath>
@@ -223,7 +223,7 @@
     <defName>Weapon_OrkStikkBomb</defName>
     <equipmentType>Primary</equipmentType>
     <label>frag grenades</label>
-    <ItemMeshSize>(1.3, 1.3, 1.3)</ItemMeshSize>
+    <ItemMeshSize>(1.1, 1.1, 1.1)</ItemMeshSize>
     <description>Crude explosives used by orks.</description>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkStikkBombEQ</texPath>
@@ -268,7 +268,7 @@
     <defName>OrkBurna</defName>
     <label>Ork Burna</label>
     <description>Xenotech flamethrower. Unstable, but powerful.</description>
-    <ItemMeshSize>(1.3, 1.3, 1.3)</ItemMeshSize>
+    <ItemMeshSize>(1.1, 1.1, 1.1)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkFlamer</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -310,7 +310,7 @@
     <defName>Ork_Sword</defName>
     <label>Ork Choppa</label>
     <description>Xenotech melee weapon. Unwieldy and crude.</description>
-    <ItemMeshSize>(1.3, 1.3, 1.3)</ItemMeshSize>
+    <ItemMeshSize>(1.1, 1.1, 1.1)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkChoppa</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -344,7 +344,7 @@
     <defName>Ork_Axe</defName>
     <label>Ork Choppa</label>
     <description>Xenotech melee weapon. Unwieldy and crude.</description>
-    <ItemMeshSize>(1.5, 1.5, 1.5)</ItemMeshSize>
+    <ItemMeshSize>(1.2, 1.2, 1.2)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/OrkBigChoppa</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -379,7 +379,7 @@
     <defName>Ork_Chainaxe</defName>
     <label>Ork Choppa</label>
     <description>Xenotech melee weapon. Unwieldy and crude.</description>
-    <ItemMeshSize>(1.5, 1.5, 1.5)</ItemMeshSize>
+    <ItemMeshSize>(1.2, 1.2, 1.2)</ItemMeshSize>
     <graphicData>
       <texPath>Things/Orks/Weapons/ChoppaSaw</texPath>
       <graphicClass>Graphic_Single</graphicClass>

@@ -16,7 +16,7 @@ namespace Corruption.Tithes
         {
             this.requestedTitheAmount = (int)TitheUtilities.TaxCalculation(50000);
             this.titheDef = DefDatabase<TitheDef>.GetRandom();
-            this.ID = CorruptionStoryTrackerUtilities.currentStoryTracker.GetTitheID();
+   //         this.ID = CorruptionStoryTrackerUtilities.currentStoryTracker.GetTitheID();
         }
 
         public TitheEntryGlobal(TitheDef titheDef, float requestedAmount)
